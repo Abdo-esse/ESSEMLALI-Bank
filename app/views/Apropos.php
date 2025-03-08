@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - ESSEMLALI Bank</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <!-- Header -->
+    <header class="bg-blue-900 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-xl font-bold mb-4 md:mb-0">ESSEMLALI Bank</div>
+            
+            <nav class="flex flex-col md:flex-row items-center mb-4 md:mb-0">
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Accueil</a>
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Comptes</a>
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Épargne</a>
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Prêts</a>
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Assurances</a>
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 text-blue-300 font-medium">À propos</a>
+            </nav>
+            
+            <button class="bg-blue-400 hover:bg-blue-600 px-6 py-2 rounded-md font-semibold transition-colors">Se connecter</button>
+        </div>
+    </header>
+    
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="mb-16">
+            <div class="bg-blue-900 rounded-lg overflow-hidden shadow-xl">
+                <div class="relative">
+                    <img src="/api/placeholder/1200/400" alt="Siège de ESSEMLALI Bank" class="w-full opacity-50">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h1 class="text-4xl md:text-5xl font-bold text-white text-center px-4">Notre Histoire et Nos Valeurs</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section class="bg-white rounded-lg shadow-md p-8 mb-16">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Qui sommes-nous</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <p class="text-gray-700 mb-4">Fondée en 2009, ESSEMLALI Bank est née de la vision d'un système bancaire plus accessible, transparent et centré sur le client. Depuis notre création, nous avons connu une croissance constante, tout en restant fidèles à nos valeurs fondamentales.</p>
+                    <p class="text-gray-700 mb-4">Notre mission est simple : offrir des solutions financières innovantes qui aident nos clients à atteindre leurs objectifs, qu'il s'agisse d'épargner pour l'avenir, d'acheter une maison ou de développer une entreprise.</p>
+                    <p class="text-gray-700">Aujourd'hui, ESSEMLALI Bank compte plus de 500 000 clients à travers la France et continue de se développer grâce à sa réputation d'excellence et de service personnalisé.</p>
+                </div>
+                <div>
+                    <img src="/api/placeholder/500/300" alt="Équipe ESSEMLALI Bank" class="w-full rounded-lg shadow-md">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Our Values -->
+        <section class="bg-white rounded-lg shadow-md p-8 mb-16">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Nos valeurs</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border-l-4 border-blue-400 pl-4">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-3">Innovation</h3>
+                    <p class="text-gray-700">Nous développons constamment de nouvelles solutions pour répondre aux besoins évolutifs de nos clients et rendre la gestion financière plus simple et plus intuitive.</p>
+                </div>
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-3">Intégrité</h3>
+                    <p class="text-gray-700">Nous prenons nos responsabilités au sérieux et agissons toujours dans le meilleur intérêt de nos clients, avec honnêteté et transparence dans toutes nos opérations.</p>
+                </div>
+                <div class="border-l-4 border-yellow-500 pl-4">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-3">Inclusion</h3>
+                    <p class="text-gray-700">Nous croyons que chacun mérite l'accès à des services financiers de qualité, quelle que soit sa situation, et nous travaillons à éliminer les obstacles à l'inclusion financière.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Leadership -->
+        <section class="bg-white rounded-lg shadow-md p-8 mb-16">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Notre équipe de direction</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <img src="/api/placeholder/200/200" alt="CEO" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-md">
+                    <h3 class="text-xl font-semibold text-blue-900">Sarah ESSEMLALI</h3>
+                    <p class="text-blue-600 mb-2">Présidente-directrice générale</p>
+                    <p class="text-gray-600 text-sm">Fondatrice de ESSEMLALI Bank avec plus de 25 ans d'expérience dans le secteur bancaire.</p>
+                </div>
+                <div class="text-center">
+                    <img src="/api/placeholder/200/200" alt="CFO" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-md">
+                    <h3 class="text-xl font-semibold text-blue-900">Thomas Laurent</h3>
+                    <p class="text-blue-600 mb-2">Directeur financier</p>
+                    <p class="text-gray-600 text-sm">Expert en finance avec une grande expérience dans la gestion des investissements et la stratégie financière.</p>
+                </div>
+                <div class="text-center">
+                    <img src="/api/placeholder/200/200" alt="CTO" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-md">
+                    <h3 class="text-xl font-semibold text-blue-900">Marie Dubois</h3>
+                    <p class="text-blue-600 mb-2">Directrice technique</p>
+                    <p class="text-gray-600 text-sm">Pionnière dans le domaine de la fintech, elle dirige notre transformation numérique depuis 2015.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Timeline -->
+        <section class="bg-white rounded-lg shadow-md p-8 mb-16">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Notre parcours</h2>
+            <div class="relative border-l-2 border-blue-400 ml-6">
+                <div class="mb-8 ml-8">
+                    <div class="absolute -left-3 mt-1.5 w-6 h-6 rounded-full bg-blue-900 border-4 border-white"></div>
+                    <h3 class="text-xl font-semibold text-blue-900">2009</h3>
+                    <p class="text-gray-700">Fondation de ESSEMLALI Bank avec l'ouverture de notre premier bureau à Paris.</p>
+                </div>
+                <div class="mb-8 ml-8">
+                    <div class="absolute -left-3 mt-1.5 w-6 h-6 rounded-full bg-blue-900 border-4 border-white"></div>
+                    <h3 class="text-xl font-semibold text-blue-900">2012</h3>
+                    <p class="text-gray-700">Lancement de notre première application mobile, révolutionnant l'accès bancaire pour nos clients.</p>
+                </div>
+                <div class="mb-8 ml-8">
+                    <div class="absolute -left-3 mt-1.5 w-6 h-6 rounded-full bg-blue-900 border-4 border-white"></div>
+                    <h3 class="text-xl font-semibold text-blue-900">2015</h3>
+                    <p class="text-gray-700">Expansion nationale avec l'ouverture de bureaux dans 10 grandes villes françaises.</p>
+                </div>
+                <div class="mb-8 ml-8">
+                    <div class="absolute -left-3 mt-1.5 w-6 h-6 rounded-full bg-blue-900 border-4 border-white"></div>
+                    <h3 class="text-xl font-semibold text-blue-900">2018</h3>
+                    <p class="text-gray-700">Introduction de notre plateforme d'investissement éthique et lancement de notre programme de finance durable.</p>
+                </div>
+                <div class="ml-8">
+                    <div class="absolute -left-3 mt-1.5 w-6 h-6 rounded-full bg-blue-900 border-4 border-white"></div>
+                    <h3 class="text-xl font-semibold text-blue-900">2023</h3>
+                    <p class="text-gray-700">Atteinte du cap des 500 000 clients et lancement de notre plateforme bancaire de nouvelle génération.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action -->
+        <section class="bg-blue-900 text-white rounded-lg p-8 mb-16 text-center">
+            <h2 class="text-3xl font-bold mb-4">Rejoignez la famille ESSEMLALI Bank</h2>
+            <p class="text-xl mb-6 max-w-2xl mx-auto">Découvrez comment nous pouvons vous aider à atteindre vos objectifs financiers avec nos solutions personnalisées.</p>
+            <button class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-md font-semibold transition-colors">Ouvrir un compte</button>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">ESSEMLALI Bank</h4>
+                    <p class="text-blue-100">Votre partenaire financier de confiance depuis 2009. Nous offrons des services bancaires innovants et personnalisés pour répondre à tous vos besoins financiers.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Liens rapides</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Tarifs</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">FAQ</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Sécurité</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Carrières</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul>
+                        <li class="mb-2 text-blue-100">+33 1 23 45 67 89</li>
+                        <li class="mb-2 text-blue-100">contact@essemlalibank.com</li>
+                        <li class="mb-2 text-blue-100">123 Avenue des Finances, Paris</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Suivez-nous</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Facebook</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Twitter</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">LinkedIn</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-800 pt-6 text-center text-blue-200 text-sm">
+                <p>&copy; 2025 ESSEMLALI Bank. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

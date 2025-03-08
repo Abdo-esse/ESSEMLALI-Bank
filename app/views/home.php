@@ -1,16 +1,139 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home</title>
+    <title>ESSEMLALI Bank - Votre banque en ligne</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
 </head>
-<body>
-    <h1>home page</h1>
-    <h1><?= $contentent ?></h1>
-    <h1><?= $titel ?></h1>
-
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <!-- Header -->
+    <header class="bg-blue-900 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-xl font-bold mb-4 md:mb-0">ESSEMLALI Bank</div>
+            
+            <nav class="flex flex-col md:flex-row items-center mb-4 md:mb-0">
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Accueil</a>
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Comptes</a>
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Épargne</a>
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Prêts</a>
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Assurances</a>
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">À propos</a>
+            </nav>
+            
+            <button class="bg-blue-400 hover:bg-blue-600 px-6 py-2 rounded-md font-semibold transition-colors">Se connecter</button>
+        </div>
+    </header>
+    
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="flex flex-col md:flex-row items-center mb-16">
+            <div class="md:w-1/2 md:pr-8 mb-8 md:mb-0">
+                <h1 class="text-4xl font-bold text-blue-900 mb-4">Votre avenir financier commence ici</h1>
+                <p class="text-lg text-gray-600 mb-8">ESSEMLALI Bank vous offre des solutions bancaires innovantes, accessibles et sécurisées. Gérez votre argent en toute simplicité depuis n'importe où et n'importe quand.</p>
+                <button class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-md font-semibold transition-colors">Ouvrir un compte</button>
+            </div>
+            
+            <div class="md:w-1/2">
+                <img src="/api/placeholder/600/400" alt="Services bancaires en ligne" class="rounded-lg shadow-xl w-full">
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="bg-white rounded-lg p-8 shadow-md transition-transform hover:-translate-y-2 duration-300">
+                <div class="text-4xl mb-4 text-blue-400">💳</div>
+                <h3 class="text-xl font-semibold text-blue-900 mb-3">Paiements sécurisés</h3>
+                <p class="text-gray-600">Effectuez vos paiements en ligne et en magasin en toute sécurité grâce à notre technologie de pointe.</p>
+            </div>
+            
+            <div class="bg-white rounded-lg p-8 shadow-md transition-transform hover:-translate-y-2 duration-300">
+                <div class="text-4xl mb-4 text-blue-400">📱</div>
+                <h3 class="text-xl font-semibold text-blue-900 mb-3">Banque mobile</h3>
+                <p class="text-gray-600">Accédez à vos comptes, réalisez des virements et consultez vos transactions depuis votre smartphone.</p>
+            </div>
+            
+            <div class="bg-white rounded-lg p-8 shadow-md transition-transform hover:-translate-y-2 duration-300">
+                <div class="text-4xl mb-4 text-blue-400">💰</div>
+                <h3 class="text-xl font-semibold text-blue-900 mb-3">Épargne intelligente</h3>
+                <p class="text-gray-600">Nos solutions d'épargne personnalisées vous aident à atteindre vos objectifs financiers plus rapidement.</p>
+            </div>
+        </section>
+        
+        <!-- Stats Section -->
+        <section class="bg-blue-900 text-white rounded-lg p-8 mb-16">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div>
+                    <h4 class="text-3xl font-bold mb-2">98%</h4>
+                    <p class="text-blue-100">Clients satisfaits</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-3xl font-bold mb-2">500K+</h4>
+                    <p class="text-blue-100">Utilisateurs actifs</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-3xl font-bold mb-2">24/7</h4>
+                    <p class="text-blue-100">Assistance client</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-3xl font-bold mb-2">15+</h4>
+                    <p class="text-blue-100">Années d'expérience</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">ESSEMLALI Bank</h4>
+                    <p class="text-blue-100">Votre partenaire financier de confiance depuis 2009. Nous offrons des services bancaires innovants et personnalisés pour répondre à tous vos besoins financiers.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Liens rapides</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Tarifs</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">FAQ</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Sécurité</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Carrières</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul>
+                        <li class="mb-2 text-blue-100">+33 1 23 45 67 89</li>
+                        <li class="mb-2 text-blue-100">contact@essemlalibank.com</li>
+                        <li class="mb-2 text-blue-100">123 Avenue des Finances, Paris</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Suivez-nous</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Facebook</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Twitter</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">LinkedIn</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-800 pt-6 text-center text-blue-200 text-sm">
+                <p>&copy; 2025 ESSEMLALI Bank. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

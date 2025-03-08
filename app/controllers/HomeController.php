@@ -11,7 +11,7 @@ class HomeController
     {
         $data['titel']="home page";
         $data['contentent']="home page hdhdh uzeaufiytz jvcytqfd  ukefzit ";
-       View::load("/home",$data);
+       View::load("/Apropos",$data);
 
     }
 }
