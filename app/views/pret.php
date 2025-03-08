@@ -13,10 +13,10 @@
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
-    <!-- Header -->
-    <header class="bg-blue-900 text-white shadow-md">
+   <!-- Header -->
+   <header class="bg-white text-blue-900 shadow-md">
         <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
-        <div class="text-xl font-bold mb-4 md:mb-0">
+            <div class="text-xl font-bold mb-4 md:mb-0">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" class="w-30 h-auto" >
   <!-- Fond du logo -->
   <rect width="300" height="150" rx="20" fill="#ffffff"/>
@@ -48,7 +48,7 @@
                 <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Accueil</a>
                 <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Comptes</a>
                 <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Épargne</a>
-                <a href="#" class="mb-2 md:mb-0 md:mr-6 text-blue-300 font-medium">Prêts</a>
+                <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Prêts</a>
                 <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Assurances</a>
                 <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">À propos</a>
             </nav>
