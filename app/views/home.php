@@ -13,9 +13,11 @@
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
     <!-- Header -->
-    <header class="bg-blue-900 text-white shadow-md">
+    <header class="bg-white text-blue-900 shadow-md">
         <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="text-xl font-bold mb-4 md:mb-0">ESSEMLALI Bank</div>
+            <div class="text-xl font-bold mb-4 md:mb-0">
+            <img src="assets/logo.svg" alt="Logo EssemlaliBank" class="w-40 h-auto">
+            </div>
             
             <nav class="flex flex-col md:flex-row items-center mb-4 md:mb-0">
                 <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Accueil</a>
