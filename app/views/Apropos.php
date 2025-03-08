@@ -35,7 +35,7 @@
         <section class="mb-16">
             <div class="bg-blue-900 rounded-lg overflow-hidden shadow-xl">
                 <div class="relative">
-                    <img src="/api/placeholder/1200/400" alt="Siège de ESSEMLALI Bank" class="w-full opacity-50">
+                    <img src="https://i.pinimg.com/736x/7b/71/01/7b7101096a93617ce900491ef9513d0d.jpg" alt="Siège de ESSEMLALI Bank" class="w-full opacity-50">
                     <div class="absolute inset-0 flex items-center justify-center">
                         <h1 class="text-4xl md:text-5xl font-bold text-white text-center px-4">Notre Histoire et Nos Valeurs</h1>
                     </div>
@@ -53,7 +53,7 @@
                     <p class="text-gray-700">Aujourd'hui, ESSEMLALI Bank compte plus de 500 000 clients à travers la France et continue de se développer grâce à sa réputation d'excellence et de service personnalisé.</p>
                 </div>
                 <div>
-                    <img src="/api/placeholder/500/300" alt="Équipe ESSEMLALI Bank" class="w-full rounded-lg shadow-md">
+                    <img src="https://i.pinimg.com/736x/9f/8d/e4/9f8de42df035f73f6901213567a880fb.jpg" alt="Équipe ESSEMLALI Bank" class="w-full rounded-lg shadow-md">
                 </div>
             </div>
         </section>
@@ -82,19 +82,19 @@
             <h2 class="text-3xl font-bold text-blue-900 mb-6">Notre équipe de direction</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="text-center">
-                    <img src="/api/placeholder/200/200" alt="CEO" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-md">
+                    <img src="https://i.pinimg.com/474x/8c/5e/9d/8c5e9dd58ecd175df019b09f6bac72b6.jpg" alt="CEO" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-md">
                     <h3 class="text-xl font-semibold text-blue-900">Sarah ESSEMLALI</h3>
                     <p class="text-blue-600 mb-2">Présidente-directrice générale</p>
                     <p class="text-gray-600 text-sm">Fondatrice de ESSEMLALI Bank avec plus de 25 ans d'expérience dans le secteur bancaire.</p>
                 </div>
                 <div class="text-center">
-                    <img src="/api/placeholder/200/200" alt="CFO" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-md">
+                    <img src="https://i.pinimg.com/474x/91/cc/a8/91cca8839fde6b8be674779d22e51f79.jpg" alt="CFO" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-md">
                     <h3 class="text-xl font-semibold text-blue-900">Thomas Laurent</h3>
                     <p class="text-blue-600 mb-2">Directeur financier</p>
                     <p class="text-gray-600 text-sm">Expert en finance avec une grande expérience dans la gestion des investissements et la stratégie financière.</p>
                 </div>
                 <div class="text-center">
-                    <img src="/api/placeholder/200/200" alt="CTO" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-md">
+                    <img src="https://i.pinimg.com/474x/95/b3/39/95b33969cb7368fe3adbbaa96d713e4e.jpg" alt="CTO" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-md">
                     <h3 class="text-xl font-semibold text-blue-900">Marie Dubois</h3>
                     <p class="text-blue-600 mb-2">Directrice technique</p>
                     <p class="text-gray-600 text-sm">Pionnière dans le domaine de la fintech, elle dirige notre transformation numérique depuis 2015.</p>

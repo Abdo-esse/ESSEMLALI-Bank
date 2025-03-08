@@ -344,44 +344,50 @@
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="bg-blue-900 text-white">
-            <div class="container mx-auto px-4 py-12">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div>
-                        <h4 class="text-lg font-bold mb-4">ESSEMLALI Bank</h4>
-                        <p class="text-sm text-blue-200">Votre partenaire financier depuis 1987</p>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Services</h4>
-                        <ul class="space-y-2 text-sm">
-                            <li><a href="#" class="hover:text-blue-300">Comptes bancaires</a></li>
-                            <li><a href="#" class="hover:text-blue-300">Épargne et placements</a></li>
-                            <li><a href="#" class="hover:text-blue-300">Solutions de crédit</a></li>
-                            <li><a href="#" class="hover:text-blue-300">Assurances</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Juridique</h4>
-                        <ul class="space-y-2 text-sm">
-                            <li><a href="#" class="hover:text-blue-300">Mentions légales</a></li>
-                            <li><a href="#" class="hover:text-blue-300">Conditions générales</a></li>
-                            <li><a href="#" class="hover:text-blue-300">Protection des données</a></li>
-                            <li><a href="#" class="hover:text-blue-300">Tarifs et frais</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Contact</h4>
-                        <p class="text-sm text-blue-200 mb-2">📞 0800 123 456</p>
-                        <p class="text-sm text-blue-200 mb-2">✉️ contact@essemlalibank.ma</p>
-                        <p class="text-sm text-blue-200">🕒 Lun-Ven : 8h-20h</p>
-                    </div>
+          <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">ESSEMLALI Bank</h4>
+                    <p class="text-blue-100">Votre partenaire financier de confiance depuis 2009. Nous offrons des services bancaires innovants et personnalisés pour répondre à tous vos besoins financiers.</p>
                 </div>
-                <div class="border-t border-blue-800 mt-8 pt-8 text-center text-sm text-blue-300">
-                    © 2023 ESSEMLALI Bank - Tous droits réservés
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Liens rapides</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Tarifs</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">FAQ</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Sécurité</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Carrières</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul>
+                        <li class="mb-2 text-blue-100">+33 1 23 45 67 89</li>
+                        <li class="mb-2 text-blue-100">contact@essemlalibank.com</li>
+                        <li class="mb-2 text-blue-100">123 Avenue des Finances, Paris</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Suivez-nous</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Facebook</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Twitter</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">LinkedIn</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-100 hover:text-white transition-colors">Instagram</a></li>
+                    </ul>
                 </div>
             </div>
-        </footer>
+            
+            <div class="border-t border-blue-800 pt-6 text-center text-blue-200 text-sm">
+                <p>&copy; 2025 ESSEMLALI Bank. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
     </main>
 </body>
 </html>
