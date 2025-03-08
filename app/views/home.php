@@ -16,7 +16,31 @@
     <header class="bg-white text-blue-900 shadow-md">
         <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
             <div class="text-xl font-bold mb-4 md:mb-0">
-            <img src="assets/logo.svg" alt="Logo EssemlaliBank" class="w-40 h-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" class="w-30 h-auto" >
+  <!-- Fond du logo -->
+  <rect width="300" height="150" rx="20" fill="#ffffff"/>
+  
+  <!-- Symbole bancaire stylisé -->
+  <g transform="translate(65, 30)">
+    <!-- Piliers bancaires stylisés -->
+    <rect x="0" y="30" width="20" height="60" rx="2" fill="#1d4ed8"/>
+    <rect x="30" y="20" width="20" height="70" rx="2" fill="#1d4ed8"/>
+    <rect x="60" y="10" width="20" height="80" rx="2" fill="#1d4ed8"/>
+    <rect x="90" y="0" width="20" height="90" rx="2" fill="#1d4ed8"/>
+    
+    <!-- Toit bancaire arrondi -->
+    <path d="M0,30 Q55,-10 110,0 L110,10 L0,10 Z" fill="#1d4ed8"/>
+    
+    <!-- Pièce/Monnaie symbolisant la finance -->
+    <circle cx="140" cy="35" r="30" fill="#f59e0b"/>
+    <circle cx="140" cy="35" r="25" fill="#fbbf24"/>
+    <text x="140" y="42" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">€</text>
+  </g>
+  
+  <!-- Nom de la banque -->
+  <text x="150" y="140" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#1d4ed8">EssemlaliBank</text>
+</svg>
+
             </div>
             
             <nav class="flex flex-col md:flex-row items-center mb-4 md:mb-0">
@@ -42,7 +66,7 @@
             </div>
             
             <div class="md:w-1/2">
-                <img src="/api/placeholder/600/400" alt="Services bancaires en ligne" class="rounded-lg shadow-xl w-full">
+                <img src="https://i.pinimg.com/736x/56/d8/ec/56d8ec2ee5a0eaed9659008529b375bb.jpg" alt="Services bancaires en ligne" class="rounded-lg shadow-xl w-full">
             </div>
         </section>
         
