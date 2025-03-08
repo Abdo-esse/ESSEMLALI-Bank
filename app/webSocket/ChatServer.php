@@ -1,6 +1,7 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
 
+
+namespace App\webSocket;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use Ratchet\Http\HttpServer;
@@ -41,16 +42,3 @@ class ChatServer implements MessageComponentInterface {
         $conn->close();
     }
 }
-
-// Démarrage du serveur WebSocket sur le port 8080
-$server = IoServer::factory(
-    new HttpServer(
-        new WsServer(
-            new ChatServer()
-        )
-    ),
-    8080
-);
-
-echo "Serveur WebSocket démarré sur ws://localhost:8080\n";
-$server->run();
