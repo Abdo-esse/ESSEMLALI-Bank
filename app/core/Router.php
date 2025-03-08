@@ -15,24 +15,25 @@ class Router {
     }
 
     
-    public static function  dispatch() {
+    public static function dispatch() {
         $requestUri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        
+        // Retirer "ESSEMLALI-Bank" de l'URI
+        $requestUri = str_replace('ESSEMLALI-Bank', '', $requestUri);
+        
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         
-       
+        // echo '<pre>';
+        // var_dump($requestUri, $requestMethod);
+        // echo '</pre>';
+        // die();
+        
         foreach (self::$routes as $route) {
             if ($route['route'] === $requestUri && $route['method'] === $requestMethod) {
-                
                 [$controller, $method] = explode('@', $route['action']);
-
-                $namespace =  "App\\controllers\\";
-
-
+                $namespace = "App\\controllers\\";
                 $controllerClass = $namespace . $controller;
-
-                // var_dump($method);
-                // exit;
-                
+    
                 if (class_exists($controllerClass) && method_exists($controllerClass, $method)) {
                     $controllerInstance = new $controllerClass();
                     return $controllerInstance->$method();
@@ -45,8 +46,9 @@ class Router {
                 }
             }
         }
-
+    
         http_response_code(404);
         echo "404 - Page Not Found";
     }
+    
 }
