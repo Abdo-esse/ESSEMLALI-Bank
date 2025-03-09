@@ -19,7 +19,7 @@ class AuthService {
         }
 
         if (!password_verify($password, $user['mot_de_passe'])) {
-            return "Mot de passe incorrect !";
+            return "Mot de passe incorrect !".$user['mot_de_passe'];
         }
 
         $_SESSION['user'] = [
@@ -29,5 +29,9 @@ class AuthService {
         ];
 
         return "Connexion réussie en tant que " . $user['role'];
+    }
+
+    public function add($data){
+        $this->userRepo->createAction("users", $data);
     }
 }

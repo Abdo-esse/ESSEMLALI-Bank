@@ -29,17 +29,18 @@ class LoginController
     }
     
     public function login(){
-        // $email = $_POST['email'] ?? '';
-        // $password = $_POST['password'] ?? '';
-        // $message = $authService->login($email, $password);
+        $this->authService->add(   [
+            "nom" => "Dupont",
+            "prenom" => "Jean",
+            "email" => "jean.dupont@example.com",
+            "mot_de_passe" => password_hash("admin", PASSWORD_DEFAULT), // Hashé pour la sécurité
+            "date_creation" => date("Y-m-d H:i:s"), // Date actuelle
+            "is_active" => true
+        ]);
+        // $email = $_POST['email'] ;
+        // $password = $_POST['password'] ;
+        // $message =  $this->authService->login($email, $password);
         // echo $message;
-        $plainPassword = "admin";
-
-// Générer un mot de passe haché
-$hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT);
-
-echo "Mot de passe haché : " . $hashedPassword;
-exit();
     }
 
 

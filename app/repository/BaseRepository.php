@@ -16,9 +16,9 @@ class BaseRepository
         $columns = implode(',', array_keys($data));
         $values = implode(',', array_fill(0, count($data), '?'));
         $sql = "INSERT INTO $table ($columns) VALUES ($values)";
-        $stmt = $conn->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->execute(array_values($data));
-        return $conn->lastInsertId();
+        return $this->conn->lastInsertId();
     }
 
     public function readAll($table)

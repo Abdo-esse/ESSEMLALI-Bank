@@ -1,6 +1,6 @@
 <?php
 namespace App\Repository;
-
+use PDO;
 class UserRepository  extends BaseRepository
 {
 
@@ -18,6 +18,8 @@ class UserRepository  extends BaseRepository
         $stmt->execute(['email' => $email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+   
 
 
 
