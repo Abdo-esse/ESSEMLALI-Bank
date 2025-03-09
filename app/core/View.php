@@ -6,7 +6,7 @@ class View
     
 public static function load($view_name,$view_data=[])
 {
-    $file= dirname(__DIR__) . "/Views".$view_name.'.php';
+    $file= dirname(__DIR__) . "/Views".$view_name.'.html.twig';
     if(file_exists($file))
     {
         extract($view_data);
