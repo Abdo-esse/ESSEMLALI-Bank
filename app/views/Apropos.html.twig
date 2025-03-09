@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>À propos - ESSEMLALI Bank</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <style type="text/tailwindcss">
-      @theme {
-        --color-clifford: #da373d;
-      }
-    </style>
-</head>
-<body class="bg-gray-100 text-gray-800 font-sans">
-   
-    
-    <main class="container mx-auto px-4 py-8">
+{% extends "components/base.html.twig" %}
+
+{% block title %}Page d'accueil{% endblock %}
+{% block header %}
+{% include "layout/header.html.twig" %}
+{% endblock %}
+
+
+{% block content %}
+
         <!-- Hero Section -->
         <section class="mb-16">
             <div class="bg-blue-900 rounded-lg overflow-hidden shadow-xl">
@@ -124,8 +117,10 @@
             <p class="text-xl mb-6 max-w-2xl mx-auto">Découvrez comment nous pouvons vous aider à atteindre vos objectifs financiers avec nos solutions personnalisées.</p>
             <button class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-md font-semibold transition-colors">Ouvrir un compte</button>
         </section>
-    </main>
-    
+{% endblock %}
 
-</body>
-</html>
+
+
+{% block footer %}
+{% include "layout/footer.html.twig" %}
+{% endblock %}
