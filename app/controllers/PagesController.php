@@ -21,18 +21,12 @@ class PagesController
     }
     public function apropos()
     {
-       echo  $this->twig->render('pages/apropos.html.twig', [
-           'variable1' => 'Valeur 1',
-           'variable2' => 'Valeur 2',
-       ]);
+       echo  $this->twig->render('pages/apropos.html.twig');
 
     }
     public function prets()
     {
-       echo  $this->twig->render('pages/prets.html.twig', [
-           'variable1' => 'Valeur 1',
-           'variable2' => 'Valeur 2',
-       ]);
+       echo  $this->twig->render('pages/prets.html.twig');
 
     }
 }
