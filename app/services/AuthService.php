@@ -1,4 +1,5 @@
 <?php
+
 namespace App\services;
 
  use App\Repository\UserRepository;
@@ -6,11 +7,11 @@ namespace App\services;
 class AuthService {
     private UserRepository $userRepo;
 
-    public function __construct(UserRepository $userRepo) {
-        $this->userRepo = $userRepo;
+    public function __construct() {
+        $this->userRepo = new UserRepository();
     }
 
-    public function login(string $email, string $password) {
+    public function login( $email, $password) {
         $user = $this->userRepo->findByEmail($email);
 
         if (!$user) {
