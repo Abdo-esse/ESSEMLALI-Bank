@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EssemlaliBank - Connexion</title>
-  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-</head>
-<body class="bg-blue-50 flex justify-center items-center min-h-screen p-4">
+{% extends "components/base.html.twig" %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+{% block content %}
+<main   class="bg-blue-50 flex justify-center items-center min-h-screen p-4">
   <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
     <div class="flex justify-center mb-6">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" class="w-64 h-auto">
@@ -58,5 +55,6 @@
       <a href="#" class="text-blue-700 text-sm hover:underline">Mot de passe oublié ?</a>
     </div>
   </div>
-</body>
-</html>
+
+  </main>
+{% endblock %}

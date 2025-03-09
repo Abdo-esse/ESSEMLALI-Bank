@@ -6,3 +6,4 @@ Router::add("GET","/","PagesController@index");
 Router::add("GET","/Apropos","PagesController@apropos");
 Router::add("GET","/prets","PagesController@prets");
 Router::add("GET","/login","LoginController@index");
+Router::add("GET","/demandeCopmte","CompteController@demandeCompte");
