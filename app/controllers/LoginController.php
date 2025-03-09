@@ -29,18 +29,10 @@ class LoginController
     }
     
     public function login(){
-        $this->authService->add(   [
-            "nom" => "Dupont",
-            "prenom" => "Jean",
-            "email" => "jean.dupont@example.com",
-            "mot_de_passe" => password_hash("admin", PASSWORD_DEFAULT), // Hashé pour la sécurité
-            "date_creation" => date("Y-m-d H:i:s"), // Date actuelle
-            "is_active" => true
-        ]);
-        // $email = $_POST['email'] ;
-        // $password = $_POST['password'] ;
-        // $message =  $this->authService->login($email, $password);
-        // echo $message;
+        $email = $_POST['email'] ;
+        $password = $_POST['password'] ;
+        $message =  $this->authService->login($email, $password);
+        echo $message;
     }
 
 
