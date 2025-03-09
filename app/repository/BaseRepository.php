@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Repository;
-require dirname(__DIR__) . '/../vendor/autoload.php'; 
 use App\config\Connexion;
 use PDO;
 
