@@ -16,7 +16,27 @@ class HomeController
        $twig = require_once dirname( __DIR__) .'/config/Twig.php';
 
        // Rendre la vue home.html.twig et passer des variables
+       echo $twig->render('home.html.twig', [
+           'variable1' => 'Valeur 1',
+           'variable2' => 'Valeur 2',
+       ]);
+
+    }
+    public function apropos()
+    {
+       $twig = require_once dirname( __DIR__) .'/config/Twig.php';
        echo $twig->render('Apropos.html.twig', [
+           'variable1' => 'Valeur 1',
+           'variable2' => 'Valeur 2',
+       ]);
+
+    }
+    public function prets()
+    {
+       $twig = require_once dirname( __DIR__) .'/config/Twig.php';
+
+       // Rendre la vue home.html.twig et passer des variables
+       echo $twig->render('pret.html.twig', [
            'variable1' => 'Valeur 1',
            'variable2' => 'Valeur 2',
        ]);

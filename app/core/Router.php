@@ -16,15 +16,16 @@ class Router {
 
     
     public static function dispatch() {
-        $requestUri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        $requestUri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH),'/');
+
         
         // Retirer "ESSEMLALI-Bank" de l'URI
-        $requestUri = str_replace('ESSEMLALI-Bank', '', $requestUri);
+        $requestUri = preg_replace('#^ESSEMLALI-Bank/?#', '', $requestUri);
         
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         
         // echo '<pre>';
-        // var_dump($requestUri, $requestMethod);
+        // var_dump($requestUri, $requestMethod,self::$routes);
         // echo '</pre>';
         // die();
         
