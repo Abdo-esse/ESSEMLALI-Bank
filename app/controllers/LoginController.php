@@ -42,15 +42,15 @@ class LoginController
             exit;
         }
         $role = Session::get('user')['role'];
-        $this->redirectUserByRole($role);
+         $this->redirectUserByRole($role);
     }
-    
+
 
     private function redirectUserByRole($role){
         return match ($role) {
-            'Admin' =>  $this->twig->render('admin/index.html.twig',['session' => $_SESSION]),
-            'Employé' => $this->twig->render('employe/index.html.twig',['session' => $_SESSION]),
-            'client' => $this->twig->render('client/login.html.twig',['session' => $_SESSION]),
+            'Admin' => header('Location: /ESSEMLALI-Bank/Admin'),
+            'Employé' => header('Location: /ESSEMLALI-Bank/Employe'),
+            'client' => header('Location: /ESSEMLALI-Bank/Client'),
             default => "unknown" 
         };
     }
