@@ -38,13 +38,13 @@ class LoginController
         $email = $_POST['email'] ;
         $password = $_POST['password'] ;
         if (!$this->authService->login($email, $password)) {
-            Session::set('error', $this->authService->getErrors());
             header('Location: /ESSEMLALI-Bank/login');
             exit;
         }
         $role = Session::get('user')['role'];
         $this->redirectUserByRole($role);
     }
+    
 
     private function redirectUserByRole($role){
         return match ($role) {

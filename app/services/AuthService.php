@@ -7,7 +7,6 @@ namespace App\services;
 
 class AuthService {
     private UserRepository $userRepo;
-    private $errors = [];
 
     public function __construct() {
         $this->userRepo = new UserRepository();
@@ -19,7 +18,7 @@ class AuthService {
         $user = $this->userRepo->findByEmail($email);
 
         if (!$user || !password_verify($password, $user['mot_de_passe'])) {
-            $this->errors['login'] = "Email ou mot de passe incorrect.";
+            Session::set('login', "Email ou mot de passe incorrect.");
             return false;
         }
 
@@ -35,7 +34,5 @@ class AuthService {
         $this->userRepo->createAction("users", $data);
     }
 
-    public function getErrors(): array {
-        return $this->errors;
-    }
+    
 }

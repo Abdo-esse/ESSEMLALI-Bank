@@ -49,6 +49,9 @@
                 {% if session.error is defined %}
                   <p>{{ session.error.password }}</p>
                 {% endif %}
+                {% if session.login is defined %}
+                  <p>{{ session.login}}</p>
+                {% endif %}
       </div>
       
       <button type="submit" 
