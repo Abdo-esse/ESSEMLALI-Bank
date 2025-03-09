@@ -32,7 +32,7 @@ class LoginController
             
         if (!$request->validate()) {
             Session::set('error', $request->getErrors());
-            header('Location: /login');
+            header('Location: /ESSEMLALI-Bank/login');
             exit;
         }
         $email = $_POST['email'] ;
@@ -41,7 +41,7 @@ class LoginController
         echo $message;
     }
 
-
+     
 
     
 }
