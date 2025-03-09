@@ -37,11 +37,24 @@ class LoginController
         }
         $email = $_POST['email'] ;
         $password = $_POST['password'] ;
-        $message =  $this->authService->login($email, $password);
-        echo $message;
+        if (!$this->authService->login($email, $password)) {
+            Session::set('error', $this->authService->getErrors());
+            header('Location: /ESSEMLALI-Bank/login');
+            exit;
+        }
+        $role = Session::get('user')['role'];
+        $this->redirectUserByRole($role);
     }
 
-     
+    private function redirectUserByRole($role){
+        return match ($role) {
+            'Admin' =>  $this->twig->render('admin/index.html.twig',['session' => $_SESSION]),
+            'Employé' => $this->twig->render('employe/index.html.twig',['session' => $_SESSION]),
+            'client' => $this->twig->render('client/login.html.twig',['session' => $_SESSION]),
+            default => "unknown" 
+        };
+    }
+    
 
     
 }
