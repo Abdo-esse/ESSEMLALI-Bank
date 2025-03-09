@@ -1,7 +1,6 @@
 <?php 
 namespace App\Controllers;
-require dirname( __DIR__) . '/../vendor/autoload.php';
-use App\Core\View;
+
 
 class PagesController
 {
