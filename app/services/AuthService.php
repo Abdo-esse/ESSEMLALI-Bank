@@ -15,7 +15,7 @@ class AuthService {
     }
 
     public function login( $email, $password) {
-        $user = $this->userRepo->findByEmail($email);
+        $user = $this->userRepo->find($email);
 
         if (!$user || !password_verify($password, $user['mot_de_passe'])) {
             Session::set('login', "Email ou mot de passe incorrect.");

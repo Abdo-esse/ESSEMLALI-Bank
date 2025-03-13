@@ -29,7 +29,7 @@ class BaseRepository
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function readAction($table, $where)
+    public function find($table, $where)
     {
         $column = key($where);
         $sql = "SELECT * FROM $table WHERE $column = ?";

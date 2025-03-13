@@ -8,7 +8,7 @@ class UserRepository  extends BaseRepository
         parent::__construct(); 
     }
     
-    public function findByEmail(string $email) {
+    public function find(string $email) {
         $stmt = $this->conn->prepare("SELECT u.*, STRING_AGG(r.titre, ',') AS role
                                       FROM users u
                                       JOIN role_user ru ON u.id = ru.user_id 
