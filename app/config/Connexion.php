@@ -29,7 +29,7 @@ class Connexion
                 self::$conn = new PDO("pgsql:host=$host;dbname=$db", $username, $password);
                 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 
-                echo "Connected to PostgreSQL"; 
+                // echo "Connected to PostgreSQL"; 
 
             } catch (PDOException $exception) {
                 die("Erreur de connexion : " . $exception->getMessage());

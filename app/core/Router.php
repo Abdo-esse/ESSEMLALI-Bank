@@ -25,7 +25,7 @@ class Router {
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         
         // echo '<pre>';
-        // var_dump($requestUri, $requestMethod,self::$routes);
+        // var_dump($requestUri, $requestMethod);
         // echo '</pre>';
         // die();
         
