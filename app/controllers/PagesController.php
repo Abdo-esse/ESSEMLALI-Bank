@@ -1,7 +1,6 @@
 <?php 
 namespace App\Controllers;
-require dirname( __DIR__) . '/../vendor/autoload.php';
-use App\Core\View;
+
 
 class PagesController
 {
@@ -22,18 +21,12 @@ class PagesController
     }
     public function apropos()
     {
-       echo  $this->twig->render('pages/apropos.html.twig', [
-           'variable1' => 'Valeur 1',
-           'variable2' => 'Valeur 2',
-       ]);
+       echo  $this->twig->render('pages/apropos.html.twig');
 
     }
     public function prets()
     {
-       echo  $this->twig->render('pages/prets.html.twig', [
-           'variable1' => 'Valeur 1',
-           'variable2' => 'Valeur 2',
-       ]);
+       echo  $this->twig->render('pages/prets.html.twig');
 
     }
 }
