@@ -13,7 +13,7 @@ class CompteController
 
     public function demandeCompte()
     {
-       echo  $this->twig->render('auth/demadeCompte.html.twig', [
+       echo  $this->twig->render('auth/demadeCompte.twig', [
            'variable1' => 'Valeur 1',
            'variable2' => 'Valeur 2',
        ]);

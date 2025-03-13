@@ -15,7 +15,7 @@ class AdminController
 
     public function index()
     {
-       echo  $this->twig->render('admin/index.html.twig',['session' => $_SESSION]);
+       echo  $this->twig->render('admin/index.twig',['session' => $_SESSION]);
 
     }
 }
