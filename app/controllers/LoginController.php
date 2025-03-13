@@ -21,7 +21,7 @@ class LoginController
 
     public function index()
     {
-       echo  $this->twig->render('auth/login.html.twig',[
+       echo  $this->twig->render('auth/login.twig',[
         'session' => $_SESSION
     ]);
 

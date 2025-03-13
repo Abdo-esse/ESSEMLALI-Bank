@@ -1,4 +1,4 @@
-{% extends "components/base.html.twig" %}
+{% extends "components/base.twig" %}
 
 {% block title %}Page d'accueil{% endblock %}
 
@@ -49,7 +49,7 @@
                 {% if session.error is defined %}
                   <p>{{ session.error.password }}</p>
                 {% endif %}
-                {% if session.login is defined %}
+                {% if session.login  %}
                   <p>{{ session.login}}</p>
                 {% endif %}
       </div>
