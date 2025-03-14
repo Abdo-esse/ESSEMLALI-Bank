@@ -21,6 +21,10 @@ class AuthService {
             Session::set('login', "Email ou mot de passe incorrect.");
             return false;
         }
+        if ( $user['mot_de_passe'] === false) {
+            Session::set('login', "You account is desactive .");
+            return false;
+        }
 
             Session::set('user', [
                 'id' => $user['id'],
