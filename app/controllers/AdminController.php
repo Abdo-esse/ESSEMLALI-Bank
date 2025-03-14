@@ -26,15 +26,15 @@ class AdminController
     
     public function addAdmin()
     {
-      
       $request = new StoreAdminRequest($_POST);
-            
-      if (!$request->validate()) {
-            Session::set('error', $request->getErrors());
-            Session::set('values',$_POST );
-            header('Location: /ESSEMLALI-Bank/admins');
-            exit;
+       if (!$request->validate()) 
+       {
+         Session::set('error', $request->getErrors());
+         Session::set('values',$_POST );
+         header('Location: /ESSEMLALI-Bank/admins');
+         exit;
       }
+      
       Session::unset('error');
       header('Location: /ESSEMLALI-Bank/admins');
       exit;
