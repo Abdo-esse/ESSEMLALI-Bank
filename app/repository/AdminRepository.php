@@ -1,6 +1,7 @@
 <?php
 namespace App\Repository;
 use PDO;
+use App\models\Admin;
 
 
 class AdminRepository  extends BaseRepository
@@ -46,7 +47,7 @@ class AdminRepository  extends BaseRepository
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $admins = [];
         foreach ($rows as $row) {
-            $admins[] = new admin($row['id'], $row['name'], $row['email']);
+            $admins[] = new Admin($row['id'], $row['name'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
         }
         return $admins;
     }
