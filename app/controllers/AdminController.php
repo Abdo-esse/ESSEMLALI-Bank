@@ -1,7 +1,7 @@
 <?php 
 namespace App\Controllers;
 use App\core\Session;
-
+use App\requests\StoreAdminRequest;
 class AdminController
 {
     private $twig;
@@ -27,6 +27,13 @@ class AdminController
     public function addAdmin()
     {
       echo "3la molana";
+      $request = new StoreAdminRequest($_POST);
+            
+      if (!$request->validate()) {
+         echo'<pre>';
+          var_dump($request->getErrors());
+          echo'<pre>';
+      }
       exit();
     }
 }
