@@ -34,7 +34,22 @@ class AdminRepository  extends BaseRepository
         }
     }
 
-
+    public function readAll($table)
+    {
+        $sql = "select u.* 
+               from $this->table u
+               join $this->tablePivot on role_user.user_id = u.id
+               join $table on roles.id= role_user.role_id
+               where roles.titre='Admin'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $admins = [];
+        foreach ($rows as $row) {
+            $admins[] = new admin($row['id'], $row['name'], $row['email']);
+        }
+        return $admins;
+    }
 
    
 
