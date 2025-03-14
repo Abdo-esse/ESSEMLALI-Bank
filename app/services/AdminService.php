@@ -2,20 +2,18 @@
 
 namespace App\services;
 
- use App\Repository\UserRepository;
- use App\core\Session;
+ use App\Repository\AdminRepository;
 
 class AdminService {
-    private UserRepository $userRepo;
+    private AdminRepository $userRepo;
 
     public function __construct() {
-        $this->userRepo = new UserRepository();
-        Session::start();
+        $this->adminRepo = new AdminRepository();
 
     }
 
     public function addAdmin($date){
-
+       return $this->adminRepo->addAdmin($date);
     }
 
     

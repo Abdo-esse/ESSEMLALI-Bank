@@ -15,7 +15,7 @@ class AdminRepository  extends BaseRepository
         $this->tablePivot='';
     }
     
-    public function addAmin($data ){
+    public function addAdmin($data ){
         
         $this->conn->beginTransaction(); 
         try {
