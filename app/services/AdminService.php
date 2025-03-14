@@ -16,5 +16,9 @@ class AdminService {
        return $this->adminRepo->addAdmin($date);
     }
 
+    public function getAllAdmins(){
+        return $this->adminRepo->readAll('roles');
+    }
+
     
 }
