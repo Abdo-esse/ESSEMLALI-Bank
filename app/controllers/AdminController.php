@@ -23,4 +23,10 @@ class AdminController
        echo  $this->twig->render('admin/admins.twig',['session' => $_SESSION]);
 
     }
+    
+    public function addAdmin()
+    {
+      echo "3la molana";
+      exit();
+    }
 }
