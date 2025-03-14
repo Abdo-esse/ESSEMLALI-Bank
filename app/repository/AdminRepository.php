@@ -11,8 +11,8 @@ class AdminRepository  extends BaseRepository
     
     public function __construct() {
         parent::__construct(); 
-        $this->table='';
-        $this->tablePivot='';
+        $this->table='users';
+        $this->tablePivot='role_user';
     }
     
     public function addAdmin($data ){
@@ -27,6 +27,7 @@ class AdminRepository  extends BaseRepository
                 throw new PDOException("Erreur lors de l'insertion du role ."); 
             }
             $this->conn->commit(); 
+            return true;
         } catch (PDOException $e) {
             $this->conn->rollBack(); 
             echo "Erreur : " . $e->getMessage();

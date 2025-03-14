@@ -30,8 +30,6 @@ class AdminController
     public function addAdmin()
 {
     $request = new StoreAdminRequest($_POST);
-
-    // Validation des données
     if (!$request->validate()) {
         Session::set('error', $request->getErrors());
         Session::set('values', $_POST);
@@ -43,12 +41,12 @@ class AdminController
         "nom" => trim($_POST["nom"]),
         "prenom" => trim($_POST["prenom"]),
         "email" => trim($_POST["email"]),
-        "password" => password_hash($_POST["password"], PASSWORD_DEFAULT) // Sécurisation du mot de passe
+        "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT) ,
+        "is_active"=>true 
     ];
     if (!$this->adminService->addAdmin($data)) {
-      //   Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
-      //   header('Location: /ESSEMLALI-Bank/admins');
-      echo"Une erreur s'est produite lors de l'ajout de l'administrateur.";
+        Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
+        header('Location: /ESSEMLALI-Bank/admins');
         exit;
     }
     header('Location: /ESSEMLALI-Bank/admins');
