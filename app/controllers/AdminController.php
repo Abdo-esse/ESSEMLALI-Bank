@@ -31,11 +31,12 @@ class AdminController
             
       if (!$request->validate()) {
             Session::set('error', $request->getErrors());
+            Session::set('values',$_POST );
             header('Location: /ESSEMLALI-Bank/admins');
             exit;
       }
       Session::unset('error');
-      echo "3la molana";
-      exit();
+      header('Location: /ESSEMLALI-Bank/admins');
+      exit;
     }
 }
