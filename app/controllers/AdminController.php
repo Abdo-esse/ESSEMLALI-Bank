@@ -26,14 +26,16 @@ class AdminController
     
     public function addAdmin()
     {
-      echo "3la molana";
+      
       $request = new StoreAdminRequest($_POST);
             
       if (!$request->validate()) {
-         echo'<pre>';
-          var_dump($request->getErrors());
-          echo'<pre>';
+            Session::set('error', $request->getErrors());
+            header('Location: /ESSEMLALI-Bank/admins');
+            exit;
       }
+      Session::unset('error');
+      echo "3la molana";
       exit();
     }
 }

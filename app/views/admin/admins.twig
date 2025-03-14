@@ -23,7 +23,15 @@
         </div>
 
 <!-- Main modal -->
-<div id="admin-modal" tabindex="-1" aria-hidden="true" class=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-screen max-h-full backdrop-blur-sm bg-gray-900/50">
+ 
+{% if session.error is defined %}
+fvrhvcjv
+<div id="admin-modal" tabindex="-1" aria-hidden="true" class="   overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-screen max-h-full backdrop-blur-sm bg-gray-900/50">
+{% else %}
+<div id="admin-modal" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-screen max-h-full backdrop-blur-sm bg-gray-900/50">
+{% endif %}
+
+
     <div class="relative p-4 w-full max-w-md max-h-full">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow-xl dark:bg-gray-700">
