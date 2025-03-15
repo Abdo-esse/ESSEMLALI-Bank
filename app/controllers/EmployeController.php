@@ -11,7 +11,7 @@ class EmployeController
     {
           $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
         //   $this->adminService= new AdminService();
-        //   Session::start();
+          Session::start();
 
     }
 
@@ -22,6 +22,8 @@ class EmployeController
     // }
     public function employes()
     {
+        
+    Session::unset('error');
         // $admins= $this->adminService->getAllAdmins();
        echo  $this->twig->render('admin/eployes.twig',[
            'session' => $_SESSION
