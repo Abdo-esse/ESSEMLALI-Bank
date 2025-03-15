@@ -2,7 +2,7 @@
 namespace App\Controllers;
 use App\core\Session;
 use App\services\AdminService;
-use App\requests\StoreAdminRequest;
+use App\requests\StoreUserRequest;
 
 class EmployeController
 {
@@ -32,16 +32,17 @@ class EmployeController
 
     }
     
-    public function addAdmin()
+    public function addEmploye()
 {
-    $request = new StoreAdminRequest($_POST);
+    $request = new StoreUserRequest($_POST);
     if (!$request->validate()) {
-        Session::set('error', $request->getErrors());
-        Session::set('values', $_POST);
-        header('Location: /ESSEMLALI-Bank/admins');
+        Session::set('errorEmployer', $request->getErrors());
+        Session::set('valuesEmployer', $_POST);
+        header('Location: /ESSEMLALI-Bank/employes');
         exit;
     }
-    Session::unset('error');
+    Session::unset('errorEmployer');
+    Session::unset('values');
     $data = [
         "nom" => trim($_POST["nom"]),
         "prenom" => trim($_POST["prenom"]),
@@ -49,12 +50,13 @@ class EmployeController
         "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT) ,
         "is_active"=>true 
     ];
-    if (!$this->adminService->addAdmin($data)) {
-        Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
-        header('Location: /ESSEMLALI-Bank/admins');
-        exit;
-    }
-    header('Location: /ESSEMLALI-Bank/admins');
+    var_dump($data);
+    // if (!$this->adminService->addAdmin($data)) {
+    //     Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
+    //     header('Location: /ESSEMLALI-Bank/admins');
+    //     exit;
+    // }
+    // header('Location: /ESSEMLALI-Bank/admins');
     exit;
 }
 }
