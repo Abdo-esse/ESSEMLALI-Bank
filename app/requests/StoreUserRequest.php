@@ -2,7 +2,7 @@
 
 namespace App\requests;
 
-class StoreAdminRequest {
+class StoreUserRequest {
     private $data;
     private $errors = [];
     

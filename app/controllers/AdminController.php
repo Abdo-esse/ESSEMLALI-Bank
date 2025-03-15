@@ -2,7 +2,7 @@
 namespace App\Controllers;
 use App\core\Session;
 use App\services\AdminService;
-use App\requests\StoreAdminRequest;
+use App\requests\StoreUserRequest;
 
 class AdminController
 {
@@ -32,7 +32,7 @@ class AdminController
     
     public function addAdmin()
 {
-    $request = new StoreAdminRequest($_POST);
+    $request = new StoreUserRequest($_POST);
     if (!$request->validate()) {
         Session::set('error', $request->getErrors());
         Session::set('values', $_POST);
