@@ -7,6 +7,7 @@ use App\requests\StoreUserRequest;
 class AdminController
 {
     private $twig;
+    private $adminService;
     public function __construct()
     {
           $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
