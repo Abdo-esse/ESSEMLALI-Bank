@@ -18,12 +18,15 @@ class AdminController
 
     public function index()
     {
-       echo  $this->twig->render('admin/index.twig',['session' => $_SESSION]);
-
+       echo  $this->twig->render('admin/index.twig',['session' => $_SESSION ]);
     }
     public function admin()
     {
-       echo  $this->twig->render('admin/admins.twig',['session' => $_SESSION]);
+        $admins= $this->adminService->getAllAdmins();
+       echo  $this->twig->render('admin/admins.twig',[
+           'session' => $_SESSION,
+           'admins'=>$admins
+       ]);
 
     }
     

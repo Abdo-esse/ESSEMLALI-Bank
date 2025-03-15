@@ -47,7 +47,7 @@ class AdminRepository  extends BaseRepository
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $admins = [];
         foreach ($rows as $row) {
-            $admins[] = new Admin($row['id'], $row['name'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
+            $admins[] = new Admin($row['id'], $row['nom'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
         }
         return $admins;
     }
