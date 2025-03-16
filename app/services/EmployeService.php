@@ -5,19 +5,19 @@ namespace App\services;
  use App\Repository\EmployRepository;
 
 class EmployeService {
-    private Employepository $userRepo;
+    private EmployRepository $employRepo;
 
     public function __construct() {
         $this->employRepo = new EmployRepository();
 
     }
 
-    public function employes($date){
-       return $this->employepo->addAdmin($date);
+    public function Addemploye($date){
+       return $this->employRepo->addEmploy($date);
     }
 
     public function getAllAdmins(){
-        return $this->employepo->readAll('roles');
+        return $this->employRepo->readAll('roles');
     }
 
     

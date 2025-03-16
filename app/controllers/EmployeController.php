@@ -11,7 +11,7 @@ class EmployeController
     public function __construct()
     {
           $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
-        //   $this->employeService= new EmployeService();
+          $this->employeService= new EmployeService();
           Session::start();
 
     }
@@ -23,12 +23,10 @@ class EmployeController
     // }
     public function employes()
     {
-        
-    Session::unset('error');
-        // $admins= $this->adminService->getAllAdmins();
+        $eployes= $this->employeService->getAllAdmins();
        echo  $this->twig->render('admin/eployes.twig',[
-           'session' => $_SESSION
-        //    'admins'=>$admins
+           'session' => $_SESSION,
+           'eployes'=>$eployes
        ]);
 
     }
@@ -43,7 +41,7 @@ class EmployeController
         exit;
     }
     Session::unset('errorEmployer');
-    Session::unset('values');
+    Session::unset('valuesEmployer');
     $data = [
         "nom" => trim($_POST["nom"]),
         "prenom" => trim($_POST["prenom"]),
@@ -51,13 +49,13 @@ class EmployeController
         "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT) ,
         "is_active"=>true 
     ];
-    var_dump($data);
-    // if (!$this->adminService->addAdmin($data)) {
-    //     Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
-    //     header('Location: /ESSEMLALI-Bank/admins');
-    //     exit;
-    // }
-    // header('Location: /ESSEMLALI-Bank/admins');
+    if (!$this->employeService->Addemploye($data)) {
+        Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
+        header('Location: /ESSEMLALI-Bank/employes');
+        exit;
+    }
+
+    header('Location: /ESSEMLALI-Bank/employes');
     exit;
 }
 }

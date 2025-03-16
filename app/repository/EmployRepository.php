@@ -16,7 +16,7 @@ class EmployRepository  extends BaseRepository
         $this->tablePivot='role_user';
     }
     
-    public function addAdmin($data ){
+    public function addEmploy($data ){
         
         $this->conn->beginTransaction(); 
         try {
