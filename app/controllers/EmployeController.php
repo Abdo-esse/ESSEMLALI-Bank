@@ -17,10 +17,10 @@ class EmployeController
     }
 
 
-    // public function index()
-    // {
-    //    echo  $this->twig->render('admin/index.twig',['session' => $_SESSION ]);
-    // }
+    public function index()
+    {
+       echo  $this->twig->render('employe/index.twig',['session' => $_SESSION ]);
+    }
     public function employes()
     {
         $employes= $this->employeService->getAll();

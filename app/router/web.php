@@ -12,6 +12,7 @@ Router::add("GET","/Admin","AdminController@index");
 Router::add("GET","/admins","AdminController@admin");
 Router::add("POST","/addAdmin","AdminController@create");
 Router::add("GET","/employes","EmployeController@employes");
+Router::add("GET","/Employe","EmployeController@index");
 Router::add("POST","/AddEmploye","EmployeController@create");
 Router::add("GET","/editeEploye/{id}","EmployeController@edite");
 Router::add("POST","/updateEmploye/{id}","EmployeController@update");
