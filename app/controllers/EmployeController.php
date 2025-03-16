@@ -119,7 +119,23 @@ public function activer($id)
     ];
     
     if (!$this->employeService->update($id,$data)) {
-        Session::set('error', "Une erreur s'est produite lors de desactiver de l'employer.");
+        Session::set('error', "Une erreur s'est produite lors de activer de l'employer.");
+        header('Location: /ESSEMLALI-Bank/employes');
+        exit;
+    }
+
+    header('Location: /ESSEMLALI-Bank/employes');
+    exit;
+} 
+public function delete($id)
+{
+    $data = [
+        "is_active"=>"false" ,
+        "date_suppression"=>date('Y-m-d H:i:s') 
+    ];
+    
+    if (!$this->employeService->update($id,$data)) {
+        Session::set('error', "Une erreur s'est produite lors de la supression de l'employer.");
         header('Location: /ESSEMLALI-Bank/employes');
         exit;
     }

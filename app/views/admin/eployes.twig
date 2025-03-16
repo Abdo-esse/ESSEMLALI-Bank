@@ -192,7 +192,7 @@
                         </form>
                         {% endif %}
                         
-                        <form method="post" action="" onsubmit="return confirm('Voulez-vous vraiment supprimer cet employé?');">
+                        <form method="post" action="delete/{{ employe.id }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet employé?');">
                             <button type="submit" class="px-3 py-1.5 text-xs font-medium text-center text-white bg-gray-600 rounded-lg hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                                 Supprimer
                             </button>
