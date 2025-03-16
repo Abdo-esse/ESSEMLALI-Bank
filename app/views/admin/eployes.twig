@@ -124,56 +124,86 @@
         </div>
     </div>
     
-<!-- Tableau -->
-<div class="overflow-x-auto">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        prenom
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        nom
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Email
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Date de création
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Statut
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for admin in employes %}
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                        {{ admin.nom }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ admin.prenom }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ admin.email }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ admin.dateCreation|date('Y-m-d') }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {% if admin.isActive  %}
-                        <span class="px-2 py-1 text-xs font-medium text-green-700 bg-green-100 rounded-full dark:bg-green-900 dark:text-green-300">Actif</span>
-                            {% else %}
-                                <span class="px-2 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Inactif</span>
+    <div class="overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    prenom
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    nom
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Email
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Date de création
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Statut
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for admin in employes %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                    {{ admin.nom }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ admin.prenom }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ admin.email }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ admin.dateCreation|date('Y-m-d') }}
+                </td>
+                <td class="px-6 py-4">
+                    {% if admin.isActive  %}
+                    <span class="px-2 py-1 text-xs font-medium text-green-700 bg-green-100 rounded-full dark:bg-green-900 dark:text-green-300">Actif</span>
+                        {% else %}
+                            <span class="px-2 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Inactif</span>
+                    {% endif %}
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex space-x-2">
+                        <a href="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            <button type="button" class="px-3 py-1.5 text-xs font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Modifier
+                            </button>
+                        </a>
+                        
+                        {% if admin.isActive %}
+                        <form method="post" action="" onsubmit="return confirm('Voulez-vous vraiment désactiver cet employé?');">
+                            <button type="submit" class="px-3 py-1.5 text-xs font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                Désactiver
+                            </button>
+                        </form>
+                        {% else %}
+                        <form method="post" action="" onsubmit="return confirm('Voulez-vous vraiment activer cet employé?');">
+                            <button type="submit" class="px-3 py-1.5 text-xs font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                Activer
+                            </button>
+                        </form>
                         {% endif %}
-
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                        
+                        <form method="post" action="" onsubmit="return confirm('Voulez-vous vraiment supprimer cet employé?');">
+                            <button type="submit" class="px-3 py-1.5 text-xs font-medium text-center text-white bg-gray-600 rounded-lg hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 
     <!-- Pagination -->
