@@ -23,10 +23,10 @@ class EmployeController
     // }
     public function employes()
     {
-        $eployes= $this->employeService->getAllAdmins();
+        $employes= $this->employeService->getAllEmployes();
        echo  $this->twig->render('admin/eployes.twig',[
            'session' => $_SESSION,
-           'eployes'=>$eployes
+           'employes'=>$employes
        ]);
 
     }

@@ -41,7 +41,7 @@ class EmployRepository  extends BaseRepository
                from $this->table u
                join $this->tablePivot on role_user.user_id = u.id
                join $table on roles.id= role_user.role_id
-               where roles.titre='Admin'";
+               where roles.titre='Employé'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);

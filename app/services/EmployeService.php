@@ -16,7 +16,7 @@ class EmployeService {
        return $this->employRepo->addEmploy($date);
     }
 
-    public function getAllAdmins(){
+    public function getAllEmployes(){
         return $this->employRepo->readAll('roles');
     }
 
