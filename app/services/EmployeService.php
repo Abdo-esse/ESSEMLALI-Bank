@@ -15,6 +15,9 @@ class EmployeService {
     public function create($date){
        return $this->employRepo->create($date);
     }
+    public function update($id, $data){
+       return $this->employRepo->update('users', $id, $data);
+    }
 
     public function getAll(){
         return $this->employRepo->readAll('roles');
