@@ -1,7 +1,7 @@
 <?php
 namespace App\Repository;
 use PDO;
-use App\models\Admin;
+use App\models\Employe;
 
 
 class EmployRepository  extends BaseRepository
@@ -47,7 +47,7 @@ class EmployRepository  extends BaseRepository
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $admins = [];
         foreach ($rows as $row) {
-            $admins[] = new Admin($row['id'], $row['nom'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
+            $admins[] = new Employe($row['id'], $row['nom'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
         }
         return $admins;
     }
