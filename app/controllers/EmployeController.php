@@ -58,4 +58,9 @@ class EmployeController
     header('Location: /ESSEMLALI-Bank/employes');
     exit;
 }
+
+public function updateEmploye($id){
+    echo"$id";
+
+}
 }
