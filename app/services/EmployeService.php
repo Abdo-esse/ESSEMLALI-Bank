@@ -19,6 +19,9 @@ class EmployeService {
     public function getAll(){
         return $this->employRepo->readAll('roles');
     }
+    public function find($id){
+        return $this->employRepo->find('roles', $id);
+    }
 
     
 }
