@@ -41,7 +41,7 @@ class EmployRepository  extends BaseRepository
                from $this->table u
                join $this->tablePivot on role_user.user_id = u.id
                join $table on roles.id= role_user.role_id
-               where roles.titre='Employé'";
+              WHERE roles.titre = 'Employé' AND u.date_suppression IS NULL";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);

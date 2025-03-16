@@ -41,6 +41,7 @@ class AdminController
         exit;
     }
     Session::unset('error');
+    Session::unset('values');
     $data = [
         "nom" => trim($_POST["nom"]),
         "prenom" => trim($_POST["prenom"]),
