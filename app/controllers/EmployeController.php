@@ -23,7 +23,7 @@ class EmployeController
     // }
     public function employes()
     {
-        $employes= $this->employeService->getAllEmployes();
+        $employes= $this->employeService->getAll();
        echo  $this->twig->render('admin/eployes.twig',[
            'session' => $_SESSION,
            'employes'=>$employes
@@ -31,7 +31,7 @@ class EmployeController
 
     }
     
-    public function addEmploye()
+    public function create()
 {
     $request = new StoreUserRequest($_POST);
     if (!$request->validate()) {
@@ -49,7 +49,7 @@ class EmployeController
         "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT) ,
         "is_active"=>true 
     ];
-    if (!$this->employeService->Addemploye($data)) {
+    if (!$this->employeService->create($data)) {
         Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
         header('Location: /ESSEMLALI-Bank/employes');
         exit;
@@ -59,7 +59,7 @@ class EmployeController
     exit;
 }
 
-public function updateEmploye($id){
+public function edite($id){
     echo"$id";
 
 }

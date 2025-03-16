@@ -12,11 +12,11 @@ class EmployeService {
 
     }
 
-    public function Addemploye($date){
-       return $this->employRepo->addEmploy($date);
+    public function create($date){
+       return $this->employRepo->create($date);
     }
 
-    public function getAllEmployes(){
+    public function getAll(){
         return $this->employRepo->readAll('roles');
     }
 

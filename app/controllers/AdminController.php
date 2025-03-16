@@ -23,7 +23,7 @@ class AdminController
     }
     public function admin()
     {
-        $admins= $this->adminService->getAllAdmins();
+        $admins= $this->adminService->getAll();
        echo  $this->twig->render('admin/admins.twig',[
            'session' => $_SESSION,
            'admins'=>$admins
@@ -31,7 +31,7 @@ class AdminController
 
     }
     
-    public function addAdmin()
+    public function create()
 {
     $request = new StoreUserRequest($_POST);
     if (!$request->validate()) {
@@ -48,7 +48,7 @@ class AdminController
         "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT) ,
         "is_active"=>true 
     ];
-    if (!$this->adminService->addAdmin($data)) {
+    if (!$this->adminService->create($data)) {
         Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
         header('Location: /ESSEMLALI-Bank/admins');
         exit;

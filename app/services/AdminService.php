@@ -12,11 +12,11 @@ class AdminService {
 
     }
 
-    public function addAdmin($date){
-       return $this->adminRepo->addAdmin($date);
+    public function create($date){
+       return $this->adminRepo->create($date);
     }
 
-    public function getAllAdmins(){
+    public function getAll(){
         return $this->adminRepo->readAll('roles');
     }
 
