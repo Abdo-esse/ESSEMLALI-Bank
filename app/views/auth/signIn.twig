@@ -35,101 +35,181 @@
     <h1 class="text-2xl font-bold text-center text-blue-700 mb-6">Demande d'ouverture de compte</h1>
     
     <form class="space-y-6" action="store" method="POST">
-      <!-- Nom et Prénom -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label for="nom" class="block text-sm font-medium text-gray-700 mb-1">Nom</label>
-          <input type="text" id="nom" name="nom" required 
-                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
-        </div>
-        <div>
-          <label for="prenom" class="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
-          <input type="text" id="prenom" name="prenom" required 
-                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
-        </div>
-      </div>
-      
-      <!-- Email -->
-      <div>
-        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Adresse e-mail</label>
-        <input type="email" id="email" name="email" required 
-               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
-      </div>
-      
-      <!-- Sexe et Téléphone -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Sexe</label>
-          <div class="flex space-x-4 mt-2">
-            <div class="flex items-center">
-              <input type="radio" id="homme" name="sexe" value="homme" required 
-                     class="h-4 w-4 text-blue-700 focus:ring-blue-700 border-gray-300">
-              <label for="homme" class="ml-2 block text-sm text-gray-700">Homme</label>
-            </div>
-            <div class="flex items-center">
-              <input type="radio" id="femme" name="sexe" value="femme" required 
-                     class="h-4 w-4 text-blue-700 focus:ring-blue-700 border-gray-300">
-              <label for="femme" class="ml-2 block text-sm text-gray-700">Femme</label>
-            </div>
-          </div>
-        </div>
-        <div>
-          <label for="telephone" class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
-          <input type="tel" id="telephone" name="telephone" required 
-                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
-        </div>
-      </div>
-      
-      <!-- Adresse -->
-      <div>
-        <label for="adresse" class="block text-sm font-medium text-gray-700 mb-1">Adresse complète</label>
-        <textarea id="adresse" name="adresse" rows="3" required 
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent"></textarea>
-      </div>
-      
-      <!-- Photo de carte d'identité -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Photo de carte d'identité</label>
-        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-          <div class="space-y-1 text-center">
-            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-              <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4h-12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" 
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Nom et Prénom -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <label for="nom" class="block text-sm font-medium text-gray-700 mb-1">Nom</label>
+      <input type="text" id="nom" name="nom" required 
+             class="w-full px-4 py-2 border {% if session.errorClient.nom is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
+      {% if session.errorClient.nom is defined %}
+        <p class="mt-1 text-sm text-red-600">
+          <span class="flex items-center">
+            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
             </svg>
-            <div class="flex text-sm text-gray-600">
-              <label for="carte-identite" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-700 hover:text-blue-800 focus-within:outline-none">
-                <span>Télécharger un fichier</span>
-                <input id="carte-identite" name="carte-identite" type="file" class="sr-only" required>
-              </label>
-              <p class="pl-1">ou glisser-déposer</p>
-            </div>
-            <p class="text-xs text-gray-500">
-              PNG, JPG, PDF jusqu'à 10MB
-            </p>
-          </div>
+            {{ session.errorClient.nom }}
+          </span>
+        </p>
+      {% endif %}
+    </div>
+    <div>
+      <label for="prenom" class="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
+      <input type="text" id="prenom" name="prenom" required 
+             class="w-full px-4 py-2 border {% if session.errorClient.prenom is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
+      {% if session.errorClient.prenom is defined %}
+        <p class="mt-1 text-sm text-red-600">
+          <span class="flex items-center">
+            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+            </svg>
+            {{ session.errorClient.prenom }}
+          </span>
+        </p>
+      {% endif %}
+    </div>
+  </div>
+  
+  <!-- Email -->
+  <div>
+    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Adresse e-mail</label>
+    <input type="email" id="email" name="email" required 
+           class="w-full px-4 py-2 border {% if session.errorClient.email is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
+    {% if session.errorClient.email is defined %}
+      <p class="mt-1 text-sm text-red-600">
+        <span class="flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+          </svg>
+          {{ session.errorClient.email }}
+        </span>
+      </p>
+    {% endif %}
+  </div>
+  
+  <!-- Sexe et Téléphone -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Sexe</label>
+      <div class="flex space-x-4 mt-2">
+        <div class="flex items-center">
+          <input type="radio" id="homme" name="sexe" value="homme" required 
+                 class="h-4 w-4 text-blue-700 focus:ring-blue-700 border-gray-300">
+          <label for="homme" class="ml-2 block text-sm text-gray-700">Homme</label>
+        </div>
+        <div class="flex items-center">
+          <input type="radio" id="femme" name="sexe" value="femme" required 
+                 class="h-4 w-4 text-blue-700 focus:ring-blue-700 border-gray-300">
+          <label for="femme" class="ml-2 block text-sm text-gray-700">Femme</label>
         </div>
       </div>
-      
-      <!-- Conditions d'utilisation -->
-      <div class="flex items-start">
-        <div class="flex items-center h-5">
-          <input id="conditions" name="conditions" type="checkbox" required
-                 class="h-4 w-4 text-blue-700 focus:ring-blue-700 border-gray-300 rounded">
+      {% if session.errorClient.sexe is defined %}
+        <p class="mt-1 text-sm text-red-600">
+          <span class="flex items-center">
+            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+            </svg>
+            {{ session.errorClient.sexe }}
+          </span>
+        </p>
+      {% endif %}
+    </div>
+    <div>
+      <label for="telephone" class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
+      <input type="tel" id="telephone" name="telephone" required 
+             class="w-full px-4 py-2 border {% if session.errorClient.telephone is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
+      {% if session.errorClient.telephone is defined %}
+        <p class="mt-1 text-sm text-red-600">
+          <span class="flex items-center">
+            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+            </svg>
+            {{ session.errorClient.telephone }}
+          </span>
+        </p>
+      {% endif %}
+    </div>
+  </div>
+  
+  <!-- Adresse -->
+  <div>
+    <label for="adresse" class="block text-sm font-medium text-gray-700 mb-1">Adresse complète</label>
+    <textarea id="adresse" name="adresse" rows="3" required 
+              class="w-full px-4 py-2 border {% if session.errorClient.adresse is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent"></textarea>
+    {% if session.errorClient.adresse is defined %}
+      <p class="mt-1 text-sm text-red-600">
+        <span class="flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+          </svg>
+          {{ session.errorClient.adresse }}
+        </span>
+      </p>
+    {% endif %}
+  </div>
+  
+  <!-- Photo de carte d'identité -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Photo de carte d'identité</label>
+    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 {% if session.errorClient.carte_identite is defined %}border-red-500{% else %}border-gray-300{% endif %} border-dashed rounded-md">
+      <div class="space-y-1 text-center">
+        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4h-12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" 
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <div class="flex text-sm text-gray-600">
+          <label for="carte-identite" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-700 hover:text-blue-800 focus-within:outline-none">
+            <span>Télécharger un fichier</span>
+            <input id="carte-identite" name="carte_identite" type="file" class="sr-only" required>
+          </label>
+          <p class="pl-1">ou glisser-déposer</p>
         </div>
-        <div class="ml-3 text-sm">
-          <label for="conditions" class="font-medium text-gray-700">J'accepte les conditions d'utilisation</label>
-          <p class="text-gray-500">En soumettant ce formulaire, j'accepte que mes données soient traitées conformément à la politique de confidentialité d'EssemlaliBank.</p>
-        </div>
+        <p class="text-xs text-gray-500">
+          PNG, JPG, PDF jusqu'à 10MB
+        </p>
       </div>
-      
-      <!-- Bouton de soumission -->
-      <div>
-        <button type="submit" 
-                class="w-full bg-blue-700 text-white py-3 px-4 rounded-md font-medium hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150">
-          Soumettre ma demande
-        </button>
-      </div>
-    </form>
+    </div>
+    {% if session.errorClient.carte_identite is defined %}
+      <p class="mt-1 text-sm text-red-600">
+        <span class="flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+          </svg>
+          {{ session.errorClient.carte_identite }}
+        </span>
+      </p>
+    {% endif %}
+  </div>
+  
+  <!-- Conditions d'utilisation -->
+  <div class="flex items-start">
+    <div class="flex items-center h-5">
+      <input id="conditions" name="conditions" type="checkbox" required
+             class="h-4 w-4 text-blue-700 focus:ring-blue-700 {% if session.errorClient.conditions is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded">
+    </div>
+    <div class="ml-3 text-sm">
+      <label for="conditions" class="font-medium text-gray-700">J'accepte les conditions d'utilisation</label>
+      <p class="text-gray-500">En soumettant ce formulaire, j'accepte que mes données soient traitées conformément à la politique de confidentialité d'EssemlaliBank.</p>
+    </div>
+  </div>
+  {% if session.errorClient.conditions is defined %}
+    <p class="mt-1 text-sm text-red-600">
+      <span class="flex items-center">
+        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+        </svg>
+        {{ session.errorClient.conditions }}
+      </span>
+    </p>
+  {% endif %}
+  
+  <!-- Bouton de soumission -->
+  <div>
+    <button type="submit" 
+            class="w-full bg-blue-700 text-white py-3 px-4 rounded-md font-medium hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150">
+      Soumettre ma demande
+    </button>
+  </div>
+</form>
   </div>
   </main>
 {% endblock %}
