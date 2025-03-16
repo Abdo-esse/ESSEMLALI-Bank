@@ -96,5 +96,23 @@ public function update($id)
 
     header('Location: /ESSEMLALI-Bank/employes');
     exit;
-}    
+} 
+public function desactiver($id)
+{
+    $data = [
+        "is_active"=>"false" 
+    ];
+    
+    if (!$this->employeService->update($id,$data)) {
+        Session::set('error', "Une erreur s'est produite lors de desactiver de l'employer.");
+        header('Location: /ESSEMLALI-Bank/employes');
+        exit;
+    }
+
+    header('Location: /ESSEMLALI-Bank/employes');
+    exit;
+} 
+
+
+
 }
