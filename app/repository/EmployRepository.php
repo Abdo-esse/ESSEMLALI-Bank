@@ -51,6 +51,26 @@ class EmployRepository  extends BaseRepository
         }
         return $admins;
     }
+    public function find($table, $where)
+    {
+        $sql = "SELECT u.* 
+                FROM {$this->table} u
+                JOIN role_user ru ON ru.user_id = u.id
+                JOIN {$table} r ON r.id = ru.role_id
+                WHERE r.titre = 'Employé' AND u.id = :id";
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':id' => $where]);
+    
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if (!$row) {
+            return null; 
+        }
+    
+        return new Employe($row['id'], $row['nom'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
+    }
+    
 
    
 

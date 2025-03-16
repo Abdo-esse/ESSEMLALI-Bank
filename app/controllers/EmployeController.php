@@ -60,7 +60,6 @@ class EmployeController
 }
 
 public function edite($id){
-    echo"$id";
 
 }
 }
