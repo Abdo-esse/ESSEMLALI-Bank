@@ -39,11 +39,15 @@ class SignInRequest {
         } elseif (!preg_match("/^\+?\d{10,}$/", $this->data['telephone'])) {
             $this->errors['telephone'] = 'Format du téléphone invalide';
         }
-        
+
         if (empty($this->data['adresse'])) {
             $this->errors['adresse'] = 'L\'adresse est requise';
         } elseif (!preg_match("/^[a-zA-Z0-9\s,.'-]{5,}$/", $this->data['adresse'])) {
             $this->errors['adresse'] = 'Format de l\'adresse invalide';
+        }
+        
+        if (empty($this->data['conditions']) || $this->data['conditions'] !== "on") {
+            $this->errors['conditions'] = 'Vous devez accepter les conditions.';
         }
 
         return empty($this->errors);

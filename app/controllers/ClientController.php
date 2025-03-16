@@ -26,18 +26,18 @@ class ClientController
     {
         $request = new StoreUserRequest($_POST);
         if (!$request->validate()) {
-            Session::set('error', $request->getErrors());
-            Session::set('values', $_POST);
-            header('Location: /ESSEMLALI-Bank/admins');
+            Session::set('errorClient', $request->getErrors());
+            Session::set('valuesClient', $_POST);
+            // header('Location: /ESSEMLALI-Bank/admins');
+            echo "matvalidawx";
             exit;
         }
-        Session::unset('error');
-        Session::unset('values');
+        Session::unset('errorClient');
+        Session::unset('valuesClient');
         $data = [
             "nom" => trim($_POST["nom"]),
             "prenom" => trim($_POST["prenom"]),
             "email" => trim($_POST["email"]),
-            "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT) ,
             "is_active"=>true 
         ];
         if (!$this->adminService->create($data)) {
