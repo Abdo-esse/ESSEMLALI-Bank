@@ -21,7 +21,7 @@ class LoginController
 
     public function index()
     {
-       echo  $this->twig->render('auth/login.html.twig',[
+       echo  $this->twig->render('auth/login.twig',[
         'session' => $_SESSION
     ]);
 
@@ -32,9 +32,12 @@ class LoginController
             
         if (!$request->validate()) {
             Session::set('error', $request->getErrors());
+            Session::set('valueslogin', $_POST);
             header('Location: /ESSEMLALI-Bank/login');
             exit;
         }
+        Session::unset('error');
+        Session::unset('valueslogin');
         $email = $_POST['email'] ;
         $password = $_POST['password'] ;
         if (!$this->authService->login($email, $password)) {

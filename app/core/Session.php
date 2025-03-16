@@ -30,6 +30,13 @@ class Session {
         session_destroy();
     }
 
+    public static function unset($key)
+    {
+        if (isset($_SESSION[$key])) {
+            unset($_SESSION[$key]);
+        }
+    }
+
     public static function setFlash($key, $message)
     {
         $_SESSION['flash'][$key] = $message;
@@ -41,4 +48,6 @@ class Session {
         unset($_SESSION['flash'][$key]);
         return $message;
     }
+
+
 }

@@ -38,13 +38,21 @@ class BaseRepository
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function updateAction($table, $id, $data)
-    {
+    public function update($table, $id, $data)
+{
+    try {
         $columns = implode(' = ?, ', array_keys($data)) . ' = ?';
-        $sql = "UPDATE $table SET $columns WHERE id = ?";
+        $sql = "UPDATE {$table} SET {$columns} WHERE id = ?";
+
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(array_merge(array_values($data), [$id]));
+        return $stmt->rowCount() > 0;
+    } catch (Exception $e) {
+        error_log("Erreur dans update(): " . $e->getMessage());
+        return false;
     }
+}
+
 
     public function deleteAction($table, $id)
     {

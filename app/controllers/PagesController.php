@@ -13,7 +13,7 @@ class PagesController
 
     public function index()
     {
-       echo  $this->twig->render('pages/home.html.twig', [
+       echo  $this->twig->render('pages/home.twig', [
            'variable1' => 'Valeur 1',
            'variable2' => 'Valeur 2',
        ]);
@@ -21,12 +21,12 @@ class PagesController
     }
     public function apropos()
     {
-       echo  $this->twig->render('pages/apropos.html.twig');
+       echo  $this->twig->render('pages/apropos.twig');
 
     }
     public function prets()
     {
-       echo  $this->twig->render('pages/prets.html.twig');
+       echo  $this->twig->render('pages/prets.twig');
 
     }
 }
