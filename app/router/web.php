@@ -19,3 +19,4 @@ Router::add("POST","/updateEmploye/{id}","EmployeController@update");
 Router::add("POST","/desactiver/{id}","EmployeController@desactiver");
 Router::add("POST","/activer/{id}","EmployeController@activer");
 Router::add("POST","/delete/{id}","EmployeController@delete");
+Router::add("GET","/signIn","ClientController@create");

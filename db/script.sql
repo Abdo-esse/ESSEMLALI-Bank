@@ -24,3 +24,12 @@ CREATE TABLE role_user (
 );
 
 
+CREATE TABLE clients (
+    id SERIAL PRIMARY KEY,
+    sexe VARCHAR(10) NOT NULL, 
+    telephone VARCHAR(20) UNIQUE NOT NULL,
+    carte_national VARCHAR(250) UNIQUE NOT NULL,
+    address TEXT NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
