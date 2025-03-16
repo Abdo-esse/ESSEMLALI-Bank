@@ -14,3 +14,4 @@ Router::add("POST","/addAdmin","AdminController@create");
 Router::add("GET","/employes","EmployeController@employes");
 Router::add("POST","/AddEmploye","EmployeController@create");
 Router::add("GET","/editeEploye/{id}","EmployeController@edite");
+Router::add("POST","/updateEmploye/{id}","EmployeController@update");

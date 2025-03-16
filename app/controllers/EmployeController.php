@@ -68,8 +68,32 @@ class EmployeController
         ]);
 
     }
-       
-
 
 }
+
+public function update($id)
+{
+    $request = new StoreUserRequest($_POST);
+    if (!$request->validate()) {
+        Session::set('errorEditEmployer', $request->getErrors());
+        header('Location: /ESSEMLALI-Bank/editeEploye');
+        exit;
+    }
+    Session::unset('errorEditEmployer');
+    $data = [
+        "nom" => trim($_POST["nom"]),
+        "prenom" => trim($_POST["prenom"]),
+        "email" => trim($_POST["email"]),
+        "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT) ,
+        "is_active"=>true 
+    ];
+    if (!$this->employeService->update($data)) {
+        Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
+        header('Location: /ESSEMLALI-Bank/employes');
+        exit;
+    }
+
+    // header('Location: /ESSEMLALI-Bank/employes');
+    exit;
+}    
 }
