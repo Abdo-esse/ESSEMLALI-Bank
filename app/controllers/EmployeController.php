@@ -61,11 +61,14 @@ class EmployeController
 
    public function edite($id){
     $employe= $this->employeService->find($id);
-       echo  $this->twig->render('admin/editeEployes.twig',[
-           'session' => $_SESSION,
-           'employe'=>$employe
-       ]);
-    exit;
+    if($employe){
+        echo  $this->twig->render('admin/editeEploye.twig',[
+            'session' => $_SESSION,
+            'employe'=>$employe
+        ]);
+
+    }
+       
 
 
 }
