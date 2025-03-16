@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\core\Session;
+use App\requests\SignInRequest;
 
 class ClientController
 {
@@ -17,18 +18,18 @@ class ClientController
     public function create()
     {
        echo  $this->twig->render('auth/signIn.twig', [
-           'variable1' => 'Valeur 1',
-           'variable2' => 'Valeur 2',
+           'session' => $_SESSION,
        ]);
 
     }
     public function store()
     {
-        $request = new StoreUserRequest($_POST);
+        $request = new SignInRequest($_POST);
         if (!$request->validate()) {
             Session::set('errorClient', $request->getErrors());
             Session::set('valuesClient', $_POST);
-            // header('Location: /ESSEMLALI-Bank/admins');
+            header('Location: /ESSEMLALI-Bank/signIn');
+            var_dump($request->getErrors());
             echo "matvalidawx";
             exit;
         }
@@ -40,12 +41,13 @@ class ClientController
             "email" => trim($_POST["email"]),
             "is_active"=>true 
         ];
-        if (!$this->adminService->create($data)) {
-            Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
-            header('Location: /ESSEMLALI-Bank/admins');
-            exit;
-        }
-        header('Location: /ESSEMLALI-Bank/admins');
+        var_dump($data);
+        // if (!$this->adminService->create($data)) {
+        //     Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
+        //     header('Location: /ESSEMLALI-Bank/admins');
+        //     exit;
+        // }
+        // header('Location: /ESSEMLALI-Bank/admins');
         exit;
     }
     
