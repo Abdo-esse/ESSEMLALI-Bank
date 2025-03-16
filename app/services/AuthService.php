@@ -24,8 +24,12 @@ class AuthService {
         }
         if ( $user['mot_de_passe'] === false) {
             Session::set('login', "You account is desactive .");
+            Session::set('valueslogin', $_POST);
+
             return false;
         }
+        Session::unset('login');
+    Session::unset('valueslogin');
 
             Session::set('user', [
                 'id' => $user['id'],
