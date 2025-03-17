@@ -45,11 +45,15 @@ class ClientController
         var_dump($_FILES);
         echo '<pre>';
 
-            $filePath = STORAGE_PATH . '/' . $_FILES['receipt']['name'];
-            move_uploaded_file($_FILES['receipt']['tmp_name'], $filePath);
+        $filename = uniqid() . '_' . $_FILES['carte_identite']['name'];
+        $uploadPath = __DIR__ . '/../../public/uploads/' . $filename;
+
+        if (move_uploaded_file($_FILES['carte_identite']['tmp_name'], $uploadPath)) {
+           $photos[] = $filename;
+        }
       
         echo '<pre>';
-        var_dump(pathinfo($filePath));
+        var_dump($photos);
         echo '<pre>';
 
         // if (!$this->adminService->create($data)) {
