@@ -7,6 +7,8 @@ use App\requests\SignInRequest;
 class ClientController
 {
     private $twig;
+    private $clientService;
+
     public function __construct()
     {
           $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
@@ -33,22 +35,14 @@ class ClientController
         }
         Session::unset('errorClient');
         Session::unset('valuesClient');
-        $data = [
-            "nom" => trim($_POST["nom"]),
-            "prenom" => trim($_POST["prenom"]),
-            "email" => trim($_POST["email"]),
-            "is_active"=>false 
-        ];
-
-        $filename = uniqid() . '_' . $_FILES['carte_identite']['name'];
-        $uploadPath = __DIR__ . '/../../public/uploads/' . $filename;
+        $fileName = uniqid() . '_' . $_FILES['carte_identite']['name'];
+        $uploadPath = __DIR__ . '/../../public/uploads/' . $fileName;
 
         if (move_uploaded_file($_FILES['carte_identite']['tmp_name'], $uploadPath)) {
-           $photo = $filename;
+            $_POST['carte_identite'] = $fileName;
         }
-        var_dump($photo);
          
-        // if (!$this->adminService->create($data)) {
+        // if (!$this->clientService->create($data)) {
         //     Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
         //     header('Location: /ESSEMLALI-Bank/admins');
         //     exit;
