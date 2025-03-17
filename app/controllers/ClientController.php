@@ -24,38 +24,30 @@ class ClientController
     }
     public function store()
     {
-        // $request = new SignInRequest($_POST);
-        // if (!$request->validate()) {
-        //     Session::set('errorClient', $request->getErrors());
-        //     Session::set('valuesClient', $_POST);
-        //     header('Location: /ESSEMLALI-Bank/signIn');
-        //     var_dump($request->getErrors());
-        //     echo "matvalidawx";
-        //     exit;
-        // }
-        // Session::unset('errorClient');
-        // Session::unset('valuesClient');
-        // $data = [
-        //     "nom" => trim($_POST["nom"]),
-        //     "prenom" => trim($_POST["prenom"]),
-        //     "email" => trim($_POST["email"]),
-        //     "is_active"=>true 
-        // ];
-        echo '<pre>';
-        var_dump($_FILES);
-        echo '<pre>';
+        $request = new SignInRequest($_POST);
+        if (!$request->validate()) {
+            Session::set('errorClient', $request->getErrors());
+            Session::set('valuesClient', $_POST);
+            header('Location: /ESSEMLALI-Bank/signIn');
+            exit;
+        }
+        Session::unset('errorClient');
+        Session::unset('valuesClient');
+        $data = [
+            "nom" => trim($_POST["nom"]),
+            "prenom" => trim($_POST["prenom"]),
+            "email" => trim($_POST["email"]),
+            "is_active"=>false 
+        ];
 
         $filename = uniqid() . '_' . $_FILES['carte_identite']['name'];
         $uploadPath = __DIR__ . '/../../public/uploads/' . $filename;
 
         if (move_uploaded_file($_FILES['carte_identite']['tmp_name'], $uploadPath)) {
-           $photos[] = $filename;
+           $photo = $filename;
         }
-      
-        echo '<pre>';
-        var_dump($photos);
-        echo '<pre>';
-
+        var_dump($photo);
+         
         // if (!$this->adminService->create($data)) {
         //     Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
         //     header('Location: /ESSEMLALI-Bank/admins');

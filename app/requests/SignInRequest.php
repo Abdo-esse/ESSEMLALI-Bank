@@ -49,6 +49,26 @@ class SignInRequest {
         if (empty($this->data['conditions']) || $this->data['conditions'] !== "on") {
             $this->errors['conditions'] = 'Vous devez accepter les conditions.';
         }
+        if (!isset($_FILES['carte_identite']) || $_FILES['carte_identite']['error'] !== UPLOAD_ERR_OK) {
+            $this->errors['carte_identite'] = 'Le fichier de la carte d\'identité est requis.';
+        } else {
+            $allowedExtensions = ['png', 'jpg', 'jpeg'];
+            $fileName = $_FILES['carte_identite']['name'];
+            $fileTmp  = $_FILES['carte_identite']['tmp_name'];
+            $fileSize = $_FILES['carte_identite']['size'];
+            $fileExt  = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+            $mimeType = mime_content_type($fileTmp);
+        
+            // Liste des types MIME acceptés
+            $allowedMimeTypes = ['image/png', 'image/jpeg'];
+        
+            if (!in_array($fileExt, $allowedExtensions) || !in_array($mimeType, $allowedMimeTypes)) {
+                $this->errors['carte_identite'] = 'Le fichier doit être une image PNG, JPG ou JPEG.';
+            } elseif ($fileSize > 2 * 1024 * 1024) { // 2MB max
+                $this->errors['carte_identite'] = 'Le fichier ne doit pas dépasser 2MB.';
+            }
+        }
+        
 
         return empty($this->errors);
     }
