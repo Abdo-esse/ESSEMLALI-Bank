@@ -7,11 +7,12 @@ use App\requests\SignInRequest;
 class ClientController
 {
     private $twig;
-    private $clientService;
+    private ClientService $clientService;
 
     public function __construct()
     {
           $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
+          $this->clientService=new ClientService();
           Session::start();
 
     }
@@ -42,12 +43,12 @@ class ClientController
             $_POST['carte_identite'] = $fileName;
         }
          
-        // if (!$this->clientService->create($data)) {
-        //     Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
-        //     header('Location: /ESSEMLALI-Bank/admins');
-        //     exit;
-        // }
-        // header('Location: /ESSEMLALI-Bank/admins');
+        if (!$this->clientService->create($_POST)) {
+            Session::set('error', "Une erreur s'est produite lors de l'ajout de client.");
+            header('Location: /ESSEMLALI-Bank/signIn');
+            exit;
+        }
+        header('Location: /ESSEMLALI-Bank/admins');
         exit;
     }
     
