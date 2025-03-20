@@ -14,7 +14,7 @@ class ClientRepository  extends BaseRepository
     public function __construct() {
         parent::__construct(); 
         $this->table='users';
-        $this->tableClient='users';
+        $this->tableClient='clients';
         $this->tablePivot='role_user';
     }
     
