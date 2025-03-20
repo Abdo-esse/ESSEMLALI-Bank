@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\core\Session;
 use App\requests\SignInRequest;
+use App\services\ClientService;
 
 class ClientController
 {
@@ -28,12 +29,12 @@ class ClientController
     public function store()
     {
         $request = new SignInRequest($_POST);
-        if (!$request->validate()) {
-            Session::set('errorClient', $request->getErrors());
-            Session::set('valuesClient', $_POST);
-            header('Location: /ESSEMLALI-Bank/signIn');
-            exit;
-        }
+        // if (!$request->validate()) {
+        //     Session::set('errorClient', $request->getErrors());
+        //     Session::set('valuesClient', $_POST);
+        //     header('Location: /ESSEMLALI-Bank/signIn');
+        //     exit;
+        // }
         Session::unset('errorClient');
         Session::unset('valuesClient');
         $fileName = uniqid() . '_' . $_FILES['carte_identite']['name'];
@@ -43,7 +44,7 @@ class ClientController
             $_POST['carte_identite'] = $fileName;
         }
          
-        if (!$this->clientService->create($_POST)) {
+        if (!$this->clientService->create()) {
             Session::set('error', "Une erreur s'est produite lors de l'ajout de client.");
             header('Location: /ESSEMLALI-Bank/signIn');
             exit;

@@ -8,12 +8,12 @@ class ClientService {
     private ClientRepository $employRepo;
 
     public function __construct() {
-        $this->employRepo = new ClientRepository();
+        // $this->employRepo = new ClientRepository();
 
     }
 
-    public function create($date){
-       return $this->employRepo->create($date);
+    public function create(){
+        
     }
     public function update($id, $data){
        return $this->employRepo->update('users', $id, $data);
