@@ -4,184 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ESSEMLALI Bank - Détails de la demande</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f7fa;
-            color: #333;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #0a5782;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px 10px 0 0;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .request-details {
-            background-color: white;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .request-title {
-            font-size: 22px;
-            color: #0a5782;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eaeaea;
-        }
-        .client-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .info-group {
-            margin-bottom: 15px;
-        }
-        .info-label {
-            font-weight: 600;
-            color: #667788;
-            font-size: 14px;
-            margin-bottom: 5px;
-            display: block;
-        }
-        .info-value {
-            font-size: 16px;
-        }
-        .actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .btn-approve {
-            background-color: #10b981;
-            color: white;
-        }
-        .btn-approve:hover {
-            background-color: #059669;
-        }
-        .btn-reject {
-            background-color: #ef4444;
-            color: white;
-        }
-        .btn-reject:hover {
-            background-color: #dc2626;
-        }
-        .status-badge {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            background-color: #f3f4f6;
-        }
-        .status-active {
-            background-color: #dcfce7;
-            color: #166534;
-        }
-        .status-inactive {
-            background-color: #fee2e2;
-            color: #991b1b;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">ESSEMLALI Bank</div>
-            <div class="request-id">Demande #<span id="requestId">1234</span></div>
+<body class="bg-gray-50">
+    <div class="max-w-4xl mx-auto p-4">
+        <!-- En-tête -->
+        <div class="flex justify-between items-center bg-blue-700 text-white p-4 rounded-t-lg">
+            <div class="text-2xl font-bold">ESSEMLALI Bank</div>
+            <div>Demande #<span id="requestId">{{client.id}}</span></div>
         </div>
         
-        <div class="request-details">
-            <h1 class="request-title">Demande d'ouverture de compte bancaire</h1>
+        <!-- Détails de la demande -->
+        <div class="bg-white rounded-b-lg shadow-md p-6 mb-6">
+            <h1 class="text-xl font-bold text-blue-700 mb-6 pb-3 border-b border-gray-200">
+                Demande d'ouverture de compte bancaire
+            </h1>
             
-            <div class="client-info">
-                <div class="info-group">
-                    <span class="info-label">ID Client</span>
-                    <div class="info-value" id="clientId">{{client.id}}</div>
+            <!-- Informations client en grille -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">                
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">Date de demande </label>
+                    <div id="creationDate" class="text-gray-800">{{client.dateCreation|date('Y-m-d')}}</div>
                 </div>
                 
-                <div class="info-group">
-                    <span class="info-label">Date de création</span>
-                    <div class="info-value" id="creationDate"> {{client.dateCreation|date('Y-m-d')}}</div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">Nom</label>
+                    <div id="lastName" class="text-gray-800">{{ client.nom }}</div>
                 </div>
                 
-                <div class="info-group">
-                    <span class="info-label">Nom</span>
-                    <div class="info-value" id="lastName">{{ client.nom }}</div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">Prénom</label>
+                    <div id="firstName" class="text-gray-800">{{client.prenom }}</div>
                 </div>
                 
-                <div class="info-group">
-                    <span class="info-label">Prénom</span>
-                    <div class="info-value" id="firstName">{{client.prenom }}</div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">Email</label>
+                    <div id="email" class="text-gray-800">{{client.email }}</div>
                 </div>
                 
-                <div class="info-group">
-                    <span class="info-label">Email</span>
-                    <div class="info-value" id="email">{{client.email }}</div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">Téléphone</label>
+                    <div id="phone" class="text-gray-800">{{client.telephone }}</div>
                 </div>
                 
-                <div class="info-group">
-                    <span class="info-label">Téléphone</span>
-                    <div class="info-value" id="phone">{{client.email }}</div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">Sexe</label>
+                    <div id="gender" class="text-gray-800">{{client.sexe }}</div>
                 </div>
                 
-                <div class="info-group">
-                    <span class="info-label">Sexe</span>
-                    <div class="info-value" id="gender">{{client.email }}</div>
-                </div>
-                
-                <div class="info-group">
-                    <span class="info-label">Statut</span>
-                    <div class="info-value">
-                        <span class="status-badge {{ client.isActive ? 'status-active' : 'status-inactive' }} " id="status">
-                        {{ row.is_active ? 'Actif' : 'En attente' }}
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">Statut</label>
+                    <div id="status" class="text-gray-800">
+                        <span id="statusBadge" class="px-2 py-1 rounded-full text-xs font-semibold {{client.isActive ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}}">
+                             En attente
                         </span>
                     </div>
                 </div>
             </div>
             
-            <div class="info-group" style="grid-column: span 2;">
-                <span class="info-label">Adresse</span>
-                <div class="info-value" id="address">{{client.email }}</div>
+            <!-- Informations sur toute la largeur -->
+            <div class="mt-6">
+                <label class="block text-sm font-medium text-gray-500 mb-1">Adresse</label>
+                <div id="address" class="text-gray-800">{{client.adresse }}</div>
             </div>
             
-            <div class="info-group" style="grid-column: span 2;">
-                <span class="info-label">Numéro de carte nationale</span>
-                <div class="info-value" id="idCard">{{client.email }}</div>
+            <div class="mt-4">
+                <label class="block text-sm font-medium text-gray-500 mb-1">Carte d'identité nationale</label>
+                <div class="mt-2">
+                    <img 
+                        src="../../../uploads/67d85ac205ad2_Capture d'écran 2024-12-19 102937.png" 
+                        alt="Carte d'identité nationale{{client.getCarteIdentite() }}" 
+                        class="max-w-md border border-gray-300 rounded-md shadow-sm"
+                    />
+                </div>
             </div>
             
-            <div class="actions">
-                <button class="btn btn-reject" id="rejectBtn">Refuser la demande</button>
-                <button class="btn btn-approve" id="approveBtn">Approuver la demande</button>
+            <!-- Boutons d'action -->
+            <div class="flex justify-end gap-4 mt-8">
+                <button id="rejectBtn" class="px-4 py-2 bg-red-500 text-white font-medium rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors">
+                    Refuser la demande
+                </button>
+                <button id="approveBtn" class="px-4 py-2 bg-green-500 text-white font-medium rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-colors">
+                    Approuver la demande
+                </button>
             </div>
         </div>
     </div>
 
     <script>
-        // Fonctionnalité de base pour les boutons
+        // Fonctionnalité pour les boutons
         document.getElementById('approveBtn').addEventListener('click', function() {
             if (confirm('Êtes-vous sûr de vouloir approuver cette demande d\'ouverture de compte?')) {
                 alert('Demande approuvée avec succès!');

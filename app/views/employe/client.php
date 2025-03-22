@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESSEMLALI Bank - Détails de la demande</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0a5782;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px 10px 0 0;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .request-details {
+            background-color: white;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .request-title {
+            font-size: 22px;
+            color: #0a5782;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .client-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .info-group {
+            margin-bottom: 15px;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #667788;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .info-value {
+            font-size: 16px;
+        }
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-approve {
+            background-color: #10b981;
+            color: white;
+        }
+        .btn-approve:hover {
+            background-color: #059669;
+        }
+        .btn-reject {
+            background-color: #ef4444;
+            color: white;
+        }
+        .btn-reject:hover {
+            background-color: #dc2626;
+        }
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background-color: #f3f4f6;
+        }
+        .status-active {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        .status-inactive {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">ESSEMLALI Bank</div>
+            <div class="request-id">Demande #<span id="requestId">1234</span></div>
+        </div>
+        
+        <div class="request-details">
+            <h1 class="request-title">Demande d'ouverture de compte bancaire</h1>
+            
+            <div class="client-info">
+                <div class="info-group">
+                    <span class="info-label">ID Client</span>
+                    <div class="info-value" id="clientId">{{client.id}}</div>
+                </div>
+                
+                <div class="info-group">
+                    <span class="info-label">Date de création</span>
+                    <div class="info-value" id="creationDate"> {{client.dateCreation|date('Y-m-d')}}</div>
+                </div>
+                
+                <div class="info-group">
+                    <span class="info-label">Nom</span>
+                    <div class="info-value" id="lastName">{{ client.nom }}</div>
+                </div>
+                
+                <div class="info-group">
+                    <span class="info-label">Prénom</span>
+                    <div class="info-value" id="firstName">{{client.prenom }}</div>
+                </div>
+                
+                <div class="info-group">
+                    <span class="info-label">Email</span>
+                    <div class="info-value" id="email">{{client.email }}</div>
+                </div>
+                
+                <div class="info-group">
+                    <span class="info-label">Téléphone</span>
+                    <div class="info-value" id="phone">{{client.telephone }}</div>
+                </div>
+                
+                <div class="info-group">
+                    <span class="info-label">sexe</span>
+                    <div class="info-value" id="gender">{{client.sexe }}</div>
+                </div>
+                
+                <div class="info-group">
+                    <span class="info-label">Statut</span>
+                    <div class="info-value">
+                        <span class="status-badge {{ client.isActive ? 'status-active' : 'status-inactive' }} " id="status">
+                        {{ row.is_active ? 'Actif' : 'En attente' }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-group" style="grid-column: span 2;">
+                <span class="info-label">Adresse</span>
+                <div class="info-value" id="address">{{client.adresse }}</div>
+            </div>
+            
+            <div class="info-group" style="grid-column: span 2;">
+                <span class="info-label">Numéro de carte nationale</span>
+                <div class="info-value" id="idCard">{{client.carteIdentite }}</div>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-reject" id="rejectBtn">Refuser la demande</button>
+                <button class="btn btn-approve" id="approveBtn">Approuver la demande</button>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

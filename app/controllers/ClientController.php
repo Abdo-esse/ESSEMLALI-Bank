@@ -62,10 +62,21 @@ class ClientController
     }
     public function client($id){
         $client=$this->clientService->find($id);
+        $file_path =dirname(__DIR__). "/../uploads/67d85dd5aaa67_Capture d'écran 2024-12-22 001846.png";
+        $client->setCarteIdentite($file_path);
         echo  $this->twig->render('employe/client.twig', [
             'client' => $client,
         ]);
-        // var_dump($client);
+
+        if (!is_readable($client->getCarteIdentite())) {
+            echo "🚨 Problème de permissions sur le fichier.";
+           var_dump( $client->getCarteIdentite());
+
+        } else {
+            echo "✅ Le fichier est accessible.";
+           var_dump( $client->getCarteIdentite());
+
+        }
     }
 
 
