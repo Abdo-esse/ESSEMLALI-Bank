@@ -186,7 +186,7 @@
     <div>      
       <!-- Affichage de l'aperçu de l'image -->
       {% if session.valuesClient.carte_identite is defined %}
-        <img id="image-preview" src="{{ session.valuesClient.carte_identite }}" alt="Aperçu de l'image"
+        <img id="image-preview" src="../../../public/uploads/{{ session.valuesClient.carte_identite }}" alt="Aperçu de l'image"
             class="mt-3 mx-auto h-20 w-20 object-cover border rounded-lg">
       {% else %}
         <img id="image-preview" src="" alt="Aperçu de l'image"

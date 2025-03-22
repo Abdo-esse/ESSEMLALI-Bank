@@ -28,6 +28,7 @@ class ClientController
     }
     public function store()
     {
+        
         $request = new SignInRequest($_POST);
         if (!$request->validate()) {
             Session::set('errorClient', $request->getErrors());
@@ -42,8 +43,8 @@ class ClientController
 
         if (move_uploaded_file($_FILES['carte_identite']['tmp_name'], $uploadPath)) {
             $_POST['carte_identite'] = $fileName;
-        }
-         
+        }  
+      
         if (!$this->clientService->create()) {
             Session::set('error', "Une erreur s'est produite lors de l'ajout de client.");
             header('Location: /ESSEMLALI-Bank/signIn');
