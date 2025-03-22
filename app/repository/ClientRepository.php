@@ -52,11 +52,11 @@ class ClientRepository  extends BaseRepository
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $Client = [];
+        $client = [];
         foreach ($rows as $row) {
-            $Client[] = new Client($row['id'], $row['nom'], $row['prenom'], $row['email'], "", $row['date_creation'], $row['is_active'],$row['sexe'],$row['telephone'],$row['address'],$row['carte_national']);
+            $client[] = new Client($row['user_id'], $row['nom'], $row['prenom'], $row['email'], "", $row['date_creation'], $row['is_active'],$row['sexe'],$row['telephone'],$row['address'],$row['carte_national']);
         }
-        return $Client;
+        return $client;
     }
 
    
@@ -68,7 +68,7 @@ class ClientRepository  extends BaseRepository
         JOIN $this->tablePivot AS ru ON ru.user_id = u.id
         JOIN roles AS r ON r.id = ru.role_id
         JOIN $this->tableClient AS c ON c.user_id = u.id
-        WHERE r.titre = 'Client'  AND c.id = :id";               
+        WHERE r.titre = 'Client'  AND u.id = :id";               
 
     
         $stmt = $this->conn->prepare($sql);
