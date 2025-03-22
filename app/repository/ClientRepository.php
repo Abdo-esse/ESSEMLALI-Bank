@@ -43,17 +43,18 @@ class ClientRepository  extends BaseRepository
 
     public function readAll($table)
     {
-        $sql = "select u.* 
-               from $this->table u
-               join $this->tablePivot on role_user.user_id = u.id
-               join $table on roles.id= role_user.role_id
-               where roles.titre='Admin'";
+        $sql = "SELECT u.*, c.* 
+        FROM $this->table AS u
+        JOIN $this->tablePivot AS ru ON ru.user_id = u.id
+        JOIN roles AS r ON r.id = ru.role_id
+        JOIN $this->tableClient AS c ON c.user_id = u.id
+        WHERE r.titre = 'Client' AND u.is_active = 'false'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $admins = [];
         foreach ($rows as $row) {
-            $admins[] = new Admin($row['id'], $row['nom'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
+            $admins[] = new Client($row['id'], $row['nom'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
         }
         return $admins;
     }
