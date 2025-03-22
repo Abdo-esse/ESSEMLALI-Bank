@@ -62,10 +62,10 @@ class ClientController
     }
     public function client($id){
         $client=$this->clientService->find($id);
-        // echo  $this->twig->render('employe/client.twig', [
-        //     'clients' => $clients,
-        // ]);
-        var_dump($client);
+        echo  $this->twig->render('employe/client.twig', [
+            'client' => $client,
+        ]);
+        // var_dump($client);
     }
 
 

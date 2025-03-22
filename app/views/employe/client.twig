@@ -120,44 +120,44 @@
             <div class="client-info">
                 <div class="info-group">
                     <span class="info-label">ID Client</span>
-                    <div class="info-value" id="clientId">${row['id']}</div>
+                    <div class="info-value" id="clientId">{{client.id}}</div>
                 </div>
                 
                 <div class="info-group">
                     <span class="info-label">Date de création</span>
-                    <div class="info-value" id="creationDate">${row['date_creation']}</div>
+                    <div class="info-value" id="creationDate"> {{client.dateCreation|date('Y-m-d')}}</div>
                 </div>
                 
                 <div class="info-group">
                     <span class="info-label">Nom</span>
-                    <div class="info-value" id="lastName">${row['nom']}</div>
+                    <div class="info-value" id="lastName">{{ client.nom }}</div>
                 </div>
                 
                 <div class="info-group">
                     <span class="info-label">Prénom</span>
-                    <div class="info-value" id="firstName">${row['prenom']}</div>
+                    <div class="info-value" id="firstName">{{client.prenom }}</div>
                 </div>
                 
                 <div class="info-group">
                     <span class="info-label">Email</span>
-                    <div class="info-value" id="email">${row['email']}</div>
+                    <div class="info-value" id="email">{{client.email }}</div>
                 </div>
                 
                 <div class="info-group">
                     <span class="info-label">Téléphone</span>
-                    <div class="info-value" id="phone">${row['telephone']}</div>
+                    <div class="info-value" id="phone">{{client.email }}</div>
                 </div>
                 
                 <div class="info-group">
                     <span class="info-label">Sexe</span>
-                    <div class="info-value" id="gender">${row['sexe']}</div>
+                    <div class="info-value" id="gender">{{client.email }}</div>
                 </div>
                 
                 <div class="info-group">
                     <span class="info-label">Statut</span>
                     <div class="info-value">
-                        <span class="status-badge ${row['is_active'] ? 'status-active' : 'status-inactive'}" id="status">
-                            ${row['is_active'] ? 'Actif' : 'En attente'}
+                        <span class="status-badge {{ client.isActive ? 'status-active' : 'status-inactive' }} " id="status">
+                        {{ row.is_active ? 'Actif' : 'En attente' }}
                         </span>
                     </div>
                 </div>
@@ -165,12 +165,12 @@
             
             <div class="info-group" style="grid-column: span 2;">
                 <span class="info-label">Adresse</span>
-                <div class="info-value" id="address">${row['address']}</div>
+                <div class="info-value" id="address">{{client.email }}</div>
             </div>
             
             <div class="info-group" style="grid-column: span 2;">
                 <span class="info-label">Numéro de carte nationale</span>
-                <div class="info-value" id="idCard">${row['carte_national']}</div>
+                <div class="info-value" id="idCard">{{client.email }}</div>
             </div>
             
             <div class="actions">
