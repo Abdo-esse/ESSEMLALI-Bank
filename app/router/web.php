@@ -22,3 +22,4 @@ Router::add("POST","/delete/{id}","EmployeController@delete");
 Router::add("GET","/signIn","ClientController@create");
 Router::add("POST","/store","ClientController@store");
 Router::add("GET","/clients","ClientController@clients");
+Router::add("GET","/voir/{id}","ClientController@client");

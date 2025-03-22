@@ -61,6 +61,26 @@ class ClientRepository  extends BaseRepository
 
    
 
+    public function find($table, $where)
+    {
+        $sql = "SELECT u.*, c.* 
+        FROM $this->table AS u
+        JOIN $this->tablePivot AS ru ON ru.user_id = u.id
+        JOIN roles AS r ON r.id = ru.role_id
+        JOIN $this->tableClient AS c ON c.user_id = u.id
+        WHERE r.titre = 'Client'  AND c.id = :id";               
 
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':id' => $where]);
+    
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if (!$row) {
+            return null; 
+        }
+    
+        return new Client($row['id'], $row['nom'], $row['prenom'], $row['email'], "", $row['date_creation'], $row['is_active'],$row['sexe'],$row['telephone'],$row['address'],$row['carte_national']);
+    }
 
 }
