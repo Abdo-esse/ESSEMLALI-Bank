@@ -29,12 +29,12 @@ class ClientController
     public function store()
     {
         $request = new SignInRequest($_POST);
-        // if (!$request->validate()) {
-        //     Session::set('errorClient', $request->getErrors());
-        //     Session::set('valuesClient', $_POST);
-        //     header('Location: /ESSEMLALI-Bank/signIn');
-        //     exit;
-        // }
+        if (!$request->validate()) {
+            Session::set('errorClient', $request->getErrors());
+            Session::set('valuesClient', $_POST);
+            header('Location: /ESSEMLALI-Bank/signIn');
+            exit;
+        }
         Session::unset('errorClient');
         Session::unset('valuesClient');
         $fileName = uniqid() . '_' . $_FILES['carte_identite']['name'];
@@ -49,7 +49,7 @@ class ClientController
             header('Location: /ESSEMLALI-Bank/signIn');
             exit;
         }
-        header('Location: /ESSEMLALI-Bank/admins');
+        header('Location: /ESSEMLALI-Bank');
         exit;
     }
     

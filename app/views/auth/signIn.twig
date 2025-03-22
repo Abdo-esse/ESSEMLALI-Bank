@@ -39,7 +39,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div>
       <label for="nom" class="block text-sm font-medium text-gray-700 mb-1">Nom</label>
-      <input type="text" id="nom" name="nom" required 
+      <input type="text" id="nom" name="nom" required value="{{session.valuesClient.nom}}"
              class="w-full px-4 py-2 border {% if session.errorClient.nom is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
       {% if session.errorClient.nom is defined %}
         <p class="mt-1 text-sm text-red-600">
@@ -54,7 +54,7 @@
     </div>
     <div>
       <label for="prenom" class="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
-      <input type="text" id="prenom" name="prenom" required 
+      <input type="text" id="prenom" name="prenom" required value="{{session.valuesClient.prenom}}"
              class="w-full px-4 py-2 border {% if session.errorClient.prenom is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
       {% if session.errorClient.prenom is defined %}
         <p class="mt-1 text-sm text-red-600">
@@ -72,7 +72,7 @@
   <!-- Email -->
   <div>
     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Adresse e-mail</label>
-    <input type="email" id="email" name="email" required 
+    <input type="email" id="email" name="email" required value="{{session.valuesClient.email}}"
            class="w-full px-4 py-2 border {% if session.errorClient.email is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
     {% if session.errorClient.email is defined %}
       <p class="mt-1 text-sm text-red-600">
@@ -93,12 +93,14 @@
       <div class="flex space-x-4 mt-2">
         <div class="flex items-center">
           <input type="radio" id="homme" name="sexe" value="homme" required 
-                 class="h-4 w-4 text-blue-700 focus:ring-blue-700 border-gray-300">
+                 class="h-4 w-4 text-blue-700 focus:ring-blue-700 border-gray-300"
+                 {% if session.valuesClient.sexe == 'homme' %}checked{% endif %}>
           <label for="homme" class="ml-2 block text-sm text-gray-700">Homme</label>
         </div>
         <div class="flex items-center">
           <input type="radio" id="femme" name="sexe" value="femme" required 
-                 class="h-4 w-4 text-blue-700 focus:ring-blue-700 border-gray-300">
+                 class="h-4 w-4 text-blue-700 focus:ring-blue-700 border-gray-300"
+                 {% if session.valuesClient.sexe == 'femme' %}checked{% endif %}>
           <label for="femme" class="ml-2 block text-sm text-gray-700">Femme</label>
         </div>
       </div>
@@ -115,7 +117,7 @@
     </div>
     <div>
       <label for="telephone" class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
-      <input type="tel" id="telephone" name="telephone" required 
+      <input type="tel" id="telephone" name="telephone" required value="{{session.valuesClient.telephone}}"
              class="w-full px-4 py-2 border {% if session.errorClient.telephone is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
       {% if session.errorClient.telephone is defined %}
         <p class="mt-1 text-sm text-red-600">
@@ -134,7 +136,7 @@
   <div>
     <label for="adresse" class="block text-sm font-medium text-gray-700 mb-1">Adresse complète</label>
     <textarea id="adresse" name="adresse" rows="3" required 
-              class="w-full px-4 py-2 border {% if session.errorClient.adresse is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent"></textarea>
+              class="w-full px-4 py-2 border {% if session.errorClient.adresse is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">{{session.valuesClient.adresse}}</textarea>
     {% if session.errorClient.adresse is defined %}
       <p class="mt-1 text-sm text-red-600">
         <span class="flex items-center">
@@ -159,7 +161,7 @@
         <div class="flex text-sm text-gray-600">
           <label for="carte-identite" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-700 hover:text-blue-800 focus-within:outline-none">
             <span>Télécharger un fichier</span>
-            <input id="carte-identite" name="carte_identite" type="file" class="sr-only" required>
+            <input id="carte-identite" name="carte_identite" type="file" accept="image/*" onchange="previewImage(event)" class="sr-only" required>
           </label>
           <p class="pl-1">ou glisser-déposer</p>
         </div>
@@ -179,11 +181,23 @@
       </p>
     {% endif %}
   </div>
+
+      <!-- Upload de la carte d'identité -->
+    <div>      
+      <!-- Affichage de l'aperçu de l'image -->
+      {% if session.valuesClient.carte_identite is defined %}
+        <img id="image-preview" src="{{ session.valuesClient.carte_identite }}" alt="Aperçu de l'image"
+            class="mt-3 mx-auto h-20 w-20 object-cover border rounded-lg">
+      {% else %}
+        <img id="image-preview" src="" alt="Aperçu de l'image"
+            class="hidden mt-3 mx-auto h-20 w-20 object-cover border rounded-lg">
+      {% endif %}
+    </div>
   
   <!-- Conditions d'utilisation -->
   <div class="flex items-start">
     <div class="flex items-center h-5">
-      <input id="conditions" name="conditions" type="checkbox" required
+      <input id="conditions" name="conditions" type="checkbox" required  {% if session.valuesClient.conditions == 'on' %}checked{% endif %}
              class="h-4 w-4 text-blue-700 focus:ring-blue-700 {% if session.errorClient.conditions is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded">
     </div>
     <div class="ml-3 text-sm">
