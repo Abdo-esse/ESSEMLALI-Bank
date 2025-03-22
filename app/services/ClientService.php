@@ -25,6 +25,7 @@ class ClientService {
             "email"=>$_POST["email"],
             "is_active"=>"false"
         ];
+       return $this->employRepo->create($dataUser,$dataClient);
         
     }
     public function update($id, $data){

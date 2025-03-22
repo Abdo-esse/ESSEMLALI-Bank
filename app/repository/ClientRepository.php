@@ -29,6 +29,7 @@ class ClientRepository  extends BaseRepository
             if (!$this->createAction($this->tablePivot,["user_id"=>$clientId,"role_id"=>1])) {
                 throw new PDOException("Erreur lors de l'insertion du role ."); 
             }
+            $dataClient['user_id']=$clientId;
             if (!$this->createAction($this->tableClient, $dataClient)) {
                 throw new PDOException("Erreur lors de l'insertion du client ."); 
             }
