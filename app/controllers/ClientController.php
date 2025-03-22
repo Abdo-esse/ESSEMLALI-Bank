@@ -53,6 +53,15 @@ class ClientController
         header('Location: /ESSEMLALI-Bank');
         exit;
     }
+
+    public function clients(){
+        $clients=$this->clientService->getAll();
+        echo  $this->twig->render('employe/client.twig', [
+            'clients' => $clients,
+        ]);
+    }
+
+
     
 
 

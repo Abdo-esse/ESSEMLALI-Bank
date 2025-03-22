@@ -5,10 +5,10 @@ namespace App\services;
 use App\Repository\ClientRepository;
 
 class ClientService {
-    private ClientRepository $employRepo;
+    private ClientRepository $clientRepo;
 
     public function __construct() {
-        $this->employRepo = new ClientRepository();
+        $this->clientRepo = new ClientRepository();
 
     }
 
@@ -25,18 +25,18 @@ class ClientService {
             "email"=>$_POST["email"],
             "is_active"=>"false"
         ];
-       return $this->employRepo->create($dataUser,$dataClient);
+       return $this->clientRepo->create($dataUser,$dataClient);
         
     }
     public function update($id, $data){
-       return $this->employRepo->update('users', $id, $data);
+       return $this->clientRepo->update('users', $id, $data);
     }
 
     public function getAll(){
-        return $this->employRepo->readAll('roles');
+        return $this->clientRepo->readAll('roles');
     }
     public function find($id){
-        return $this->employRepo->find('roles', $id);
+        return $this->clientRepo->find('roles', $id);
     }
 
     

@@ -1,7 +1,7 @@
 <?php
 namespace App\Repository;
 use PDO;
-use App\models\Admin;
+use App\models\Client;
 
 
 class ClientRepository  extends BaseRepository
@@ -26,7 +26,7 @@ class ClientRepository  extends BaseRepository
             if (empty($clientId)) {
                 throw new PDOException("Erreur lors de l'insertion d'user."); 
             }
-            if (!$this->createAction($this->tablePivot,["user_id"=>$clientId,"role_id"=>1])) {
+            if (!$this->createAction($this->tablePivot,["user_id"=>$clientId,"role_id"=>3])) {
                 throw new PDOException("Erreur lors de l'insertion du role ."); 
             }
             $dataClient['user_id']=$clientId;
@@ -52,11 +52,11 @@ class ClientRepository  extends BaseRepository
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $admins = [];
+        $Client = [];
         foreach ($rows as $row) {
-            $admins[] = new Client($row['id'], $row['nom'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
+            $Client[] = new Client($row['id'], $row['nom'], $row['prenom'], $row['email'], "", $row['date_creation'], $row['is_active'],$row['sexe'],$row['telephone'],$row['address'],$row['carte_national']);
         }
-        return $admins;
+        return $Client;
     }
 
    
