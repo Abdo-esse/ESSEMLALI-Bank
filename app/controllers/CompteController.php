@@ -36,7 +36,11 @@ class CompteController
     }
     public function refuser($id)
     {
-        $this->comptService->refuser($id);     
+       $test= $this->comptService->refuser($id);   
+        if ($test) {
+            echo"Elamolana".$test;
+            exit;
+          }  
 
     }
 
