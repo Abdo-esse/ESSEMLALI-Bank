@@ -13,9 +13,14 @@ class CompteService {
     }
 
     public function create(){
-        
+        $data=[
+            "numeroCompte"=>$numeroCompte,
+            "solde"=>$solde,
+            "dateCreation"=>date('Y-m-d H:i:s'),
+            "estActif"=>true,
+        ];
      
-       return $this->compteRepo->create($dataUser,$dataCompte);
+       return $this->compteRepo->create($data);
         
     }
     public function approuver($id)
