@@ -7,6 +7,7 @@ class CompteRepository  extends BaseRepository
     public function __construct() {
         parent::__construct(); 
     }
+
     
     
 }

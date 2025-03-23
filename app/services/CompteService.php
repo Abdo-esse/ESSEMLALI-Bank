@@ -13,17 +13,18 @@ class CompteService {
     }
 
     public function create(){
-        $numeroCompte = $this->generateAccountNumber(); // Génération de l'UUID
-        $solde = $_POST['solde'] ?? 0.0;
-
+        $numeroCompte = $this->generateAccountNumber(); 
+        $solde = isset($_POST['solde']) ? floatval($_POST['solde']) : 0.0;
+    
         $data = [
             "numeroCompte" => $numeroCompte,
-            "solde"=>$solde,
+            "solde" => $solde,
         ];
-     
-       return $this->compteRepo->create($data);
-        
+    
+        $this->compteRepo->create($data);
+        return $numeroCompte;
     }
+    
     public function approuver($id)
     {
         $plainPassword = bin2hex(random_bytes(4)); 
@@ -33,25 +34,25 @@ class CompteService {
             "is_active" => "true",
             "password" => $hashedPassword
         ];
-         $updated = $this->compteRepo->update('users', $id, $data);
     
-        if ($updated) {
-            $user = $this->compteRepo->findById('users', $id);
-            if (!$user) {
-                return false;
-            }
-    
-            $to = $user['email'];  
-            $nom = $user['nom'];
-    
-            $subject = "Votre compte a été approuvé ✅";
-            $message = "Bonjour $nom,\n\nVotre compte a été approuvé avec succès.\nVoici vos identifiants de connexion :\n\nEmail: $to\nMot de passe: $plainPassword\n\nNous vous recommandons de changer ce mot de passe dès votre première connexion.\n\nCordialement,\nL'équipe ESSEMLALI-Bank";
-    
-            return $this->sendEmail($to, $subject, $message);
+        $updated = $this->compteRepo->update('users', $id, $data);
+        $numeroCompte = $this->create();
+        
+        if (!$updated) {
+            return "🚨 Erreur lors de l'approbation du compte.";
         }
+
+        $user = $this->compteRepo->findById('users', $id);
+
+        $to = $user['email'];  
+        $nom = $user['nom'];
     
-        return "🚨 Erreur lors de l'approbation du compte.";
+        $subject = "Votre compte a été approuvé ✅";
+        $message = "Bonjour $nom,\n\nVotre compte a été approuvé avec succès.\nVoici vos identifiants de connexion :\n\nEmail: $to\nMot de passe: $plainPassword\nNuméro de compte: $numeroCompte\n\nNous vous recommandons de changer ce mot de passe dès votre première connexion.\n\nCordialement,\nL'équipe ESSEMLALI-Bank";
+    
+        return $this->sendEmail($to, $subject, $message);
     }
+    
     
 
 
@@ -95,8 +96,8 @@ class CompteService {
 
     public function sendEmail($to, $subject, $message)
     {
-        $headers = "From: support@essemlali-bank.com\r\n";
-        $headers .= "Reply-To: support@essemlali-bank.com\r\n";
+        $headers = "From: abdelilahessemlali@gmail.com\r\n";
+        $headers .= "Reply-To: abdelilahessemlali@gmail.com\r\n";
         $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
     
         if (mail($to, $subject, $message, $headers)) {
