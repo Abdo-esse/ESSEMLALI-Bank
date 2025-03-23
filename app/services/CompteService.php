@@ -13,11 +13,12 @@ class CompteService {
     }
 
     public function create(){
-        $data=[
-            "numeroCompte"=>$numeroCompte,
+        $numeroCompte = $this->generateAccountNumber(); // Génération de l'UUID
+        $solde = $_POST['solde'] ?? 0.0;
+
+        $data = [
+            "numeroCompte" => $numeroCompte,
             "solde"=>$solde,
-            "dateCreation"=>date('Y-m-d H:i:s'),
-            "estActif"=>true,
         ];
      
        return $this->compteRepo->create($data);
@@ -103,6 +104,13 @@ class CompteService {
         } else {
             return "🚨 Erreur lors de l'envoi de l'email à $to.";
         }
+    }
+
+    public function generateAccountNumber() {
+        $uuid = Uuid::uuid4()->toString(); 
+        $shortUuid = substr(str_replace('-', '', $uuid), 0, 12); 
+    
+        return 'BANK-' . strtoupper($shortUuid); 
     }
     
 }
