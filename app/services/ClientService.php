@@ -38,6 +38,5 @@ class ClientService {
     public function find($id){
         return $this->clientRepo->find('roles', $id);
     }
-
     
 }

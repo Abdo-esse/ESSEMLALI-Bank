@@ -29,7 +29,7 @@ class CompteController
     }
     public function refuser($id)
     {
-       
+        $this->comptService->refuser($id);     
 
     }
 
