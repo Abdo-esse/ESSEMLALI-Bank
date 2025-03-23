@@ -14,6 +14,8 @@ class CompteRepository  extends BaseRepository
        return $this->createAction($this->table, $data);
     }
 
+   
+
 
     
     

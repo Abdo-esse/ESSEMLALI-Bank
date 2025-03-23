@@ -80,7 +80,7 @@ class ClientRepository  extends BaseRepository
             return null; 
         }
     
-        return new Client($row['id'], $row['nom'], $row['prenom'], $row['email'], "", $row['date_creation'], $row['is_active'],$row['sexe'],$row['telephone'],$row['address'],$row['carte_national']);
+        return new Client($row['user_id'], $row['nom'], $row['prenom'], $row['email'], "", $row['date_creation'], $row['is_active'],$row['sexe'],$row['telephone'],$row['address'],$row['carte_national']);
     }
 
 }

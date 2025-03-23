@@ -20,6 +20,11 @@ class Router {
         $requestUri = preg_replace('#^ESSEMLALI-Bank/?#', '', $requestUri);
         
         $requestMethod = $_SERVER['REQUEST_METHOD'];
+        // echo"<pre>";
+        // var_dump($requestUri);
+        // var_dump(self::$routes);
+        // exit;
+        // echo"<pre>";
     
         foreach (self::$routes as $route) {
             $pattern = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '([^/]+)', $route['route']);

@@ -3,12 +3,21 @@
 namespace App\services;
 
 use App\Repository\CompteRepository;
+use App\Repository\ClientRepository;
+use Ramsey\Uuid\Uuid;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require dirname(__DIR__) . '/../vendor/autoload.php'; 
+
 
 class CompteService {
     private CompteRepository $compteRepo;
+    private ClientRepository $clientRepo;
 
     public function __construct() {
         $this->compteRepo = new CompteRepository();
+        $this->clientRepo = new ClientRepository();
 
     }
 
@@ -32,23 +41,24 @@ class CompteService {
     
         $data = [
             "is_active" => "true",
-            "password" => $hashedPassword
+            "mot_de_passe" => $hashedPassword
         ];
     
         $updated = $this->compteRepo->update('users', $id, $data);
         $numeroCompte = $this->create();
         
         if (!$updated) {
-            return "🚨 Erreur lors de l'approbation du compte.";
+            return "Erreur lors de l'approbation du compte.";
         }
 
-        $user = $this->compteRepo->findById('users', $id);
+        $user =$this->clientRepo->find('roles', $id);
 
-        $to = $user['email'];  
-        $nom = $user['nom'];
+        $to = $user->getEmail();  
+        $nom = $user->getNom();
+        $prenom = $user->getprenom();
     
         $subject = "Votre compte a été approuvé ✅";
-        $message = "Bonjour $nom,\n\nVotre compte a été approuvé avec succès.\nVoici vos identifiants de connexion :\n\nEmail: $to\nMot de passe: $plainPassword\nNuméro de compte: $numeroCompte\n\nNous vous recommandons de changer ce mot de passe dès votre première connexion.\n\nCordialement,\nL'équipe ESSEMLALI-Bank";
+        $message = "Bonjour $nom $prenom,\n\nVotre compte a été approuvé avec succès.\nVoici vos identifiants de connexion :\n\nEmail: $to\nMot de passe: $plainPassword\nNuméro de compte: $numeroCompte\n\nNous vous recommandons de changer ce mot de passe dès votre première connexion.\n\nCordialement,\nL'équipe ESSEMLALI-Bank";
     
         return $this->sendEmail($to, $subject, $message);
     }
@@ -96,17 +106,35 @@ class CompteService {
 
     public function sendEmail($to, $subject, $message)
     {
-        $headers = "From: abdelilahessemlali@gmail.com\r\n";
-        $headers .= "Reply-To: abdelilahessemlali@gmail.com\r\n";
-        $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+        $mail = new PHPMailer(true);
     
-        if (mail($to, $subject, $message, $headers)) {
+        try {
+            // Paramètres du serveur SMTP
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com'; // Serveur SMTP
+            $mail->SMTPAuth = true;
+            $mail->Username = 'abdelilahessemlali@gmail.com'; // Votre adresse e-mail
+            $mail->Password = 'hfjq xfmx oojp udat'; // Mot de passe ou mot de passe d'application
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Sécurisation par TLS
+            $mail->Port = 587; // Port SMTP (587 pour TLS, 465 pour SSL)
+    
+            // Expéditeur et destinataire
+            $mail->setFrom('abdelilahessemlali@gmail.com', 'Abdel Ilah ESSEMLALI');
+            $mail->addAddress($to); // Destinataire
+    
+            // Contenu de l'e-mail
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            $mail->Body    = nl2br($message); // Convertit les sauts de ligne en HTML
+            $mail->AltBody = strip_tags($message); // Version texte brut
+    
+            // Envoi de l'e-mail
+            $mail->send();
             return "✅ Email envoyé avec succès à $to";
-        } else {
-            return "🚨 Erreur lors de l'envoi de l'email à $to.";
+        } catch (Exception $e) {
+            return "🚨 Erreur lors de l'envoi de l'email à $to. Erreur : {$mail->ErrorInfo}";
         }
     }
-
     public function generateAccountNumber() {
         $uuid = Uuid::uuid4()->toString(); 
         $shortUuid = substr(str_replace('-', '', $uuid), 0, 12); 

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\services\CompteService;
 
+
 class CompteController
 {
     private $twig;
@@ -24,7 +25,13 @@ class CompteController
     }
     public function approuver($id)
     {
-        $this->comptService->approuver($id);
+        // echo"3la molana".$id;
+        // exit;
+        $test=$this->comptService->approuver($id);
+        if ($test) {
+          echo"Elamolana".$test;
+          exit;
+        }
 
     }
     public function refuser($id)
