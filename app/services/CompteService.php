@@ -27,8 +27,7 @@ class CompteService {
             "is_active" => "true",
             "password" => $hashedPassword
         ];
-    
-        $updated = $this->compteRepo->update('users', $id, $data);
+         $updated = $this->compteRepo->update('users', $id, $data);
     
         if ($updated) {
             $user = $this->compteRepo->findById('users', $id);
@@ -64,7 +63,28 @@ class CompteService {
             "is_active"=>"false" ,
             "date_suppression"=>date('Y-m-d H:i:s') 
         ];
-        return $this->compteRepo->update('users', $id, $data);
+        $updated = $this->compteRepo->update('users', $id, $data);
+    
+        if ($updated) {
+            $user = $this->compteRepo->findById('users', $id);
+            if (!$user) {
+                return false;
+            }
+    
+            $to = $user['email'];  
+            $nom = $user['nom'];
+    
+            $subject = "Votre demande de création de compte a été refusée ❌";
+            $message = "Bonjour $nom,\n\n
+                        Après examen de votre demande, nous sommes au regret de vous informer que votre demande de création de compte a été refusée.\n\n
+                        Si vous souhaitez obtenir plus d'informations sur les raisons de ce refus, n'hésitez pas à nous contacter à l'adresse support@essemlali-bank.com.\n\n
+                        Cordialement,\n
+                        L'équipe ESSEMLALI-Bank.";
+    
+            return $this->sendEmail($to, $subject, $message);
+        }
+    
+        return "🚨 Erreur lors de l'approbation du compte.";
     }
 
     public function sendEmail($to, $subject, $message)

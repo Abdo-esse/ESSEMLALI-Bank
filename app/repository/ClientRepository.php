@@ -48,7 +48,7 @@ class ClientRepository  extends BaseRepository
         JOIN $this->tablePivot AS ru ON ru.user_id = u.id
         JOIN roles AS r ON r.id = ru.role_id
         JOIN $this->tableClient AS c ON c.user_id = u.id
-        WHERE r.titre = 'Client' AND u.is_active = 'false'";
+        WHERE r.titre = 'Client' AND u.is_active = 'false' and date_suppression is null";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
