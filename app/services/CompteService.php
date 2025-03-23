@@ -19,17 +19,35 @@ class CompteService {
         
     }
     public function approuver($id)
-{
-    $data = [
-        "is_active" => "true"
-    ];
-    $updated = $this->compteRepo->update('users', $id, $data);
-
-    if ($updated) {
-        
+    {
+        $plainPassword = bin2hex(random_bytes(4)); 
+        $hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT);
+    
+        $data = [
+            "is_active" => "true",
+            "password" => $hashedPassword
+        ];
+    
+        $updated = $this->compteRepo->update('users', $id, $data);
+    
+        if ($updated) {
+            $user = $this->compteRepo->findById('users', $id);
+            if (!$user) {
+                return false;
+            }
+    
+            $to = $user['email'];  
+            $nom = $user['nom'];
+    
+            $subject = "Votre compte a été approuvé ✅";
+            $message = "Bonjour $nom,\n\nVotre compte a été approuvé avec succès.\nVoici vos identifiants de connexion :\n\nEmail: $to\nMot de passe: $plainPassword\n\nNous vous recommandons de changer ce mot de passe dès votre première connexion.\n\nCordialement,\nL'équipe ESSEMLALI-Bank";
+    
+            return $this->sendEmail($to, $subject, $message);
+        }
+    
+        return "🚨 Erreur lors de l'approbation du compte.";
     }
-    return "🚨 Erreur lors de l'approbation du compte.";
-}
+    
 
 
     public function getAll(){
@@ -49,22 +67,17 @@ class CompteService {
         return $this->compteRepo->update('users', $id, $data);
     }
 
-    public function sendEmail($id){
-        $user = $this->compteRepo->findById('users', $id);
-        $to = $user['email']; 
-        $subject = "Votre compte a été approuvé ✅";
-        $message = "Bonjour " . $user['nom'] . ",\n\nVotre compte a été approuvé avec succès. Vous pouvez maintenant vous connecter.\n\nCordialement,\nL'équipe ESSEMLALI-Bank";
+    public function sendEmail($to, $subject, $message)
+    {
         $headers = "From: support@essemlali-bank.com\r\n";
         $headers .= "Reply-To: support@essemlali-bank.com\r\n";
         $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-
-        // Envoyer l'email
+    
         if (mail($to, $subject, $message, $headers)) {
             return "✅ Email envoyé avec succès à $to";
         } else {
-            return "🚨 Échec de l'envoi de l'email.";
+            return "🚨 Erreur lors de l'envoi de l'email à $to.";
         }
-
     }
     
 }
