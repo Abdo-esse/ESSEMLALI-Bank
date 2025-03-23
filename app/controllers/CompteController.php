@@ -24,7 +24,7 @@ class CompteController
     }
     public function approuver($id)
     {
-      
+        $this->comptService->approuver($id);
 
     }
     public function refuser($id)

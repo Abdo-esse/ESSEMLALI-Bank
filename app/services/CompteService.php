@@ -2,18 +2,18 @@
 
 namespace App\services;
 
-use App\Repository\ClientRepository;
+use App\Repository\CompteRepository;
 
 class CompteService {
-    private ClientRepository $clientRepo;
+    private CompteRepository $compteRepo;
 
     public function __construct() {
-        $this->clientRepo = new ClientRepository();
+        $this->compteRepo = new CompteRepository();
 
     }
 
     public function create(){
-        $dataClient=[
+        $dataCompte=[
             "sexe"=>$_POST["sexe"],
             "telephone"=>$_POST["telephone"],
             "carte_national"=>$_POST["carte_identite"],
@@ -25,18 +25,18 @@ class CompteService {
             "email"=>$_POST["email"],
             "is_active"=>"false"
         ];
-       return $this->clientRepo->create($dataUser,$dataClient);
+       return $this->compteRepo->create($dataUser,$dataCompte);
         
     }
-    public function update($id, $data){
-       return $this->clientRepo->update('users', $id, $data);
+    public function approuver($id){
+       return $this->compteRepo->update('users', $id, $data);
     }
 
     public function getAll(){
-        return $this->clientRepo->readAll('roles');
+        return $this->compteRepo->readAll('roles');
     }
     public function find($id){
-        return $this->clientRepo->find('roles', $id);
+        return $this->compteRepo->find('roles', $id);
     }
 
     
