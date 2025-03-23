@@ -21,7 +21,7 @@ class CompteService {
             "solde" => $solde,
         ];
     
-        $this->compteRepo->create($data);
+        $create=$this->compteRepo->create($data);
         return $numeroCompte;
     }
     

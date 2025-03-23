@@ -33,3 +33,13 @@ CREATE TABLE clients (
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE comptes (
+    id SERIAL PRIMARY KEY,
+    numeroCompte VARCHAR(30) UNIQUE NOT NULL,
+    solde DECIMAL(15,2) NOT NULL DEFAULT 0.00 CHECK (solde >= 0), 
+    dateCreation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    estActif BOOLEAN DEFAULT TRUE
+);
+
+CREATE INDEX idx_numeroCompte ON comptes(numeroCompte);
