@@ -110,8 +110,8 @@ class CompteService {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com'; 
             $mail->SMTPAuth = true;
-            $mail->Username = $_ENV['Username'];; 
-            $mail->Password = $_ENV['Password'];; 
+            $mail->Username = $_ENV['USERNAME'];; 
+            $mail->Password = $_ENV['PASSWORD'];; 
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
     
