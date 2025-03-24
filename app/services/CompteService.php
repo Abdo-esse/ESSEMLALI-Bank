@@ -7,6 +7,8 @@ use App\Repository\ClientRepository;
 use Ramsey\Uuid\Uuid;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
+
 
 require dirname(__DIR__) . '/../vendor/autoload.php'; 
 
@@ -100,13 +102,16 @@ class CompteService {
         $mail = new PHPMailer(true);
     
         try {
+            $dotenv = Dotenv::createImmutable(dirname(__DIR__,2));
+                $dotenv->load();
+
             $mail->CharSet = 'UTF-8';
 
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com'; 
             $mail->SMTPAuth = true;
-            $mail->Username = 'abdelilahessemlali@gmail.com'; 
-            $mail->Password = 'hfjq xfmx oojp udat'; 
+            $mail->Username = $_ENV['Username'];; 
+            $mail->Password = $_ENV['Password'];; 
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
     

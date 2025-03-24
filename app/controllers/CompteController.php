@@ -25,20 +25,16 @@ class CompteController
     }
     public function approuver($id)
     {
-        // echo"3la molana".$id;
-        // exit;
-        $test=$this->comptService->approuver($id);
-        if ($test) {
-          echo"Elamolana".$test;
-          exit;
+        if ($this->comptService->approuver($id)) {
+            header('Location: /ESSEMLALI-Bank/clients');
+            exit;
         }
 
     }
     public function refuser($id)
     {
-       $test= $this->comptService->refuser($id);   
-        if ($test) {
-            echo"Elamolana".$test;
+        if ($this->comptService->refuser($id)) {
+            header('Location: /ESSEMLALI-Bank/clients');
             exit;
           }  
 
