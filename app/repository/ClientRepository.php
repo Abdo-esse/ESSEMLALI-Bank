@@ -54,7 +54,7 @@ class ClientRepository  extends BaseRepository
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $client = [];
         foreach ($rows as $row) {
-            $client[] = new Client($row['user_id'], $row['nom'], $row['prenom'], $row['email'], "", $row['date_creation'], $row['is_active'],$row['sexe'],$row['telephone'],$row['address'],$row['carte_national']);
+            $client[] = new Client($row['user_id'], $row['nom'], $row['prenom'], $row['email'], "", $row['date_creation'], $row['is_active'],$row['id'],$row['sexe'],$row['telephone'],$row['address'],$row['carte_national']);
         }
         return $client;
     }

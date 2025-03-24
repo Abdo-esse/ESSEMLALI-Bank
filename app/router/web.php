@@ -25,4 +25,5 @@ Router::add("POST","approuver/{id}","CompteController@approuver");
 Router::add("POST","/refuser/{id}","CompteController@refuser");
 Router::add("GET","/clients","ClientController@clients");
 Router::add("GET","/voir/{id}","ClientController@client");
+Router::add("POST","/addClient","ClientController@add");
 

@@ -54,6 +54,33 @@ class ClientController
         exit;
     }
 
+    public function add()
+    {
+        
+        $request = new SignInRequest($_POST);
+        if (!$request->validate()) {
+            Session::set('errorClient', $request->getErrors());
+            Session::set('valuesClient', $_POST);
+            header('Location: /ESSEMLALI-Bank/clients');
+            exit;
+        }
+        Session::unset('errorClient');
+        Session::unset('valuesClient');
+        $fileName = uniqid() . '_' . $_FILES['carte_identite']['name'];
+        $uploadPath = __DIR__ . '/../../public/uploads/' . $fileName;
+
+        if (move_uploaded_file($_FILES['carte_identite']['tmp_name'], $uploadPath)) {
+            $_POST['carte_identite'] = $fileName;
+        }  
+      
+        if (!$this->clientService->create()) {
+            Session::set('error', "Une erreur s'est produite lors de l'ajout de client.");
+            header('Location: /ESSEMLALI-Bank/clients');
+            exit;
+        }
+        header('Location: /ESSEMLALI-Bank/clients');
+        exit;
+    }
     public function clients(){
         $clients=$this->clientService->getAll();
         echo  $this->twig->render('employe/clients.twig', [
@@ -69,11 +96,11 @@ class ClientController
         ]);
 
         if (!is_readable($client->getCarteIdentite())) {
-            echo "🚨 Problème de permissions sur le fichier.";
+            echo " Problème de permissions sur le fichier.";
            var_dump( $client->getCarteIdentite());
 
         } else {
-            echo "✅ Le fichier est accessible.";
+            echo " Le fichier est accessible.";
            var_dump( $client->getCarteIdentite());
 
         }
