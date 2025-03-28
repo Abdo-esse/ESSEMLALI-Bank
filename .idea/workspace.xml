@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b0b4cda-790a-4f8a-8a38-2cdc58fdb660" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ESSEMLALI-Bank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ESSEMLALI-Bank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/ClientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ClientController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repository/ClientRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repository/ClientRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employe/clients.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employe/clients.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +94,7 @@
       <option name="presentableId" value="Default" />
       <updated>1742040350070</updated>
       <workItem from="1742040351393" duration="4838000" />
-      <workItem from="1743153532586" duration="534000" />
+      <workItem from="1743153532586" duration="2831000" />
     </task>
     <servers />
   </component>

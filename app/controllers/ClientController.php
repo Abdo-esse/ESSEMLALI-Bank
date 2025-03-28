@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\core\Session;
 use App\requests\SignInRequest;
 use App\services\ClientService;
+use App\services\CompteService;
 
 class ClientController
 {
@@ -43,12 +44,13 @@ class ClientController
             $_POST['carte_identite'] = $fileName;
         }
 
-        if (!$this->clientService->create()) {
+        $clientId=$this->clientService->create();
+        if (!$clientId) {
             Session::set('error', "Une erreur s'est produite lors de l'ajout de client.");
             header("Location: /ESSEMLALI-Bank/$where");
             exit;
         }
-
+         return $clientId;
     }
     public function store()
     {
@@ -60,9 +62,19 @@ class ClientController
 
     public function add()
     {
+        $clientId=$this->addClients("clients");
+        if($clientId){
+         $compteService=new CompteService();
+         if($compteService->approuver($clientId)){
+             print_r($clientId);
+            // header('Location: /ESSEMLALI-Bank/clients');
+             exit;
+         }
 
-        header('Location: /ESSEMLALI-Bank/clients');
-        exit;
+        }
+
+
+
     }
     public function clients(){
         $clients=$this->clientService->getAll();

@@ -34,7 +34,7 @@ class ClientRepository  extends BaseRepository
                 throw new PDOException("Erreur lors de l'insertion du client ."); 
             }
             $this->conn->commit(); 
-            return true;
+            return $clientId;
         } catch (PDOException $e) {
             $this->conn->rollBack(); 
             echo "Erreur : " . $e->getMessage();
