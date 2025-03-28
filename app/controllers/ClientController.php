@@ -47,8 +47,7 @@ class ClientController
         $clientId=$this->clientService->create();
         if (!$clientId) {
             Session::set('error', "Une erreur s'est produite lors de l'ajout de client.");
-            header("Location: /ESSEMLALI-Bank/$where");
-            exit;
+           header("Location: /ESSEMLALI-Bank/$where");
         }
          return $clientId;
     }
@@ -66,8 +65,7 @@ class ClientController
         if($clientId){
          $compteService=new CompteService();
          if($compteService->approuver($clientId)){
-             print_r($clientId);
-            // header('Location: /ESSEMLALI-Bank/clients');
+            header('Location: /ESSEMLALI-Bank/clients');
              exit;
          }
 
