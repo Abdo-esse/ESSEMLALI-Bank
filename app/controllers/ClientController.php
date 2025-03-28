@@ -26,14 +26,12 @@ class ClientController
        ]);
 
     }
-    public function store()
-    {
-        
+    private function addClients($where){
         $request = new SignInRequest($_POST);
         if (!$request->validate()) {
             Session::set('errorClient', $request->getErrors());
             Session::set('valuesClient', $_POST);
-            header('Location: /ESSEMLALI-Bank/signIn');
+            header("Location: /ESSEMLALI-Bank/$where");
             exit;
         }
         Session::unset('errorClient');
@@ -43,41 +41,26 @@ class ClientController
 
         if (move_uploaded_file($_FILES['carte_identite']['tmp_name'], $uploadPath)) {
             $_POST['carte_identite'] = $fileName;
-        }  
-      
+        }
+
         if (!$this->clientService->create()) {
             Session::set('error', "Une erreur s'est produite lors de l'ajout de client.");
-            header('Location: /ESSEMLALI-Bank/signIn');
+            header("Location: /ESSEMLALI-Bank/$where");
             exit;
         }
+
+    }
+    public function store()
+    {
+        $this->addClients("signIn");
+
         header('Location: /ESSEMLALI-Bank');
         exit;
     }
 
     public function add()
     {
-        
-        $request = new SignInRequest($_POST);
-        if (!$request->validate()) {
-            Session::set('errorClient', $request->getErrors());
-            Session::set('valuesClient', $_POST);
-            header('Location: /ESSEMLALI-Bank/clients');
-            exit;
-        }
-        Session::unset('errorClient');
-        Session::unset('valuesClient');
-        $fileName = uniqid() . '_' . $_FILES['carte_identite']['name'];
-        $uploadPath = __DIR__ . '/../../public/uploads/' . $fileName;
 
-        if (move_uploaded_file($_FILES['carte_identite']['tmp_name'], $uploadPath)) {
-            $_POST['carte_identite'] = $fileName;
-        }  
-      
-        if (!$this->clientService->create()) {
-            Session::set('error', "Une erreur s'est produite lors de l'ajout de client.");
-            header('Location: /ESSEMLALI-Bank/clients');
-            exit;
-        }
         header('Location: /ESSEMLALI-Bank/clients');
         exit;
     }

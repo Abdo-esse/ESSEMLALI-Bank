@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b0b4cda-790a-4f8a-8a38-2cdc58fdb660" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/views/admin/eployes.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/eployes.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ESSEMLALI-Bank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ESSEMLALI-Bank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ClientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ClientController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,11 +48,15 @@
       <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
       <path value="$PROJECT_DIR$/vendor/graham-campbell/result-type" />
       <path value="$PROJECT_DIR$/vendor/evenement/evenement" />
+      <path value="$PROJECT_DIR$/vendor/brick/math" />
+      <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/vendor/ramsey/collection" />
+      <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
     </include_path>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2uLuoRdTtvaQThAd674X3wgKDSM" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -60,7 +66,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "admin",
+    "git-widget-placeholder": "client",
     "last_opened_file_path": "C:/xampp/htdocs/ESSEMLALI-Bank",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -87,6 +93,7 @@
       <option name="presentableId" value="Default" />
       <updated>1742040350070</updated>
       <workItem from="1742040351393" duration="4838000" />
+      <workItem from="1743153532586" duration="534000" />
     </task>
     <servers />
   </component>
