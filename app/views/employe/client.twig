@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informations Utilisateur</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100">
-    <header class="bg-gray-800 text-white py-6">
+{% extends "components/base.twig" %}
+
+{% block title %}Page d'accueil{% endblock %}
+{% block header %}
+<header class="bg-gray-800 text-white py-6">
         <div class="container mx-auto px-4 relative">
             <button id="back-button" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-2xl font-bold hover:text-gray-300">
                 &larr;
@@ -15,6 +10,11 @@
             <h1 class="text-2xl font-bold text-center">Gestion des Utilisateurs</h1>
         </div>
     </header>
+{% endblock %}
+
+
+{% block content %}
+  
     
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white rounded-lg shadow-md p-6 mb-6">
@@ -64,7 +64,7 @@
                     
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Carte Nationale d'Identité</p>
-                        <img src="{{ client.client.carteIdentite }}" alt="Carte Nationale d'Identité" class="w-full max-w-md border border-gray-200 rounded-md">
+                        <img src="http://localhost/ESSEMLALI-Bank/uploads/{{ client.client.carteIdentite }}" alt="Carte Nationale d'Identité" class="w-full max-w-md border border-gray-200 rounded-md">
                     </div>
                 </div>
             </div>
@@ -166,5 +166,4 @@
             }
         });
     </script>
-</body>
-</html>
+{% endblock %}
