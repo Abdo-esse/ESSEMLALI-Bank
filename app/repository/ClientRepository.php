@@ -4,6 +4,7 @@ namespace App\Repository;
 use PDO;
 use App\Models\Client;
 use App\Models\User;
+use App\Models\Compte;
 
 class ClientRepository extends BaseRepository
 {
@@ -163,11 +164,12 @@ class ClientRepository extends BaseRepository
             $row->address,
             $row->carte_national
         );
-
+    
         $compteObject = new Compte(
-            $row->numeroCompte,
+            $row->numerocompte,
             $row->solde,
-            $row->estActif
+            $row->datecreation,
+            $row->estactif
         );
     
         return [
@@ -175,6 +177,7 @@ class ClientRepository extends BaseRepository
             'compte' => $compteObject
         ];
     }
+    
     
 }
 ?>

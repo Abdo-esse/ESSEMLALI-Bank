@@ -27,44 +27,44 @@
                 <div>
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Nom</p>
-                        <p class="text-base font-medium">Dupont</p>
+                        <p class="text-base font-medium">{{ client.client.nom }}</p>
                     </div>
                     
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Prénom</p>
-                        <p class="text-base font-medium">Jean</p>
+                        <p class="text-base font-medium">{{ client.client.prenom }}</p>
                     </div>
                     
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Email</p>
-                        <p class="text-base font-medium">jean.dupont@example.com</p>
+                        <p class="text-base font-medium">{{ client.client.email }}</p>
                     </div>
                     
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Date de création</p>
-                        <p class="text-base font-medium">15/03/2023</p>
+                        <p class="text-base font-medium">{{ client.compte.dateCreation }}</p>
                     </div>
                     
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Sexe</p>
-                        <p class="text-base font-medium">Homme</p>
+                        <p class="text-base font-medium">{{ client.client.sexe }}</p>
                     </div>
                 </div>
                 
                 <div>
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Téléphone</p>
-                        <p class="text-base font-medium">+33 6 12 34 56 78</p>
+                        <p class="text-base font-medium">{{ client.client.telephone }}</p>
                     </div>
                     
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Adresse</p>
-                        <p class="text-base font-medium">123 Rue de la Paix, 75000 Paris</p>
+                        <p class="text-base font-medium">{{ client.client.adresse }}</p>
                     </div>
                     
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Carte Nationale d'Identité</p>
-                        <img src="/api/placeholder/400/250" alt="Carte Nationale d'Identité" class="w-full max-w-md border border-gray-200 rounded-md">
+                        <img src="{{ client.client.carteIdentite }}" alt="Carte Nationale d'Identité" class="w-full max-w-md border border-gray-200 rounded-md">
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                 <h3 class="font-medium mb-2">Informations Financières</h3>
                 <div class="mb-2">
                     <p class="text-sm text-gray-500 mb-1">Numéro de Compte</p>
-                    <p class="text-base font-medium">FR76 3000 6000 0123 4567 8901 234</p>
+                    <p class="text-base font-medium">{{ client.compte.numeroCompte }}</p>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
@@ -85,7 +85,7 @@
                             </svg>
                         </button>
                     </div>
-                    <p id="balance-value" class="text-2xl font-bold text-blue-600 hidden">3 456,78 €</p>
+                    <p id="balance-value" class="text-2xl font-bold text-blue-600 hidden">{{ client.compte.solde }}</p>
                     <p id="balance-hidden" class="text-2xl font-bold text-blue-600">••••,••</p>
                 </div>
             </div>

@@ -93,7 +93,7 @@ class ClientController
         ]);
     }
     public function client($id){
-        $client=$this->clientService->getClient();
+        $client=$this->clientService->getClient($id);
         echo  $this->twig->render('employe/client.twig', [
             'client' => $client,
         ]);
