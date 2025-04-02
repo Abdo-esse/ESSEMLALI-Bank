@@ -38,5 +38,11 @@ class ClientService {
     public function find($id){
         return $this->clientRepo->find('roles', $id);
     }
+    public function allClients(){
+        return $this->clientRepo->allClient();
+    }
+    public function getClient($id){
+        return $this->clientRepo->getClient($id);
+    }
     
 }
