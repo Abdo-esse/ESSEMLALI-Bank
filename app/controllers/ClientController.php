@@ -76,7 +76,7 @@ class ClientController
     }
     public function demandeCompte(){
         $clients=$this->clientService->getAll();
-        echo  $this->twig->render('employe/clients.twig', [
+        echo  $this->twig->render('employe/demandeCompte.twig', [
             'clients' => $clients,
         ]);
     }
@@ -85,6 +85,9 @@ class ClientController
         echo  $this->twig->render('employe/client.twig', [
             'client' => $client,
         ]);
+    }
+    public function clients(){
+        echo  $this->twig->render('employe/clients.twig', [ ]);
     }
 
 
