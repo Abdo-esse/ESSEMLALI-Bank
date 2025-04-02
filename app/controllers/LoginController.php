@@ -53,7 +53,7 @@ class LoginController
         return match ($role) {
             'Admin' => header('Location: /ESSEMLALI-Bank/Admin'),
             'Employé' => header('Location: /ESSEMLALI-Bank/Employe'),
-            'client' => header('Location: /ESSEMLALI-Bank/Client'),
+            'Client' => header('Location: /ESSEMLALI-Bank/Client'),
             default => "unknown" 
         };
     }

@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Controllers;
+use App\services\CompteService;
+
 
 class CompteController
 {
     private $twig;
+    private CompteService $comptService;
     public function __construct()
     {
           $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
+          $this->comptService= new CompteService;
     }
 
 
@@ -19,6 +23,24 @@ class CompteController
        ]);
 
     }
+    public function approuver($id)
+    {
+        if ($this->comptService->approuver($id)) {
+            header('Location: /ESSEMLALI-Bank/clients');
+            exit;
+        }
+
+    }
+    public function refuser($id)
+    {
+        if ($this->comptService->refuser($id)) {
+            header('Location: /ESSEMLALI-Bank/clients');
+            exit;
+          }  
+
+    }
+
+
     
 
 

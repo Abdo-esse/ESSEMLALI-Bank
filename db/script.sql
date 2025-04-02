@@ -24,3 +24,22 @@ CREATE TABLE role_user (
 );
 
 
+CREATE TABLE clients (
+    id SERIAL PRIMARY KEY,
+    sexe VARCHAR(10) NOT NULL, 
+    telephone VARCHAR(20) UNIQUE NOT NULL,
+    carte_national VARCHAR(250) UNIQUE NOT NULL,
+    address TEXT NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE comptes (
+    id SERIAL PRIMARY KEY,
+    numeroCompte VARCHAR(30) UNIQUE NOT NULL,
+    solde DECIMAL(15,2) NOT NULL DEFAULT 0.00 CHECK (solde >= 0), 
+    dateCreation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    estActif BOOLEAN DEFAULT TRUE
+);
+
+CREATE INDEX idx_numeroCompte ON comptes(numeroCompte);
