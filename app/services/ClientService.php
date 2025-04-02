@@ -41,5 +41,8 @@ class ClientService {
     public function allClients(){
         return $this->clientRepo->allClient();
     }
+    public function getClient($id){
+        return $this->clientRepo->getClient($id);
+    }
     
 }

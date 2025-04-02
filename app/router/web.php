@@ -27,6 +27,6 @@ Router::add("GET","/demandeCompte","ClientController@demandeComptes");
 Router::add("GET","/voir/{id}","ClientController@demandeCompte");
 Router::add("POST","/addClient","ClientController@add");
 Router::add("GET","/clients","ClientController@clients");
-Router::add("GET","/client","ClientController@client");
+Router::add("POST","/client/{id}","ClientController@client");
 
 

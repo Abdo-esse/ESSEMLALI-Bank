@@ -134,5 +134,47 @@ class ClientRepository extends BaseRepository
 
         return $clients;
     }
+    public function getClient($id) {
+        $sql = "SELECT u.*, c.*, cm.*
+                FROM users AS u
+                JOIN clients c ON c.user_id = u.id
+                JOIN comptes cm ON cm.client_id = c.id
+                WHERE u.id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':id' => $id]);
+    
+        $row = $stmt->fetch(PDO::FETCH_OBJ);
+    
+        if (!$row) {
+            return null;
+        }
+    
+        $clientObject = new Client(
+            $row->user_id,
+            $row->nom,
+            $row->prenom,
+            $row->email,
+            "",
+            $row->date_creation,
+            $row->is_active,
+            $row->id,
+            $row->sexe,
+            $row->telephone,
+            $row->address,
+            $row->carte_national
+        );
+
+        $compteObject = new Compte(
+            $row->numeroCompte,
+            $row->solde,
+            $row->estActif
+        );
+    
+        return [
+            'client' => $clientObject,
+            'compte' => $compteObject
+        ];
+    }
+    
 }
 ?>
