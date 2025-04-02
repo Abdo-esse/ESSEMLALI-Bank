@@ -3,13 +3,15 @@ namespace App\models;
 
 class Compte 
 {
+    private Client $client;
     private $numeroCompte;
     private $solde;
     private $dateCreation;
     private $estActif;
 
-    public function __construct($numeroCompte, $solde, $dateCreation, $estActif)
+    public function __construct($client,$numeroCompte, $solde, $dateCreation, $estActif)
     {
+        $this->client = $client;
         $this->numeroCompte = $numeroCompte;
         $this->solde = $solde;
         $this->dateCreation = $dateCreation;

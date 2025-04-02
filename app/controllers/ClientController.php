@@ -87,7 +87,10 @@ class ClientController
         ]);
     }
     public function clients(){
-        echo  $this->twig->render('employe/clients.twig', [ ]);
+        $clients=$this->clientService->allClients();
+        echo  $this->twig->render('employe/clients.twig', [
+            'clients' => $clients,
+        ]);
     }
 
 

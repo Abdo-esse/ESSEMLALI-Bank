@@ -3,6 +3,7 @@ namespace App\Repository;
 
 use PDO;
 use App\Models\Client;
+use App\Models\User;
 
 class ClientRepository extends BaseRepository
 {
@@ -108,11 +109,11 @@ class ClientRepository extends BaseRepository
     }
 
     public function allClient() {
-        $sql = "SELECT u.*, c.*, cm.*
-                FROM $this->table u
-                JOIN $this->tableClient c ON c.user_id = u.id
-                JOIN comptes cm ON cm.client_id = c.id
-                WHERE u.date_suppression IS NULL";
+        $sql = "SELECT u.*
+                FROM $this->table AS u
+                JOIN $this->tablePivot AS ru ON ru.user_id = u.id
+                JOIN roles AS r ON r.id = ru.role_id
+                WHERE r.titre = 'Client' AND is_active = 'true' AND date_suppression IS NULL";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
 
@@ -120,19 +121,14 @@ class ClientRepository extends BaseRepository
         $clients = [];
 
         foreach ($rows as $row) {
-            $clients[] = new Client(
-                $row->user_id,
+            $clients[] = new User(
+                $row->id,
                 $row->nom,
                 $row->prenom,
                 $row->email,
                 "",
                 $row->date_creation,
-                $row->is_active,
-                $row->id,
-                $row->sexe,
-                $row->telephone,
-                $row->address,
-                $row->carte_national
+                $row->is_active
             );
         }
 
