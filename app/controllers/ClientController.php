@@ -61,11 +61,11 @@ class ClientController
 
     public function add()
     {
-        $clientId=$this->addClients("clients");
+        $clientId=$this->addClients("demandeCompte");
         if($clientId){
          $compteService=new CompteService();
          if($compteService->approuver($clientId)){
-            header('Location: /ESSEMLALI-Bank/clients');
+            header('Location: /ESSEMLALI-Bank/demandeCompte');
              exit;
          }
 
@@ -74,7 +74,7 @@ class ClientController
 
 
     }
-    public function clients(){
+    public function demandeCompte(){
         $clients=$this->clientService->getAll();
         echo  $this->twig->render('employe/clients.twig', [
             'clients' => $clients,
