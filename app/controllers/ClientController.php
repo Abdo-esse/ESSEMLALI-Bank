@@ -98,6 +98,10 @@ class ClientController
             'client' => $client,
         ]);
     }
+    public function delete($id){
+        echo $id;
+
+    }
 
 
     

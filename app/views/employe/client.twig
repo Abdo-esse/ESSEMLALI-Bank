@@ -91,8 +91,11 @@
             </div>
             
             <div class="flex justify-end gap-4 mt-6">
-                <button id="delete-btn" class="px-4 py-2 bg-red-600 text-white font-medium rounded hover:bg-red-700 transition-colors">Supprimer</button>
-                <button id="toggle-status-btn" class="px-4 py-2 bg-yellow-500 text-white font-medium rounded hover:bg-yellow-600 transition-colors">Désactiver</button>
+                <form method="post" action="delete/{{ client.client.id }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet employé?');">
+                            <button type="submit" class="px-4 py-2 bg-red-600 text-white font-medium rounded hover:bg-red-700 transition-colors">
+                                Supprimer
+                            </button>
+                        </form>
             </div>
         </div>
     </div>
@@ -155,15 +158,5 @@
             }
         });
         
-        // Fonctionnalité pour supprimer
-        const deleteBtn = document.getElementById('delete-btn');
-        
-        deleteBtn.addEventListener('click', function() {
-            if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
-                alert('Utilisateur supprimé avec succès !');
-                // Ici, dans une application réelle, on redirigerait vers une autre page
-                // ou on supprimerait l'élément du DOM
-            }
-        });
     </script>
 {% endblock %}
