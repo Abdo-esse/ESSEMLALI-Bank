@@ -99,10 +99,19 @@ class ClientController
         ]);
     }
     public function delete($id){
-        echo $id;
-
-    }
-
+        $data = [
+            "is_active"=>"false" ,
+            "date_suppression"=>date('Y-m-d H:i:s') 
+        ];
+        
+        if (!$this->clientService->update($id,$data)) {
+            Session::set('error', "Une erreur s'est produite lors de la supression de client.");
+            header('Location: /ESSEMLALI-Bank/client/'.$id);
+            exit;
+        }
+        header('Location: /ESSEMLALI-Bank/clients');
+        exit;
+    } 
 
     
 
