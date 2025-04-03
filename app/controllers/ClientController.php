@@ -23,6 +23,7 @@ class ClientController
     {
        echo  $this->twig->render('client/index.twig',['session' => $_SESSION ]);
     }
+    
 
     public function create()
     {
