@@ -23,6 +23,14 @@ class ClientController
     {
        echo  $this->twig->render('client/index.twig',['session' => $_SESSION ]);
     }
+    public function edite($id)
+    {
+        $client=$this->clientService->getClient($id);
+        echo  $this->twig->render('client/updateinfo.twig',[
+            'session' => $_SESSION,
+            'client' => $client,
+         ]);
+    }
     
 
     public function create()
