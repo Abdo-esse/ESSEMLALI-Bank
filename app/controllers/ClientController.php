@@ -51,11 +51,11 @@ class ClientController
     
     // if (!$this->employeService->update($id,$data)) {
     //     Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
-    //     header('Location: /ESSEMLALI-Bank/employes');
+    //     header('Location: /ESSEMLALI-Bank/Client');
     //     exit;
     // }
 
-    // header('Location: /ESSEMLALI-Bank/employes');
+    // header('Location: /ESSEMLALI-Bank/Client');
     echo "mzyan";
     exit;
     }
