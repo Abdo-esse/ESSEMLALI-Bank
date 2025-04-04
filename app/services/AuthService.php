@@ -34,8 +34,7 @@ class AuthService {
             Session::set('user', [
                 'id' => $user['id'],
                 'email' => $user['email'],
-                'role' => $user['role'],
-                'password'=> $user['mot_de_passe']
+                'role' => $user['role']
             ]);
          return true;
     }

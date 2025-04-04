@@ -27,6 +27,7 @@ class ClientController
     public function edite($id)
     {
         $client=$this->clientService->getClient($id);
+         Session::set('password', $client['client']->getMotDePasse());
         echo  $this->twig->render('client/updateinfo.twig',[
             'session' => $_SESSION,
             'client' => $client,
