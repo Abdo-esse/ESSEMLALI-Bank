@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\core\Session;
 use App\requests\SignInRequest;
+use App\requests\UpdateClientRequest;
 use App\services\ClientService;
 use App\services\CompteService;
 
@@ -30,6 +31,33 @@ class ClientController
             'session' => $_SESSION,
             'client' => $client,
          ]);
+    }
+    public function update($id)
+    {
+        $request = new UpdateClientRequest($_POST);
+    if (!$request->validate()) {
+        Session::set('errorEditClient', $request->getErrors());
+        header("Location: /ESSEMLALI-Bank/editeEploye/$id");
+        exit;
+    }
+    // Session::unset('errorEditClient');
+    // $data = [
+    //     "nom" => trim($_POST["nom"]),
+    //     "prenom" => trim($_POST["prenom"]),
+    //     "email" => trim($_POST["email"]),
+    //     "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT),
+    //     "date_modification" => date('Y-m-d H:i:s') 
+    // ];
+    
+    // if (!$this->employeService->update($id,$data)) {
+    //     Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
+    //     header('Location: /ESSEMLALI-Bank/employes');
+    //     exit;
+    // }
+
+    // header('Location: /ESSEMLALI-Bank/employes');
+    echo "mzyan";
+    exit;
     }
     
 
