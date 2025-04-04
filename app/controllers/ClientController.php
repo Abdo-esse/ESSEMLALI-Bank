@@ -37,7 +37,7 @@ class ClientController
         $request = new UpdateClientRequest($_POST);
     if (!$request->validate()) {
         Session::set('errorEditClient', $request->getErrors());
-        header("Location: /ESSEMLALI-Bank/editeEploye/$id");
+        header("Location: /ESSEMLALI-Bank/client/update/$id");
         exit;
     }
     // Session::unset('errorEditClient');
