@@ -31,16 +31,17 @@ class ClientService {
     public function update($id, $data){
         $dataClient=[
             "telephone"=>$_POST["telephone"],
-            "address"=>$_POST["adresse"]
+            "address"=>$_POST["address"]
         ];
-        if (!empty($passwordNew)) {
-            $dataUser['mot_de_passe'] = password_hash($_POST["passwordNew"], PASSWORD_DEFAULT);
-        }
+        
         $dataUser=[
             "email"=>$_POST["email"],
             "date_modification" => date('Y-m-d H:i:s') 
         ];
-       return $this->clientRepo->update( $id, $dataUser, $dataClient);
+        if (!empty($_POST["passwordNew"])) {
+            $dataUser['mot_de_passe'] = password_hash($_POST["passwordNew"], PASSWORD_DEFAULT);
+        }
+       return $this->clientRepo->edit( $id, $dataUser, $dataClient);
     }
 
     public function getAll(){

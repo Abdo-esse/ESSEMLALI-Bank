@@ -5,6 +5,7 @@ use PDO;
 use App\Models\Client;
 use App\Models\User;
 use App\Models\Compte;
+use PDOException;
 
 class ClientRepository extends BaseRepository
 {
@@ -193,14 +194,14 @@ class ClientRepository extends BaseRepository
         try {
             $data['id'] = $id;
     
-            $sql = "UPDATE {$this->tableClient}
+            $sql = "UPDATE $this->tableClient
                     SET telephone = :telephone, address = :address
                     WHERE user_id = :id";
     
             $stmt = $this->conn->prepare($sql);
             $stmt->execute($data);
     
-            return $stmt->rowCount() > 0;
+            return true;
         } catch (Exception $e) {
             error_log("Erreur dans editClient(): " . $e->getMessage());
             return false;
@@ -211,11 +212,11 @@ class ClientRepository extends BaseRepository
     public function edit($id,$userData, $clientData){
         $this->conn->beginTransaction();
         try {
-            if ($this->update($this->table,$id, $userData)) {
+            if (!$this->update("users", $id, $userData)) {
                 throw new PDOException("Erreur lors de l'insertion d'user.");
             }
 
-            if (!$this->editClient($this->tableClient, $dataClient)) {
+            if (!$this->editClient( $clientData,$id)) {
                 throw new PDOException("Erreur lors de l'insertion du client.");
             }
 

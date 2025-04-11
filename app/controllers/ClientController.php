@@ -44,18 +44,14 @@ class ClientController
         header("Location: /ESSEMLALI-Bank/client/update/$id");
         exit;
     }
-    Session::unset('errorEditClient');
-    echo "<pre>";
-    var_dump($_POST);
-    echo "<pre>";    
-    // if (!$this->clientService->update($id,$data)) {
-    //     Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
-    //     header('Location: /ESSEMLALI-Bank/Client');
-    //     exit;
-    // }
+    Session::unset('errorEditClient');   
+    if (!$this->clientService->update($id,$_POST)) {
+        Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
+        header('Location: /ESSEMLALI-Bank/Client');
+        exit;
+    }
 
-    // header('Location: /ESSEMLALI-Bank/Client');
-    echo "mzyan";
+    header('Location: /ESSEMLALI-Bank/Client');
     exit;
     }
     
