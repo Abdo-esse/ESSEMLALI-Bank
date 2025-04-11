@@ -54,4 +54,8 @@ class ClientService {
         return $this->clientRepo->getClient($id);
     }
     
+    public function findclient($id){
+        return $this->clientRepo->findclient($id);
+    }
+    
 }

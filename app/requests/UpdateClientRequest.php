@@ -20,9 +20,9 @@ class UpdateClientRequest {
             $this->errors['email'] = 'Format de l\'email invalide';
         }
         if (empty($this->data['passwordActuel'])) {
-            $this->errors['passwordActuel'] = 'L\'email est requis';
-        } elseif (!password_verify($data['passwordActuel'], $_SESSION['password'])) {
-            $this->errors['passwordActuel'] = 'password incorect , '.$_SESSION['password'];
+            $this->errors['passwordActuel'] = ' password Actuel est requis';
+        } elseif (!password_verify($this->data['passwordActuel'], $_SESSION['password'])) {
+            $this->errors['passwordActuel'] = 'password incorect , ';
         }
 
        

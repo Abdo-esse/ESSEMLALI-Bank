@@ -27,7 +27,7 @@ class ClientController
     public function edite($id)
     {
         $client=$this->clientService->getClient($id);
-         Session::set('password', $client['client']->getMotDePasse());
+        //  Session::set('password', $client['client']->getMotDePasse());
         echo  $this->twig->render('client/updateinfo.twig',[
             'session' => $_SESSION,
             'client' => $client,
@@ -35,13 +35,16 @@ class ClientController
     }
     public function update($id)
     {
+        
+        $client = $this->clientService->findclient($id);
+        $_POST["motDePassEnregister"]=$client['mot_de_passe'];
         $request = new UpdateClientRequest($_POST);
     if (!$request->validate()) {
         Session::set('errorEditClient', $request->getErrors());
         header("Location: /ESSEMLALI-Bank/client/update/$id");
         exit;
     }
-    // Session::unset('errorEditClient');
+    Session::unset('errorEditClient');
     // $data = [
     //     "nom" => trim($_POST["nom"]),
     //     "prenom" => trim($_POST["prenom"]),
@@ -57,7 +60,7 @@ class ClientController
     // }
 
     // header('Location: /ESSEMLALI-Bank/Client');
-    echo "mzyan";
+    // echo "mzyan";
     exit;
     }
     
