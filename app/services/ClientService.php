@@ -40,7 +40,7 @@ class ClientService {
             "email"=>$_POST["email"],
             "date_modification" => date('Y-m-d H:i:s') 
         ];
-       return $this->clientRepo->update('users', $id, $data);
+       return $this->clientRepo->update( $id, $dataUser, $dataClient);
     }
 
     public function getAll(){

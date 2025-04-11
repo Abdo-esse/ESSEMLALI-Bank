@@ -33,9 +33,9 @@ class UpdateClientRequest {
             $this->errors['telephone'] = 'Format du téléphone invalide';
         }
 
-        if (empty($this->data['adresse'])) {
+        if (empty($this->data['address'])) {
             $this->errors['adresse'] = 'L\'adresse est requise';
-        } elseif (!preg_match("/^[a-zA-Z0-9\s,.'-]{5,}$/", $this->data['adresse'])) {
+        } elseif (!preg_match("/^[a-zA-Z0-9\s,.'-]{5,}$/", $this->data['address'])) {
             $this->errors['adresse'] = 'Format de l\'adresse invalide';
         }
        

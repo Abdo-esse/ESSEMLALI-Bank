@@ -189,15 +189,33 @@ class ClientRepository extends BaseRepository
         $stmt->execute(['email' => $email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    private function editClient($data,$id){
+        try {
+            $data['id'] = $id;
     
-    public function edit($userData, $clientData){
+            $sql = "UPDATE {$this->tableClient}
+                    SET telephone = :telephone, address = :address
+                    WHERE user_id = :id";
+    
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute($data);
+    
+            return $stmt->rowCount() > 0;
+        } catch (Exception $e) {
+            error_log("Erreur dans editClient(): " . $e->getMessage());
+            return false;
+        }
+
+    }
+    
+    public function edit($id,$userData, $clientData){
         $this->conn->beginTransaction();
         try {
-            if ($this->update($this->table, $dataUser)) {
+            if ($this->update($this->table,$id, $userData)) {
                 throw new PDOException("Erreur lors de l'insertion d'user.");
             }
 
-            if (!$this->update($this->tableClient, $dataClient)) {
+            if (!$this->editClient($this->tableClient, $dataClient)) {
                 throw new PDOException("Erreur lors de l'insertion du client.");
             }
 
