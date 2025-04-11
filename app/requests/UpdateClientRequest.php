@@ -21,7 +21,7 @@ class UpdateClientRequest {
         }
         if (empty($this->data['passwordActuel'])) {
             $this->errors['passwordActuel'] = ' password Actuel est requis';
-        } elseif (!password_verify($this->data['passwordActuel'], $_SESSION['password'])) {
+        } elseif (!password_verify($this->data['passwordActuel'], $this->data['motDePassEnregister'])) {
             $this->errors['passwordActuel'] = 'password incorect , ';
         }
 

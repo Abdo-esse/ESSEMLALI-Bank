@@ -45,22 +45,17 @@ class ClientController
         exit;
     }
     Session::unset('errorEditClient');
-    // $data = [
-    //     "nom" => trim($_POST["nom"]),
-    //     "prenom" => trim($_POST["prenom"]),
-    //     "email" => trim($_POST["email"]),
-    //     "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT),
-    //     "date_modification" => date('Y-m-d H:i:s') 
-    // ];
-    
-    // if (!$this->employeService->update($id,$data)) {
+    echo "<pre>";
+    var_dump($_POST);
+    echo "<pre>";    
+    // if (!$this->clientService->update($id,$data)) {
     //     Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
     //     header('Location: /ESSEMLALI-Bank/Client');
     //     exit;
     // }
 
     // header('Location: /ESSEMLALI-Bank/Client');
-    // echo "mzyan";
+    echo "mzyan";
     exit;
     }
     
