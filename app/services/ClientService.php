@@ -33,9 +33,11 @@ class ClientService {
             "telephone"=>$_POST["telephone"],
             "address"=>$_POST["adresse"]
         ];
+        if (!empty($passwordNew)) {
+            $dataUser['mot_de_passe'] = password_hash($_POST["passwordNew"], PASSWORD_DEFAULT);
+        }
         $dataUser=[
             "email"=>$_POST["email"],
-            "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT),
             "date_modification" => date('Y-m-d H:i:s') 
         ];
        return $this->clientRepo->update('users', $id, $data);

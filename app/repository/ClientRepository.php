@@ -19,7 +19,8 @@ class ClientRepository extends BaseRepository
         $this->tablePivot = 'role_user';
     }
 
-    public function create($dataUser, $dataClient) {
+    public function create($dataUser, $dataClient) 
+    {
         $this->conn->beginTransaction();
         try {
             $clientId = $this->createAction($this->table, $dataUser);
@@ -189,6 +190,24 @@ class ClientRepository extends BaseRepository
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
+    public function edit($userData, $clientData){
+        $this->conn->beginTransaction();
+        try {
+            if ($this->update($this->table, $dataUser)) {
+                throw new PDOException("Erreur lors de l'insertion d'user.");
+            }
+
+            if (!$this->update($this->tableClient, $dataClient)) {
+                throw new PDOException("Erreur lors de l'insertion du client.");
+            }
+
+            $this->conn->commit();
+            return true ;
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            echo "Erreur : " . $e->getMessage();
+        }
+    }
     
 }
 ?>
