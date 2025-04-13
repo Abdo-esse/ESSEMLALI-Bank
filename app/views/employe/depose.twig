@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dépôt d'argent</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <div class="flex justify-center mb-6">
+            <img src="/api/placeholder/80/80" alt="Logo Banque" class="h-20 w-20" />
+        </div>
+        
+        <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Dépôt d'argent</h1>
+        
+        <form action="/api/deposit" method="POST" class="space-y-6">
+            
+            <div class="space-y-2">
+                <label for="account_number" class="block text-sm font-medium text-gray-700">Numéro de compte</label>
+                <input 
+                    type="text" 
+                    id="account_number" 
+                    name="account_number" 
+                    required
+                    class="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    
+                >
+                <p class="text-xs text-gray-500 mt-1">Entrez le numéro de compte au format IBAN</p>
+            </div>
+            
+            <div class="space-y-2">
+                <label for="amount" class="block text-sm font-medium text-gray-700">Montant à déposer</label>
+                <div class="mt-1 relative rounded-md shadow-sm">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <span class="text-gray-500 sm:text-sm">€</span>
+                    </div>
+                    <input 
+                        type="number" 
+                        id="amount" 
+                        name="amount" 
+                        required
+                        min="1" 
+                        step="0.01"
+                        class="block w-full pl-7 pr-12 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="0.00"
+                    >
+                </div>
+                <p class="text-xs text-gray-500 mt-1">Montant minimum de dépôt: 10 dh</p>
+            </div>
+            
+            
+            <div class="pt-2">
+                <button 
+                    type="submit" 
+                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150"
+                >
+                    Effectuer le dépôt
+                </button>
+            </div>
+        </form>
+        
+        <div class="mt-6 text-center">
+            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-500">Retour au tableau de bord</a>
+        </div>
+    </div>
+    
+    <script>
+        // Formatage du montant pour afficher deux décimales
+        document.getElementById('amount').addEventListener('blur', function(e) {
+            if (this.value) {
+                this.value = parseFloat(this.value).toFixed(2);
+            }
+        });
+    </script>
+</body>
+</html>

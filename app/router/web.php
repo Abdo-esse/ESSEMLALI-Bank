@@ -32,5 +32,6 @@ Router::add("POST","client/delete/{id}","ClientController@delete");
 Router::add("GET","/Client","ClientController@index");
 Router::add("GET","/client/update/{id}","ClientController@edite");
 Router::add("POST","/client/update/{id}","ClientController@update");
+Router::add("GET","/versement","EmployeController@versementView");
 
 
