@@ -18,12 +18,16 @@ class CompteRepository  extends BaseRepository
     
     public function findAcount($numeroCompte){
         $compte=$this->find($this->table, ["numeroCompte"=>$numeroCompte]);
-        return new Compte(
+        if($compte){
+            return new Compte(
             $compte->numerocompte,
             $compte->solde,
             $compte->datecreation,
             $compte->estactif
         );
+
+        }
+        return false;
     }
 
    

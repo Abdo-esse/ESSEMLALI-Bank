@@ -42,16 +42,24 @@ class CompteController
 
     public function deposit(){
         var_dump($this->comptService->find($_POST["account_number"]));
-        $request = new StoreUserRequest($_POST);
-        if (!$request->validate()) {
-            Session::set('errorDeposit', $request->getErrors());
-            Session::set('valuesDeposit', $_POST);
-            header('Location: /ESSEMLALI-Bank/employes');
-            exit;
-        }
-        Session::unset('errorEmployer');
-        Session::unset('valuesEmployer');
+        if($this->comptService->find($_POST["account_number"]))
+        {
+            echo "true";
+        }else{
+            echo "false";
 
+        }
+        // $request = new StoreUserRequest($_POST);
+        // if (!$request->validate()) {
+        //     Session::set('errorDeposit', $request->getErrors());
+        //     Session::set('valuesDeposit', $_POST);
+        //     header('Location: /ESSEMLALI-Bank/employes');
+        //     exit;
+        // }
+        // Session::unset('errorEmployer');
+        // Session::unset('valuesEmployer');
+
+        var_dump($_POST);
     }
 
 
