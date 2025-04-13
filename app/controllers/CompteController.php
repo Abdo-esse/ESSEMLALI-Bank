@@ -14,6 +14,8 @@ class CompteController
     {
           $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
           $this->comptService= new CompteService;
+          Session::start();
+
     }
 
 
