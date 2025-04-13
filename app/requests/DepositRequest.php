@@ -14,7 +14,7 @@ class DepositRequest {
     public function validate(): bool {
         if (empty($this->data['account_number'])) {
             $this->errors['account_number'] = 'account number is required';
-        } elseif (!$this->comptService->find($data["account_number"])) {
+        } elseif (!$this->comptService->find($this->data["account_number"])) {
             $this->errors['account_number'] = 'Invalid account number ';
         }
         

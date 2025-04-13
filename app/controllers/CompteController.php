@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 use App\services\CompteService;
-
+use App\requests\DepositRequest;
+use App\core\Session;
 
 class CompteController
 {
@@ -41,23 +42,15 @@ class CompteController
     }
 
     public function deposit(){
-        var_dump($this->comptService->find($_POST["account_number"]));
-        if($this->comptService->find($_POST["account_number"]))
-        {
-            echo "true";
-        }else{
-            echo "false";
-
+        $request = new DepositRequest($_POST);
+        if (!$request->validate()) {
+            Session::set('errorDeposit', $request->getErrors());
+            Session::set('valuesDeposit', $_POST);
+            // header('Location: /ESSEMLALI-Bank/employes');
+            exit;
         }
-        // $request = new StoreUserRequest($_POST);
-        // if (!$request->validate()) {
-        //     Session::set('errorDeposit', $request->getErrors());
-        //     Session::set('valuesDeposit', $_POST);
-        //     header('Location: /ESSEMLALI-Bank/employes');
-        //     exit;
-        // }
-        // Session::unset('errorEmployer');
-        // Session::unset('valuesEmployer');
+        Session::unset('errorEmployer');
+        Session::unset('valuesEmployer');
 
         var_dump($_POST);
     }
