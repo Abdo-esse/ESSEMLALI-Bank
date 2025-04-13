@@ -136,5 +136,9 @@ class CompteService {
     
         return 'BANK-' . strtoupper($shortUuid); 
     }
+
+    public function find($numeroCompte){
+        return $this->compteRepo->findAcount($numeroCompte);
+    }
     
 }
