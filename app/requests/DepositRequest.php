@@ -14,12 +14,16 @@ class DepositRequest {
     public function validate(): bool {
         if (empty($this->data['account_number'])) {
             $this->errors['account_number'] = 'account number is required';
-        } elseif (!$this->comptService->find($_POST["account_number"])) {
-            $this->errors['email'] = 'Invalid email format';
+        } elseif (!$this->comptService->find($data["account_number"])) {
+            $this->errors['account_number'] = 'Invalid account number ';
         }
         
-        if (empty($this->data['password'])) {
-            $this->errors['password'] = 'Password is required';
+        if (empty($this->data['amount'])) {
+            $this->errors['amount'] = 'amount is required';
+        }elseif (!is_numeric($this->data['amount']) || $this->data['amount'] < 10) {
+            $this->errors['amount'] = 'Amount must be a positive number and superieur a 10';
+        } elseif ($this->data['amount'] > 10000) {
+            $this->errors['amount'] = 'Amount exceeds the allowed limit';
         }
         
         return empty($this->errors);
