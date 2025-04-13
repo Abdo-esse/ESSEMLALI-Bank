@@ -23,7 +23,8 @@ class CompteRepository  extends BaseRepository
             $compte->numerocompte,
             $compte->solde,
             $compte->datecreation,
-            $compte->estactif
+            $compte->estactif,
+            $compte->id
         );
 
         }

@@ -41,16 +41,20 @@ class CompteController
 
     }
 
+    
+
     public function deposit(){
         $request = new DepositRequest($_POST);
         if (!$request->validate()) {
             Session::set('errorDeposit', $request->getErrors());
             Session::set('valuesDeposit', $_POST);
-            // header('Location: /ESSEMLALI-Bank/employes');
+            header('Location: /ESSEMLALI-Bank/versement');
             exit;
         }
-        Session::unset('errorEmployer');
-        Session::unset('valuesEmployer');
+        Session::unset('errorDeposit');
+        Session::unset('valuesDeposit');
+        $this->comptService->deposit();
+
 
         var_dump($_POST);
     }
