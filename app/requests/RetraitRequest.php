@@ -2,7 +2,7 @@
 
 namespace App\requests;
 use App\services\CompteService;
-class DepositRequest {
+class RetraitRequest {
     private $data;
     private $errors = [];
     private CompteService $comptService;
@@ -24,6 +24,8 @@ class DepositRequest {
             $this->errors['amount'] = 'Amount must be a positive number and superieur a 10';
         } elseif ($this->data['amount'] > 10000) {
             $this->errors['amount'] = 'Amount exceeds the allowed limit';
+        }elseif($this->comptService->find($this->data["account_number"])->getSolde()<$this->data['amount']){
+            $this->errors['amount'] = 'Votre solde insufusant';
         }
         
         return empty($this->errors);
@@ -36,3 +38,4 @@ class DepositRequest {
     public function getData(): array {
         return $this->data;
     }
+}
