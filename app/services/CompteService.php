@@ -146,5 +146,11 @@ class CompteService {
          return $this->compteRepo->update('comptes',$acount->getId(),["solde"=>$nouveauSolde]);
         
     }
+    public function retrait(){
+        $acount= $this->compteRepo->findAcount($_POST["account_number"]);
+        $nouveauSolde = $acount->getSolde() - $_POST["amount"];
+         return $this->compteRepo->update('comptes',$acount->getId(),["solde"=>$nouveauSolde]);
+        
+    }
     
 }

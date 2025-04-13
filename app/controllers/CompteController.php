@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\services\CompteService;
 use App\requests\DepositRequest;
+use App\requests\RetraitRequest;
 use App\core\Session;
 
 class CompteController
@@ -69,17 +70,17 @@ class CompteController
         if (!$request->validate()) {
             Session::set('errorRetrait', $request->getErrors());
             Session::set('valuesRetrait', $_POST);
-            header('Location: /ESSEMLALI-Bank/versement');
+            header('Location: /ESSEMLALI-Bank/retrait');
             exit;
         }
         Session::unset('errorRetrait');
         Session::unset('valuesRetrait');
         if(!$this->comptService->retrait()){
             Session::set('error', "Une erreur s'est produite lors de depose l'argent.");
-            header('Location: /ESSEMLALI-Bank/versement');
+            header('Location: /ESSEMLALI-Bank/retrait');
             exit;
         }
-        header('Location: /ESSEMLALI-Bank/versement');
+        header('Location: /ESSEMLALI-Bank/retrait');
         exit;
 
         

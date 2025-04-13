@@ -34,5 +34,7 @@ Router::add("GET","/client/update/{id}","ClientController@edite");
 Router::add("POST","/client/update/{id}","ClientController@update");
 Router::add("GET","/versement","EmployeController@versementView");
 Router::add("POST","/deposit","CompteController@deposit");
+Router::add("GET","/retrait","EmployeController@retraitView");
+Router::add("POST","/retrait","CompteController@retrait");
 
 

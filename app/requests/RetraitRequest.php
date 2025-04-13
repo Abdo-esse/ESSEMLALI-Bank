@@ -12,19 +12,20 @@ class RetraitRequest {
     }
     
     public function validate(): bool {
+        $comte=$this->comptService->find($this->data["account_number"]);
         if (empty($this->data['account_number'])) {
             $this->errors['account_number'] = 'account number is required';
-        } elseif (!$this->comptService->find($this->data["account_number"])) {
+        } elseif (!$comte) {
             $this->errors['account_number'] = 'Invalid account number ';
         }
-        
+           
         if (empty($this->data['amount'])) {
             $this->errors['amount'] = 'amount is required';
         }elseif (!is_numeric($this->data['amount']) || $this->data['amount'] < 10) {
             $this->errors['amount'] = 'Amount must be a positive number and superieur a 10';
         } elseif ($this->data['amount'] > 10000) {
             $this->errors['amount'] = 'Amount exceeds the allowed limit';
-        }elseif($this->comptService->find($this->data["account_number"])->getSolde()<$this->data['amount']){
+        }elseif($comte && $comte->getSolde()<$this->data['amount']){
             $this->errors['amount'] = 'Votre solde insufusant';
         }
         
