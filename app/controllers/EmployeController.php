@@ -21,6 +21,14 @@ class EmployeController
     {
        echo  $this->twig->render('employe/index.twig',['session' => $_SESSION ]);
     }
+    public function versementView()
+    {
+       echo  $this->twig->render('employe/versement.twig',['session' => $_SESSION ]);
+    }
+    public function retraitView()
+    {
+       echo  $this->twig->render('employe/retrait.twig',['session' => $_SESSION ]);
+    }
     public function employes()
     {
         $employes= $this->employeService->getAll();
@@ -144,6 +152,9 @@ public function delete($id)
     exit;
 } 
 
+public function deposit(){
+    var_dump($_POST);
+}
 
 
 }

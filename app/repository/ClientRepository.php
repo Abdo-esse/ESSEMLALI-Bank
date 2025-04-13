@@ -5,6 +5,7 @@ use PDO;
 use App\Models\Client;
 use App\Models\User;
 use App\Models\Compte;
+use PDOException;
 
 class ClientRepository extends BaseRepository
 {
@@ -19,7 +20,8 @@ class ClientRepository extends BaseRepository
         $this->tablePivot = 'role_user';
     }
 
-    public function create($dataUser, $dataClient) {
+    public function create($dataUser, $dataClient) 
+    {
         $this->conn->beginTransaction();
         try {
             $clientId = $this->createAction($this->table, $dataUser);
@@ -155,7 +157,7 @@ class ClientRepository extends BaseRepository
             $row->nom,
             $row->prenom,
             $row->email,
-            "",
+            $row->mot_de_passe,
             $row->date_creation,
             $row->is_active,
             $row->id,
@@ -177,7 +179,54 @@ class ClientRepository extends BaseRepository
             'compte' => $compteObject
         ];
     }
+
+    public function findclient($email) {
+        $stmt = $this->conn->prepare("SELECT u.*, STRING_AGG(r.titre, ',') AS role
+                                      FROM users u
+                                      JOIN role_user ru ON u.id = ru.user_id 
+                                      JOIN roles r ON ru.role_id = r.id 
+                                      WHERE u.id = :email
+                                      GROUP BY u.id;");
+        $stmt->execute(['email' => $email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    private function editClient($data,$id){
+        try {
+            $data['id'] = $id;
     
+            $sql = "UPDATE $this->tableClient
+                    SET telephone = :telephone, address = :address
+                    WHERE user_id = :id";
+    
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute($data);
+    
+            return true;
+        } catch (Exception $e) {
+            error_log("Erreur dans editClient(): " . $e->getMessage());
+            return false;
+        }
+
+    }
+    
+    public function edit($id,$userData, $clientData){
+        $this->conn->beginTransaction();
+        try {
+            if (!$this->update("users", $id, $userData)) {
+                throw new PDOException("Erreur lors de l'insertion d'user.");
+            }
+
+            if (!$this->editClient( $clientData,$id)) {
+                throw new PDOException("Erreur lors de l'insertion du client.");
+            }
+
+            $this->conn->commit();
+            return true ;
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            echo "Erreur : " . $e->getMessage();
+        }
+    }
     
 }
 ?>

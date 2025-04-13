@@ -30,5 +30,11 @@ Router::add("GET","/clients","ClientController@clients");
 Router::add("POST","/client/{id}","ClientController@client");
 Router::add("POST","client/delete/{id}","ClientController@delete");
 Router::add("GET","/Client","ClientController@index");
+Router::add("GET","/client/update/{id}","ClientController@edite");
+Router::add("POST","/client/update/{id}","ClientController@update");
+Router::add("GET","/versement","EmployeController@versementView");
+Router::add("POST","/deposit","CompteController@deposit");
+Router::add("GET","/retrait","EmployeController@retraitView");
+Router::add("POST","/retrait","CompteController@retrait");
 
 

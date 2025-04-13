@@ -136,5 +136,21 @@ class CompteService {
     
         return 'BANK-' . strtoupper($shortUuid); 
     }
+
+    public function find($numeroCompte){
+        return $this->compteRepo->findAcount($numeroCompte);
+    }
+    public function deposit(){
+        $acount= $this->compteRepo->findAcount($_POST["account_number"]);
+        $nouveauSolde = $acount->getSolde() + $_POST["amount"];
+         return $this->compteRepo->update('comptes',$acount->getId(),["solde"=>$nouveauSolde]);
+        
+    }
+    public function retrait(){
+        $acount= $this->compteRepo->findAcount($_POST["account_number"]);
+        $nouveauSolde = $acount->getSolde() - $_POST["amount"];
+         return $this->compteRepo->update('comptes',$acount->getId(),["solde"=>$nouveauSolde]);
+        
+    }
     
 }

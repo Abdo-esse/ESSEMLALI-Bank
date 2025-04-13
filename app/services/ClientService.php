@@ -29,7 +29,19 @@ class ClientService {
         
     }
     public function update($id, $data){
-       return $this->clientRepo->update('users', $id, $data);
+        $dataClient=[
+            "telephone"=>$_POST["telephone"],
+            "address"=>$_POST["address"]
+        ];
+        
+        $dataUser=[
+            "email"=>$_POST["email"],
+            "date_modification" => date('Y-m-d H:i:s') 
+        ];
+        if (!empty($_POST["passwordNew"])) {
+            $dataUser['mot_de_passe'] = password_hash($_POST["passwordNew"], PASSWORD_DEFAULT);
+        }
+       return $this->clientRepo->edit( $id, $dataUser, $dataClient);
     }
 
     public function getAll(){
@@ -43,6 +55,10 @@ class ClientService {
     }
     public function getClient($id){
         return $this->clientRepo->getClient($id);
+    }
+    
+    public function findclient($id){
+        return $this->clientRepo->findclient($id);
     }
     
 }

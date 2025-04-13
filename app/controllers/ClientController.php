@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\core\Session;
 use App\requests\SignInRequest;
+use App\requests\UpdateClientRequest;
 use App\services\ClientService;
 use App\services\CompteService;
 
@@ -22,6 +23,35 @@ class ClientController
     public function index()
     {
        echo  $this->twig->render('client/index.twig',['session' => $_SESSION ]);
+    }
+    public function edite($id)
+    {
+        $client=$this->clientService->getClient($id);
+        echo  $this->twig->render('client/updateinfo.twig',[
+            'session' => $_SESSION,
+            'client' => $client,
+         ]);
+    }
+    public function update($id)
+    {
+        
+        $client = $this->clientService->findclient($id);
+        $_POST["motDePassEnregister"]=$client['mot_de_passe'];
+        $request = new UpdateClientRequest($_POST);
+    if (!$request->validate()) {
+        Session::set('errorEditClient', $request->getErrors());
+        header("Location: /ESSEMLALI-Bank/client/update/$id");
+        exit;
+    }
+    Session::unset('errorEditClient');   
+    if (!$this->clientService->update($id,$_POST)) {
+        Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
+        header('Location: /ESSEMLALI-Bank/Client');
+        exit;
+    }
+
+    header('Location: /ESSEMLALI-Bank/Client');
+    exit;
     }
     
 
