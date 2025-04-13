@@ -53,10 +53,15 @@ class CompteController
         }
         Session::unset('errorDeposit');
         Session::unset('valuesDeposit');
-        $this->comptService->deposit();
+        if(!$this->comptService->deposit()){
+            Session::set('error', "Une erreur s'est produite lors de depose l'argent.");
+            header('Location: /ESSEMLALI-Bank/versement');
+            exit;
+        }
+        header('Location: /ESSEMLALI-Bank/versement');
+        exit;
 
-
-        var_dump($_POST);
+        
     }
 
 

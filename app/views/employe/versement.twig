@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dépôt d'argent</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+{% extends "components/baseDashbord.twig" %}
+
+{% block title %}Page d'accueil{% endblock %}
+{% block sidebar %}
+{% include "layout/sidebarEmploye.twig" %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="bg-gray-100 min-h-screen flex items-center justify-center">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <div class="flex justify-center mb-6">
         <div class="text-xl font-bold mb-4 md:mb-0">
@@ -110,24 +112,15 @@
             </div>
         </form>
         
-        <div class="mt-6 text-center">
-            <a id="back-button" class="cursor-pointer text-sm text-indigo-600 hover:text-indigo-500">Retour au tableau de bord</a>
-        </div>
+      
     </div>
     
     <script>
-        // Formatage du montant pour afficher deux décimales
-        document.getElementById('amount').addEventListener('blur', function(e) {
-            if (this.value) {
-                this.value = parseFloat(this.value).toFixed(2);
-            }
-        });
-
-                // Fonctionnalité pour retourner à la page précédente
+            // Fonctionnalité pour retourner à la page précédente
         const backButton = document.getElementById('back-button');
         backButton.addEventListener('click', function() {
             window.history.back();
         });
     </script>
-</body>
-</html>
+</div>
+{% endblock %}
