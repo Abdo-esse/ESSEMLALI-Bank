@@ -64,6 +64,27 @@ class CompteController
         
     }
 
+    public function retrait(){
+        $request = new DepositRequest($_POST);
+        if (!$request->validate()) {
+            Session::set('errorDeposit', $request->getErrors());
+            Session::set('valuesDeposit', $_POST);
+            header('Location: /ESSEMLALI-Bank/versement');
+            exit;
+        }
+        Session::unset('errorDeposit');
+        Session::unset('valuesDeposit');
+        if(!$this->comptService->deposit()){
+            Session::set('error', "Une erreur s'est produite lors de depose l'argent.");
+            header('Location: /ESSEMLALI-Bank/versement');
+            exit;
+        }
+        header('Location: /ESSEMLALI-Bank/versement');
+        exit;
+
+        
+    }
+
 
     
 
