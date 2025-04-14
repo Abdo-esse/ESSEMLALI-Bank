@@ -35,7 +35,7 @@ class AdminController extends Controller
     if (!$request->validate()) {
         Session::set('error', $request->getErrors());
         Session::set('values', $_POST);
-        header('Location: /ESSEMLALI-Bank/admins');
+         $this->redirect('admins');
         exit;
     }
     Session::unset('error');
@@ -49,10 +49,10 @@ class AdminController extends Controller
     ];
     if (!$this->adminService->create($data)) {
         Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
-        header('Location: /ESSEMLALI-Bank/admins');
+         $this->redirect('admins');
         exit;
     }
-    header('Location: /ESSEMLALI-Bank/admins');
+     $this->redirect('admins');
     exit;
 }
 }
