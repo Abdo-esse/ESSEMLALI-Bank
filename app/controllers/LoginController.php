@@ -4,14 +4,14 @@ namespace App\Controllers;
 
 use App\services\AuthService; 
 use App\requests\LoginRequest;
+use App\core\Session;
 
-
-class LoginController extends Controller
-{
+class LoginController extends Controller{
     private $authService;
 
     public function __construct()
     {
+        parent::__construct();
         $this->authService = new AuthService();
     }
 
@@ -30,7 +30,7 @@ class LoginController extends Controller
         if (!$request->validate()) {
             Session::set('error', $request->getErrors());
             Session::set('valueslogin', $_POST);
-            header('Location: /ESSEMLALI-Bank/login');
+            $this->redirect('login');
             exit;
         }
         Session::unset('error');
@@ -38,7 +38,7 @@ class LoginController extends Controller
         $email = $_POST['email'] ;
         $password = $_POST['password'] ;
         if (!$this->authService->login($email, $password)) {
-            header('Location: /ESSEMLALI-Bank/login');
+            $this->redirect('login');
             exit;
         }
         $role = Session::get('user')['role'];
@@ -48,9 +48,9 @@ class LoginController extends Controller
 
     private function redirectUserByRole($role){
         return match ($role) {
-            'Admin' => header('Location: /ESSEMLALI-Bank/Admin'),
-            'Employé' => header('Location: /ESSEMLALI-Bank/Employe'),
-            'Client' => header('Location: /ESSEMLALI-Bank/Client'),
+            'Admin' => $this->redirect('Admin'),
+            'Employé' => $this->redirect('Employe'),
+            'Client' => $this->redirect('Client'),
             default => "unknown" 
         };
     }

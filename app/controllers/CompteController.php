@@ -5,7 +5,7 @@ use App\services\CompteService;
 use App\services\TransactionService;
 use App\requests\DepositRequest;
 use App\requests\RetraitRequest;
-
+use App\core\Session;
 
 class CompteController extends Controller
 {
@@ -13,9 +13,10 @@ class CompteController extends Controller
     private TransactionService $transactionService;
     public function __construct()
     {
+          parent::__construct();
           $this->comptService= new CompteService;
           $this->transactionService= new TransactionService;
-            }
+    }
 
 
     public function demandeCompte()

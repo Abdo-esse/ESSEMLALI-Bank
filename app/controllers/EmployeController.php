@@ -3,13 +3,14 @@ namespace App\Controllers;
 
 use App\services\EmployeService;
 use App\requests\StoreUserRequest;
+use App\core\Session;
 
 class EmployeController extends Controller
 {
     private $employeService;
     public function __construct()
     {
-        
+        parent::__construct();
           $this->employeService= new EmployeService();
     }
 

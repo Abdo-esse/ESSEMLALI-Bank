@@ -3,14 +3,15 @@ namespace App\Controllers;
 
 use App\services\AdminService;
 use App\requests\StoreUserRequest;
-
+use App\core\Session;
 class AdminController extends Controller
 {
    
     private $adminService;
     public function __construct()
-    {        
-          $this->adminService= new AdminService(); 
+    {      
+        parent::__construct();  
+        $this->adminService= new AdminService(); 
     }
 
 

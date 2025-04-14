@@ -6,14 +6,15 @@ use App\requests\SignInRequest;
 use App\requests\UpdateClientRequest;
 use App\services\ClientService;
 use App\services\CompteService;
-
+use App\core\Session;
 class ClientController extends Controller
 {
     private ClientService $clientService;
 
     public function __construct()
     {
-          $this->clientService=new ClientService();
+        parent::__construct();
+        $this->clientService=new ClientService();
     }
 
     public function index()
