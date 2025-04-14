@@ -150,9 +150,5 @@ public function delete($id)
     exit;
 } 
 
-public function deposit(){
-    var_dump($_POST);
-}
-
 
 }

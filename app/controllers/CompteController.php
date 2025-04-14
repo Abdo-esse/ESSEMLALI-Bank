@@ -21,16 +21,13 @@ class CompteController extends Controller
 
     public function demandeCompte()
     {
-       echo  $this->twig->render('auth/demadeCompte.twig', [
-           'variable1' => 'Valeur 1',
-           'variable2' => 'Valeur 2',
-       ]);
+       echo  $this->twig->render('auth/demadeCompte.twig');
 
     }
     public function approuver($id)
     {
         if ($this->comptService->approuver($id)) {
-            header('Location: /ESSEMLALI-Bank/clients');
+             $this->redirect('clients');
             exit;
         }
 
@@ -38,7 +35,7 @@ class CompteController extends Controller
     public function refuser($id)
     {
         if ($this->comptService->refuser($id)) {
-            header('Location: /ESSEMLALI-Bank/clients');
+             $this->redirect('clients');
             exit;
           }  
 
@@ -50,16 +47,16 @@ class CompteController extends Controller
         $request = new DepositRequest($_POST);
         if (!$request->validate()) {
             Session::set('errorDeposit', $request->getErrors());
-            header('Location: /ESSEMLALI-Bank/versement');
+             $this->redirect('versement');
             exit;
         }
         Session::unset('errorDeposit');
         if(!$this->transactionService->updateBalance( $_POST["account_number"], $_POST["amount"])){
             Session::set('error', "Une erreur s'est produite lors de depose l'argent.");
-            header('Location: /ESSEMLALI-Bank/versement');
+             $this->redirect('versement');
             exit;
         }
-        header('Location: /ESSEMLALI-Bank/versement');
+         $this->redirect('versement');
         exit;
 
         
@@ -69,16 +66,16 @@ class CompteController extends Controller
         $request = new RetraitRequest($_POST);
         if (!$request->validate()) {
             Session::set('errorRetrait', $request->getErrors());
-            header('Location: /ESSEMLALI-Bank/retrait');
+             $this->redirect('retrait');
             exit;
         }
         Session::unset('errorRetrait');
         if(!$this->transactionService->updateBalance( $_POST["account_number"], -$_POST["amount"])){
             Session::set('error', "Une erreur s'est produite lors de depose l'argent.");
-            header('Location: /ESSEMLALI-Bank/retrait');
+             $this->redirect('retrait');
             exit;
         }
-        header('Location: /ESSEMLALI-Bank/retrait');
+         $this->redirect('retrait');
         exit;
 
         
