@@ -1,7 +1,7 @@
 <?php
 
 namespace App\services;
-
+use App\Repository\HistoriqueRepository;
 
 class HistoriqueService {
 
@@ -19,14 +19,8 @@ class HistoriqueService {
             "montant" => $montant,
         ];
 
-        if ($id_beneficiaire !== null) {
-            $data["id_beneficiaire"] = $id_beneficiaire;
-        }
-
-        if ($description !== null) {
-            $data["description"] = $description;
-        }
-
-        $this->historiqueRepo->save($data);
+        if ($id_beneficiaire !== null) $data["id_beneficiaire"] = $id_beneficiaire;  
+        if ($description !== null) $data["description"] = $description;
+        return $this->historiqueRepo->save($data);
     }
 }
