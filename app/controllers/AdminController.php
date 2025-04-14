@@ -1,19 +1,17 @@
 <?php 
 namespace App\Controllers;
-use App\core\Session;
+
 use App\services\AdminService;
 use App\requests\StoreUserRequest;
-
-class AdminController
+use App\core\Session;
+class AdminController extends Controller
 {
-    private $twig;
+   
     private $adminService;
     public function __construct()
-    {
-          $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
-          $this->adminService= new AdminService();
-          Session::start();
-
+    {      
+        parent::__construct();  
+        $this->adminService= new AdminService(); 
     }
 
 
@@ -37,7 +35,7 @@ class AdminController
     if (!$request->validate()) {
         Session::set('error', $request->getErrors());
         Session::set('values', $_POST);
-        header('Location: /ESSEMLALI-Bank/admins');
+         $this->redirect('admins');
         exit;
     }
     Session::unset('error');
@@ -51,10 +49,10 @@ class AdminController
     ];
     if (!$this->adminService->create($data)) {
         Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
-        header('Location: /ESSEMLALI-Bank/admins');
+         $this->redirect('admins');
         exit;
     }
-    header('Location: /ESSEMLALI-Bank/admins');
+     $this->redirect('admins');
     exit;
 }
 }
