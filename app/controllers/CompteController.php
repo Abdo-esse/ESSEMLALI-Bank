@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\services\CompteService;
+use App\services\TransactionService;
 use App\requests\DepositRequest;
 use App\requests\RetraitRequest;
 use App\core\Session;
@@ -10,10 +11,12 @@ class CompteController
 {
     private $twig;
     private CompteService $comptService;
+    private TransactionService $transactionService;
     public function __construct()
     {
           $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
           $this->comptService= new CompteService;
+          $this->transactionService= new TransactionService;
           Session::start();
 
     }
@@ -54,7 +57,7 @@ class CompteController
             exit;
         }
         Session::unset('errorDeposit');
-        if(!$this->comptService->deposit()){
+        if(!$this->transactionService->updateBalance( $_POST["account_number"], $_POST["amount"])){
             Session::set('error', "Une erreur s'est produite lors de depose l'argent.");
             header('Location: /ESSEMLALI-Bank/versement');
             exit;
@@ -73,7 +76,7 @@ class CompteController
             exit;
         }
         Session::unset('errorRetrait');
-        if(!$this->comptService->retrait()){
+        if(!$this->transactionService->updateBalance( $_POST["account_number"], -$_POST["amount"])){
             Session::set('error', "Une erreur s'est produite lors de depose l'argent.");
             header('Location: /ESSEMLALI-Bank/retrait');
             exit;
