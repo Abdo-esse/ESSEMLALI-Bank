@@ -16,6 +16,7 @@ require dirname(__DIR__) . '/../vendor/autoload.php';
 class CompteService {
     private CompteRepository $compteRepo;
     private ClientRepository $clientRepo;
+    private EmailService $emailService;
 
     public function __construct() {
         $this->compteRepo = new CompteRepository();
@@ -88,40 +89,6 @@ class CompteService {
         }
     
         return " Erreur lors de l'approbation du compte.";
-    }
-
-    public function sendEmail($to, $subject, $message)
-    {
-        $mail = new PHPMailer(true);
-    
-        try {
-            $dotenv = Dotenv::createImmutable(dirname(__DIR__,2));
-                $dotenv->load();
-
-            $mail->CharSet = 'UTF-8';
-
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; 
-            $mail->SMTPAuth = true;
-            $mail->Username = $_ENV['USERNAME'];; 
-            $mail->Password = $_ENV['PASSWORD'];; 
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
-    
-         
-            $mail->setFrom('support@essemlalibank.com', 'Service Client - Essemlali Bank');
-            $mail->addAddress($to); 
-            $mail->addReplyTo('support@essemlalibank.com', 'Service Client - Essemlali Bank');
-
-            $mail->isHTML(true);
-            $mail->Subject = $subject;
-            $mail->Body    = nl2br($message);
-            $mail->AltBody = strip_tags($message); 
-            $mail->send();
-            return true;
-        } catch (Exception $e) {
-            return " Erreur lors de l'envoi de l'email à $to. Erreur : {$mail->ErrorInfo}";
-        }
     }
     public function generateAccountNumber() {
         $uuid = Uuid::uuid4()->toString(); 
