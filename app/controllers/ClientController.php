@@ -37,17 +37,17 @@ class ClientController extends Controller
         $request = new UpdateClientRequest($_POST);
     if (!$request->validate()) {
         Session::set('errorEditClient', $request->getErrors());
-        header("Location: /ESSEMLALI-Bank/client/update/$id");
+         $this->redirect("client/update/$id");
         exit;
     }
     Session::unset('errorEditClient');   
     if (!$this->clientService->update($id,$_POST)) {
         Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
-        header('Location: /ESSEMLALI-Bank/Client');
+         $this->redirect('Client');
         exit;
     }
 
-    header('Location: /ESSEMLALI-Bank/Client');
+     $this->redirect('Client');
     exit;
     }
     
@@ -64,7 +64,7 @@ class ClientController extends Controller
         if (!$request->validate()) {
             Session::set('errorClient', $request->getErrors());
             Session::set('valuesClient', $_POST);
-            header("Location: /ESSEMLALI-Bank/$where");
+             $this->redirect("$where");
             exit;
         }
         Session::unset('errorClient');
@@ -79,14 +79,13 @@ class ClientController extends Controller
         $clientId=$this->clientService->create();
         if (!$clientId) {
             Session::set('error', "Une erreur s'est produite lors de l'ajout de client.");
-           header("Location: /ESSEMLALI-Bank/$where");
+            $this->redirect("$where");
         }
          return $clientId;
     }
     public function store()
     {
         $this->addClients("signIn");
-
         header('Location: /ESSEMLALI-Bank');
         exit;
     }
@@ -97,38 +96,27 @@ class ClientController extends Controller
         if($clientId){
          $compteService=new CompteService();
          if($compteService->approuver($clientId)){
-            header('Location: /ESSEMLALI-Bank/demandeCompte');
+             $this->redirect('demandeCompte');
              exit;
          }
 
         }
-
-
-
     }
     public function demandeComptes(){
         $clients=$this->clientService->getAll();
-        echo  $this->twig->render('employe/demandeComptes.twig', [
-            'clients' => $clients,
-        ]);
+        echo  $this->twig->render('employe/demandeComptes.twig', ['clients' => $clients]);
     }
     public function demandeCompte($id){
         $client=$this->clientService->find($id);
-        echo  $this->twig->render('employe/demandeCompte.twig', [
-            'client' => $client,
-        ]);
+        echo  $this->twig->render('employe/demandeCompte.twig', ['client' => $client,]);
     }
     public function clients(){
         $clients=$this->clientService->allClients();
-        echo  $this->twig->render('employe/clients.twig', [
-            'clients' => $clients,
-        ]);
+        echo  $this->twig->render('employe/clients.twig', ['clients' => $clients,]);
     }
     public function client($id){
         $client=$this->clientService->getClient($id);
-        echo  $this->twig->render('employe/client.twig', [
-            'client' => $client,
-        ]);
+        echo  $this->twig->render('employe/client.twig', ['client' => $client,]);
     }
     public function delete($id){
         $data = [
@@ -138,10 +126,10 @@ class ClientController extends Controller
         
         if (!$this->clientService->update($id,$data)) {
             Session::set('error', "Une erreur s'est produite lors de la supression de client.");
-            header('Location: /ESSEMLALI-Bank/client/'.$id);
+             $this->redirect('client/'.$id);
             exit;
         }
-        header('Location: /ESSEMLALI-Bank/clients');
+         $this->redirect('clients');
         exit;
     } 
 
