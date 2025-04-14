@@ -16,10 +16,12 @@ require dirname(__DIR__) . '/../vendor/autoload.php';
 class CompteService {
     private CompteRepository $compteRepo;
     private ClientRepository $clientRepo;
+    private EmailService $emailService;
 
     public function __construct() {
         $this->compteRepo = new CompteRepository();
         $this->clientRepo = new ClientRepository();
+        $this->emailService= new EmailService();
 
     }
 
@@ -57,15 +59,14 @@ class CompteService {
             return "Erreur lors de l'approbation du compte.";
         }
 
-
-        $to = $user->getEmail();  
-        $nom = $user->getNom();
-        $prenom = $user->getprenom();
-    
-        $subject = "Votre compte a ete approuve ";
-        $message = "Bonjour $nom $prenom,\n\nVotre compte a été approuvé avec succès.\nVoici vos identifiants de connexion :\n\nEmail: $to\nMot de passe: $plainPassword\nNuméro de compte: $numeroCompte\n\nNous vous recommandons de changer ce mot de passe dès votre première connexion.\n\nCordialement,\nL'équipe ESSEMLALI-Bank";
-    
-        return $this->sendEmail($to, $subject, $message);
+        $fullName = $user->getNom() . ' ' . $user->getprenom();
+        
+        return $this->emailService->sendAccountApproval(
+            $user->getEmail(),
+            $fullName,
+            $plainPassword,
+            $numeroCompte
+        );
     }
        
 
@@ -83,52 +84,11 @@ class CompteService {
         $prenom = $user->getprenom();
     
         if ($updated) {
-    
-            $subject = "Votre demande de création de compte a ete refusée";
-            $message = "Bonjour $nom $prenom,\n\n
-                        Après examen de votre demande, nous sommes au regret de vous informer que votre demande de création de compte a été refusée.\n\n
-                        Si vous souhaitez obtenir plus d'informations sur les raisons de ce refus, n'hésitez pas à nous contacter à l'adresse support@essemlali-bank.com.\n\n
-                        Cordialement,\n
-                        L'équipe ESSEMLALI-Bank.";
-    
-            return $this->sendEmail($to, $subject, $message);
+            $fullName = $user->getNom() . ' ' . $user->getPrenom(); 
+            return $this->emailService->sendAccountRejection( $to,$fullName);
         }
     
         return " Erreur lors de l'approbation du compte.";
-    }
-
-    public function sendEmail($to, $subject, $message)
-    {
-        $mail = new PHPMailer(true);
-    
-        try {
-            $dotenv = Dotenv::createImmutable(dirname(__DIR__,2));
-                $dotenv->load();
-
-            $mail->CharSet = 'UTF-8';
-
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; 
-            $mail->SMTPAuth = true;
-            $mail->Username = $_ENV['USERNAME'];; 
-            $mail->Password = $_ENV['PASSWORD'];; 
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
-    
-         
-            $mail->setFrom('support@essemlalibank.com', 'Service Client - Essemlali Bank');
-            $mail->addAddress($to); 
-            $mail->addReplyTo('support@essemlalibank.com', 'Service Client - Essemlali Bank');
-
-            $mail->isHTML(true);
-            $mail->Subject = $subject;
-            $mail->Body    = nl2br($message);
-            $mail->AltBody = strip_tags($message); 
-            $mail->send();
-            return true;
-        } catch (Exception $e) {
-            return " Erreur lors de l'envoi de l'email à $to. Erreur : {$mail->ErrorInfo}";
-        }
     }
     public function generateAccountNumber() {
         $uuid = Uuid::uuid4()->toString(); 
