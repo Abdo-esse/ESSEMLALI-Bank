@@ -5,21 +5,17 @@ use App\services\CompteService;
 use App\services\TransactionService;
 use App\requests\DepositRequest;
 use App\requests\RetraitRequest;
-use App\core\Session;
 
-class CompteController
+
+class CompteController extends Controller
 {
-    private $twig;
     private CompteService $comptService;
     private TransactionService $transactionService;
     public function __construct()
     {
-          $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
           $this->comptService= new CompteService;
           $this->transactionService= new TransactionService;
-          Session::start();
-
-    }
+            }
 
 
     public function demandeCompte()

@@ -1,19 +1,16 @@
 <?php 
 namespace App\Controllers;
-use App\core\Session;
+
 use App\services\EmployeService;
 use App\requests\StoreUserRequest;
 
-class EmployeController
+class EmployeController extends Controller
 {
-    private $twig;
     private $employeService;
     public function __construct()
     {
-          $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
+        
           $this->employeService= new EmployeService();
-          Session::start();
-
     }
 
 

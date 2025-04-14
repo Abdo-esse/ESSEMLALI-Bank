@@ -1,23 +1,19 @@
 <?php
 
 namespace App\Controllers;
-use App\core\Session;
+
 use App\requests\SignInRequest;
 use App\requests\UpdateClientRequest;
 use App\services\ClientService;
 use App\services\CompteService;
 
-class ClientController
+class ClientController extends Controller
 {
-    private $twig;
     private ClientService $clientService;
 
     public function __construct()
     {
-          $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
           $this->clientService=new ClientService();
-          Session::start();
-
     }
 
     public function index()

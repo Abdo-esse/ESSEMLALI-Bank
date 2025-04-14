@@ -1,19 +1,16 @@
 <?php 
 namespace App\Controllers;
-use App\core\Session;
+
 use App\services\AdminService;
 use App\requests\StoreUserRequest;
 
-class AdminController
+class AdminController extends Controller
 {
-    private $twig;
+   
     private $adminService;
     public function __construct()
-    {
-          $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
-          $this->adminService= new AdminService();
-          Session::start();
-
+    {        
+          $this->adminService= new AdminService(); 
     }
 
 

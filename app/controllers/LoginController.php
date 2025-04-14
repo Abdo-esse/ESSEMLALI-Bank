@@ -4,18 +4,15 @@ namespace App\Controllers;
 
 use App\services\AuthService; 
 use App\requests\LoginRequest;
-use App\core\Session;
 
-class LoginController
+
+class LoginController extends Controller
 {
-    private $twig;
     private $authService;
 
     public function __construct()
     {
-        $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
         $this->authService = new AuthService();
-        Session::start();
     }
 
 
