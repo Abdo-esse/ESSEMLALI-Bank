@@ -1,19 +1,17 @@
 <?php 
 namespace App\Controllers;
-use App\core\Session;
+
 use App\services\EmployeService;
 use App\requests\StoreUserRequest;
+use App\core\Session;
 
-class EmployeController
+class EmployeController extends Controller
 {
-    private $twig;
     private $employeService;
     public function __construct()
     {
-          $this->twig= require_once dirname( __DIR__) .'/config/Twig.php';
+        parent::__construct();
           $this->employeService= new EmployeService();
-          Session::start();
-
     }
 
 
@@ -45,7 +43,7 @@ class EmployeController
     if (!$request->validate()) {
         Session::set('errorEmployer', $request->getErrors());
         Session::set('valuesEmployer', $_POST);
-        header('Location: /ESSEMLALI-Bank/employes');
+         $this->redirect('employes');
         exit;
     }
     Session::unset('errorEmployer');
@@ -59,11 +57,11 @@ class EmployeController
     ];
     if (!$this->employeService->create($data)) {
         Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
-        header('Location: /ESSEMLALI-Bank/employes');
+         $this->redirect('employes');
         exit;
     }
 
-    header('Location: /ESSEMLALI-Bank/employes');
+     $this->redirect('employes');
     exit;
 }
 
@@ -84,7 +82,7 @@ public function update($id)
     $request = new StoreUserRequest($_POST);
     if (!$request->validate()) {
         Session::set('errorEditEmployer', $request->getErrors());
-        header("Location: /ESSEMLALI-Bank/editeEploye/$id");
+         $this->redirect("editeEploye/$id");
         exit;
     }
     Session::unset('errorEditEmployer');
@@ -98,11 +96,11 @@ public function update($id)
     
     if (!$this->employeService->update($id,$data)) {
         Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
-        header('Location: /ESSEMLALI-Bank/employes');
+         $this->redirect('employes');
         exit;
     }
 
-    header('Location: /ESSEMLALI-Bank/employes');
+     $this->redirect('employes');
     exit;
 } 
 public function desactiver($id)
@@ -113,11 +111,11 @@ public function desactiver($id)
     
     if (!$this->employeService->update($id,$data)) {
         Session::set('error', "Une erreur s'est produite lors de desactiver de l'employer.");
-        header('Location: /ESSEMLALI-Bank/employes');
+         $this->redirect('employes');
         exit;
     }
 
-    header('Location: /ESSEMLALI-Bank/employes');
+     $this->redirect('employes');
     exit;
 } 
 public function activer($id)
@@ -128,11 +126,11 @@ public function activer($id)
     
     if (!$this->employeService->update($id,$data)) {
         Session::set('error', "Une erreur s'est produite lors de activer de l'employer.");
-        header('Location: /ESSEMLALI-Bank/employes');
+         $this->redirect('employes');
         exit;
     }
 
-    header('Location: /ESSEMLALI-Bank/employes');
+     $this->redirect('employes');
     exit;
 } 
 public function delete($id)
@@ -144,17 +142,13 @@ public function delete($id)
     
     if (!$this->employeService->update($id,$data)) {
         Session::set('error', "Une erreur s'est produite lors de la supression de l'employer.");
-        header('Location: /ESSEMLALI-Bank/employes');
+         $this->redirect('employes');
         exit;
     }
 
-    header('Location: /ESSEMLALI-Bank/employes');
+     $this->redirect('employes');
     exit;
 } 
-
-public function deposit(){
-    var_dump($_POST);
-}
 
 
 }

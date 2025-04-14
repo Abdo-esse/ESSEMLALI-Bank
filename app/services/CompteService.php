@@ -28,7 +28,6 @@ class CompteService {
     public function create($clientId){
         $numeroCompte = $this->generateAccountNumber(); 
         $solde = isset($_POST['solde']) ? floatval($_POST['solde']) : 0.0;
-    
         $data = [
             "numeroCompte" => $numeroCompte,
             "solde" => $solde,
@@ -59,14 +58,8 @@ class CompteService {
             return "Erreur lors de l'approbation du compte.";
         }
 
-        $fullName = $user->getNom() . ' ' . $user->getprenom();
-        
-        return $this->emailService->sendAccountApproval(
-            $user->getEmail(),
-            $fullName,
-            $plainPassword,
-            $numeroCompte
-        );
+        $fullName = $user->getNom() . ' ' . $user->getprenom();        
+        return $this->emailService->sendAccountApproval($user->getEmail(),$fullName,$plainPassword,$numeroCompte);
     }
        
 
@@ -76,13 +69,8 @@ class CompteService {
             "date_suppression"=>date('Y-m-d H:i:s') 
         ];
         $updated = $this->compteRepo->update('users', $id, $data);
-
         $user =$this->clientRepo->find('roles', $id);
-
-        $to = $user->getEmail();  
-        $nom = $user->getNom();
-        $prenom = $user->getprenom();
-    
+        $to = $user->getEmail();      
         if ($updated) {
             $fullName = $user->getNom() . ' ' . $user->getPrenom(); 
             return $this->emailService->sendAccountRejection( $to,$fullName);
@@ -100,17 +88,6 @@ class CompteService {
     public function find($numeroCompte){
         return $this->compteRepo->findAcount($numeroCompte);
     }
-    public function deposit(){
-        $acount= $this->compteRepo->findAcount($_POST["account_number"]);
-        $nouveauSolde = $acount->getSolde() + $_POST["amount"];
-         return $this->compteRepo->update('comptes',$acount->getId(),["solde"=>$nouveauSolde]);
-        
-    }
-    public function retrait(){
-        $acount= $this->compteRepo->findAcount($_POST["account_number"]);
-        $nouveauSolde = $acount->getSolde() - $_POST["amount"];
-         return $this->compteRepo->update('comptes',$acount->getId(),["solde"=>$nouveauSolde]);
-        
-    }
+    
     
 }
