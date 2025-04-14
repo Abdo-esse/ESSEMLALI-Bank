@@ -20,6 +20,7 @@ class CompteService {
     public function __construct() {
         $this->compteRepo = new CompteRepository();
         $this->clientRepo = new ClientRepository();
+        $this->emailService= new EmailService();
 
     }
 
@@ -57,15 +58,14 @@ class CompteService {
             return "Erreur lors de l'approbation du compte.";
         }
 
-
-        $to = $user->getEmail();  
-        $nom = $user->getNom();
-        $prenom = $user->getprenom();
-    
-        $subject = "Votre compte a ete approuve ";
-        $message = "Bonjour $nom $prenom,\n\nVotre compte a été approuvé avec succès.\nVoici vos identifiants de connexion :\n\nEmail: $to\nMot de passe: $plainPassword\nNuméro de compte: $numeroCompte\n\nNous vous recommandons de changer ce mot de passe dès votre première connexion.\n\nCordialement,\nL'équipe ESSEMLALI-Bank";
-    
-        return $this->sendEmail($to, $subject, $message);
+        $fullName = $user->getNom() . ' ' . $user->getprenom();
+        
+        return $this->emailService->sendAccountApproval(
+            $user->getEmail(),
+            $fullName,
+            $plainPassword,
+            $numeroCompte
+        );
     }
        
 
@@ -83,15 +83,8 @@ class CompteService {
         $prenom = $user->getprenom();
     
         if ($updated) {
-    
-            $subject = "Votre demande de création de compte a ete refusée";
-            $message = "Bonjour $nom $prenom,\n\n
-                        Après examen de votre demande, nous sommes au regret de vous informer que votre demande de création de compte a été refusée.\n\n
-                        Si vous souhaitez obtenir plus d'informations sur les raisons de ce refus, n'hésitez pas à nous contacter à l'adresse support@essemlali-bank.com.\n\n
-                        Cordialement,\n
-                        L'équipe ESSEMLALI-Bank.";
-    
-            return $this->sendEmail($to, $subject, $message);
+            $fullName = $user->getNom() . ' ' . $user->getPrenom(); 
+            return $this->emailService->sendAccountRejection( $to,$fullName);
         }
     
         return " Erreur lors de l'approbation du compte.";
