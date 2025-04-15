@@ -68,20 +68,21 @@ class TransactionController extends Controller
              $this->redirect('virement');
             exit;
         }
-        Session::unset('errorVirement');
-        
+        Session::unset('errorVirement');        
         if(!$this->transactionService->virement( $_POST)){
-            // Session::set('error', "Une erreur s'est produite lors de retrait l'argent.");
-            //  $this->redirect('retrait');
-            echo "Une erreur s'est produite lors de retrait l'argent.";
+            Session::set('error', "Une erreur s'est produite lors de virement l'argent.");
+             $this->redirect('virement');
             exit;
         }
-        //  $this->historiqueService->saveHistorique($_POST,"Retrait");
-        //  $this->redirect('retrait');
-        echo"3lamolana";
+         $this->historiqueService->saveHistoriqueVirement($_POST);
+         $this->redirect('recu/virement');
         exit;
 
         
+    }
+
+    public function recuVirement(){
+        echo  $this->twig->render('reçu/virement.twig',['session' => $_SESSION ]);
     }
 
 
