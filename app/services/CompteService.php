@@ -5,9 +5,6 @@ namespace App\services;
 use App\Repository\CompteRepository;
 use App\Repository\ClientRepository;
 use Ramsey\Uuid\Uuid;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-use Dotenv\Dotenv;
 
 
 require dirname(__DIR__) . '/../vendor/autoload.php'; 

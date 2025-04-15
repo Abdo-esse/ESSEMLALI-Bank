@@ -44,53 +44,6 @@ class CompteController extends Controller
 
     }
 
-    
-
-    public function deposit(){
-        $acount=$this->comptService->find($_POST["account_number"]);
-        $request = new DepositRequest($_POST);
-        if (!$request->validate()) {
-            Session::set('errorDeposit', $request->getErrors());
-             $this->redirect('versement');
-            exit;
-        }
-        Session::unset('errorDeposit');
-        if(!$this->transactionService->updateBalance( $_POST["account_number"], $_POST["amount"])){
-            Session::set('error', "Une erreur s'est produite lors de depose l'argent.");
-             $this->redirect('versement');
-            exit;
-        }
-        $this->historiqueService->saveHistorique($_POST,"Deposit");
-         $this->redirect('versement');
-        exit;
-
-        
-    }
-
-    public function retrait(){
-        $request = new RetraitRequest($_POST);
-        if (!$request->validate()) {
-            Session::set('errorRetrait', $request->getErrors());
-             $this->redirect('retrait');
-            exit;
-        }
-        Session::unset('errorRetrait');
-        if(!$this->transactionService->updateBalance( $_POST["account_number"], -$_POST["amount"])){
-            Session::set('error', "Une erreur s'est produite lors de depose l'argent.");
-             $this->redirect('retrait');
-            exit;
-        }
-         $this->historiqueService->saveHistorique($_POST,"Retrait");
-         $this->redirect('retrait');
-        exit;
-
-        
-    }
-
-
-    
-
-
 
     
 }
