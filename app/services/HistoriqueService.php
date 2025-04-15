@@ -24,8 +24,8 @@ class HistoriqueService {
             "montant" => $data['amount'],
         ];
 
-        if (isset($data['accountNumberBeneficiaire'])&&!empty($data['accountNumberBeneficiaire'])) {
-            $historique["id_beneficiaire"] = $this->getIdAcount($data['accountNumberBeneficiaire']);
+        if (isset($data['numberBeneficiaire'])&&!empty($data['numberBeneficiaire'])) {
+            $historique["id_beneficiaire"] = $this->getIdAcount($data['numberBeneficiaire']);
         }    
         if (!empty($data['description'])) {
             $historique["description"] = $data['description'];
@@ -37,4 +37,15 @@ class HistoriqueService {
         $acounte=$this->comptService->find($accountNumber);
         return $acounte->getId();
     }
+
+    public function saveHistoriqueVirement($data){
+        $virmentData=[
+            "account_number"=> $data["sender-iban"],
+            "numberBeneficiaire"=> $data["recipient-iban"],
+            "amount"=> $data["amount"],
+            "description"=>$data["description"]
+        ];
+        return $this->saveHistorique($virmentData,"virement");
+    }
 }
+
