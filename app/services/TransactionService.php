@@ -38,15 +38,8 @@ class TransactionService
             "id"=>$accountRecipient->getId(),
             "solde"=>$newBalanceRecipient
         ];
-         echo "<pre>";
-        var_dump($dataRecipient,$dataSendre);
-        echo "<pre>";
-        // $currentBalance = $account->getSolde();
-        // $newBalance = $currentBalance + $amount;
 
-        // return $this->compteRepo->update('comptes', $account->getId(), [
-        //     "solde" => $newBalance
-        // ]);
+        return $this->compteRepo->virement($dataSendre, $dataRecipient);
     }
 
 }

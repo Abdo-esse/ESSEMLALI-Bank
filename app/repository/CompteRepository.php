@@ -25,16 +25,15 @@ class CompteRepository  extends BaseRepository
     }
 
 
-   public function virement($data ){
+   public function virement($dataSendre,$dataRecipient){
         
         $this->conn->beginTransaction(); 
         try {
-            $AdminId = $this->createAction($this->table, $data);
-            if (empty($AdminId)) {
-                throw new PDOException("Erreur lors de l'insertion d'admin."); 
+            if (!$this->update($this->table, $dataSendre["id"],$dataSendre["solde"])) {
+                throw new PDOException("Erreur lors de l'update du sendre."); 
             }
-            if (!$this->createAction($this->tablePivot,["user_id"=>$AdminId,"role_id"=>1])) {
-                throw new PDOException("Erreur lors de l'insertion du role ."); 
+            if (!$this->update($this->table, $dataRecipient["id"],$dataRecipient["solde"])) {
+                throw new PDOException("Erreur lors de l'update du recipeint ."); 
             }
             $this->conn->commit(); 
             return true;
