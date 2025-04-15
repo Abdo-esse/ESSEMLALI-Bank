@@ -18,30 +18,34 @@
         
         <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Virement Bancaire</h1>
         
-        <form class="space-y-6">
+        <form class="space-y-6" action="/ESSEMLALI-Bank/virement" method="POST" >
             <div>
                 <label for="sender-iban" class="block text-sm font-medium text-gray-700 mb-1">IBAN du donneur</label>
                 <input type="text" id="sender-iban" name="sender-iban" 
                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    
+                    value="BANK-" 
+                    placeholder="BANK-XXXXXXXXXXXX" required>
             </div>
             
             <div>
                 <label for="recipient-iban" class="block text-sm font-medium text-gray-700 mb-1">IBAN du bénéficiaire</label>
                 <input type="text" id="recipient-iban" name="recipient-iban" 
                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="FR76 XXXX XXXX XXXX XXXX XXXX XXX" required>
+                    value="BANK-"
+                    placeholder="BANK-XXXXXXXXXXXX" required>
             </div>
             
             <div>
                 <label for="amount" class="block text-sm font-medium text-gray-700 mb-1">Montant à transférer</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <span class="text-gray-500">€</span>
+                        <span class="text-gray-500">dh</span>
                     </div>
-                    <input type="number" id="amount" name="amount" min="0.01" step="0.01"
+                    <input type="number" id="amount" name="amount" min="10" step="1"
                         class="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="0.00" required>
+                        placeholder="0.00"
+                        value="10"
+                        required>
                 </div>
             </div>
             
