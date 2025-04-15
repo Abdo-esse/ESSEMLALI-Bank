@@ -37,4 +37,5 @@ Router::add("POST","/deposit","TransactionController@deposit");
 Router::add("GET","/retrait","EmployeController@retraitView");
 Router::add("POST","/retrait","TransactionController@retrait");
 
+Router::add("GET","/virement","EmployeController@virementView");
 

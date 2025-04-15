@@ -27,6 +27,10 @@ class EmployeController extends Controller
     {
        echo  $this->twig->render('employe/retrait.twig',['session' => $_SESSION ]);
     }
+    public function virementView()
+    {
+       echo  $this->twig->render('employe/virement.twig',['session' => $_SESSION ]);
+    }
     public function employes()
     {
         $employes= $this->employeService->getAll();
