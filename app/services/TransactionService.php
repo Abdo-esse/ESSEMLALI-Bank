@@ -1,7 +1,7 @@
 <?php 
 namespace App\Services;
 
-use App\Repositories\CompteRepository;
+use App\Repository\CompteRepository;
 use Exception;
 
 class TransactionService
@@ -24,4 +24,22 @@ class TransactionService
             "solde" => $newBalance
         ]);
     }
+    public function virement($data)
+    {
+        $accountSender = $this->compteRepo->findAcount($data["sender-iban"]);
+        $accountRecipient = $this->compteRepo->findAcount($data["recipient-iban"]);
+        $newBalanceSender=$accountSender->getSolde() - $data["amount"];
+        $newBalanceRecipient=$accountRecipient->getSolde() + $data["amount"];
+        $dataSendre=[
+            "id"=>$accountSender->getId(),
+            "solde"=>$newBalanceSender
+        ];
+        $dataRecipient=[
+            "id"=>$accountRecipient->getId(),
+            "solde"=>$newBalanceRecipient
+        ];
+
+        return $this->compteRepo->virement($dataSendre, $dataRecipient);
+    }
+
 }

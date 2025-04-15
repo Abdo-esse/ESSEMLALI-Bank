@@ -42,4 +42,16 @@ CREATE TABLE comptes (
     estActif BOOLEAN DEFAULT TRUE
 );
 
+CREATE TABLE historique (
+    id SERIAL PRIMARY KEY,
+    id_donneur INTEGER,
+    id_beneficiaire INTEGER DEFAULT NULL,
+    type_operation VARCHAR(10),
+    montant DECIMAL(15,2) NOT NULL CHECK (montant >= 0), 
+    description TEXT,
+    dateEffectue TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_donneur) REFERENCES comptes(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_beneficiaire) REFERENCES comptes(id) ON DELETE CASCADE
+);
+
 CREATE INDEX idx_numeroCompte ON comptes(numeroCompte);

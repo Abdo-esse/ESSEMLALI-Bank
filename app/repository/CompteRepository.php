@@ -19,19 +19,29 @@ class CompteRepository  extends BaseRepository
     public function findAcount($numeroCompte){
         $compte=$this->find($this->table, ["numeroCompte"=>$numeroCompte]);
         if($compte){
-            return new Compte(
-            $compte->numerocompte,
-            $compte->solde,
-            $compte->datecreation,
-            $compte->estactif,
-            $compte->id
-        );
-
+            return new Compte($compte->numerocompte,$compte->solde,$compte->datecreation,$compte->estactif,$compte->id);
         }
         return false;
     }
 
-   
+
+   public function virement($dataSendre,$dataRecipient){
+        
+        $this->conn->beginTransaction(); 
+        try {
+            if (!$this->update($this->table, $dataSendre["id"],["solde"=>$dataSendre["solde"]])) {
+                throw new PDOException("Erreur lors de l'update du sendre."); 
+            }
+            if (!$this->update($this->table, $dataRecipient["id"],["solde"=>$dataRecipient["solde"]])) {
+                throw new PDOException("Erreur lors de l'update du recipeint ."); 
+            }
+            $this->conn->commit(); 
+            return true;
+        } catch (PDOException $e) {
+            $this->conn->rollBack(); 
+            echo "Erreur : " . $e->getMessage();
+        }
+    }
 
 
     
