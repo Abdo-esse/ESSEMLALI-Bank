@@ -59,6 +59,26 @@ class TransactionController extends Controller
 
         
     }
+    public function virement(){
+        var_dump($_POST);
+        // $request = new RetraitRequest($_POST);
+        // if (!$request->validate()) {
+        //     Session::set('errorRetrait', $request->getErrors());
+        //      $this->redirect('retrait');
+        //     exit;
+        // }
+        // Session::unset('errorRetrait');
+        // if(!$this->transactionService->updateBalance( $_POST["account_number"], -$_POST["amount"])){
+        //     Session::set('error', "Une erreur s'est produite lors de retrait l'argent.");
+        //      $this->redirect('retrait');
+        //     exit;
+        // }
+        //  $this->historiqueService->saveHistorique($_POST,"Retrait");
+        //  $this->redirect('retrait');
+        exit;
+
+        
+    }
 
 
     
