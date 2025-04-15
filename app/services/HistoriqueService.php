@@ -2,25 +2,39 @@
 
 namespace App\services;
 use App\Repository\HistoriqueRepository;
+use App\services\CompteService;
 
 class HistoriqueService {
 
     private HistoriqueRepository $historiqueRepo;
 
+    private CompteService $comptService;
+
     public function __construct() {
         $this->historiqueRepo = new HistoriqueRepository();
+        $this->comptService= new CompteService;
+
     }
 
-    public function saveHistorique($id_donneur,$type_operation,$montant,$id_beneficiaire = null,$description = null) {
+    public function saveHistorique($data,$typeOperation) {
 
-        $data = [
-            "id_donneur" => $id_donneur,
-            "type_operation" => $type_operation,
-            "montant" => $montant,
+        $historique = [
+            "id_donneur" => $this->getIdAcount($data['account_number']),
+            "type_operation" => $typeOperation,
+            "montant" => $data['amount'],
         ];
 
-        if ($id_beneficiaire !== null) $data["id_beneficiaire"] = $id_beneficiaire;  
-        if ($description !== null) $data["description"] = $description;
-        return $this->historiqueRepo->save($data);
+        if (isset($data['accountNumberBeneficiaire'])&&!empty($data['accountNumberBeneficiaire'])) {
+            $historique["id_beneficiaire"] = $this->getIdAcount($data['accountNumberBeneficiaire']);
+        }    
+        if (!empty($data['description'])) {
+            $historique["description"] = $data['description'];
+        }
+        return $this->historiqueRepo->save($historique);
+    }
+
+    private function getIdAcount($accountNumber){
+        $acounte=$this->comptService->find($accountNumber);
+        return $acounte->getId();
     }
 }

@@ -1,7 +1,7 @@
 <?php 
 namespace App\Services;
 
-use App\Repositories\CompteRepository;
+use App\Repository\CompteRepository;
 use Exception;
 
 class TransactionService

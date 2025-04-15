@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\services\CompteService;
 use App\services\TransactionService;
+use App\services\HistoriqueService;
 use App\requests\DepositRequest;
 use App\requests\RetraitRequest;
 use App\core\Session;
@@ -11,11 +12,13 @@ class CompteController extends Controller
 {
     private CompteService $comptService;
     private TransactionService $transactionService;
+    private HistoriqueService $historiqueService;
     public function __construct()
     {
           parent::__construct();
           $this->comptService= new CompteService;
           $this->transactionService= new TransactionService;
+          $this->historiqueService= new HistoriqueService;
     }
 
 
@@ -44,6 +47,7 @@ class CompteController extends Controller
     
 
     public function deposit(){
+        $acount=$this->comptService->find($_POST["account_number"]);
         $request = new DepositRequest($_POST);
         if (!$request->validate()) {
             Session::set('errorDeposit', $request->getErrors());
@@ -56,6 +60,7 @@ class CompteController extends Controller
              $this->redirect('versement');
             exit;
         }
+        $this->historiqueService->saveHistorique($_POST,"Deposit");
          $this->redirect('versement');
         exit;
 
@@ -75,6 +80,7 @@ class CompteController extends Controller
              $this->redirect('retrait');
             exit;
         }
+         $this->historiqueService->saveHistorique($_POST,"Retrait");
          $this->redirect('retrait');
         exit;
 
