@@ -66,11 +66,11 @@ class TransactionController extends Controller
         if (!$request->validate()) {
             Session::set('errorVirement', $request->getErrors());
              $this->redirect('virement');
-            // var_dump($_SESSION["errorVirement"]);
             exit;
         }
-        // Session::unset('errorRetrait');
-        // if(!$this->transactionService->updateBalance( $_POST["account_number"], -$_POST["amount"])){
+        Session::unset('errorVirement');
+        $this->transactionService->virement( $_POST);
+        // if(!$this->transactionService->virement( $_POST["account_number"], -$_POST["amount"])){
         //     Session::set('error', "Une erreur s'est produite lors de retrait l'argent.");
         //      $this->redirect('retrait');
         //     exit;

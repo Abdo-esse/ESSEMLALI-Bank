@@ -19,19 +19,30 @@ class CompteRepository  extends BaseRepository
     public function findAcount($numeroCompte){
         $compte=$this->find($this->table, ["numeroCompte"=>$numeroCompte]);
         if($compte){
-            return new Compte(
-            $compte->numerocompte,
-            $compte->solde,
-            $compte->datecreation,
-            $compte->estactif,
-            $compte->id
-        );
-
+            return new Compte($compte->numerocompte,$compte->solde,$compte->datecreation,$compte->estactif,$compte->id);
         }
         return false;
     }
 
-   
+
+   public function virement($data ){
+        
+        $this->conn->beginTransaction(); 
+        try {
+            $AdminId = $this->createAction($this->table, $data);
+            if (empty($AdminId)) {
+                throw new PDOException("Erreur lors de l'insertion d'admin."); 
+            }
+            if (!$this->createAction($this->tablePivot,["user_id"=>$AdminId,"role_id"=>1])) {
+                throw new PDOException("Erreur lors de l'insertion du role ."); 
+            }
+            $this->conn->commit(); 
+            return true;
+        } catch (PDOException $e) {
+            $this->conn->rollBack(); 
+            echo "Erreur : " . $e->getMessage();
+        }
+    }
 
 
     
