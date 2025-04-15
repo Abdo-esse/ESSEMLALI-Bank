@@ -25,6 +25,16 @@
                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     value="BANK-" 
                     placeholder="BANK-XXXXXXXXXXXX" required>
+                       {% if session.errorVirement.Sender is defined %}
+                                    <p class="mt-1 text-sm text-red-600">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        {{ session.errorVirement.Sender }}
+                                    </span>
+                                    </p>
+                                {% endif %}
             </div>
             
             <div>
@@ -33,6 +43,16 @@
                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     value="BANK-"
                     placeholder="BANK-XXXXXXXXXXXX" required>
+                {% if session.errorVirement.Recipient is defined %}
+                                    <p class="mt-1 text-sm text-red-600">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        {{ session.errorVirement.Recipient }}
+                                    </span>
+                                    </p>
+                {% endif %}
             </div>
             
             <div>
@@ -45,7 +65,18 @@
                         class="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                         placeholder="0.00"
                         value="10"
-                        required>
+                        >
+
+                       {% if session.errorVirement.amount is defined %}
+                                    <p class="mt-1 text-sm text-red-600">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        {{ session.errorVirement.amount }}
+                                    </span>
+                                    </p>
+                        {% endif %}
                 </div>
             </div>
             
@@ -54,6 +85,16 @@
                 <textarea id="description" name="description" rows="3"
                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Motif du virement..."></textarea>
+                       {% if session.errorVirement.description is defined %}
+                                    <p class="mt-1 text-sm text-red-600">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        {{ session.errorVirement.description }}
+                                    </span>
+                                    </p>
+                        {% endif %}
             </div>
             
             <div class="pt-2">

@@ -2,11 +2,11 @@
 
 namespace App\requests;
 use App\services\CompteService;
-class DepositRequest {
+class VirementRequest {
     private $data;
     private $errors = [];
     private CompteService $comptService;
-    private $compte;
+
     public function __construct(array $data) {
         $this->data = $data;
         $this->comptService= new CompteService;
@@ -22,9 +22,17 @@ class DepositRequest {
             $this->errors['amount'] = 'Amount must be at least 10.';
         } elseif ($this->data['amount'] > 10000) {
             $this->errors['amount'] = 'Amount exceeds the maximum limit.';
-        }elseif($this->comptService->find($this->data["sender-iban"])->getSolde()>$this->data['amount'] ){
-            $this->errors['amount'] = 'Insufficient balance in sender\'s account.';
+        }elseif (empty($this->errors['sender-iban'])) {
+            $sender = $this->comptService->find($this->data["sender-iban"]);
+            if ($sender && $sender->getSolde() < $this->data['amount']) {
+                $this->errors['amount'] = 'Insufficient funds in sender\'s account.';
+            }
         }
+
+        if (empty($this->data['description'])) {
+            $this->errors['description'] = 'description is required.';
+        }
+
         
         return empty($this->errors);
     }
@@ -33,7 +41,7 @@ class DepositRequest {
         if (empty($this->data[$key])) {
             $this->errors[$key] = "$label IBAN is required.";
         } elseif (!$this->comptService->find($this->data[$key])) {
-            $this->errors[$key] = "$label IBAN is invalid.";
+            $this->errors[$label] = "$label IBAN is invalid.";
         }
     }
     

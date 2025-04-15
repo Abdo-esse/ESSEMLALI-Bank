@@ -5,6 +5,7 @@ use App\services\TransactionService;
 use App\services\HistoriqueService;
 use App\requests\DepositRequest;
 use App\requests\RetraitRequest;
+use App\requests\VirementRequest;
 use App\core\Session;
 
 class TransactionController extends Controller
@@ -61,12 +62,13 @@ class TransactionController extends Controller
     }
     public function virement(){
         var_dump($_POST);
-        // $request = new RetraitRequest($_POST);
-        // if (!$request->validate()) {
-        //     Session::set('errorRetrait', $request->getErrors());
-        //      $this->redirect('retrait');
-        //     exit;
-        // }
+        $request = new VirementRequest($_POST);
+        if (!$request->validate()) {
+            Session::set('errorVirement', $request->getErrors());
+             $this->redirect('virement');
+            // var_dump($_SESSION["errorVirement"]);
+            exit;
+        }
         // Session::unset('errorRetrait');
         // if(!$this->transactionService->updateBalance( $_POST["account_number"], -$_POST["amount"])){
         //     Session::set('error', "Une erreur s'est produite lors de retrait l'argent.");
@@ -75,6 +77,7 @@ class TransactionController extends Controller
         // }
         //  $this->historiqueService->saveHistorique($_POST,"Retrait");
         //  $this->redirect('retrait');
+        echo"3lamolana";
         exit;
 
         
