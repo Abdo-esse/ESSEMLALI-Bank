@@ -81,9 +81,7 @@ class TransactionController extends Controller
         
     }
 
-    public function recuVirement(){
-        echo  $this->twig->render('reçu/virement.twig',['session' => $_SESSION ]);
-    }
+    
 
 
     
