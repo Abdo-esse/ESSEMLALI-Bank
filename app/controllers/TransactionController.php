@@ -69,12 +69,13 @@ class TransactionController extends Controller
             exit;
         }
         Session::unset('errorVirement');
-        $this->transactionService->virement( $_POST);
-        // if(!$this->transactionService->virement( $_POST["account_number"], -$_POST["amount"])){
-        //     Session::set('error', "Une erreur s'est produite lors de retrait l'argent.");
-        //      $this->redirect('retrait');
-        //     exit;
-        // }
+        
+        if(!$this->transactionService->virement( $_POST)){
+            // Session::set('error', "Une erreur s'est produite lors de retrait l'argent.");
+            //  $this->redirect('retrait');
+            echo "Une erreur s'est produite lors de retrait l'argent.";
+            exit;
+        }
         //  $this->historiqueService->saveHistorique($_POST,"Retrait");
         //  $this->redirect('retrait');
         echo"3lamolana";

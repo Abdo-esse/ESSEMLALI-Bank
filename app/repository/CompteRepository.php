@@ -29,10 +29,10 @@ class CompteRepository  extends BaseRepository
         
         $this->conn->beginTransaction(); 
         try {
-            if (!$this->update($this->table, $dataSendre["id"],$dataSendre["solde"])) {
+            if (!$this->update($this->table, $dataSendre["id"],["solde"=>$dataSendre["solde"]])) {
                 throw new PDOException("Erreur lors de l'update du sendre."); 
             }
-            if (!$this->update($this->table, $dataRecipient["id"],$dataRecipient["solde"])) {
+            if (!$this->update($this->table, $dataRecipient["id"],["solde"=>$dataRecipient["solde"]])) {
                 throw new PDOException("Erreur lors de l'update du recipeint ."); 
             }
             $this->conn->commit(); 
