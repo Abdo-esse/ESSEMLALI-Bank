@@ -74,7 +74,7 @@ class TransactionController extends Controller
             exit;
         }
          $idhistorique=$this->historiqueService->saveHistoriqueVirement($_POST);
-         Session::set('idhistorique', $idhistorique);
+         Session::set("post", $_POST);
          $this->redirect('recu/virement');
         exit;
 

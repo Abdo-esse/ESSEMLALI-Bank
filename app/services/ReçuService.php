@@ -2,6 +2,7 @@
 namespace App\Services;
 use App\services\CompteService;
 use App\Repository\ClientRepository;
+use App\core\Session;
 use Exception;
 
 class ReçuService
@@ -12,7 +13,20 @@ class ReçuService
     {
         $this->comptService= new CompteService();
         $this->clientRepo= new ClientRepository();
+        Session::start();
+    }
 
+    public function dataReçuVirement($data){
+        $acountSender=$this->getAcount($data["sender-iban"]);
+        $acountRicipient=$this->getAcount($data["recipient-iban"]);
+        $clientSender=$this->getClient($acountSender->getClientId());
+        $clientRicipient=$this->getClient($acountRicipient->getClientId());
+        return [
+            'acountRicipient' => $acountRicipient,
+            'clientSender' => $clientSender,
+            'acountSender' => $acountSender,
+            'clientRicipient' => $clientRicipient
+        ];
     }
 
     public function getAcount($accountNumber){
