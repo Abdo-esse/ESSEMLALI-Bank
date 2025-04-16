@@ -8,6 +8,10 @@ use Dompdf\Dompdf;
 class ReçuController extends Controller{
 
     public function recuVirement(){
-        echo  $this->twig->render('reçu/virement.twig',['session' => $_SESSION ]);
+        echo $_SESSION["idhistorique"];
+        exit;
+        // echo  $this->twig->render('reçu/virement.twig',['session' => $_SESSION ]);
     }
+
+    
 }

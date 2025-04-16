@@ -61,7 +61,6 @@ class TransactionController extends Controller
         
     }
     public function virement(){
-        var_dump($_POST);
         $request = new VirementRequest($_POST);
         if (!$request->validate()) {
             Session::set('errorVirement', $request->getErrors());
@@ -74,7 +73,8 @@ class TransactionController extends Controller
              $this->redirect('virement');
             exit;
         }
-         $this->historiqueService->saveHistoriqueVirement($_POST);
+         $idhistorique=$this->historiqueService->saveHistoriqueVirement($_POST);
+         Session::set('idhistorique', $idhistorique);
          $this->redirect('recu/virement');
         exit;
 
