@@ -15,13 +15,7 @@
                 </svg>
             </div>
             <h1 class="text-2xl font-bold text-gray-800">Virement effectué avec succès</h1>
-            <p class="text-gray-500 mt-1">15 avril 2025 à 14:30</p>
-        </div>
-        
-        <!-- Numéro de référence -->
-        <div class="bg-gray-50 rounded-lg p-4 mb-6 text-center">
-            <p class="text-sm text-gray-500">Référence du virement</p>
-            <p class="text-lg font-mono font-medium">VIR-2025041500873</p>
+            <p class="text-gray-500 mt-1">{{ "now"|date("d M Y à H:i") }}</p>
         </div>
         
         <!-- Détails du virement -->
@@ -30,24 +24,24 @@
             
             <div class="flex justify-between">
                 <span class="text-gray-600">Montant</span>
-                <span class="font-medium">850,00 €</span>
+                <span class="font-medium">{{session.post.amount}} dh</span>
             </div>
             
             <div>
                 <p class="text-gray-600">De</p>
-                <p class="font-medium">FR76 1234 5678 9012 3456 7890 123</p>
-                <p class="text-sm text-gray-500">Jean Dupont</p>
+                <p class="font-medium">{{session.data.acountSender.numeroCompte}}</p>
+                <p class="text-sm text-gray-500">{{session.data.clientSender.nom}} {{session.data.clientSender.prenom}}</p>
             </div>
             
             <div>
                 <p class="text-gray-600">Vers</p>
-                <p class="font-medium">FR76 9876 5432 1098 7654 3210 987</p>
-                <p class="text-sm text-gray-500">Marie Martin</p>
+                <p class="font-medium">{{session.data.acountRicipient.numeroCompte}}</p>
+                <p class="text-sm text-gray-500">{{session.data.clientRicipient.nom}} {{session.data.clientRicipient.prenom}}</p>
             </div>
             
             <div>
                 <p class="text-gray-600">Description</p>
-                <p>Remboursement du voyage à Lyon</p>
+                <p>{{session.post.description}}</p>
             </div>
         </div>
         
@@ -56,11 +50,7 @@
             <h2 class="text-lg font-semibold text-gray-700 border-b pb-2">Date d'exécution</h2>
             <div class="flex justify-between mt-2">
                 <span class="text-gray-600">Date du virement</span>
-                <span class="font-medium">15/04/2025</span>
-            </div>
-            <div class="flex justify-between mt-1">
-                <span class="text-gray-600">Date de valeur</span>
-                <span class="font-medium">15/04/2025</span>
+                <span class="font-medium">{{ "now"|date("Y-m-d") }}</span>
             </div>
         </div>
         
