@@ -1,17 +1,28 @@
 <?php 
 namespace App\Services;
-
-use App\Repository\ReçuRepository;
+use App\services\CompteService;
+use App\Repository\ClientRepository;
 use Exception;
 
 class ReçuService
 {
-    private ReçuRepository $reçuRepo;
-
+    private CompteService $comptService;
+    private ClientRepository $clientRepo;
     public function __construct()
     {
-        $this->reçuRepo = new ReçuRepository();
+        $this->comptService= new CompteService();
+        $this->clientRepo= new ClientRepository();
+
     }
+
+    public function getAcount($accountNumber){
+        return $this->comptService->find($accountNumber);
+    }
+    public function getClient($id){
+        return $this->clientRepo->findById($id);
+    }
+
+    
 
   
 }
