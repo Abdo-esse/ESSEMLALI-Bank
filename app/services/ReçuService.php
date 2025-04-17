@@ -22,10 +22,8 @@ class ReçuService
         $clientSender=$this->getClient($acountSender->getClientId());
         $clientRicipient=$this->getClient($acountRicipient->getClientId());
         return [
-            'acountRicipient' => $acountRicipient,
-            'clientSender' => $clientSender,
-            'acountSender' => $acountSender,
-            'clientRicipient' => $clientRicipient
+            'acountRicipient' => $acountRicipient,'clientSender' => $clientSender,
+            'acountSender' => $acountSender,'clientRicipient' => $clientRicipient
         ];
     }
 
