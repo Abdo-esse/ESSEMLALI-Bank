@@ -29,6 +29,8 @@ class EmployeController extends Controller
     }
     public function virementView()
     {
+        Session::unset('data');  
+        Session::unset('post');    
        echo  $this->twig->render('employe/virement.twig',['session' => $_SESSION ]);
     }
     public function employes()
