@@ -29,17 +29,20 @@ class ReçuController extends Controller{
     }
     
     public function telechargerRecuVirement(){
+     $this->telechargerRecu("recu_virement");
+    }
+    private function telechargerRecu($recu){
         $data = $_SESSION['data'] ?? null;
         if (!$data) {
             echo "Aucune donnée pour générer le reçu.";
             exit;
         }    
-        $html = $this->twig->render('reçu/recu_virement.twig', ['session' => $_SESSION]);
+        $html = $this->twig->render("reçu/$recu.twig", ['session' => $_SESSION]);
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream('recu_virement.pdf', ["Attachment" => true]);
+        $dompdf->stream("$recu.pdf", ["Attachment" => true]);
     }
 
     
