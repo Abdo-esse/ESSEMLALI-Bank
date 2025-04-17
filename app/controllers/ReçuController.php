@@ -22,6 +22,12 @@ class ReçuController extends Controller{
         echo  $this->twig->render('reçu/virement.twig',['session' => $_SESSION ,"data"=>$data]);
         exit;
     }
+    public function telechargerRecuVirement(){
+        $data=Session::get("post");
+        $data=$this->reçuService->dataReçuVirement($data);
+        echo  $this->twig->render('reçu/virement.twig',['session' => $_SESSION ,"data"=>$data]);
+        exit;
+    }
 
     
 }
