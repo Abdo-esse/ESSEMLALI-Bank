@@ -7,5 +7,158 @@
 
 
 {% block content %}
-{{ session.user.id }}
+
+<head>
+
+    <script>
+        function toggleBalance() {
+            const balanceAmount = document.getElementById('balanceAmount');
+            const balanceHidden = document.getElementById('balanceHidden');
+            const eyeOpen = document.getElementById('eyeOpen');
+            const eyeClosed = document.getElementById('eyeClosed');
+            
+            if (balanceAmount.classList.contains('hidden')) {
+                balanceAmount.classList.remove('hidden');
+                balanceHidden.classList.add('hidden');
+                eyeOpen.classList.remove('hidden');
+                eyeClosed.classList.add('hidden');
+            } else {
+                balanceAmount.classList.add('hidden');
+                balanceHidden.classList.remove('hidden');
+                eyeOpen.classList.add('hidden');
+                eyeClosed.classList.remove('hidden');
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header Section with Client Info -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold text-indigo-800">Bonjour, Mohammed Alami</h1>
+                    <p class="text-gray-600">Bienvenue dans votre espace bancaire</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-500">Date: 18 avril 2025</p>
+                    <p class="text-sm text-gray-500">N° Client: 123456789</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="bg-indigo-50 rounded-lg p-4 flex-1">
+                    <p class="text-sm font-medium text-indigo-600 mb-1">IBAN</p>
+                    <p class="text-lg font-medium">MA64 1234 5678 9012 3456 7890 123</p>
+                </div>
+                <div class="bg-indigo-600 text-white rounded-lg p-4 flex-1">
+                    <div class="flex justify-between items-center">
+                        <p class="text-lg font-medium">Solde disponible</p>
+                        <button onclick="toggleBalance()" class="focus:outline-none">
+                            <i id="eyeClosed" class="fas fa-eye-slash"></i>
+                            <i id="eyeOpen" class="fas fa-eye hidden"></i>
+                        </button>
+                    </div>
+                    <p id="balanceAmount" class="text-2xl font-bold mt-2 hidden">45 678,90 MAD</p>
+                    <p id="balanceHidden" class="text-2xl font-bold mt-2">••••••• MAD</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solde -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ showBalance: false }">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold text-blue-900">Solde disponible</h2>
+                <button @click="showBalance = !showBalance" class="text-blue-700 hover:text-blue-900 transition">
+                    <i class="fas" :class="showBalance ? 'fa-eye-slash' : 'fa-eye'"></i>
+                </button>
+            </div>
+            <div class="bg-blue-50 rounded-lg p-4">
+                <p class="text-3xl font-bold text-blue-900" x-show="showBalance">15 432,67 €</p>
+                <p class="text-3xl font-bold text-blue-900" x-show="!showBalance">••••••• €</p>
+            </div>
+        </section>
+        
+        <!-- Cards for Actions -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <!-- Transaction Card -->
+            <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+                <div class="flex justify-center items-center w-12 h-12 bg-green-100 rounded-full mb-4">
+                    <i class="fas fa-exchange-alt text-green-600 text-xl"></i>
+                </div>
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">Effectuer une transaction</h2>
+                <p class="text-gray-600 mb-4">Virements nationaux et internationaux vers vos bénéficiaires</p>
+                <button class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300">
+                    Nouvelle transaction
+                </button>
+            </div>
+            
+            <!-- Account Statement Card -->
+            <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+                <div class="flex justify-center items-center w-12 h-12 bg-blue-100 rounded-full mb-4">
+                    <i class="fas fa-file-invoice text-blue-600 text-xl"></i>
+                </div>
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">Relevé de compte</h2>
+                <p class="text-gray-600 mb-4">Téléchargez vos relevés mensuels et documents bancaires</p>
+                <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">
+                    Voir mes relevés
+                </button>
+            </div>
+            
+            <!-- History Card -->
+            <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+                <div class="flex justify-center items-center w-12 h-12 bg-purple-100 rounded-full mb-4">
+                    <i class="fas fa-history text-purple-600 text-xl"></i>
+                </div>
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">Historique des opérations</h2>
+                <p class="text-gray-600 mb-4">Consultez l'ensemble de vos mouvements financiers</p>
+                <button class="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition duration-300">
+                    Voir l'historique
+                </button>
+            </div>
+        </div>
+        
+        <!-- Recent Transactions -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-semibold text-gray-800">Dernières transactions</h2>
+                <a href="#" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Voir tout</a>
+            </div>
+            
+            <div class="divide-y divide-gray-200">
+                <div class="py-4 flex justify-between items-center">
+                    <div>
+                        <p class="font-medium text-gray-800">Virement reçu - Ahmed Bennani</p>
+                        <p class="text-sm text-gray-500">15 avril 2025</p>
+                    </div>
+                    <span class="font-semibold text-green-600">+1 500,00 MAD</span>
+                </div>
+                
+                <div class="py-4 flex justify-between items-center">
+                    <div>
+                        <p class="font-medium text-gray-800">Paiement Marjane</p>
+                        <p class="text-sm text-gray-500">13 avril 2025</p>
+                    </div>
+                    <span class="font-semibold text-red-600">-320,50 MAD</span>
+                </div>
+                
+                <div class="py-4 flex justify-between items-center">
+                    <div>
+                        <p class="font-medium text-gray-800">Retrait GAB</p>
+                        <p class="text-sm text-gray-500">10 avril 2025</p>
+                    </div>
+                    <span class="font-semibold text-red-600">-1 000,00 MAD</span>
+                </div>
+                
+                <div class="py-4 flex justify-between items-center">
+                    <div>
+                        <p class="font-medium text-gray-800">Salaire</p>
+                        <p class="text-sm text-gray-500">01 avril 2025</p>
+                    </div>
+                    <span class="font-semibold text-green-600">+12 500,00 MAD</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 {% endblock %}
