@@ -26,6 +26,13 @@ class ReçuService
             'acountSender' => $acountSender,'clientRicipient' => $clientRicipient
         ];
     }
+    public function dataReçuVersement($data){
+        $acount=$this->getAcount($data["account_number"]);
+        $client=$this->getClient($acount->getClientId());
+        return [
+            'acount' => $acount,'client' => $client,
+        ];
+    }
 
     public function getAcount($accountNumber){
         return $this->comptService->find($accountNumber);

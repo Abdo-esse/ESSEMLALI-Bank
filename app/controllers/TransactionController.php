@@ -35,7 +35,8 @@ class TransactionController extends Controller
             exit;
         }
         $this->historiqueService->saveHistorique($_POST,"Deposit");
-         $this->redirect('versement');
+        Session::set("post", $_POST);
+         $this->redirect('recu/versement');
         exit;
 
         
