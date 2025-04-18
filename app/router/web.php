@@ -42,3 +42,5 @@ Router::add("GET","/recu/virement","ReçuController@recuVirement");
 Router::add("POST","/recu/virement/telecharger","ReçuController@telechargerRecuVirement");
 Router::add("GET","/recu/versement","ReçuController@recuVersement");
 Router::add("POST","/recu/versement/telecharger","ReçuController@telechargerRecuVersement");
+Router::add("GET","/recu/retrait","ReçuController@recuVersement");
+Router::add("POST","/recu/retrait/telecharger","ReçuController@telechargerRecuRetrait");

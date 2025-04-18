@@ -34,9 +34,20 @@ class ReçuController extends Controller{
             exit;
         }
         $data=Session::get("post");
-        $data=$this->reçuService->dataReçuVersement($data);
+        $data=$this->reçuService->dataReçu($data);
         Session::set('data', $data);
         echo  $this->twig->render('reçu/versement.twig',['session' => $_SESSION ]);
+        exit;
+    }
+    public function recuRetrait(){
+        if(!Session::get("post")){
+            echo "Aucune donnée pour générer le reçu.";
+            exit;
+        }
+        $data=Session::get("post");
+        $data=$this->reçuService->dataReçu($data);
+        Session::set('data', $data);
+        echo  $this->twig->render('reçu/retrait.twig',['session' => $_SESSION ]);
         exit;
     }
     
@@ -45,6 +56,9 @@ class ReçuController extends Controller{
     }
     public function telechargerRecuVersement(){
      $this->telechargerRecu("recu_versement");
+    }
+    public function telechargerRecuRetrait(){
+     $this->telechargerRecu("recu_retrait");
     }
 
 

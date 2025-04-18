@@ -26,7 +26,7 @@ class ReçuService
             'acountSender' => $acountSender,'clientRicipient' => $clientRicipient
         ];
     }
-    public function dataReçuVersement($data){
+    public function dataReçu($data){
         $acount=$this->getAcount($data["account_number"]);
         $client=$this->getClient($acount->getClientId());
         return [

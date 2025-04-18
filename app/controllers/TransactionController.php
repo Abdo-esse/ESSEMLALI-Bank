@@ -56,8 +56,9 @@ class TransactionController extends Controller
             exit;
         }
          $this->historiqueService->saveHistorique($_POST,"Retrait");
-         $this->redirect('retrait');
-        exit;
+         Session::set("post", $_POST);
+         $this->redirect('recu/retrait');
+         exit;
 
         
     }
