@@ -6,11 +6,12 @@ class Router {
 
     private static $routes;
 
-    public  static function  add($method, $route, $action) {
+    public  static function  add($method, $route, $action,$options = []) {
         self::$routes[] = [
             'method' => strtoupper($method),
             'route' => trim($route, '/'),
-            'action' => $action
+            'action' => $action,
+            'middleware' => $options['middleware'] ?? null
         ];
     }
 
@@ -32,6 +33,10 @@ class Router {
     
             if (preg_match($pattern, $requestUri, $matches) && $route['method'] === $requestMethod) {
                 array_shift($matches); 
+
+                if ($route['middleware']) {
+                    self::middleware($route['middleware']);
+                }
                 
                 [$controller, $method] = explode('@', $route['action']);
                 $namespace = "App\\controllers\\";
@@ -50,6 +55,19 @@ class Router {
     
         http_response_code(404);
         echo "44 - Page Not Found";
+    }
+
+
+    public static function middleware($m)
+    {
+        $middlewareClass = "App\\middlewares\\" . ucfirst($m) . "Middleware"; 
+        
+        if (class_exists($middlewareClass)) {
+            $middleware = new $middlewareClass();
+            $middleware->handle();
+        } else {
+            throw new \Exception("Middleware '$middlewareClass' not found.");
+        }
     }
     
     
