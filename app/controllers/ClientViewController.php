@@ -53,6 +53,9 @@ class ClientViewController extends Controller
         $client=$this->clientService->getClient($id);
         echo  $this->twig->render('employe/client.twig', ['client' => $client,]);
     }
+    public function historique(){
+        echo  $this->twig->render('client/historique.twig');
+    }
  
 
     
