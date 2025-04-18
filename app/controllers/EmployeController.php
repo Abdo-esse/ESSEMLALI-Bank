@@ -21,10 +21,14 @@ class EmployeController extends Controller
     }
     public function versementView()
     {
+        Session::unset('data');  
+        Session::unset('post');
        echo  $this->twig->render('employe/versement.twig',['session' => $_SESSION ]);
     }
     public function retraitView()
     {
+        Session::unset('data');  
+        Session::unset('post');
        echo  $this->twig->render('employe/retrait.twig',['session' => $_SESSION ]);
     }
     public function virementView()
