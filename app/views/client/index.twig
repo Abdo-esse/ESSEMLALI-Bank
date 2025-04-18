@@ -10,26 +10,6 @@
 
 <head>
 
-    <script>
-        function toggleBalance() {
-            const balanceAmount = document.getElementById('balanceAmount');
-            const balanceHidden = document.getElementById('balanceHidden');
-            const eyeOpen = document.getElementById('eyeOpen');
-            const eyeClosed = document.getElementById('eyeClosed');
-            
-            if (balanceAmount.classList.contains('hidden')) {
-                balanceAmount.classList.remove('hidden');
-                balanceHidden.classList.add('hidden');
-                eyeOpen.classList.remove('hidden');
-                eyeClosed.classList.add('hidden');
-            } else {
-                balanceAmount.classList.add('hidden');
-                balanceHidden.classList.remove('hidden');
-                eyeOpen.classList.add('hidden');
-                eyeClosed.classList.remove('hidden');
-            }
-        }
-    </script>
 </head>
 <body class="bg-gray-100 font-sans">
     <div class="container mx-auto px-4 py-8">
@@ -51,22 +31,21 @@
                     <p class="text-sm font-medium text-indigo-600 mb-1">IBAN</p>
                     <p class="text-lg font-medium">MA64 1234 5678 9012 3456 7890 123</p>
                 </div>
-                <div class="bg-indigo-600 text-white rounded-lg p-4 flex-1">
+                <div class="bg-indigo-600 text-white rounded-lg p-4 flex-1" x-data="{ showBalance: false }">
                     <div class="flex justify-between items-center">
                         <p class="text-lg font-medium">Solde disponible</p>
-                        <button onclick="toggleBalance()" class="focus:outline-none">
-                            <i id="eyeClosed" class="fas fa-eye-slash"></i>
-                            <i id="eyeOpen" class="fas fa-eye hidden"></i>
+                        <button @click="showBalance = !showBalance" class="focus:outline-none">
+                        <i class="fas" :class="showBalance ? 'fa-eye-slash' : 'fa-eye'"></i>
                         </button>
                     </div>
-                    <p id="balanceAmount" class="text-2xl font-bold mt-2 hidden">45 678,90 MAD</p>
-                    <p id="balanceHidden" class="text-2xl font-bold mt-2">••••••• MAD</p>
+                    <p x-show="showBalance"class="text-2xl font-bold mt-2 ">45 678,90 MAD</p>
+                    <p x-show="!showBalance" class="text-2xl font-bold mt-2">••••••• MAD</p>
                 </div>
             </div>
         </div>
 
         <!-- Solde -->
-        <section class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ showBalance: false }">
+        <!-- <section class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ showBalance: false }">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-semibold text-blue-900">Solde disponible</h2>
                 <button @click="showBalance = !showBalance" class="text-blue-700 hover:text-blue-900 transition">
@@ -75,9 +54,9 @@
             </div>
             <div class="bg-blue-50 rounded-lg p-4">
                 <p class="text-3xl font-bold text-blue-900" x-show="showBalance">15 432,67 €</p>
-                <p class="text-3xl font-bold text-blue-900" x-show="!showBalance">••••••• €</p>
+                <p class="text-3xl font-bold text-blue-900" >••••••• €</p>
             </div>
-        </section>
+        </section> -->
         
         <!-- Cards for Actions -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
