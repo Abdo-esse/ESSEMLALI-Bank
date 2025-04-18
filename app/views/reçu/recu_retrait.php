@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reçu de Virement</title>
+    <title>Reçu de Retrait</title>
     <style>
         /* Reset CSS */
         * {
@@ -175,7 +175,7 @@
     <div class="receipt-container">
         <div class="receipt-header">
             <div class="receipt-title">
-                <h1>Reçu de Virement</h1>
+                <h1>Reçu de Retrait</h1>
             </div>
         </div>
         
@@ -184,40 +184,30 @@
                 <div class="info-title">Informations du Reçu</div>
                 <div class="info-content">
                     <p><strong>Date de transaction:</strong>{{ "now"|date("d M Y à H:i") }}</p>
-                    <p><strong>Méthode:</strong> Virement bancaire</p>
+                    <p><strong>Méthode:</strong> Retrait bancaire</p>
                 </div>
             </div>
             
             <div class="sender-section">
-                <div class="info-title">Informations Émetteur</div>
+                <div class="info-title">Informations </div>
                 <div class="info-content">
                     <p><strong>Nom:</strong>{{session.data.clientSender.nom}} {{session.data.clientSender.prenom}}</p>
                     <p><strong>IBAN:</strong> {{session.data.acountSender.numeroCompte}}</p>
                 </div>
             </div>
-            
-            <div class="recipient-section">
-                <div class="info-title">Informations Destinataire</div>
-                <div class="info-content">
-                    <p><strong>Nom:</strong> {{session.data.clientRicipient.nom}} {{session.data.clientRicipient.prenom}}</p>
-                    <p><strong>IBAN:</strong> {{session.data.acountRicipient.numeroCompte}}</p>
-                </div>
-            </div>
         </div>
         
         <div class="transfer-details">
-            <div class="info-title">Détails du Virement</div>
+            <div class="info-title">Détails du Retrait</div>
             <table>
                 <thead>
                     <tr>
-                        <th>Description</th>
                         <th>Banque</th>
                         <th>Montant</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{session.post.description}}</td>
                         <td>Banque </td>
                         <td class="amount">{{session.post.amount}}dh</td>
                     </tr>
@@ -228,7 +218,7 @@
         <div class="total-section">
             <div class="total-box">
                 <div class="total-row">
-                    <span class="total-label">Date du virement</span>
+                    <span class="total-label">Date du Retrait</span>
                     <span>{{ "now"|date("Y-m-d") }}</span>
                 </div>
                 <div class="total-row grand-total">
@@ -238,7 +228,7 @@
             </div>
         </div>
         
-       <div class="receipt-footer">
+        <div class="receipt-footer">
             <p>Ce reçu a été généré automatiquement le {{ "now"|date("Y-m-d") }} à {{ "now"|date("H:i") }} UTC.</p>
             <p>Pour toute question concernant ce reçu, veuillez nous contacter.</p>
         </div>
