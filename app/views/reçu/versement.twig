@@ -14,13 +14,13 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
             </div>
-            <h1 class="text-2xl font-bold text-gray-800">Virement effectué avec succès</h1>
+            <h1 class="text-2xl font-bold text-gray-800">Versement effectué avec succès</h1>
             <p class="text-gray-500 mt-1">{{ "now"|date("d M Y à H:i") }}</p>
         </div>
         
-        <!-- Détails du virement -->
+        <!-- Détails du versement -->
         <div class="space-y-4 mb-6">
-            <h2 class="text-lg font-semibold text-gray-700 border-b pb-2">Détails du virement</h2>
+            <h2 class="text-lg font-semibold text-gray-700 border-b pb-2">Détails du versement</h2>
             
             <div class="flex justify-between">
                 <span class="text-gray-600">Montant</span>
@@ -29,19 +29,8 @@
             
             <div>
                 <p class="text-gray-600">De</p>
-                <p class="font-medium">{{session.data.acountSender.numeroCompte}}</p>
-                <p class="text-sm text-gray-500">{{session.data.clientSender.nom}} {{session.data.clientSender.prenom}}</p>
-            </div>
-            
-            <div>
-                <p class="text-gray-600">Vers</p>
-                <p class="font-medium">{{session.data.acountRicipient.numeroCompte}}</p>
-                <p class="text-sm text-gray-500">{{session.data.clientRicipient.nom}} {{session.data.clientRicipient.prenom}}</p>
-            </div>
-            
-            <div>
-                <p class="text-gray-600">Description</p>
-                <p>{{session.post.description}}</p>
+                <p class="font-medium">{{session.data.acount.numeroCompte}}</p>
+                <p class="text-sm text-gray-500">{{session.data.client.nom}} {{session.data.client.prenom}}</p>
             </div>
         </div>
         
@@ -49,7 +38,7 @@
         <div class="mb-6">
             <h2 class="text-lg font-semibold text-gray-700 border-b pb-2">Date d'exécution</h2>
             <div class="flex justify-between mt-2">
-                <span class="text-gray-600">Date du virement</span>
+                <span class="text-gray-600">Date du versement</span>
                 <span class="font-medium">{{ "now"|date("Y-m-d") }}</span>
             </div>
         </div>
@@ -57,15 +46,17 @@
         <!-- Actions -->
         
         <div class="flex flex-col space-y-3">
-        <form  action="/ESSEMLALI-Bank/recu/virement/telecharger" method="POST" >
+        <form  action="/ESSEMLALI-Bank/recu/versement/telecharger" method="POST" >
             <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition duration-300 ease-in-out"
-            onclick="setTimeout(() => window.location.href='/ESSEMLALI-Bank/virement', 1000)">
+            onclick="setTimeout(() => window.location.href='/ESSEMLALI-Bank/versement', 1000)">
                 Télécharger le reçu
             </button>
             </form>
+            <form  action="/ESSEMLALI-Bank/versement" method="POST" >
             <button class="w-full bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-bold py-3 px-4 rounded-md transition duration-300 ease-in-out">
                 Retour à l'accueil
             </button>
+            </form>
         </div>
         
         <!-- Note de bas de page -->

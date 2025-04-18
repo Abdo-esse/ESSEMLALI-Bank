@@ -16,19 +16,6 @@ class ClientController extends Controller
         parent::__construct();
         $this->clientService=new ClientService();
     }
-
-    public function index()
-    {
-       echo  $this->twig->render('client/index.twig',['session' => $_SESSION ]);
-    }
-    public function edite($id)
-    {
-        $client=$this->clientService->getClient($id);
-        echo  $this->twig->render('client/updateinfo.twig',[
-            'session' => $_SESSION,
-            'client' => $client,
-         ]);
-    }
     public function update($id)
     {
         
@@ -51,14 +38,6 @@ class ClientController extends Controller
     exit;
     }
     
-
-    public function create()
-    {
-       echo  $this->twig->render('auth/signIn.twig', [
-           'session' => $_SESSION,
-       ]);
-
-    }
     private function addClients($where){
         $request = new SignInRequest($_POST);
         if (!$request->validate()) {
@@ -102,22 +81,7 @@ class ClientController extends Controller
 
         }
     }
-    public function demandeComptes(){
-        $clients=$this->clientService->getAll();
-        echo  $this->twig->render('employe/demandeComptes.twig', ['clients' => $clients]);
-    }
-    public function demandeCompte($id){
-        $client=$this->clientService->find($id);
-        echo  $this->twig->render('employe/demandeCompte.twig', ['client' => $client,]);
-    }
-    public function clients(){
-        $clients=$this->clientService->allClients();
-        echo  $this->twig->render('employe/clients.twig', ['clients' => $clients,]);
-    }
-    public function client($id){
-        $client=$this->clientService->getClient($id);
-        echo  $this->twig->render('employe/client.twig', ['client' => $client,]);
-    }
+    
     public function delete($id){
         $data = [
             "is_active"=>"false" ,

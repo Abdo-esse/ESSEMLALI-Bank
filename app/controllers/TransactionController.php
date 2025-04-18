@@ -35,7 +35,8 @@ class TransactionController extends Controller
             exit;
         }
         $this->historiqueService->saveHistorique($_POST,"Deposit");
-         $this->redirect('versement');
+        Session::set("post", $_POST);
+         $this->redirect('recu/versement');
         exit;
 
         
@@ -55,13 +56,13 @@ class TransactionController extends Controller
             exit;
         }
          $this->historiqueService->saveHistorique($_POST,"Retrait");
-         $this->redirect('retrait');
-        exit;
+         Session::set("post", $_POST);
+         $this->redirect('recu/retrait');
+         exit;
 
         
     }
     public function virement(){
-        var_dump($_POST);
         $request = new VirementRequest($_POST);
         if (!$request->validate()) {
             Session::set('errorVirement', $request->getErrors());
@@ -74,16 +75,15 @@ class TransactionController extends Controller
              $this->redirect('virement');
             exit;
         }
-         $this->historiqueService->saveHistoriqueVirement($_POST);
+         $idhistorique=$this->historiqueService->saveHistoriqueVirement($_POST);
+         Session::set("post", $_POST);
          $this->redirect('recu/virement');
         exit;
 
         
     }
 
-    public function recuVirement(){
-        echo  $this->twig->render('reçu/virement.twig',['session' => $_SESSION ]);
-    }
+    
 
 
     
