@@ -15,10 +15,10 @@
         <div class="bg-white rounded-lg shadow-md p-6">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-xl font-semibold text-gray-800"> Transactions</h2>
-                <a href="#" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Voir tout</a>
             </div>
             
             <div class="divide-y divide-gray-200">
+            {% for admin in admins %}
                 <div class="py-4 flex justify-between items-center">
                     <div>
                         <p class="font-medium text-gray-800">Virement reçu - Ahmed Bennani</p>
@@ -50,6 +50,8 @@
                     </div>
                     <span class="font-semibold text-green-600">+12 500,00 MAD</span>
                 </div>
+
+             {% endfor %}
             </div>
         </div>
     </div>

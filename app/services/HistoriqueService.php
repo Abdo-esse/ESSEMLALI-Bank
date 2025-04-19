@@ -49,7 +49,7 @@ class HistoriqueService {
     }
 
     public function getHistorique($id){
-        $this->historiqueRepo->getHistorique($id);
+        return $this->historiqueRepo->getHistorique($id);
     }
 }
 

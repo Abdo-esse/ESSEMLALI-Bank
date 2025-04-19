@@ -36,7 +36,8 @@ class HistoriqueRepository  extends BaseRepository
                 LEFT JOIN clients c_beneficiaire ON c_beneficiaire.id = co_beneficiaire.client_id
                 LEFT JOIN users u_beneficiaire ON u_beneficiaire.id = c_beneficiaire.user_id
 
-                WHERE u.id = :id";
+                WHERE u.id = :id
+                ORDER BY h_id DESC";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
     
@@ -59,7 +60,6 @@ class HistoriqueRepository  extends BaseRepository
             $historiques[]= new Historique($row->h_id,$donneur,$row->h_type_operation,$row->h_montant,$row->h_dateeffectue, $beneficiaire,$row->h_description);
         }
         return $historiques;
-        exit;
     }
     
     

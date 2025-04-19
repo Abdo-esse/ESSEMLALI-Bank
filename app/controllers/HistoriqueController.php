@@ -16,6 +16,7 @@ class HistoriqueController extends Controller {
     }
 
     public function historique(){
-        $this->historiqueService->getHistorique(22);
+        $historiques=$this->historiqueService->getHistorique(22);
+        echo  $this->twig->render('client/historique.twig',['historiques' => $historiques,'session' => $_SESSION]);
     }
 }
