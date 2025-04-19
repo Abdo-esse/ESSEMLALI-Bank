@@ -47,5 +47,9 @@ class HistoriqueService {
         ];
         return $this->saveHistorique($virmentData,"virement");
     }
+
+    public function getHistorique($id){
+        $this->historiqueRepo->getHistorique($id);
+    }
 }
 
