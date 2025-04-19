@@ -45,7 +45,7 @@ class HistoriqueRepository  extends BaseRepository
             return null;
         }
     
-        var_dump($rew);
+        var_dump($row);
         exit;
         // $clientObject = new Client($row->user_id,$row->nom,$row->prenom,$row->email,$row->mot_de_passe,$row->date_creation,$row->is_active,$row->id,$row->sexe,$row->telephone,$row->address,$row->carte_national);
     
