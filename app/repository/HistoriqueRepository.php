@@ -1,7 +1,8 @@
 <?php
 namespace App\Repository;
 
-use App\Models\Compte;
+use App\Models\User;
+use App\Models\Historique;
 use PDO;
 class HistoriqueRepository  extends BaseRepository
 {
@@ -18,9 +19,9 @@ class HistoriqueRepository  extends BaseRepository
 
     public function getHistorique($id) {
         $sql = "SELECT 
-                h.*,
-                u_donneur.* ,
-                u_beneficiaire.* 
+                h.id as h_id,h.type_operation as h_type_operation,h.montant as h_montant,h.description as h_description,h.dateeffectue as h_dateeffectue,
+                u_donneur.id as d_id,u_donneur.nom as d_nom,u_donneur.prenom as d_prenom,
+                u_beneficiaire.id as b_id,u_beneficiaire.nom as b_nom,u_beneficiaire.prenom as b_prenom 
                 FROM users u
                 JOIN clients c ON c.user_id = u.id
                 JOIN comptes co ON co.client_id = c.id
@@ -39,27 +40,26 @@ class HistoriqueRepository  extends BaseRepository
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
     
-        $row = $stmt->fetch(PDO::FETCH_OBJ);
+        $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $historiques=[];
     
-        if (!$row) {
+        if (!$rows) {
             return null;
         }
-    
-        var_dump($row);
+
+        foreach($rows as $row)
+        {
+
+            $donneur=new User($row->d_id,$row->d_nom,$row->d_prenom,null,null,null,null);
+            $beneficiaire = null;
+             if ($row->b_id !== null) {
+            $beneficiaire = new User($row->b_id, $row->b_nom, $row->b_prenom, null, null, null, null);
+             }
+
+            $historiques[]= new Historique($row->h_id,$donneur,$row->h_type_operation,$row->h_montant,$row->h_dateeffectue, $beneficiaire,$row->h_description);
+        }
+        return $historiques;
         exit;
-        // $clientObject = new Client($row->user_id,$row->nom,$row->prenom,$row->email,$row->mot_de_passe,$row->date_creation,$row->is_active,$row->id,$row->sexe,$row->telephone,$row->address,$row->carte_national);
-    
-        // $compteObject = new Compte(
-        //     $row->numerocompte,
-        //     $row->solde,
-        //     $row->datecreation,
-        //     $row->estactif
-        // );
-    
-        // return [
-        //     'client' => $clientObject,
-        //     'compte' => $compteObject
-        // ];
     }
     
     

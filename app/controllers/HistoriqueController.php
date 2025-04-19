@@ -13,6 +13,9 @@ class HistoriqueController extends Controller {
     public function __construct(){
         parent::__construct();
         $this->historiqueService= new HistoriqueService();
+    }
 
+    public function historique(){
+        $this->historiqueService->getHistorique(22);
     }
 }
