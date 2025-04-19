@@ -39,7 +39,9 @@ CREATE TABLE comptes (
     numeroCompte VARCHAR(30) UNIQUE NOT NULL,
     solde DECIMAL(15,2) NOT NULL DEFAULT 0.00 CHECK (solde >= 0), 
     dateCreation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    estActif BOOLEAN DEFAULT TRUE
+    estActif BOOLEAN DEFAULT TRUE,
+    client_id INT NOT NULL,
+    FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
 );
 
 CREATE TABLE historique (
