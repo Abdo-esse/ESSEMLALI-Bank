@@ -10,7 +10,7 @@ class Historique {
     private  $description;
     private $dateEffectue;
 
-    public function __construct($id,$donneur,$typeOperation,$montant,$dateEffectue,$beneficiaire=null,$description = null)
+    public function __construct($id,$donneur,$typeOperation,$montant,$dateEffectue,$beneficiaire,$description)
     {
         $this->id = $id;
         $this->donneur = $donneur;
@@ -23,8 +23,8 @@ class Historique {
 
     
     public function getId() { return $this->id; }
-    public function getIdDonneur(){ return $this->donneur; }
-    public function getIdBeneficiaire() { return $this->beneficiaire; }
+    public function getDonneur(){ return $this->donneur; }
+    public function getBeneficiaire() { return $this->beneficiaire; }
     public function getTypeOperation(){ return $this->typeOperation; }
     public function getMontant() { return $this->montant; }
     public function getDescription() { return $this->description; }

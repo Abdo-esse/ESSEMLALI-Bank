@@ -1,0 +1,79 @@
+{% extends "components/baseDashbord.twig" %}
+
+{% block title %}Page d'accueil{% endblock %}
+{% block sidebar %}
+{% include "layout/sidebarClient.twig" %}
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="bg-gray-100 font-sans">
+    <div class="container mx-auto px-4 py-8">      
+        <!-- Recent Transactions -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-semibold text-gray-800"> Transactions</h2>
+            </div>
+            
+            <div class="divide-y divide-gray-200">
+    {% for historique in historiques %}
+        {# Vérification de l'existence des relations et propriétés #}
+        {% if historique.typeOperation == "Deposit" %}
+            <div class="py-4 flex justify-between items-center">
+                <div>
+                    <p class="font-medium text-gray-800">Dépôt</p>
+                    <p class="text-sm text-gray-500">
+                        {{ historique.dateEffectue|date('d/m/Y H:i') }} - 
+                        {{ historique.donneur.nom|trim }} 
+                    </p>
+                </div>
+                <span class="font-semibold text-green-600">+{{ historique.montant|number_format(2, ',', ' ') }} MAD</span>
+            </div>
+
+        {% elseif historique.typeOperation == "Retrait" %}
+            <div class="py-4 flex justify-between items-center">
+                <div>
+                    <p class="font-medium text-gray-800">Retrait</p>
+                    <p class="text-sm text-gray-500">{{ historique.dateEffectue|date('d/m/Y H:i') }}</p>
+                </div>
+                <span class="font-semibold text-red-600">-{{ historique.montant|number_format(2, ',', ' ') }} MAD</span>
+            </div>
+
+        {% elseif historique.typeOperation == "virement" %}
+            {# Vérification que le bénéficiaire existe avant d'accéder à ses propriétés #}
+            {% if historique.donneur.id == 22 and historique.beneficiaire is not null %}
+                <div class="py-4 flex justify-between items-center">
+                    <div>
+                        <p class="font-medium text-gray-800">
+                        Vous avez effectué un virement à {{ historique.beneficiaire.nom|trim }} {{ historique.beneficiaire.prenom|trim }}
+                        </p>
+                        <p class="text-sm text-gray-500">{{ historique.dateEffectue|date('d/m/Y H:i') }}</p>
+                        <p class="text-sm text-gray-500">{{ historique.description }}</p>
+                    </div>
+                    <span class="font-semibold text-red-600">-{{ historique.montant|number_format(2, ',', ' ') }} MAD</span>
+                </div>
+
+            {% elseif historique.beneficiaire is not null and historique.beneficiaire.id == 22 %}
+                <div class="py-4 flex justify-between items-center">
+                    <div>
+                        <p class="font-medium text-gray-800">
+                        Vous avez reçu un virement de {{ historique.donneur.nom|trim }} {{ historique.donneur.prenom|trim }}
+                        </p>
+                        <p class="text-sm text-gray-500">{{ historique.dateEffectue|date('d/m/Y H:i') }}</p>
+                        <p class="text-sm text-gray-500">{{ historique.description }}</p>
+                    </div>
+                    <span class="font-semibold text-green-600">+{{ historique.montant|number_format(2, ',', ' ') }} MAD</span>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% else %}
+        <p class="p-4 text-gray-500">Aucune opération à afficher</p>
+    {% endfor %}
+</div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
