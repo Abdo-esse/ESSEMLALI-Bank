@@ -24,6 +24,10 @@ class TransactionViewControllers extends Controller
         Session::unset('post');    
        echo  $this->twig->render('employe/virement.twig',['session' => $_SESSION ]);
     }
+    public function virementClient()
+    {   
+       echo  $this->twig->render('client/virement.twig',['session' => $_SESSION ]);
+    }
     
 
 
