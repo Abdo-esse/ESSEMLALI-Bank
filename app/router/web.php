@@ -46,3 +46,4 @@ Router::add("GET","/recu/retrait","ReçuController@recuRetrait");
 Router::add("POST","/recu/retrait/telecharger","ReçuController@telechargerRecuRetrait");
 Router::add("GET","/historique","HistoriqueController@historique");
 Router::add("GET","/releve","ClientViewController@releve");
+Router::add("POST","/telecharger/rib","ClientController@telechargeRib");
