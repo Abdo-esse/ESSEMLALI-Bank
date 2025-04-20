@@ -18,13 +18,12 @@ class ClientController extends Controller
     }
     public function update($id)
     {
-        
         $client = $this->clientService->findclient($id);
         $_POST["motDePassEnregister"]=$client['mot_de_passe'];
         $request = new UpdateClientRequest($_POST);
     if (!$request->validate()) {
         Session::set('errorEditClient', $request->getErrors());
-         $this->redirect("client/update/$id");
+         $this->redirect("client/update-info");
         exit;
     }
     Session::unset('errorEditClient');   

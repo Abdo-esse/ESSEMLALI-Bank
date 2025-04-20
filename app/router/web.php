@@ -30,7 +30,7 @@ Router::add("GET","/clients","ClientViewController@clients");
 Router::add("POST","/client/{id}","ClientViewController@client");
 Router::add("POST","client/delete/{id}","ClientController@delete");
 Router::add("GET","/Client","ClientViewController@index");
-Router::add("GET","/client/update/{id}","ClientViewController@edite");
+Router::add("GET","/client/update-info","ClientViewController@edite");
 Router::add("POST","/client/update/{id}","ClientController@update");
 Router::add("GET","/versement","TransactionViewControllers@versement");
 Router::add("POST","/deposit","TransactionController@deposit");
