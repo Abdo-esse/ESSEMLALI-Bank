@@ -66,7 +66,7 @@ class ClientViewController extends Controller
         $id= $_SESSION["user"]["id"];
         $client=$this->clientService->getClient($id);
         $historiques=$this->historiqueService->getHistorique(22);
-       echo  $this->twig->render('client/releveCompte.twig',['session' => $_SESSION,'client' => $client,'historiques' => $historiques ]);
+        echo  $this->twig->render('client/releveCompte.twig',['session' => $_SESSION,'client' => $client]);
     }
 
     

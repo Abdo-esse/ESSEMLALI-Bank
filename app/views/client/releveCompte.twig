@@ -53,19 +53,19 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <p class="text-sm text-gray-600">Nom</p>
-            <p class="font-medium text-gray-800">DUPONT</p>
+            <p class="font-medium text-gray-800">{{ client.client.nom }}</p>
           </div>
           <div>
             <p class="text-sm text-gray-600">Prénom</p>
-            <p class="font-medium text-gray-800">Martin</p>
+            <p class="font-medium text-gray-800">{{ client.client.prenom }} </p>
           </div>
           <div>
             <p class="text-sm text-gray-600">Adresse</p>
-            <p class="font-medium text-gray-800">15 rue des Lilas, 75001 Paris</p>
+            <p class="font-medium text-gray-800">{{ client.client.adresse }}</p>
           </div>
           <div>
             <p class="text-sm text-gray-600">Date de création</p>
-            <p class="font-medium text-gray-800">15/03/2020</p>
+            <p class="font-medium text-gray-800">{{ client.compte.datecreation }}</p>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
         <div class="mb-6">
           <p class="text-sm text-gray-600">IBAN (International Bank Account Number)</p>
           <div class="bg-gray-100 p-4 rounded border border-gray-300 mt-1">
-            <p class="font-mono font-medium text-gray-800 tracking-wider text-center">FR76 3000 1007 1212 3456 7890 123</p>
+            <p class="font-mono font-medium text-gray-800 tracking-wider text-center">{{ client.compte.numerocompte }}</p>
           </div>
         </div>
         
