@@ -49,4 +49,4 @@ Router::add("GET","/releve","ClientViewController@releve");
 Router::add("POST","/telecharger/rib","ClientController@telechargeRib");
 Router::add("GET","/virement-client","TransactionViewControllers@virementClient");
 Router::add("POST","/virement-client","TransactionController@virementClient");
-Router::add("GET","/virement-client","ReçuController@recuVirementClient");
+Router::add("GET","recu/virement-client","ReçuController@recuVirementClient");

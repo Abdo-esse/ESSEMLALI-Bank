@@ -37,7 +37,7 @@ class ReçuController extends Controller{
         $data=Session::get("post");
         $data=$this->reçuService->dataReçuVirement($data);
         Session::set('data', $data);
-        echo  $this->twig->render('reçu/virement-client.twig',['session' => $_SESSION ]);
+        echo  $this->twig->render('reçu/virement_client.twig',['session' => $_SESSION ]);
         exit;
     }
     public function recuVersement(){
