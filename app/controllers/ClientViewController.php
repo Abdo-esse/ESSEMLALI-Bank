@@ -21,7 +21,7 @@ class ClientViewController extends Controller
     public function index()
     {
         $id= $_SESSION["user"]["id"];
-        $client=$this->clientService->find($id);
+        $client=$this->clientService->getClient($id);
        echo  $this->twig->render('client/index.twig',['session' => $_SESSION,'client' => $client ]);
     }
 
