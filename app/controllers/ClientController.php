@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Controllers;
+require dirname(__DIR__) . '/../vendor/autoload.php'; 
 
+use App\services\ReçuService;
+use Dompdf\Dompdf;
 use App\requests\SignInRequest;
 use App\requests\UpdateClientRequest;
 use App\services\ClientService;
@@ -18,24 +21,23 @@ class ClientController extends Controller
     }
     public function update($id)
     {
-        
         $client = $this->clientService->findclient($id);
         $_POST["motDePassEnregister"]=$client['mot_de_passe'];
         $request = new UpdateClientRequest($_POST);
-    if (!$request->validate()) {
+     if (!$request->validate()) {
         Session::set('errorEditClient', $request->getErrors());
-         $this->redirect("client/update/$id");
+         $this->redirect("client/update-info");
         exit;
-    }
-    Session::unset('errorEditClient');   
-    if (!$this->clientService->update($id,$_POST)) {
+      }
+     Session::unset('errorEditClient');   
+     if (!$this->clientService->update($id,$_POST)) {
         Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
          $this->redirect('Client');
         exit;
-    }
+     }
 
      $this->redirect('Client');
-    exit;
+     exit;
     }
     
     private function addClients($where){
@@ -96,6 +98,22 @@ class ClientController extends Controller
          $this->redirect('clients');
         exit;
     } 
+
+
+    public function telechargeRib(){
+        $id= $_SESSION["user"]["id"];
+        $data=$this->clientService->getClient($id);
+        if (!$data) {
+            echo "Aucune donnée pour générer le reçu.";
+            exit;
+        }    
+        $html = $this->twig->render("reçu/releve_compte.twig", ['session' => $_SESSION,'client' => $data]);
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream("releve_compte.pdf", ["Attachment" => true]);
+    }
 
     
 

@@ -30,7 +30,7 @@ Router::add("GET","/clients","ClientViewController@clients");
 Router::add("POST","/client/{id}","ClientViewController@client");
 Router::add("POST","client/delete/{id}","ClientController@delete");
 Router::add("GET","/Client","ClientViewController@index");
-Router::add("GET","/client/update/{id}","ClientViewController@edite");
+Router::add("GET","/client/update-info","ClientViewController@edite");
 Router::add("POST","/client/update/{id}","ClientController@update");
 Router::add("GET","/versement","TransactionViewControllers@versement");
 Router::add("POST","/deposit","TransactionController@deposit");
@@ -45,3 +45,8 @@ Router::add("POST","/recu/versement/telecharger","ReçuController@telechargerRec
 Router::add("GET","/recu/retrait","ReçuController@recuRetrait");
 Router::add("POST","/recu/retrait/telecharger","ReçuController@telechargerRecuRetrait");
 Router::add("GET","/historique","HistoriqueController@historique");
+Router::add("GET","/releve","ClientViewController@releve");
+Router::add("POST","/telecharger/rib","ClientController@telechargeRib");
+Router::add("GET","/virement-client","TransactionViewControllers@virementClient");
+Router::add("POST","/virement-client","TransactionController@virementClient");
+Router::add("GET","recu/virement-client","ReçuController@recuVirementClient");

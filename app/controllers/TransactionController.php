@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\services\TransactionService;
 use App\services\HistoriqueService;
+use App\services\ClientService;
 use App\requests\DepositRequest;
 use App\requests\RetraitRequest;
 use App\requests\VirementRequest;
@@ -12,11 +13,13 @@ class TransactionController extends Controller
 {
     private TransactionService $transactionService;
     private HistoriqueService $historiqueService;
+    private ClientService $clientService;
     public function __construct()
     {
           parent::__construct();
           $this->transactionService= new TransactionService;
           $this->historiqueService= new HistoriqueService;
+          $this->clientService=new ClientService();
     }
 
     
@@ -62,29 +65,38 @@ class TransactionController extends Controller
 
         
     }
-    public function virement(){
+    public function virementEmploye(){
+        $this->virement('virement');       
+    }
+
+    public function virementClient(){
+        $id= $_SESSION["user"]["id"];
+        $client=$this->clientService->getClient($id);
+        $_POST["sender-iban"]=$client["compte"]->getNumeroCompte();
+        $this->virement("virement-client");
+    }
+    
+
+    private function virement($redirect){
         $request = new VirementRequest($_POST);
         if (!$request->validate()) {
             Session::set('errorVirement', $request->getErrors());
-             $this->redirect('virement');
+            Session::set('dataVirement',$_POST);
+             $this->redirect("$redirect");
             exit;
         }
         Session::unset('errorVirement');        
+        Session::unset('dataVirement');        
         if(!$this->transactionService->virement( $_POST)){
             Session::set('error', "Une erreur s'est produite lors de virement l'argent.");
-             $this->redirect('virement');
+             $this->redirect("$redirect");
             exit;
         }
          $idhistorique=$this->historiqueService->saveHistoriqueVirement($_POST);
          Session::set("post", $_POST);
-         $this->redirect('recu/virement');
-        exit;
-
-        
+         $this->redirect("recu/$redirect");
+        exit;        
     }
-
-    
-
 
     
 

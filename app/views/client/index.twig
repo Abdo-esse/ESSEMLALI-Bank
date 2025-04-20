@@ -15,19 +15,18 @@
         <div class="bg-white rounded-lg shadow-md p-6 mb-6">
             <div class="flex justify-between items-center mb-6">
                 <div>
-                    <h1 class="text-2xl font-bold text-indigo-800">Bonjour, Mohammed Alami</h1>
+                    <h1 class="text-2xl font-bold text-indigo-800">Bonjour, {{ client.client.prenom }} {{ client.client.nom }}</h1>
                     <p class="text-gray-600">Bienvenue dans votre espace bancaire</p>
                 </div>
                 <div class="text-right">
-                    <p class="text-sm text-gray-500">Date: 18 avril 2025</p>
-                    <p class="text-sm text-gray-500">N° Client: 123456789</p>
+                    <p class="text-sm text-gray-500">Date: {{ "now"|date("d M Y - H:i") }}</p>
                 </div>
             </div>
             
             <div class="flex flex-col md:flex-row gap-4">
                 <div class="bg-indigo-50 rounded-lg p-4 flex-1">
                     <p class="text-sm font-medium text-indigo-600 mb-1">IBAN</p>
-                    <p class="text-lg font-medium">MA64 1234 5678 9012 3456 7890 123</p>
+                    <p class="text-lg font-medium">{{ client.compte.numerocompte }}</p>
                 </div>
                 <div class="bg-indigo-600 text-white rounded-lg p-4 flex-1" x-data="{ showBalance: false }">
                     <div class="flex justify-between items-center">
@@ -36,7 +35,7 @@
                         <i class="fas" :class="showBalance ? 'fa-eye-slash' : 'fa-eye'"></i>
                         </button>
                     </div>
-                    <p x-show="showBalance"class="text-2xl font-bold mt-2 ">45 678,90 MAD</p>
+                    <p x-show="showBalance"class="text-2xl font-bold mt-2 ">{{ client.compte.solde }} MAD</p>
                     <p x-show="!showBalance" class="text-2xl font-bold mt-2">••••••• MAD</p>
                 </div>
             </div>
@@ -85,42 +84,64 @@
         <div class="bg-white rounded-lg shadow-md p-6">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-xl font-semibold text-gray-800">Dernières transactions</h2>
-                <a href="#" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Voir tout</a>
+                <a href="historique" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Voir tout</a>
             </div>
             
             <div class="divide-y divide-gray-200">
-                <div class="py-4 flex justify-between items-center">
-                    <div>
-                        <p class="font-medium text-gray-800">Virement reçu - Ahmed Bennani</p>
-                        <p class="text-sm text-gray-500">15 avril 2025</p>
-                    </div>
-                    <span class="font-semibold text-green-600">+1 500,00 MAD</span>
+    {% for historique in historiques|slice(0, 6) %}
+        {# Vérification de l'existence des relations et propriétés #}
+        {% if historique.typeOperation == "Deposit" %}
+            <div class="py-4 flex justify-between items-center">
+                <div>
+                    <p class="font-medium text-gray-800">Dépôt</p>
+                    <p class="text-sm text-gray-500">
+                        {{ historique.dateEffectue|date('d/m/Y H:i') }} - 
+                        {{ historique.donneur.nom|trim }} 
+                    </p>
                 </div>
-                
-                <div class="py-4 flex justify-between items-center">
-                    <div>
-                        <p class="font-medium text-gray-800">Paiement Marjane</p>
-                        <p class="text-sm text-gray-500">13 avril 2025</p>
-                    </div>
-                    <span class="font-semibold text-red-600">-320,50 MAD</span>
-                </div>
-                
-                <div class="py-4 flex justify-between items-center">
-                    <div>
-                        <p class="font-medium text-gray-800">Retrait GAB</p>
-                        <p class="text-sm text-gray-500">10 avril 2025</p>
-                    </div>
-                    <span class="font-semibold text-red-600">-1 000,00 MAD</span>
-                </div>
-                
-                <div class="py-4 flex justify-between items-center">
-                    <div>
-                        <p class="font-medium text-gray-800">Salaire</p>
-                        <p class="text-sm text-gray-500">01 avril 2025</p>
-                    </div>
-                    <span class="font-semibold text-green-600">+12 500,00 MAD</span>
-                </div>
+                <span class="font-semibold text-green-600">+{{ historique.montant|number_format(2, ',', ' ') }} MAD</span>
             </div>
+
+        {% elseif historique.typeOperation == "Retrait" %}
+            <div class="py-4 flex justify-between items-center">
+                <div>
+                    <p class="font-medium text-gray-800">Retrait</p>
+                    <p class="text-sm text-gray-500">{{ historique.dateEffectue|date('d/m/Y H:i') }}</p>
+                </div>
+                <span class="font-semibold text-red-600">-{{ historique.montant|number_format(2, ',', ' ') }} MAD</span>
+            </div>
+
+        {% elseif historique.typeOperation == "virement" %}
+            {# Vérification que le bénéficiaire existe avant d'accéder à ses propriétés #}
+            {% if historique.donneur.id == 22 and historique.beneficiaire is not null %}
+                <div class="py-4 flex justify-between items-center">
+                    <div>
+                        <p class="font-medium text-gray-800">
+                        Vous avez effectué un virement à {{ historique.beneficiaire.nom|trim }} {{ historique.beneficiaire.prenom|trim }}
+                        </p>
+                        <p class="text-sm text-gray-500">{{ historique.dateEffectue|date('d/m/Y H:i') }}</p>
+                        <p class="text-sm text-gray-500">{{ historique.description }}</p>
+                    </div>
+                    <span class="font-semibold text-red-600">-{{ historique.montant|number_format(2, ',', ' ') }} MAD</span>
+                </div>
+
+            {% elseif historique.beneficiaire is not null and historique.beneficiaire.id == 22 %}
+                <div class="py-4 flex justify-between items-center">
+                    <div>
+                        <p class="font-medium text-gray-800">
+                        Vous avez reçu un virement de {{ historique.donneur.nom|trim }} {{ historique.donneur.prenom|trim }}
+                        </p>
+                        <p class="text-sm text-gray-500">{{ historique.dateEffectue|date('d/m/Y H:i') }}</p>
+                        <p class="text-sm text-gray-500">{{ historique.description }}</p>
+                    </div>
+                    <span class="font-semibold text-green-600">+{{ historique.montant|number_format(2, ',', ' ') }} MAD</span>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% else %}
+        <p class="p-4 text-gray-500">Aucune opération à afficher</p>
+    {% endfor %}
+</div>
         </div>
     </div>
 </div>
