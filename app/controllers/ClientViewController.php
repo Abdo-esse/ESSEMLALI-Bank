@@ -6,15 +6,18 @@ use App\requests\SignInRequest;
 use App\requests\UpdateClientRequest;
 use App\services\ClientService;
 use App\services\CompteService;
+use App\services\HistoriqueService;
 use App\core\Session;
 class ClientViewController extends Controller
 {
     private ClientService $clientService;
+    private HistoriqueService $historiqueService;
 
     public function __construct()
     {
         parent::__construct();
         $this->clientService=new ClientService();
+        $this->historiqueService= new HistoriqueService();
     }
     
 
@@ -22,7 +25,8 @@ class ClientViewController extends Controller
     {
         $id= $_SESSION["user"]["id"];
         $client=$this->clientService->getClient($id);
-       echo  $this->twig->render('client/index.twig',['session' => $_SESSION,'client' => $client ]);
+        $historiques=$this->historiqueService->getHistorique(22);
+       echo  $this->twig->render('client/index.twig',['session' => $_SESSION,'client' => $client,'historiques' => $historiques ]);
     }
 
     public function edite()
@@ -55,9 +59,6 @@ class ClientViewController extends Controller
     public function client($id){
         $client=$this->clientService->getClient($id);
         echo  $this->twig->render('employe/client.twig', ['client' => $client,]);
-    }
-    public function historique(){
-        echo  $this->twig->render('client/historique.twig');
     }
  
 
