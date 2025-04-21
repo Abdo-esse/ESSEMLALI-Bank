@@ -7,6 +7,52 @@
 
 
 {% block content %}
+
+        {% if flash_signIn %}
+            <script>
+            Swal.fire({
+            icon: 'success',
+            title: '🎉 Demande envoyée',
+            html: `
+                <p style="font-size: 16px; line-height: 1.6;">
+                Votre demande de création de compte a bien été reçue.<br>
+                Vous recevrez une réponse par e-mail dans les plus brefs délais.
+                </p>
+            `,
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#3085d6',
+            width: '100%',
+            padding: '2rem',
+            backdrop: `
+                rgba(0, 0, 0, 0.8)
+            `,
+            customClass: {
+                popup: 'mobile-popup'
+            }
+            });
+            </script>
+
+            <!-- Style personnalisé -->
+            <style>
+            @media (max-width: 600px) {
+                .swal2-popup.mobile-popup {
+                width: 95% !important;
+                border-radius: 10px;
+                font-size: 16px;
+                }
+                .swal2-html-container {
+                font-size: 15px;
+                }
+                .swal2-title {
+                font-size: 18px;
+                }
+                .swal2-confirm {
+                font-size: 16px;
+                padding: 10px 20px;
+                }
+            }
+            </style>
+        {% endif %}
         <!-- Hero Section -->
         <section class="flex flex-col md:flex-row items-center mb-16">
             <div class="md:w-1/2 md:pr-8 mb-8 md:mb-0">

@@ -1,12 +1,14 @@
 <?php 
 namespace App\Controllers;
-
+use App\core\Session;
 
 class PagesController extends Controller
 {
+   
     public function index()
     {
-       echo  $this->twig->render('pages/home.twig');
+      $flash = Session::getFlash("signIn");
+       echo  $this->twig->render('pages/home.twig', ['flash_signIn' => $flash]);
 
     }
     public function apropos()
