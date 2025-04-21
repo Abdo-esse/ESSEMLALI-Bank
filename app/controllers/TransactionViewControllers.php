@@ -5,23 +5,23 @@ use App\core\Session;
 
 class TransactionViewControllers extends Controller
 {
-    
-    public function versement()
-    {
+    public function __construct(){
+        parent::__construct();
         Session::unset('data');  
         Session::unset('post');
+
+    }
+    
+    public function versement()
+    {        
        echo  $this->twig->render('employe/versement.twig',['session' => $_SESSION ]);
     }
     public function retrait()
-    {
-        Session::unset('data');  
-        Session::unset('post');
+    {        
        echo  $this->twig->render('employe/retrait.twig',['session' => $_SESSION ]);
     }
     public function virement()
-    {
-        Session::unset('data');  
-        Session::unset('post');    
+    {     
        echo  $this->twig->render('employe/virement.twig',['session' => $_SESSION ]);
     }
     public function virementClient()

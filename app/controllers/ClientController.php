@@ -26,7 +26,7 @@ class ClientController extends Controller
         $request = new UpdateClientRequest($_POST);
      if (!$request->validate()) {
         Session::set('errorEditClient', $request->getErrors());
-         $this->redirect("client/update-info");
+         $this->redirect("update-info");
         exit;
       }
      Session::unset('errorEditClient');   
