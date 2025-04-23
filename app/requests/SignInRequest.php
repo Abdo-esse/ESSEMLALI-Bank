@@ -64,7 +64,7 @@ class SignInRequest {
         
             if (!in_array($fileExt, $allowedExtensions) || !in_array($mimeType, $allowedMimeTypes)) {
                 $this->errors['carte_identite'] = 'Le fichier doit être une image PNG, JPG ou JPEG.';
-            } elseif ($fileSize > 2 * 1024 * 1024) { // 2MB max
+            } elseif ($fileSize > 10 * 1024 * 1024) { // 2MB max
                 $this->errors['carte_identite'] = 'Le fichier ne doit pas dépasser 2MB.';
             }
         }

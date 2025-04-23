@@ -26,7 +26,7 @@ class ClientController extends Controller
         $request = new UpdateClientRequest($_POST);
      if (!$request->validate()) {
         Session::set('errorEditClient', $request->getErrors());
-         $this->redirect("client/update-info");
+         $this->redirect("update-info");
         exit;
       }
      Session::unset('errorEditClient');   
@@ -67,6 +67,7 @@ class ClientController extends Controller
     public function store()
     {
         $this->addClients("signIn");
+        Session::setFlash("signIn", "Votre demande de création de compte a bien été reçue.");
         header('Location: /ESSEMLALI-Bank');
         exit;
     }

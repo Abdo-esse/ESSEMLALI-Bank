@@ -72,6 +72,9 @@ class ReçuController extends Controller{
     public function telechargerRecuRetrait(){
      $this->telechargerRecu("recu_retrait");
     }
+    public function telechargerVirementClient(){
+     $this->telechargerRecu("recu-virement");
+    }
 
 
     private function telechargerRecu($recu){

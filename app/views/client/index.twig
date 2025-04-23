@@ -88,7 +88,7 @@
             </div>
             
             <div class="divide-y divide-gray-200">
-    {% for historique in historiques|slice(0, 6) %}
+    {% for historique in historiques|slice(0, 4) %}
         {# Vérification de l'existence des relations et propriétés #}
         {% if historique.typeOperation == "Deposit" %}
             <div class="py-4 flex justify-between items-center">
@@ -113,7 +113,7 @@
 
         {% elseif historique.typeOperation == "virement" %}
             {# Vérification que le bénéficiaire existe avant d'accéder à ses propriétés #}
-            {% if historique.donneur.id == 22 and historique.beneficiaire is not null %}
+            {% if historique.donneur.id == session.user.id and historique.beneficiaire is not null %}
                 <div class="py-4 flex justify-between items-center">
                     <div>
                         <p class="font-medium text-gray-800">
@@ -125,7 +125,7 @@
                     <span class="font-semibold text-red-600">-{{ historique.montant|number_format(2, ',', ' ') }} MAD</span>
                 </div>
 
-            {% elseif historique.beneficiaire is not null and historique.beneficiaire.id == 22 %}
+            {% elseif historique.beneficiaire is not null and historique.beneficiaire.id == session.user.id %}
                 <div class="py-4 flex justify-between items-center">
                     <div>
                         <p class="font-medium text-gray-800">
