@@ -8,7 +8,7 @@ Router::add("GET","/prets","PagesController@prets");
 Router::add("GET","/login","LoginController@index");
 Router::add("GET","/demandeCopmte","CompteController@demandeCompte");
 Router::add("POST","/login","LoginController@login");
-Router::add("GET","/Admin","AdminController@index");
+Router::add("GET","/accueil-admin","AdminController@index");
 Router::add("GET","/admins","AdminController@admin");
 Router::add("POST","/addAdmin","AdminController@create");
 Router::add("GET","/employes","EmployeController@employes");

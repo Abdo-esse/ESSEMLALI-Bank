@@ -2,22 +2,26 @@
 namespace App\Controllers;
 
 use App\services\AdminService;
+use App\services\StatistiqueService;
 use App\requests\StoreUserRequest;
 use App\core\Session;
 class AdminController extends Controller
 {
    
     private $adminService;
+    private $statistiqueService;
     public function __construct()
     {      
         parent::__construct();  
         $this->adminService= new AdminService(); 
+        $this->statistiqueService= new StatistiqueService(); 
     }
 
 
     public function index()
     {
-       echo  $this->twig->render('admin/index.twig',['session' => $_SESSION ]);
+        $data= $this->statistiqueService->statistiqueAdmin();
+        echo  $this->twig->render('admin/index.twig',['session' => $_SESSION,"data"=>$data ]);
     }
     public function admin()
     {

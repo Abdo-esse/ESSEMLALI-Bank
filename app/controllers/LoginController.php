@@ -48,7 +48,7 @@ class LoginController extends Controller{
 
     private function redirectUserByRole($role){
         return match ($role) {
-            'Admin' => $this->redirect('Admin'),
+            'Admin' => $this->redirect('accueil-admin'),
             'Employé' => $this->redirect('Employe'),
             'Client' => $this->redirect('Client'),
             default => "unknown" 
