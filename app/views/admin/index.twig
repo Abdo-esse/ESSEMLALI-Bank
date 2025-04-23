@@ -13,81 +13,109 @@
       <div class="flex justify-between items-center mb-6">
         <div>
           <h1 class="text-2xl font-bold text-indigo-800">Bienvenue, Ahmed Benani</h1>
-          <p class="text-gray-600">Espace administrateur - Siège Central</p>
+          <p class="text-gray-600">Bienvenue dans votre espace administrateur</p>
         </div>
         <div class="text-right">
-          <p class="text-sm text-gray-500">Date: 22 Avr 2025 - 10:30</p>
+          <p class="text-sm text-gray-500">Date: {{ "now"|date("d M Y - H:i") }}</p>
         </div>
       </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-      <div class="bg-white rounded-lg shadow-md p-4">
-        <div class="flex items-center">
-          <div class="p-3 rounded-full bg-blue-100 text-blue-600">
-            <i class="fas fa-building text-xl"></i>
-          </div>
-          <div class="ml-4">
-            <p class="text-sm text-gray-500">Agences</p>
-            <p class="text-lg font-semibold">24</p>
-          </div>
-        </div>
-        <div class="mt-3">
-          <div class="flex items-center">
-            <span class="text-sm text-green-600"><i class="fas fa-plus"></i> 1</span>
-            <span class="text-xs text-gray-500 ml-2">nouvelle ce mois</span>
-          </div>
-        </div>
+  <div class="bg-white rounded-lg shadow-md p-4">
+    <div class="flex items-center">
+      <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+        </svg>
       </div>
-      
-      <div class="bg-white rounded-lg shadow-md p-4">
-        <div class="flex items-center">
-          <div class="p-3 rounded-full bg-green-100 text-green-600">
-            <i class="fas fa-user-tie text-xl"></i>
-          </div>
-          <div class="ml-4">
-            <p class="text-sm text-gray-500">Employés</p>
-            <p class="text-lg font-semibold">187</p>
-          </div>
-        </div>
-        <div class="mt-3">
-          <div class="flex items-center">
-            <span class="text-sm text-green-600"><i class="fas fa-arrow-up"></i> +7</span>
-            <span class="text-xs text-gray-500 ml-2">ce mois</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="bg-white rounded-lg shadow-md p-4">
-        <div class="flex items-center">
-          <div class="p-3 rounded-full bg-red-100 text-red-600">
-            <i class="fas fa-exclamation-triangle text-xl"></i>
-          </div>
-          <div class="ml-4">
-            <p class="text-sm text-gray-500">Alertes système</p>
-            <p class="text-lg font-semibold">3</p>
-          </div>
-        </div>
-        <div class="mt-3 text-sm text-red-600">
-          <span>1 alerte critique</span>
-        </div>
-      </div>
-      
-      <div class="bg-white rounded-lg shadow-md p-4">
-        <div class="flex items-center">
-          <div class="p-3 rounded-full bg-purple-100 text-purple-600">
-            <i class="fas fa-chart-line text-xl"></i>
-          </div>
-          <div class="ml-4">
-            <p class="text-sm text-gray-500">Transactions</p>
-            <p class="text-lg font-semibold">8,456</p>
-          </div>
-        </div>
-        <div class="mt-3 text-sm text-purple-600">
-          <span>+12% vs mois dernier</span>
-        </div>
+      <div class="ml-4">
+        <p class="text-sm text-gray-500">Utilisateurs clients</p>
+        <p class="text-lg font-semibold">1,250</p>
       </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+    <div class="mt-3">
+      <div class="flex items-center">
+        <span class="text-sm text-green-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+          </svg> 45</span>
+        <span class="text-xs text-gray-500 ml-2">nouveaux ce mois</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white rounded-lg shadow-md p-4">
+    <div class="flex items-center">
+      <div class="p-3 rounded-full bg-green-100 text-green-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="ml-4">
+        <p class="text-sm text-gray-500">Utilisateurs employés</p>
+        <p class="text-lg font-semibold">187</p>
+      </div>
+    </div>
+    <div class="mt-3">
+      <div class="flex items-center">
+        <span class="text-sm text-green-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg> +7</span>
+        <span class="text-xs text-gray-500 ml-2">ce mois</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white rounded-lg shadow-md p-4">
+    <div class="flex items-center">
+      <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="ml-4">
+        <p class="text-sm text-gray-500">Solde total</p>
+        <p class="text-lg font-semibold">4,785,320 €</p>
+      </div>
+    </div>
+    <div class="mt-3">
+      <div class="flex items-center">
+        <span class="text-sm text-green-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg> +2.4%</span>
+        <span class="text-xs text-gray-500 ml-2">vs mois dernier</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white rounded-lg shadow-md p-4">
+    <div class="flex items-center">
+      <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8z" />
+          <path d="M12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
+        </svg>
+      </div>
+      <div class="ml-4">
+        <p class="text-sm text-gray-500">Transactions</p>
+        <p class="text-lg font-semibold">24,689</p>
+      </div>
+    </div>
+    <div class="mt-3">
+      <div class="flex items-center">
+        <span class="text-sm text-green-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg> +15%</span>
+        <span class="text-xs text-gray-500 ml-2">vs mois dernier</span>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class=" bg-white rounded-lg shadow-md p-6 mb-6">
       <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
         <div class="flex justify-center items-center w-12 h-12 bg-blue-100 rounded-full mb-4">
           <i class="fas fa-users-cog text-blue-600 text-xl"></i>
@@ -98,129 +126,6 @@
           <button class="bg-blue-600 text-white py-2 px-2 rounded-md hover:bg-blue-700 transition duration-300 text-sm">
             Liste utilisateurs
           </button>
-          <button class="bg-blue-600 text-white py-2 px-2 rounded-md hover:bg-blue-700 transition duration-300 text-sm">
-            Ajouter utilisateur
-          </button>
-        </div>
-      </div>
-      <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-        <div class="flex justify-center items-center w-12 h-12 bg-yellow-100 rounded-full mb-4">
-          <i class="fas fa-building text-yellow-600 text-xl"></i>
-        </div>
-        <h2 class="text-xl font-semibold text-gray-800 mb-2">Gestion des agences</h2>
-        <p class="text-gray-600 mb-4">Supervisez l'activité des agences et leurs performances</p>
-        <button class="w-full bg-yellow-600 text-white py-2 px-4 rounded-md hover:bg-yellow-700 transition duration-300">
-          Tableau de bord agences
-        </button>
-      </div>
-      <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-        <div class="flex justify-center items-center w-12 h-12 bg-red-100 rounded-full mb-4">
-          <i class="fas fa-shield-alt text-red-600 text-xl"></i>
-        </div>
-        <h2 class="text-xl font-semibold text-gray-800 mb-2">Sécurité système</h2>
-        <p class="text-gray-600 mb-4">Surveillez les tentatives de connexion et gérez les paramètres de sécurité</p>
-        <button class="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">
-          Voir les journaux
-        </button>
-      </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <div class="bg-white rounded-lg shadow-md p-6">
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-xl font-semibold text-gray-800">Performances des agences</h2>
-          <div class="text-sm bg-blue-100 text-blue-600 px-3 py-1 rounded-full">
-            Mois courant
-          </div>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="min-w-full bg-white">
-            <thead class="bg-gray-100">
-              <tr>
-                <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Agence</th>
-                <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transactions</th>
-                <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nouveaux comptes</th>
-                <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-              <tr>
-                <td class="py-2 px-4 text-sm text-gray-800">Casablanca Centre</td>
-                <td class="py-2 px-4 text-sm text-gray-600">1,245</td>
-                <td class="py-2 px-4 text-sm text-gray-600">24</td>
-                <td class="py-2 px-4"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">+8%</span></td>
-              </tr>
-              <tr>
-                <td class="py-2 px-4 text-sm text-gray-800">Rabat Agdal</td>
-                <td class="py-2 px-4 text-sm text-gray-600">956</td>
-                <td class="py-2 px-4 text-sm text-gray-600">18</td>
-                <td class="py-2 px-4"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">+5%</span></td>
-              </tr>
-              <tr>
-                <td class="py-2 px-4 text-sm text-gray-800">Marrakech Gueliz</td>
-                <td class="py-2 px-4 text-sm text-gray-600">853</td>
-                <td class="py-2 px-4 text-sm text-gray-600">15</td>
-                <td class="py-2 px-4"><span class="bg-red-100 text-red-600 px-2 py-1 rounded-full text-xs">-2%</span></td>
-              </tr>
-              <tr>
-                <td class="py-2 px-4 text-sm text-gray-800">Tanger Ville</td>
-                <td class="py-2 px-4 text-sm text-gray-600">742</td>
-                <td class="py-2 px-4 text-sm text-gray-600">12</td>
-                <td class="py-2 px-4"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">+3%</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="mt-4 flex justify-end">
-          <button class="text-blue-600 text-sm hover:text-blue-800">Voir toutes les agences →</button>
-        </div>
-      </div>
-      <div class="bg-white rounded-lg shadow-md p-6">
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-xl font-semibold text-gray-800">Activités système récentes</h2>
-          <div class="text-sm bg-blue-100 text-blue-600 px-3 py-1 rounded-full">
-            Aujourd'hui
-          </div>
-        </div>
-        <ul class="space-y-3">
-          <li class="flex items-start space-x-3 p-2 hover:bg-gray-50 rounded-md">
-            <div class="bg-red-100 p-2 rounded-md">
-              <i class="fas fa-shield-alt text-red-600"></i>
-            </div>
-            <div>
-              <p class="text-sm text-gray-800">Tentative de connexion échouée (IP: 192.168.1.45)</p>
-              <p class="text-xs text-gray-500">il y a 25 minutes</p>
-            </div>
-          </li>
-          <li class="flex items-start space-x-3 p-2 hover:bg-gray-50 rounded-md">
-            <div class="bg-green-100 p-2 rounded-md">
-              <i class="fas fa-user-plus text-green-600"></i>
-            </div>
-            <div>
-              <p class="text-sm text-gray-800">Nouvel employé ajouté: Souad Bennani</p>
-              <p class="text-xs text-gray-500">il y a 1 heure</p>
-            </div>
-          </li>
-          <li class="flex items-start space-x-3 p-2 hover:bg-gray-50 rounded-md">
-            <div class="bg-blue-100 p-2 rounded-md">
-              <i class="fas fa-cog text-blue-600"></i>
-            </div>
-            <div>
-              <p class="text-sm text-gray-800">Mise à jour système effectuée v.2.4.5</p>
-              <p class="text-xs text-gray-500">il y a 3 heures</p>
-            </div>
-          </li>
-          <li class="flex items-start space-x-3 p-2 hover:bg-gray-50 rounded-md">
-            <div class="bg-yellow-100 p-2 rounded-md">
-              <i class="fas fa-exclamation-circle text-yellow-600"></i>
-            </div>
-            <div>
-              <p class="text-sm text-gray-800">Maintenance programmée: 24 Avr 2025 (22:00)</p>
-              <p class="text-xs text-gray-500">il y a 5 heures</p>
-            </div>
-          </li>
-        </ul>
-        <div class="mt-4 flex justify-end">
-          <button class="text-blue-600 text-sm hover:text-blue-800">Voir toutes les activités →</button>
         </div>
       </div>
     </div>
