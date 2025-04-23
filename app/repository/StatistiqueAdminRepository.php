@@ -64,7 +64,7 @@ class StatistiqueAdminRepository  extends BaseRepository
         return $result['total_historiques'] ?? 0; 
     }
     public function totalSolde(){
-        $sql = "SELECT sum(solde) from comptes";        
+        $sql = "SELECT sum(solde) as total_solde  from comptes";        
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();    
         $result = $stmt->fetch(PDO::FETCH_ASSOC);        
