@@ -5,7 +5,7 @@ namespace App\services;
  use App\Repository\AdminRepository;
 
 class AdminService {
-    private AdminRepository $userRepo;
+    private AdminRepository $adminRepo;
 
     public function __construct() {
         $this->adminRepo = new AdminRepository();

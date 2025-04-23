@@ -63,12 +63,12 @@ class StatistiqueAdminRepository  extends BaseRepository
         $result = $stmt->fetch(PDO::FETCH_ASSOC);        
         return $result['total_historiques'] ?? 0; 
     }
-    public function nbrComptes(){
-        $sql = "SELECT count(*) as total_comptes from comptes";        
+    public function totalSolde(){
+        $sql = "SELECT sum(solde) from comptes";        
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();    
         $result = $stmt->fetch(PDO::FETCH_ASSOC);        
-        return $result['total_comptes'] ?? 0; 
+        return $result['total_solde'] ?? 0; 
     }
     
     
