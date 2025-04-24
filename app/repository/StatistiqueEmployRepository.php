@@ -54,6 +54,20 @@ class StatistiqueEmployRepository  extends BaseRepository
         return $result['total_demande_par_mois'] ?? 0; 
     }
     
+    public function nbrHistorique(){
+        $sql = "SELECT count(*) as total_historiques from historique";        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);        
+        return $result['total_historiques'] ?? 0; 
+    }
+    public function totalSolde(){
+        $sql = "SELECT sum(solde) as total_solde  from comptes";        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);        
+        return $result['total_solde'] ?? 0; 
+    }
     
     
 }
