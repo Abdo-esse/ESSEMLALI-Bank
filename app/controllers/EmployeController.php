@@ -2,22 +2,27 @@
 namespace App\Controllers;
 
 use App\services\EmployeService;
+use App\services\StatistiqueService;
 use App\requests\StoreUserRequest;
 use App\core\Session;
 
 class EmployeController extends Controller
 {
     private $employeService;
+    private $statistiqueService;
+
     public function __construct()
     {
         parent::__construct();
-          $this->employeService= new EmployeService();
+          $this->employeService= new EmployeService(); 
+          $this->statistiqueService= new StatistiqueService(); 
     }
 
 
     public function index()
     {
-       echo  $this->twig->render('employe/index.twig',['session' => $_SESSION ]);
+        $data= $this->statistiqueService->statistiqueEmploye();
+       echo  $this->twig->render('employe/index.twig',['session' => $_SESSION,"data"=>$data ]);
     }
     public function employes()
     {
