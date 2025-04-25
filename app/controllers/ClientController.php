@@ -116,6 +116,15 @@ class ClientController extends Controller
         $dompdf->stream("releve_compte.pdf", ["Attachment" => true]);
     }
 
+    public function searchClient(){
+        if (isset($_GET["keyword"])) {
+            $keyword=$_GET["keyword"];
+        }
+        $data= $this->clientService->searchClient($keyword);
+        echo( json_encode($data));
+        
+    }
+
     
 
 

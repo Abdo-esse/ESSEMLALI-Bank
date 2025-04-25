@@ -12,7 +12,7 @@ $twig = new Environment($loader, [
 ]);
 
 $twig->addFunction(new \Twig\TwigFunction('asset', function ($path) {
-    return '/ESSEMLALI-Bank/uploads/' . ltrim($path, '/');
+    return '/ESSEMLALI-Bank/public/' . ltrim($path, '/');
 }));
 
 

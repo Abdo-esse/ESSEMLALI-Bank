@@ -1,7 +1,8 @@
 <?php
  namespace App\models;
+ use JsonSerializable;
 
- class User 
+ class User  implements JsonSerializable
  {
 
     private $id;
@@ -42,4 +43,15 @@
 
     public function getIsActive(){ return $this->isActive;}
     public function setIsActive($isActive){ $this->isActive = $isActive;}
+
+    public function jsonSerialize(): mixed {
+        return [
+            'id' => $this->id,
+            'nom' => $this->nom,
+            'prenom' => $this->prenom,
+            'email' =>  $this->email,
+            'dateCreation' => $this->dateCreation,
+            'isActive' =>  $this->isActive,
+        ];
+    }
  }

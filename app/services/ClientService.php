@@ -60,5 +60,8 @@ class ClientService {
     public function findclient($id){
         return $this->clientRepo->findclient($id);
     }
+    public function searchClient($keyword){
+        return $this->clientRepo->searchClient($keyword);
+    }
     
 }
