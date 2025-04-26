@@ -43,17 +43,16 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Éléments du DOM
   const header = document.querySelector('header');
   const navContainer = document.querySelector('header .container');
   const nav = document.querySelector('header nav');
   const logo = document.querySelector('header .font-bold');
   const loginButton = document.querySelector('header a.bg-blue-400');
   
-  // État initial - Menu mobile fermé
+  
   let menuOpen = false;
   
-  // Création du bouton hamburger pour la version mobile
+ 
   const hamburgerButton = document.createElement('button');
   hamburgerButton.classList.add('md:hidden', 'fixed', 'right-4', 'top-4', 'z-50'); // Fixed au lieu de absolute pour une meilleure visibilité
   hamburgerButton.setAttribute('aria-label', 'Menu de navigation');
@@ -63,10 +62,10 @@ document.addEventListener('DOMContentLoaded', function() {
     </svg>
   `;
   
-  // Insérer le bouton après le logo
+
   logo.parentNode.insertBefore(hamburgerButton, logo.nextSibling);
   
-  // Cacher initialement la navigation sur mobile
+
   function setMobileNavVisibility() {
     if (window.innerWidth < 768) { // 768px est la taille md dans Tailwind
       nav.style.display = menuOpen ? 'flex' : 'none';
@@ -80,12 +79,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Appliquer l'état initial
   setMobileNavVisibility();
   
-  // Gestionnaire d'événement pour le bouton hamburger
+
   hamburgerButton.addEventListener('click', function() {
     menuOpen = !menuOpen;
     setMobileNavVisibility();
-    
-    // Changer l'icône selon l'état du menu
+
     hamburgerButton.innerHTML = menuOpen 
       ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -95,12 +93,12 @@ document.addEventListener('DOMContentLoaded', function() {
          </svg>`;
   });
   
-  // Gestionnaire de redimensionnement pour s'adapter aux changements de taille d'écran
+  
   window.addEventListener('resize', function() {
     setMobileNavVisibility();
   });
   
-  // Fermer le menu mobile lors du clic sur un lien
+
   const navLinks = nav.querySelectorAll('a');
   navLinks.forEach(link => {
     link.addEventListener('click', function() {
