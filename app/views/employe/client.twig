@@ -64,7 +64,7 @@
                     
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Carte Nationale d'Identité</p>
-                        <img src="http://localhost/ESSEMLALI-Bank/uploads/{{ client.client.carteIdentite }}" alt="Carte Nationale d'Identité" class="w-full max-w-md border border-gray-200 rounded-md">
+                        <img src="{{ asset('uploads/' ~ client.client.carteIdentite) }}" alt="{{ client.client.carteIdentite }}" class="w-full max-w-md border border-gray-200 rounded-md">
                     </div>
                 </div>
             </div>

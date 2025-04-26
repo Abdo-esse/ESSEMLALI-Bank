@@ -54,7 +54,7 @@ class ClientViewController extends Controller
     }
     public function clients(){
         $clients=$this->clientService->allClients();
-        echo  $this->twig->render('employe/clients.twig', ['clients' => $clients,]);
+        echo  $this->twig->render('employe/clients.twig');
     }
     public function client($id){
         $client=$this->clientService->getClient($id);

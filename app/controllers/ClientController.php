@@ -19,6 +19,12 @@ class ClientController extends Controller
         parent::__construct();
         $this->clientService=new ClientService();
     }
+    public function allClients(){
+        $clients=$this->clientService->allClients();
+        echo json_encode($clients);
+    }
+
+
     public function update($id)
     {
         $client = $this->clientService->findclient($id);
