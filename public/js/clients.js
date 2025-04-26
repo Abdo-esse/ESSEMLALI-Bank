@@ -55,12 +55,7 @@ const displayClients = (clients) => {
             </tr>
         `;
     } else {
-        clients.forEach(client => {
-            let dateCreation = client.dateCreation;
-            if (dateCreation && typeof dateCreation === 'object') {
-                dateCreation = dateCreation.toISOString().split('T')[0];
-            }
-            
+        clients.forEach(client => {            
             const row = document.createElement('tr');
             row.className = 'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600';
             
@@ -75,11 +70,11 @@ const displayClients = (clients) => {
                     ${client.email || ''}
                 </td>
                 <td class="px-6 py-4">
-                    ${dateCreation || 'N/A'}
+                    ${formateDate(client.dateCreation)}
                 </td>
                 <td class="px-6 py-4">
                     <div class="flex space-x-2">
-                        <form method="post" action="client/${client.id}" onsubmit="return confirm('Voulez-vous vraiment activer cet employé?');">
+                        <form method="post" action="client/${client.id}" >
                             <button type="submit" class="px-3 py-1.5 text-xs font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                 voir
                             </button>
@@ -105,3 +100,20 @@ const displayError = (errorMessage) => {
 }
 
 document.addEventListener('DOMContentLoaded', loadInitialClients);
+
+
+function formateDate(dateCreation){
+    const rawDate = dateCreation;
+let formattedDate = 'N/A';
+
+if (rawDate) {
+    const date = new Date(rawDate);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    formattedDate = `${year}-${month}-${day} à ${hours}:${minutes}`;
+}
+return formattedDate
+}

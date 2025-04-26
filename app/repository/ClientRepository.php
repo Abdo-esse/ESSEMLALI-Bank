@@ -276,6 +276,10 @@ class ClientRepository extends BaseRepository
     
         return $clients;
     }
+
+    public function delete($id,$data){
+        return $this->update("users", $id, $data);
+    }
     
     
     

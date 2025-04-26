@@ -23,6 +23,10 @@ class ClientController extends Controller
         $clients=$this->clientService->allClients();
         echo json_encode($clients);
     }
+    public function allDemandeClients(){
+        $demandeClients=$this->clientService->getAll();
+        echo json_encode($demandeClients);
+    }
 
 
     public function update($id)
@@ -91,13 +95,8 @@ class ClientController extends Controller
         }
     }
     
-    public function delete($id){
-        $data = [
-            "is_active"=>"false" ,
-            "date_suppression"=>date('Y-m-d H:i:s') 
-        ];
-        
-        if (!$this->clientService->update($id,$data)) {
+    public function delete($id){        
+        if (!$this->clientService->delete($id)) {
             Session::set('error', "Une erreur s'est produite lors de la supression de client.");
              $this->redirect('client/'.$id);
             exit;
