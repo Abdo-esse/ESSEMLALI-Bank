@@ -54,3 +54,4 @@ Router::add("POST","/recu/virement-client/telecharger","TelechargerPeçuControll
 Router::add("GET","/search-clien","ClientController@searchClient");
 Router::add("GET","/all-clients","ClientController@allClients");
 Router::add("GET","/all-demande-clients","ClientController@allDemandeClients");
+Router::add("GET","/search-demande-clien","ClientController@searchDemandeClient");

@@ -281,6 +281,27 @@ class ClientRepository extends BaseRepository
         return $this->update("users", $id, $data);
     }
     
+    public function searchDemandeClient($keyword){
+        $sql = "SELECT u.*
+                FROM users  u
+                JOIN role_user ru ON ru.user_id = u.id
+                WHERE ru.role_id = 3
+				AND u.is_active = 'false' AND date_suppression IS NULL
+				AND ( LOWER(u.prenom) LIKE LOWER(:keyword) OR LOWER(u.nom) LIKE LOWER(:keyword))
+				 ORDER BY u.nom";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $clients = [];
+
+        foreach ($rows as $row) {
+            $clients[] = new Client($row->user_id,$row->nom,$row->prenom,$row->email,"",$row->date_creation,$row->is_active);
+        }
+
+        return $clients;
+    }
+    
     
     
 }
