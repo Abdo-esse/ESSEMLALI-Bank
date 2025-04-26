@@ -146,6 +146,13 @@ public function allEmployes(){
     $employes= $this->employeService->getAll();
     echo json_encode($employes);
 }
+public function searchEmployes(){
+    if (isset($_GET["keyword"])) {
+        $keyword=$_GET["keyword"];
+    }
+    $employes= $this->employeService->searchEmployes($keyword);
+    echo json_encode($employes);
+}
 
 
 

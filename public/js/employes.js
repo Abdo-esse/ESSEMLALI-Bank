@@ -25,7 +25,7 @@ const searchEmployes = async () => {
     }
     
     try {
-        const req = await fetch(`http://localhost/ESSEMLALI-Bank/search-clien?keyword=${encodeURIComponent(keyword)}`);
+        const req = await fetch(`http://localhost/ESSEMLALI-Bank/search-employe?keyword=${encodeURIComponent(keyword)}`);
         
         if (!req.ok) {
             throw new Error(`Erreur HTTP : ${req.status}`);
