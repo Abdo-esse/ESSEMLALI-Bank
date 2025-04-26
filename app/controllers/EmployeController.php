@@ -26,12 +26,7 @@ class EmployeController extends Controller
     }
     public function employes()
     {
-        $employes= $this->employeService->getAll();
-       echo  $this->twig->render('admin/eployes.twig',[
-           'session' => $_SESSION,
-           'employes'=>$employes
-       ]);
-
+        echo  $this->twig->render('admin/eployes.twig',['session' => $_SESSION,]);
     }
     
     public function create()
@@ -146,6 +141,13 @@ public function delete($id)
      $this->redirect('employes');
     exit;
 } 
+
+public function allEmployes(){
+    $employes= $this->employeService->getAll();
+    echo json_encode($employes);
+}
+
+
 
 
 }

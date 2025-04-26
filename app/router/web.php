@@ -55,3 +55,4 @@ Router::add("GET","/search-clien","ClientController@searchClient");
 Router::add("GET","/all-clients","ClientController@allClients");
 Router::add("GET","/all-demande-clients","ClientController@allDemandeClients");
 Router::add("GET","/search-demande-clien","ClientController@searchDemandeClient");
+Router::add("GET","/all-employes","EmployeController@allEmployes");
