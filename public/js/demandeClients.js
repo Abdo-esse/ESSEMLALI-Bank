@@ -25,7 +25,7 @@ const searchClient = async () => {
     }
     
     try {
-        const req = await fetch(`http://localhost/ESSEMLALI-Bank/search-clien?keyword=${encodeURIComponent(keyword)}`);
+        const req = await fetch(`http://localhost/ESSEMLALI-Bank/search-demande-clien?keyword=${encodeURIComponent(keyword)}`);
         
         if (!req.ok) {
             throw new Error(`Erreur HTTP : ${req.status}`);
@@ -70,13 +70,21 @@ const displayDemandeClients = (clients) => {
                 <td class="px-6 py-4">
                     ${formateDate(client.dateCreation)}
                 </td>
+               <td class="px-6 py-4">
+                    ${
+                        client.isActive
+                        ? '<span class="px-2 py-1 text-xs font-medium text-green-700 bg-green-100 rounded-full dark:bg-green-900 dark:text-green-300">Actif</span>'
+                        : '<span class="px-2 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Inactif</span>'
+                    }
+                </td>
                 <td class="px-6 py-4">
                     <div class="flex space-x-2">
-                        <form method="post" action="client/${client.id}" onsubmit="return confirm('Voulez-vous vraiment activer cet employé?');">
-                            <button type="submit" class="px-3 py-1.5 text-xs font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                voir
+                        <a href="voir/${client.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            <button type="button" class="px-3 py-1.5 text-xs font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Voir
                             </button>
-                        </form>
+                        </a>                    
+                        
                     </div>
                 </td>
             `;
