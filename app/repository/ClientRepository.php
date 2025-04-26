@@ -290,13 +290,13 @@ class ClientRepository extends BaseRepository
 				AND ( LOWER(u.prenom) LIKE LOWER(:keyword) OR LOWER(u.nom) LIKE LOWER(:keyword))
 				 ORDER BY u.nom";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([":keyword" =>$keyword.'%']);
 
         $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
         $clients = [];
 
         foreach ($rows as $row) {
-            $clients[] = new Client($row->user_id,$row->nom,$row->prenom,$row->email,"",$row->date_creation,$row->is_active);
+            $clients[] = new User($row->id,$row->nom,$row->prenom,$row->email,"",$row->date_creation,$row->is_active);
         }
 
         return $clients;

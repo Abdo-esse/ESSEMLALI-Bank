@@ -129,6 +129,14 @@ class ClientController extends Controller
         echo( json_encode($data));
         
     }
+    public function searchDemandeClient(){
+        if (isset($_GET["keyword"])) {
+            $keyword=$_GET["keyword"];
+        }
+        $data= $this->clientService->searchDemandeClient($keyword);
+        echo( json_encode($data));
+        
+    }
 
     
 

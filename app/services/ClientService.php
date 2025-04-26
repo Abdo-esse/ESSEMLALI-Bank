@@ -70,5 +70,8 @@ class ClientService {
     public function searchClient($keyword){
         return $this->clientRepo->searchClient($keyword);
     }
+    public function searchDemandeClient($keyword){
+        return $this->clientRepo->searchDemandeClient($keyword);
+    }
     
 }

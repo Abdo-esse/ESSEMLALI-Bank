@@ -17,7 +17,7 @@ const fetchAllDemandeClients = async () => {
 }
 
 
-const searchClient = async () => {
+const searchDemandeClient = async () => {
     let keyword = document.querySelector('#keyword').value;
     if (!keyword) {
         displayDemandeClients(originalDemandeClients);
