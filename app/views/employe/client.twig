@@ -64,7 +64,7 @@
                     
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Carte Nationale d'Identité</p>
-                        <img src="http://localhost/ESSEMLALI-Bank/uploads/{{ client.client.carteIdentite }}" alt="Carte Nationale d'Identité" class="w-full max-w-md border border-gray-200 rounded-md">
+                        <img src="{{ asset('uploads/' ~ client.client.carteIdentite) }}" alt="Carte Nationale d'Identité" class="w-full max-w-md border border-gray-200 rounded-md">
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
             </div>
             
             <div class="flex justify-end gap-4 mt-6">
-                <form method="post" action="delete/{{ client.client.id }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet employé?');">
+                <form method="post" action="delete/{{ client.client.id }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet client?');">
                             <button type="submit" class="px-4 py-2 bg-red-600 text-white font-medium rounded hover:bg-red-700 transition-colors">
                                 Supprimer
                             </button>
@@ -101,13 +101,11 @@
     </div>
     
     <script>
-        // Fonctionnalité pour retourner à la page précédente
         const backButton = document.getElementById('back-button');
         backButton.addEventListener('click', function() {
             window.history.back();
         });
 
-        // Fonctionnalité pour afficher/masquer le solde
         const toggleBalance = document.getElementById('toggle-balance');
         const balanceValue = document.getElementById('balance-value');
         const balanceHidden = document.getElementById('balance-hidden');
@@ -137,7 +135,6 @@
             }
         });
 
-        // Fonctionnalité pour changer le statut (activer/désactiver)
         const statusBadge = document.getElementById('status-badge');
         const toggleStatusBtn = document.getElementById('toggle-status-btn');
         let isActive = true;

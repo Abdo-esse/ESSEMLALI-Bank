@@ -19,6 +19,16 @@ class ClientController extends Controller
         parent::__construct();
         $this->clientService=new ClientService();
     }
+    public function allClients(){
+        $clients=$this->clientService->allClients();
+        echo json_encode($clients);
+    }
+    public function allDemandeClients(){
+        $demandeClients=$this->clientService->getAll();
+        echo json_encode($demandeClients);
+    }
+
+
     public function update($id)
     {
         $client = $this->clientService->findclient($id);
@@ -85,13 +95,8 @@ class ClientController extends Controller
         }
     }
     
-    public function delete($id){
-        $data = [
-            "is_active"=>"false" ,
-            "date_suppression"=>date('Y-m-d H:i:s') 
-        ];
-        
-        if (!$this->clientService->update($id,$data)) {
+    public function delete($id){        
+        if (!$this->clientService->delete($id)) {
             Session::set('error', "Une erreur s'est produite lors de la supression de client.");
              $this->redirect('client/'.$id);
             exit;
@@ -114,6 +119,23 @@ class ClientController extends Controller
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
         $dompdf->stream("releve_compte.pdf", ["Attachment" => true]);
+    }
+
+    public function searchClient(){
+        if (isset($_GET["keyword"])) {
+            $keyword=$_GET["keyword"];
+        }
+        $data= $this->clientService->searchClient($keyword);
+        echo( json_encode($data));
+        
+    }
+    public function searchDemandeClient(){
+        if (isset($_GET["keyword"])) {
+            $keyword=$_GET["keyword"];
+        }
+        $data= $this->clientService->searchDemandeClient($keyword);
+        echo( json_encode($data));
+        
     }
 
     

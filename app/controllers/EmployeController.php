@@ -2,31 +2,31 @@
 namespace App\Controllers;
 
 use App\services\EmployeService;
+use App\services\StatistiqueService;
 use App\requests\StoreUserRequest;
 use App\core\Session;
 
 class EmployeController extends Controller
 {
     private $employeService;
+    private $statistiqueService;
+
     public function __construct()
     {
         parent::__construct();
-          $this->employeService= new EmployeService();
+          $this->employeService= new EmployeService(); 
+          $this->statistiqueService= new StatistiqueService(); 
     }
 
 
     public function index()
     {
-       echo  $this->twig->render('employe/index.twig',['session' => $_SESSION ]);
+        $data= $this->statistiqueService->statistiqueEmploye();
+       echo  $this->twig->render('employe/index.twig',['session' => $_SESSION,"data"=>$data ]);
     }
     public function employes()
     {
-        $employes= $this->employeService->getAll();
-       echo  $this->twig->render('admin/eployes.twig',[
-           'session' => $_SESSION,
-           'employes'=>$employes
-       ]);
-
+        echo  $this->twig->render('admin/eployes.twig',['session' => $_SESSION,]);
     }
     
     public function create()
@@ -141,6 +141,20 @@ public function delete($id)
      $this->redirect('employes');
     exit;
 } 
+
+public function allEmployes(){
+    $employes= $this->employeService->getAll();
+    echo json_encode($employes);
+}
+public function searchEmployes(){
+    if (isset($_GET["keyword"])) {
+        $keyword=$_GET["keyword"];
+    }
+    $employes= $this->employeService->searchEmployes($keyword);
+    echo json_encode($employes);
+}
+
+
 
 
 }

@@ -45,8 +45,8 @@ class ClientViewController extends Controller
 
  
     public function demandeComptes(){
-        $clients=$this->clientService->getAll();
-        echo  $this->twig->render('employe/demandeComptes.twig', ['clients' => $clients]);
+    
+        echo  $this->twig->render('employe/demandeComptes.twig');
     }
     public function demandeCompte($id){
         $client=$this->clientService->find($id);
@@ -54,7 +54,7 @@ class ClientViewController extends Controller
     }
     public function clients(){
         $clients=$this->clientService->allClients();
-        echo  $this->twig->render('employe/clients.twig', ['clients' => $clients,]);
+        echo  $this->twig->render('employe/clients.twig');
     }
     public function client($id){
         $client=$this->clientService->getClient($id);

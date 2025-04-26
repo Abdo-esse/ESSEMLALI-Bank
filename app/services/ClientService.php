@@ -44,6 +44,13 @@ class ClientService {
        return $this->clientRepo->edit( $id, $dataUser, $dataClient);
     }
 
+    public function delete($id){
+        $data = [
+            "is_active"=>"false" ,
+            "date_suppression"=>date('Y-m-d H:i:s') 
+        ];
+        return $this->clientRepo->delete($id,$data);
+    }
     public function getAll(){
         return $this->clientRepo->readAll('roles');
     }
@@ -59,6 +66,12 @@ class ClientService {
     
     public function findclient($id){
         return $this->clientRepo->findclient($id);
+    }
+    public function searchClient($keyword){
+        return $this->clientRepo->searchClient($keyword);
+    }
+    public function searchDemandeClient($keyword){
+        return $this->clientRepo->searchDemandeClient($keyword);
     }
     
 }

@@ -1,11 +1,8 @@
 RewriteEngine On
 
-# Autoriser l'accès aux fichiers statiques (images, CSS, JS)
-RewriteCond %{REQUEST_URI} ^/uploads/ [NC]
-RewriteRule . - [L]
+    #accept loading of actual files and directories
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
 
-# Rediriger tout vers index.php sauf fichiers/dossiers existants
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-l
-RewriteRule ^(.*)$ index.php?$1 [L,QSA]
+    #send everything else to the index page
+    RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]

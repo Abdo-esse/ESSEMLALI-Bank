@@ -45,11 +45,11 @@ class EmployRepository  extends BaseRepository
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $admins = [];
+        $employes = [];
         foreach ($rows as $row) {
-            $admins[] = new Employe($row['id'], $row['nom'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
+            $employes[] = new Employe($row['id'], $row['nom'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
         }
-        return $admins;
+        return $employes;
     }
     public function find($table, $where)
     {
@@ -69,6 +69,24 @@ class EmployRepository  extends BaseRepository
         }
     
         return new Employe($row['id'], $row['nom'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
+    }
+
+    public function searchEmployes($keyword)
+    {
+        $sql = "SELECT u.* 
+               from $this->table u
+               join $this->tablePivot on role_user.user_id = u.id
+               WHERE role_user.role_id = 2 AND u.date_suppression IS NULL
+				AND ( LOWER(u.prenom) LIKE LOWER(:keyword) OR LOWER(u.nom) LIKE LOWER(:keyword))
+				ORDER BY u.nom";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([":keyword" =>$keyword.'%']);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $employes = [];
+        foreach ($rows as $row) {
+            $employes[] = new Employe($row['id'], $row['nom'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
+        }
+        return $employes;
     }
     
 

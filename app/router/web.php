@@ -51,3 +51,9 @@ Router::add("GET","/virement-client","TransactionViewControllers@virementClient"
 Router::add("POST","/virement-client","TransactionController@virementClient");
 Router::add("GET","recu/virement-client","ReçuController@recuVirementClient");
 Router::add("POST","/recu/virement-client/telecharger","TelechargerPeçuController@telechargerVirementClient");
+Router::add("GET","/search-clien","ClientController@searchClient");
+Router::add("GET","/all-clients","ClientController@allClients");
+Router::add("GET","/all-demande-clients","ClientController@allDemandeClients");
+Router::add("GET","/search-demande-clien","ClientController@searchDemandeClient");
+Router::add("GET","/all-employes","EmployeController@allEmployes");
+Router::add("GET","/search-employe","EmployeController@searchEmployes");
