@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b0b4cda-790a-4f8a-8a38-2cdc58fdb660" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/controllers/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/TransactionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/employe/versement.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employe/versement.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/employe/virement.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employe/virement.twig" afterDir="false" />
-    </list>
+    <list default="true" id="4b0b4cda-790a-4f8a-8a38-2cdc58fdb660" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,7 +99,7 @@
       <workItem from="1743153532586" duration="7331000" />
       <workItem from="1745235015986" duration="14000" />
       <workItem from="1745752405033" duration="1031000" />
-      <workItem from="1745759675257" duration="307000" />
+      <workItem from="1745759675257" duration="1203000" />
     </task>
     <servers />
   </component>
