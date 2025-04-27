@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\services\EmployeService;
 use App\services\StatistiqueService;
 use App\requests\StoreUserRequest;
+use App\requests\UpdateUserRequest;
 use App\core\Session;
 
 class EmployeController extends Controller
@@ -40,7 +41,7 @@ class EmployeController extends Controller
 
     public function update($id)
     {
-        $request = new StoreUserRequest($_POST);
+        $request = new UpdateUserRequest($_POST);
         if (!$request->validate()) {
             Session::setFlash('errorEditEmployer', $request->getErrors());
             $this->redirect("edite-eploye/$id");

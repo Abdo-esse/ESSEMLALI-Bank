@@ -86,28 +86,67 @@
                     <!-- Modal body -->
                     <div class="p-4 md:p-5">
                         <h2 class="text-2xl font-bold text-center text-blue-700 mb-6 dark:text-blue-400">Ajout d'un
-                            Administrateur</h2>
+                            employe</h2>
 
                         <form class="space-y-4" action="AddEmploye" method="POST">
                             <div>
                                 <label for="nom"
                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nom</label>
                                 <input type="text" id="nom" name="nom" value="{{ valuesEmployer.nom }}" required
-                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if errorEmployer.nom %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                                       {% if errorEmployer.nom  %}
+                                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">
+                <span class="flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    {{ errorEmployer.nom }}
+                </span>
+                                    </p>
+                                {% endif %}
                             </div>
 
                             <div>
                                 <label for="prenom" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Prénom</label>
                                 <input type="text" id="prenom" name="prenom" value="{{ valuesEmployer.prenom }}"
                                        required
-                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if errorEmployer.prenom %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                                       {% if errorEmployer.prenom  %}
+                                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">
+                <span class="flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    {{ errorEmployer.prenom }}
+                </span>
+                                    </p>
+                                {% endif %}
                             </div>
 
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
                                 <input type="email" id="email" name="email" value="{{ valuesEmployer.email }}"
                                        required
-                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if errorEmployer.email %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                                       {% if errorEmployer.email  %}
+                                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">
+                <span class="flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    {{ errorEmployer.email }}
+                </span>
+                                    </p>
+                                {% endif %}
                             </div>
 
                             <div>
