@@ -23,18 +23,18 @@ const searchClient = async () => {
         displayClients(originalClients);
         return;
     }
-    
+
     try {
         const req = await fetch(`http://localhost/ESSEMLALI-Bank/search-clien?keyword=${encodeURIComponent(keyword)}`);
-        
+
         if (!req.ok) {
             throw new Error(`Erreur HTTP : ${req.status}`);
         }
-        
+
         const response = await req.json();
         console.log(response);
         displayClients(response);
-        
+
     } catch (error) {
         console.log("Une erreur s'est produite lors de la recherche :", error.message);
         displayError(error.message);
@@ -43,9 +43,9 @@ const searchClient = async () => {
 
 const displayClients = (clients) => {
     const tableBody = document.querySelector('table tbody');
-    
+
     tableBody.innerHTML = '';
-    
+
     if (clients.length === 0) {
         tableBody.innerHTML = `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -55,10 +55,10 @@ const displayClients = (clients) => {
             </tr>
         `;
     } else {
-        clients.forEach(client => {            
+        clients.forEach(client => {
             const row = document.createElement('tr');
             row.className = 'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600';
-            
+
             row.innerHTML = `
                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                     ${client.nom || ''}
@@ -82,7 +82,7 @@ const displayClients = (clients) => {
                     </div>
                 </td>
             `;
-            
+
             tableBody.appendChild(row);
         });
     }
@@ -102,18 +102,18 @@ const displayError = (errorMessage) => {
 document.addEventListener('DOMContentLoaded', loadInitialClients);
 
 
-function formateDate(dateCreation){
+function formateDate(dateCreation) {
     const rawDate = dateCreation;
-let formattedDate = 'N/A';
+    let formattedDate = 'N/A';
 
-if (rawDate) {
-    const date = new Date(rawDate);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    formattedDate = `${year}-${month}-${day} à ${hours}:${minutes}`;
-}
-return formattedDate
+    if (rawDate) {
+        const date = new Date(rawDate);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        formattedDate = `${year}-${month}-${day} à ${hours}:${minutes}`;
+    }
+    return formattedDate
 }

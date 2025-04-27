@@ -11,7 +11,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -19,7 +19,7 @@
             background-color: #f9f9f9;
             padding: 20px;
         }
-        
+
         .receipt-container {
             max-width: 800px;
             margin: 0 auto;
@@ -28,7 +28,7 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             padding: 30px;
         }
-        
+
         .receipt-header {
             display: flex;
             justify-content: space-between;
@@ -37,7 +37,7 @@
             padding-bottom: 20px;
             border-bottom: 1px solid #eee;
         }
-        
+
         .logo-area {
             width: 200px;
             height: 70px;
@@ -47,34 +47,34 @@
             justify-content: center;
             border-radius: 5px;
         }
-        
+
         .receipt-title {
             text-align: right;
         }
-        
+
         .receipt-title h1 {
             color: #2c3e50;
             font-size: 24px;
             margin-bottom: 5px;
         }
-        
+
         .receipt-title .receipt-number {
             color: #7f8c8d;
             font-size: 14px;
         }
-        
+
         .receipt-info {
             display: flex;
             justify-content: space-between;
             margin-bottom: 30px;
             flex-wrap: wrap;
         }
-        
+
         .date-section, .sender-section, .recipient-section {
             width: 48%;
             margin-bottom: 20px;
         }
-        
+
         .info-title {
             font-weight: bold;
             margin-bottom: 10px;
@@ -82,41 +82,41 @@
             text-transform: uppercase;
             font-size: 14px;
         }
-        
+
         .info-content {
             padding: 15px;
             background-color: #f9f9f9;
             border-radius: 5px;
             margin-bottom: 20px;
         }
-        
+
         .transfer-details {
             margin-bottom: 30px;
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 30px;
         }
-        
+
         th, td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #e0e0e0;
         }
-        
+
         th {
             background-color: #f5f5f5;
             font-weight: 600;
             color: #2c3e50;
         }
-        
+
         .amount {
             font-weight: bold;
             color: #2c3e50;
         }
-        
+
         .total-section {
             display: flex;
             justify-content: flex-end;
@@ -124,7 +124,7 @@
             padding-top: 20px;
             border-top: 1px solid #eee;
         }
-        
+
         .total-box {
             width: 250px;
             padding: 15px;
@@ -132,17 +132,17 @@
             color: white;
             border-radius: 5px;
         }
-        
+
         .total-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
         }
-        
+
         .total-label {
             font-weight: normal;
         }
-        
+
         .grand-total {
             margin-top: 10px;
             padding-top: 10px;
@@ -150,20 +150,20 @@
             font-size: 18px;
             font-weight: bold;
         }
-        
+
         .receipt-footer {
             margin-top: 30px;
             text-align: center;
             color: #7f8c8d;
             font-size: 12px;
         }
-        
+
         @media print {
             body {
                 background-color: #fff;
                 padding: 0;
             }
-            
+
             .receipt-container {
                 box-shadow: none;
                 padding: 20px;
@@ -172,66 +172,66 @@
     </style>
 </head>
 <body>
-    <div class="receipt-container">
-        <div class="receipt-header">
-            <div class="receipt-title">
-                <h1>Reçu de Versement</h1>
-            </div>
-        </div>
-        
-        <div class="receipt-info">
-            <div class="date-section">
-                <div class="info-title">Informations du Reçu</div>
-                <div class="info-content">
-                    <p><strong>Date de transaction:</strong>{{ "now"|date("d M Y à H:i") }}</p>
-                    <p><strong>Méthode:</strong> Versement bancaire</p>
-                </div>
-            </div>
-            
-            <div class="sender-section">
-                <div class="info-title">Informations </div>
-                <div class="info-content">
-                    <p><strong>Nom:</strong>{{session.data.client.nom}} {{session.data.client.prenom}}</p>
-                    <p><strong>IBAN:</strong> {{session.data.acount.numeroCompte}}</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="transfer-details">
-            <div class="info-title">Détails du Retrait</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Banque</th>
-                        <th>Montant</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Banque </td>
-                        <td class="amount">{{session.post.amount}}dh</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="total-section">
-            <div class="total-box">
-                <div class="total-row">
-                    <span class="total-label">Date du Retrait</span>
-                    <span>{{ "now"|date("Y-m-d") }}</span>
-                </div>
-                <div class="total-row grand-total">
-                    <span class="total-label">Total:</span>
-                    <span>{{session.post.amount}} dh</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="receipt-footer">
-            <p>Ce reçu a été généré automatiquement le {{ "now"|date("Y-m-d") }} à {{ "now"|date("H:i") }} UTC.</p>
-            <p>Pour toute question concernant ce reçu, veuillez nous contacter.</p>
+<div class="receipt-container">
+    <div class="receipt-header">
+        <div class="receipt-title">
+            <h1>Reçu de Versement</h1>
         </div>
     </div>
+
+    <div class="receipt-info">
+        <div class="date-section">
+            <div class="info-title">Informations du Reçu</div>
+            <div class="info-content">
+                <p><strong>Date de transaction:</strong>{{ "now"|date("d M Y à H:i") }}</p>
+                <p><strong>Méthode:</strong> Versement bancaire</p>
+            </div>
+        </div>
+
+        <div class="sender-section">
+            <div class="info-title">Informations</div>
+            <div class="info-content">
+                <p><strong>Nom:</strong>{{ session.data.client.nom }} {{ session.data.client.prenom }}</p>
+                <p><strong>IBAN:</strong> {{ session.data.acount.numeroCompte }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="transfer-details">
+        <div class="info-title">Détails du Retrait</div>
+        <table>
+            <thead>
+            <tr>
+                <th>Banque</th>
+                <th>Montant</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Banque</td>
+                <td class="amount">{{ session.post.amount }}dh</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="total-section">
+        <div class="total-box">
+            <div class="total-row">
+                <span class="total-label">Date du Retrait</span>
+                <span>{{ "now"|date("Y-m-d") }}</span>
+            </div>
+            <div class="total-row grand-total">
+                <span class="total-label">Total:</span>
+                <span>{{ session.post.amount }} dh</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="receipt-footer">
+        <p>Ce reçu a été généré automatiquement le {{ "now"|date("Y-m-d") }} à {{ "now"|date("H:i") }} UTC.</p>
+        <p>Pour toute question concernant ce reçu, veuillez nous contacter.</p>
+    </div>
+</div>
 </body>
 </html>

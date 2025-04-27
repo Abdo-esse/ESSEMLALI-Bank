@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\core\Session;
 
 class Controller
@@ -9,8 +10,8 @@ class Controller
 
     public function __construct()
     {
-          $this->twig= require dirname( __DIR__) .'/config/Twig.php';
-          Session::start();
+        $this->twig = require dirname(__DIR__) . '/config/Twig.php';
+        Session::start();
     }
 
     protected function redirect($url)

@@ -1,24 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>ESSEMLALI Bank |{% block title %}{% endblock %}</title>
-     <script src="https://cdn.tailwindcss.com"></script>
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>ESSEMLALI Bank |{% block title %}{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
-    <!-- Header -->
-    {% block header %}{% endblock %}
-    
+<!-- Header -->
+{% block header %}{% endblock %}
 
-         
-    <main class="container mx-auto px-4 py-8">
-        {% block content %}{% endblock %}
-    </main>
-    
-    <!-- Footer -->
-    {% block footer %}{% endblock %}
+
+<main class="container mx-auto px-4 py-8">
+    {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+{% block footer %}{% endblock %}
 </body>
 </html>

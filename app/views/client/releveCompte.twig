@@ -2,131 +2,141 @@
 
 {% block title %}Page d'accueil{% endblock %}
 {% block sidebar %}
-{% include "layout/sidebarClient.twig" %}
+    {% include "layout/sidebarClient.twig" %}
 {% endblock %}
 
 
 {% block content %}
-<div class="bg-gray-100 font-sans">
-  <div class="container mx-auto px-4 py-8 max-w-3xl">
-    <!-- Carte RIB -->
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
-      <!-- En-tête avec logo -->
-      <div class="bg-blue-600 text-white p-6">
-        <div class="flex justify-between items-center">
-          <div class="text-xl font-bold">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" class="w-40 h-auto">
-              <!-- Fond du logo -->
-              <rect width="300" height="150" rx="20" fill="#ffffff"/>
-              
-              <!-- Symbole bancaire stylisé -->
-              <g transform="translate(65, 30)">
-                <!-- Piliers bancaires stylisés -->
-                <rect x="0" y="30" width="20" height="60" rx="2" fill="#1d4ed8"/>
-                <rect x="30" y="20" width="20" height="70" rx="2" fill="#1d4ed8"/>
-                <rect x="60" y="10" width="20" height="80" rx="2" fill="#1d4ed8"/>
-                <rect x="90" y="0" width="20" height="90" rx="2" fill="#1d4ed8"/>
-                
-                <!-- Toit bancaire arrondi -->
-                <path d="M0,30 Q55,-10 110,0 L110,10 L0,10 Z" fill="#1d4ed8"/>
-                
-                <!-- Pièce/Monnaie symbolisant la finance -->
-                <circle cx="140" cy="35" r="30" fill="#f59e0b"/>
-                <circle cx="140" cy="35" r="25" fill="#fbbf24"/>
-                <text x="140" y="42" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">€</text>
-              </g>
-              
-              <!-- Nom de la banque -->
-              <text x="150" y="140" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#1d4ed8">EssemlaliBank</text>
-            </svg>
-          </div>
-          <div class="text-right">
-            <h2 class="text-xl font-bold">RELEVÉ D'IDENTITÉ BANCAIRE</h2>
-            <p class="text-sm mt-1">Ce relevé est destiné à être remis à vos créanciers ou débiteurs</p>
-          </div>
+    <div class="bg-gray-100 font-sans">
+        <div class="container mx-auto px-4 py-8 max-w-3xl">
+            <!-- Carte RIB -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
+                <!-- En-tête avec logo -->
+                <div class="bg-blue-600 text-white p-6">
+                    <div class="flex justify-between items-center">
+                        <div class="text-xl font-bold">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" class="w-40 h-auto">
+                                <!-- Fond du logo -->
+                                <rect width="300" height="150" rx="20" fill="#ffffff"/>
+
+                                <!-- Symbole bancaire stylisé -->
+                                <g transform="translate(65, 30)">
+                                    <!-- Piliers bancaires stylisés -->
+                                    <rect x="0" y="30" width="20" height="60" rx="2" fill="#1d4ed8"/>
+                                    <rect x="30" y="20" width="20" height="70" rx="2" fill="#1d4ed8"/>
+                                    <rect x="60" y="10" width="20" height="80" rx="2" fill="#1d4ed8"/>
+                                    <rect x="90" y="0" width="20" height="90" rx="2" fill="#1d4ed8"/>
+
+                                    <!-- Toit bancaire arrondi -->
+                                    <path d="M0,30 Q55,-10 110,0 L110,10 L0,10 Z" fill="#1d4ed8"/>
+
+                                    <!-- Pièce/Monnaie symbolisant la finance -->
+                                    <circle cx="140" cy="35" r="30" fill="#f59e0b"/>
+                                    <circle cx="140" cy="35" r="25" fill="#fbbf24"/>
+                                    <text x="140" y="42" font-family="Arial" font-size="24" font-weight="bold"
+                                          text-anchor="middle" fill="#ffffff">€
+                                    </text>
+                                </g>
+
+                                <!-- Nom de la banque -->
+                                <text x="150" y="140" font-family="Arial" font-size="22" font-weight="bold"
+                                      text-anchor="middle" fill="#1d4ed8">EssemlaliBank
+                                </text>
+                            </svg>
+                        </div>
+                        <div class="text-right">
+                            <h2 class="text-xl font-bold">RELEVÉ D'IDENTITÉ BANCAIRE</h2>
+                            <p class="text-sm mt-1">Ce relevé est destiné à être remis à vos créanciers ou débiteurs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Informations du titulaire -->
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-lg font-medium text-blue-600 mb-3">Titulaire du compte</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-sm text-gray-600">Nom</p>
+                            <p class="font-medium text-gray-800">{{ client.client.nom }}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Prénom</p>
+                            <p class="font-medium text-gray-800">{{ client.client.prenom }} </p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Adresse</p>
+                            <p class="font-medium text-gray-800">{{ client.client.adresse }}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Date de création</p>
+                            <p class="font-medium text-gray-800">{{ client.compte.datecreation }}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Email</p>
+                            <p class="font-medium text-gray-800">{{ client.client.email }}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Téléphone</p>
+                            <p class="font-medium text-gray-800">{{ client.client.telephone }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coordonnées bancaires -->
+                <div class="p-6">
+                    <h3 class="text-lg font-medium text-blue-600 mb-4">Coordonnées bancaires</h3>
+
+                    <!-- IBAN -->
+                    <div class="mb-6">
+                        <p class="text-sm text-gray-600">IBAN (International Bank Account Number)</p>
+                        <div class="bg-gray-100 p-4 rounded border border-gray-300 mt-1">
+                            <p class="font-mono font-medium text-gray-800 tracking-wider text-center">{{ client.compte.numerocompte }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Domiciliation -->
+                    <div>
+                        <p class="text-sm text-gray-600">Domiciliation</p>
+                        <div class="bg-gray-100 p-4 rounded border border-gray-300 mt-1">
+                            <p class="font-medium text-gray-800">EssemlaliBank - Agence Paris Centre</p>
+                            <p class="text-gray-700">24 Avenue des Champs-Élysées</p>
+                            <p class="text-gray-700">75008 Paris</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bouton de téléchargement -->
+                <div class="px-6 pb-6 flex justify-center">
+                    <form action="/ESSEMLALI-Bank/telecharger/rib" method="POST">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg flex items-center transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
+                                 fill="currentColor">
+                                <path fill-rule="evenodd"
+                                      d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                      clip-rule="evenodd"/>
+                            </svg>
+                            Télécharger RIB
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Pied de page avec informations légales -->
+                <div class="bg-gray-50 p-6 text-sm text-gray-600 border-t border-gray-200">
+                    <p class="mb-2">Ce relevé d'identité bancaire est nécessaire pour tous vos règlements par virement
+                        ou prélèvement.</p>
+                    <p class="mb-2">La présentation de ce relevé ne préjuge pas de l'existence d'une procuration sur le
+                        compte.</p>
+                    <p>EssemlaliBank - SA au capital de 150 000 000 € - Siège social : 24 Avenue des Champs-Élysées,
+                        75008 Paris - RCS Paris B 123 456 789</p>
+                </div>
+
+            </div>
+
+            <!-- Mentions en bas de page -->
+            <div class="mt-8 text-center text-gray-600 text-sm">
+                <p>Pour toute question concernant ce relevé d'identité bancaire, contactez-nous au 01 23 45 67 89</p>
+                <p class="mt-2">EssemlaliBank © 2025 - Tous droits réservés</p>
+            </div>
         </div>
-      </div>
-
-      <!-- Informations du titulaire -->
-      <div class="p-6 border-b border-gray-200">
-        <h3 class="text-lg font-medium text-blue-600 mb-3">Titulaire du compte</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <p class="text-sm text-gray-600">Nom</p>
-            <p class="font-medium text-gray-800">{{ client.client.nom }}</p>
-          </div>
-          <div>
-            <p class="text-sm text-gray-600">Prénom</p>
-            <p class="font-medium text-gray-800">{{ client.client.prenom }} </p>
-          </div>
-          <div>
-            <p class="text-sm text-gray-600">Adresse</p>
-            <p class="font-medium text-gray-800">{{ client.client.adresse }}</p>
-          </div>
-          <div>
-            <p class="text-sm text-gray-600">Date de création</p>
-            <p class="font-medium text-gray-800">{{ client.compte.datecreation }}</p>
-          </div>
-          <div>
-            <p class="text-sm text-gray-600">Email</p>
-            <p class="font-medium text-gray-800">{{ client.client.email }}</p>
-          </div>
-          <div>
-            <p class="text-sm text-gray-600">Téléphone</p>
-            <p class="font-medium text-gray-800">{{ client.client.telephone }}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Coordonnées bancaires -->
-      <div class="p-6">
-        <h3 class="text-lg font-medium text-blue-600 mb-4">Coordonnées bancaires</h3>
-        
-        <!-- IBAN -->
-        <div class="mb-6">
-          <p class="text-sm text-gray-600">IBAN (International Bank Account Number)</p>
-          <div class="bg-gray-100 p-4 rounded border border-gray-300 mt-1">
-            <p class="font-mono font-medium text-gray-800 tracking-wider text-center">{{ client.compte.numerocompte }}</p>
-          </div>
-        </div>
-        
-        <!-- Domiciliation -->
-        <div>
-          <p class="text-sm text-gray-600">Domiciliation</p>
-          <div class="bg-gray-100 p-4 rounded border border-gray-300 mt-1">
-            <p class="font-medium text-gray-800">EssemlaliBank - Agence Paris Centre</p>
-            <p class="text-gray-700">24 Avenue des Champs-Élysées</p>
-            <p class="text-gray-700">75008 Paris</p>
-          </div>
-        </div>
-      </div>
-
-       <!-- Bouton de téléchargement -->
-       <div class="px-6 pb-6 flex justify-center">
-        <form action="/ESSEMLALI-Bank/telecharger/rib" method="POST"  >
-        <button  class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg flex items-center transition duration-300">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-          Télécharger RIB
-        </button>
-        </form>
-      </div>
-
-      <!-- Pied de page avec informations légales -->
-      <div class="bg-gray-50 p-6 text-sm text-gray-600 border-t border-gray-200">
-        <p class="mb-2">Ce relevé d'identité bancaire est nécessaire pour tous vos règlements par virement ou prélèvement.</p>
-        <p class="mb-2">La présentation de ce relevé ne préjuge pas de l'existence d'une procuration sur le compte.</p>
-        <p>EssemlaliBank - SA au capital de 150 000 000 € - Siège social : 24 Avenue des Champs-Élysées, 75008 Paris - RCS Paris B 123 456 789</p>
-      </div>
-
     </div>
-
-    <!-- Mentions en bas de page -->
-    <div class="mt-8 text-center text-gray-600 text-sm">
-      <p>Pour toute question concernant ce relevé d'identité bancaire, contactez-nous au 01 23 45 67 89</p>
-      <p class="mt-2">EssemlaliBank © 2025 - Tous droits réservés</p>
-    </div>
-  </div>
-</div>
 {% endblock %}

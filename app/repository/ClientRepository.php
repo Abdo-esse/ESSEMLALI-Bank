@@ -13,14 +13,15 @@ class ClientRepository extends BaseRepository
     private $tableClient;
     private $tablePivot;
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->table = 'users';
         $this->tableClient = 'clients';
         $this->tablePivot = 'role_user';
     }
 
-    public function create($dataUser, $dataClient) 
+    public function create($dataUser, $dataClient)
     {
         $this->conn->beginTransaction();
         try {
@@ -46,7 +47,8 @@ class ClientRepository extends BaseRepository
         }
     }
 
-    public function readAll($table) {
+    public function readAll($table)
+    {
         $sql = "SELECT u.*, c.* 
                 FROM $this->table AS u
                 JOIN $this->tablePivot AS ru ON ru.user_id = u.id
@@ -79,7 +81,8 @@ class ClientRepository extends BaseRepository
         return $clients;
     }
 
-    public function find($table, $where) {
+    public function find($table, $where)
+    {
         $sql = "SELECT u.*, c.* 
                 FROM $this->table AS u
                 JOIN $this->tablePivot AS ru ON ru.user_id = u.id
@@ -111,7 +114,8 @@ class ClientRepository extends BaseRepository
         );
     }
 
-    public function allClient() {
+    public function allClient()
+    {
         $sql = "SELECT u.*
                 FROM $this->table AS u
                 JOIN $this->tablePivot AS ru ON ru.user_id = u.id
@@ -137,7 +141,9 @@ class ClientRepository extends BaseRepository
 
         return $clients;
     }
-    public function getClient($id) {
+
+    public function getClient($id)
+    {
         $sql = "SELECT u.*, c.*, cm.*
                 FROM users AS u
                 JOIN clients c ON c.user_id = u.id
@@ -145,29 +151,30 @@ class ClientRepository extends BaseRepository
                 WHERE u.id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
-    
+
         $row = $stmt->fetch(PDO::FETCH_OBJ);
-    
+
         if (!$row) {
             return null;
         }
-    
-        $clientObject = new Client($row->user_id,$row->nom,$row->prenom,$row->email,$row->mot_de_passe,$row->date_creation,$row->is_active,$row->id,$row->sexe,$row->telephone,$row->address,$row->carte_national);
-    
+
+        $clientObject = new Client($row->user_id, $row->nom, $row->prenom, $row->email, $row->mot_de_passe, $row->date_creation, $row->is_active, $row->id, $row->sexe, $row->telephone, $row->address, $row->carte_national);
+
         $compteObject = new Compte(
             $row->numerocompte,
             $row->solde,
             $row->datecreation,
             $row->estactif
         );
-    
+
         return [
             'client' => $clientObject,
             'compte' => $compteObject
         ];
     }
 
-    public function findclient($email) {
+    public function findclient($email)
+    {
         $stmt = $this->conn->prepare("SELECT u.*, STRING_AGG(r.titre, ',') AS role
                                       FROM users u
                                       JOIN role_user ru ON u.id = ru.user_id 
@@ -177,17 +184,19 @@ class ClientRepository extends BaseRepository
         $stmt->execute(['email' => $email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    private function editClient($data,$id){
+
+    private function editClient($data, $id)
+    {
         try {
             $data['id'] = $id;
-    
+
             $sql = "UPDATE $this->tableClient
                     SET telephone = :telephone, address = :address
                     WHERE user_id = :id";
-    
+
             $stmt = $this->conn->prepare($sql);
             $stmt->execute($data);
-    
+
             return true;
         } catch (Exception $e) {
             error_log("Erreur dans editClient(): " . $e->getMessage());
@@ -195,27 +204,29 @@ class ClientRepository extends BaseRepository
         }
 
     }
-    
-    public function edit($id,$userData, $clientData){
+
+    public function edit($id, $userData, $clientData)
+    {
         $this->conn->beginTransaction();
         try {
             if (!$this->update("users", $id, $userData)) {
                 throw new PDOException("Erreur lors de l'insertion d'user.");
             }
 
-            if (!$this->editClient( $clientData,$id)) {
+            if (!$this->editClient($clientData, $id)) {
                 throw new PDOException("Erreur lors de l'insertion du client.");
             }
 
             $this->conn->commit();
-            return true ;
+            return true;
         } catch (PDOException $e) {
             $this->conn->rollBack();
             echo "Erreur : " . $e->getMessage();
         }
     }
 
-    public function findById($id) {
+    public function findById($id)
+    {
         $sql = "SELECT u.*, c.* 
                 FROM $this->table AS u
                 JOIN $this->tablePivot AS ru ON ru.user_id = u.id
@@ -247,7 +258,8 @@ class ClientRepository extends BaseRepository
         );
     }
 
-    public function searchClient($keyword) {
+    public function searchClient($keyword)
+    {
         $sql = "SELECT u.*
                 FROM users  u
                 JOIN role_user ru ON ru.user_id = u.id
@@ -255,13 +267,13 @@ class ClientRepository extends BaseRepository
 				AND is_active = 'true' 
 				AND ( LOWER(u.prenom) LIKE LOWER(:keyword) OR LOWER(u.nom) LIKE LOWER(:keyword))
 				 ORDER BY u.nom";
-    
+
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([":keyword" =>$keyword.'%']);
-    
+        $stmt->execute([":keyword" => $keyword . '%']);
+
         $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
         $clients = [];
-    
+
         foreach ($rows as $row) {
             $clients[] = new User(
                 $row->id,
@@ -273,15 +285,17 @@ class ClientRepository extends BaseRepository
                 $row->is_active
             );
         }
-    
+
         return $clients;
     }
 
-    public function delete($id,$data){
+    public function delete($id, $data)
+    {
         return $this->update("users", $id, $data);
     }
-    
-    public function searchDemandeClient($keyword){
+
+    public function searchDemandeClient($keyword)
+    {
         $sql = "SELECT u.*
                 FROM users  u
                 JOIN role_user ru ON ru.user_id = u.id
@@ -290,19 +304,19 @@ class ClientRepository extends BaseRepository
 				AND ( LOWER(u.prenom) LIKE LOWER(:keyword) OR LOWER(u.nom) LIKE LOWER(:keyword))
 				 ORDER BY u.nom";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([":keyword" =>$keyword.'%']);
+        $stmt->execute([":keyword" => $keyword . '%']);
 
         $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
         $clients = [];
 
         foreach ($rows as $row) {
-            $clients[] = new User($row->id,$row->nom,$row->prenom,$row->email,"",$row->date_creation,$row->is_active);
+            $clients[] = new User($row->id, $row->nom, $row->prenom, $row->email, "", $row->date_creation, $row->is_active);
         }
 
         return $clients;
     }
-    
-    
-    
+
+
 }
+
 ?>

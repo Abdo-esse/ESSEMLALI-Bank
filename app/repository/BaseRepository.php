@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Repository;
+
 use App\config\Connexion;
 use PDO;
 
 class BaseRepository
 {
     protected $conn;
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->conn = Connexion::connexion();
     }
 
@@ -39,19 +42,19 @@ class BaseRepository
     }
 
     public function update($table, $id, $data)
-{
-    try {
-        $columns = implode(' = ?, ', array_keys($data)) . ' = ?';
-        $sql = "UPDATE {$table} SET {$columns} WHERE id = ?";
+    {
+        try {
+            $columns = implode(' = ?, ', array_keys($data)) . ' = ?';
+            $sql = "UPDATE {$table} SET {$columns} WHERE id = ?";
 
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute(array_merge(array_values($data), [$id]));
-        return $stmt->rowCount() > 0;
-    } catch (Exception $e) {
-        error_log("Erreur dans update(): " . $e->getMessage());
-        return false;
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(array_merge(array_values($data), [$id]));
+            return $stmt->rowCount() > 0;
+        } catch (Exception $e) {
+            error_log("Erreur dans update(): " . $e->getMessage());
+            return false;
+        }
     }
-}
 
 
     public function deleteAction($table, $id)

@@ -5,75 +5,76 @@
 
 
 {% block content %}
-<div class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-        <!-- En-tête du reçu -->
-        <div class="text-center mb-6">
-            <div class="bg-green-100 inline-flex rounded-full p-3 mb-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
+    <div class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+            <!-- En-tête du reçu -->
+            <div class="text-center mb-6">
+                <div class="bg-green-100 inline-flex rounded-full p-3 mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none"
+                         viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-800">Virement effectué avec succès</h1>
+                <p class="text-gray-500 mt-1">{{ "now"|date("d M Y à H:i") }}</p>
             </div>
-            <h1 class="text-2xl font-bold text-gray-800">Virement effectué avec succès</h1>
-            <p class="text-gray-500 mt-1">{{ "now"|date("d M Y à H:i") }}</p>
-        </div>
-        
-        <!-- Détails du virement -->
-        <div class="space-y-4 mb-6">
-            <h2 class="text-lg font-semibold text-gray-700 border-b pb-2">Détails du virement</h2>
-            
-            <div class="flex justify-between">
-                <span class="text-gray-600">Montant</span>
-                <span class="font-medium">{{session.post.amount}} dh</span>
+
+            <!-- Détails du virement -->
+            <div class="space-y-4 mb-6">
+                <h2 class="text-lg font-semibold text-gray-700 border-b pb-2">Détails du virement</h2>
+
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Montant</span>
+                    <span class="font-medium">{{ session.post.amount }} dh</span>
+                </div>
+
+                <div>
+                    <p class="text-gray-600">De</p>
+                    <p class="font-medium">{{ session.data.acountSender.numeroCompte }}</p>
+                    <p class="text-sm text-gray-500">{{ session.data.clientSender.nom }} {{ session.data.clientSender.prenom }}</p>
+                </div>
+
+                <div>
+                    <p class="text-gray-600">Vers</p>
+                    <p class="font-medium">{{ session.data.acountRicipient.numeroCompte }}</p>
+                    <p class="text-sm text-gray-500">{{ session.data.clientRicipient.nom }} {{ session.data.clientRicipient.prenom }}</p>
+                </div>
+
+                <div>
+                    <p class="text-gray-600">Description</p>
+                    <p>{{ session.post.description }}</p>
+                </div>
             </div>
-            
-            <div>
-                <p class="text-gray-600">De</p>
-                <p class="font-medium">{{session.data.acountSender.numeroCompte}}</p>
-                <p class="text-sm text-gray-500">{{session.data.clientSender.nom}} {{session.data.clientSender.prenom}}</p>
+
+            <!-- Date d'exécution -->
+            <div class="mb-6">
+                <h2 class="text-lg font-semibold text-gray-700 border-b pb-2">Date d'exécution</h2>
+                <div class="flex justify-between mt-2">
+                    <span class="text-gray-600">Date du virement</span>
+                    <span class="font-medium">{{ "now"|date("Y-m-d") }}</span>
+                </div>
             </div>
-            
-            <div>
-                <p class="text-gray-600">Vers</p>
-                <p class="font-medium">{{session.data.acountRicipient.numeroCompte}}</p>
-                <p class="text-sm text-gray-500">{{session.data.clientRicipient.nom}} {{session.data.clientRicipient.prenom}}</p>
+
+            <!-- Actions -->
+
+            <div class="flex flex-col space-y-3">
+                <form action="/ESSEMLALI-Bank/recu/virement-client/telecharger" method="POST">
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition duration-300 ease-in-out"
+                            onclick="setTimeout(() => window.location.href='/ESSEMLALI-Bank/virement-client', 1000)">
+                        Télécharger le reçu
+                    </button>
+                </form>
+                <button class="w-full bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-bold py-3 px-4 rounded-md transition duration-300 ease-in-out"
+                        onclick="setTimeout(() => window.location.href='/ESSEMLALI-Bank/virement-client', 0)">
+                    Retour à l'accueil
+                </button>
             </div>
-            
-            <div>
-                <p class="text-gray-600">Description</p>
-                <p>{{session.post.description}}</p>
+
+            <!-- Note de bas de page -->
+            <div class="mt-6 pt-4 border-t text-center text-xs text-gray-500">
+                <p>Ce reçu est généré automatiquement et ne nécessite pas de signature.</p>
+                <p class="mt-1">Pour toute question, contactez notre service client au 0800 123 456.</p>
             </div>
-        </div>
-        
-        <!-- Date d'exécution -->
-        <div class="mb-6">
-            <h2 class="text-lg font-semibold text-gray-700 border-b pb-2">Date d'exécution</h2>
-            <div class="flex justify-between mt-2">
-                <span class="text-gray-600">Date du virement</span>
-                <span class="font-medium">{{ "now"|date("Y-m-d") }}</span>
-            </div>
-        </div>
-        
-        <!-- Actions -->
-        
-        <div class="flex flex-col space-y-3">
-        <form  action="/ESSEMLALI-Bank/recu/virement-client/telecharger" method="POST" >
-            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition duration-300 ease-in-out"
-            onclick="setTimeout(() => window.location.href='/ESSEMLALI-Bank/virement-client', 1000)">
-                Télécharger le reçu
-            </button>
-            </form>
-            <button class="w-full bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-bold py-3 px-4 rounded-md transition duration-300 ease-in-out"
-            onclick="setTimeout(() => window.location.href='/ESSEMLALI-Bank/virement-client', 0)">
-                Retour à l'accueil
-            </button>
-        </div>
-        
-        <!-- Note de bas de page -->
-        <div class="mt-6 pt-4 border-t text-center text-xs text-gray-500">
-            <p>Ce reçu est généré automatiquement et ne nécessite pas de signature.</p>
-            <p class="mt-1">Pour toute question, contactez notre service client au 0800 123 456.</p>
         </div>
     </div>
-</div>
 {% endblock %}

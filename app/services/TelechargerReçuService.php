@@ -1,12 +1,15 @@
 <?php
 
-class TelechargerReçuService{
+class TelechargerReçuService
+{
 
-    public function __construct(){
+    public function __construct()
+    {
 
-    } 
+    }
 
-    public function telechargerRecuVirement(){
-        
+    public function telechargerRecuVirement()
+    {
+
     }
 }

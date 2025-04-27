@@ -2,119 +2,129 @@
 
 {% block title %}Page d'accueil{% endblock %}
 {% block sidebar %}
-{% include "layout/sidebarClient.twig" %}
+    {% include "layout/sidebarClient.twig" %}
 {% endblock %}
 
 
 {% block content %}
-<main   class="bg-blue-50 flex justify-center items-center min-h-screen p-4">
-  <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-2xl my-8">
-  
-    <h1 class="text-2xl font-bold text-center text-blue-700 mb-6">Update info</h1>
-    
-    <form class="space-y-6" action="/ESSEMLALI-Bank/client/update/{{ session.user.id }}" method="POST" >
-  <!-- Nom et Prénom -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div class="mb-4">
+    <main class="bg-blue-50 flex justify-center items-center min-h-screen p-4">
+        <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-2xl my-8">
+
+            <h1 class="text-2xl font-bold text-center text-blue-700 mb-6">Update info</h1>
+
+            <form class="space-y-6" action="/ESSEMLALI-Bank/client/update/{{ user.id }}" method="POST">
+                <!-- Nom et Prénom -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Nom</p>
                         <p class="text-base font-medium">{{ client.client.nom }}</p>
-      </div>
-    <div class="mb-4">
+                    </div>
+                    <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Prénom</p>
                         <p class="text-base font-medium">{{ client.client.prenom }}</p>
-     </div>
-  </div>
-  
-  <!-- Email -->
-  <div>
-    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Adresse e-mail</label>
-    <input type="email" id="email" name="email" required value="{{client.client.email}}"
-           class="w-full px-4 py-2 border {% if session.errorEditClient.email is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
-    {% if session.errorEditClient.email is defined %}
-      <p class="mt-1 text-sm text-red-600">
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Adresse e-mail</label>
+                    <input type="email" id="email" name="email" required value="{{ client.client.email }}"
+                           class="w-full px-4 py-2 border {% if errorEditClient.email  %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
+                    {% if errorEditClient.email  %}
+                        <p class="mt-1 text-sm text-red-600">
         <span class="flex items-center">
           <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+            <path fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                  clip-rule="evenodd"></path>
           </svg>
-          {{ session.errorEditClient.email }}
+          {{ errorEditClient.email }}
         </span>
-      </p>
-    {% endif %}
-  </div>
-  
-  <!-- Sexe et Téléphone -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-   <!-- Adresse -->
-  <div>
-    <label for="adresse" class="block text-sm font-medium text-gray-700 mb-1">Adresse complète</label>
-    <textarea id="adresse" name="address" rows="3" required 
-              class="w-full px-4 py-2 border {% if session.errorEditClient.adresse is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">{{client.client.adresse}}</textarea>
-    {% if session.errorEditClient.adresse is defined %}
-      <p class="mt-1 text-sm text-red-600">
+                        </p>
+                    {% endif %}
+                </div>
+
+                <!-- Sexe et Téléphone -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Adresse -->
+                    <div>
+                        <label for="adresse" class="block text-sm font-medium text-gray-700 mb-1">Adresse
+                            complète</label>
+                        <textarea id="adresse" name="address" rows="3" required
+                                  class="w-full px-4 py-2 border {% if errorEditClient.adresse  %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">{{ client.client.adresse }}</textarea>
+                        {% if errorEditClient.adresse  %}
+                            <p class="mt-1 text-sm text-red-600">
         <span class="flex items-center">
           <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+            <path fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                  clip-rule="evenodd"></path>
           </svg>
-          {{ session.errorEditClient.adresse }}
+          {{ errorEditClient.adresse }}
         </span>
-      </p>
-    {% endif %}
-  </div>
-    <div>
-      <label for="telephone" class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
-      <input type="tel" id="telephone" name="telephone" required value="{{client.client.telephone}}"
-             class="w-full px-4 py-2 border {% if session.errorEditClient.telephone is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
-      {% if session.errorEditClient.telephone is defined %}
-        <p class="mt-1 text-sm text-red-600">
+                            </p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="telephone" class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
+                        <input type="tel" id="telephone" name="telephone" required value="{{ client.client.telephone }}"
+                               class="w-full px-4 py-2 border {% if errorEditClient.telephone  %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
+                        {% if errorEditClient.telephone  %}
+                            <p class="mt-1 text-sm text-red-600">
           <span class="flex items-center">
             <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+              <path fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                    clip-rule="evenodd"></path>
             </svg>
-            {{ session.errorEditClient.telephone }}
+            {{ errorEditClient.telephone }}
           </span>
-        </p>
-      {% endif %}
-    </div>
-  </div>
-  
-  
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
 
-     <!-- Mote de pass Actuell -->
-  
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div class="mb-4">
-        <label for="passwordActuel" class="block text-sm font-medium text-gray-700 mb-1"> Mote de pass Actuell</label>
-    <input type="password" id="motdepaddActuel" name="passwordActuel" required 
-           class="w-full px-4 py-2 border {% if session.errorEditClient.passwordActuel is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
-           {% if session.errorEditClient.passwordActuel is defined %}
-        <p class="mt-1 text-sm text-red-600">
+                <!-- Mote de pass Actuell -->
+
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="mb-4">
+                        <label for="passwordActuel" class="block text-sm font-medium text-gray-700 mb-1"> Mote de pass
+                            Actuell</label>
+                        <input type="password" id="motdepaddActuel" name="passwordActuel" required
+                               class="w-full px-4 py-2 border {% if errorEditClient.passwordActuel  %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
+                        {% if errorEditClient.passwordActuel  %}
+                            <p class="mt-1 text-sm text-red-600">
           <span class="flex items-center">
             <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+              <path fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                    clip-rule="evenodd"></path>
             </svg>
-            {{ session.errorEditClient.passwordActuel }}
+            {{ errorEditClient.passwordActuel }}
           </span>
-        </p>
-      {% endif %}
-  </div>
-    <div class="mb-4">
-                         <label for="passwordNew" class="block text-sm font-medium text-gray-700 mb-1"> Mote de pass Nevau</label>
-    <input type="password" id="motdepaddNew" name="passwordNew"
-           class="w-full px-4 py-2 border {% if session.errorEditClient.email is defined %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
-  </div>
-  </div>
+                            </p>
+                        {% endif %}
+                    </div>
+                    <div class="mb-4">
+                        <label for="passwordNew" class="block text-sm font-medium text-gray-700 mb-1"> Mote de pass
+                            Nevau</label>
+                        <input type="password" id="motdepaddNew" name="passwordNew"
+                               class="w-full px-4 py-2 border {% if errorEditClient.email  %}border-red-500{% else %}border-gray-300{% endif %} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
+                    </div>
+                </div>
 
-  
-  <!-- Bouton de soumission -->
-  <div>
-    <button type="submit" 
-            class="w-full bg-blue-700 text-white py-3 px-4 rounded-md font-medium hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150">
-      update info
-    </button>
-  </div>
-</form>
-  </div>
-  </main>
-  
+
+                <!-- Bouton de soumission -->
+                <div>
+                    <button type="submit"
+                            class="w-full bg-blue-700 text-white py-3 px-4 rounded-md font-medium hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150">
+                        update info
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
 {% endblock %}

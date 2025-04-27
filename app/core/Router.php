@@ -2,11 +2,13 @@
 
 namespace App\core;
 
-class Router {
+class Router
+{
 
     private static $routes;
 
-    public  static function  add($method, $route, $action,$options = []) {
+    public static function add($method, $route, $action, $options = [])
+    {
         self::$routes[] = [
             'method' => strtoupper($method),
             'route' => trim($route, '/'),
@@ -15,33 +17,34 @@ class Router {
         ];
     }
 
-    
-    public static function dispatch() {
+
+    public static function dispatch()
+    {
         $requestUri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
         $requestUri = preg_replace('#^ESSEMLALI-Bank/?#', '', $requestUri);
-        
+
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         // echo"<pre>";
         // var_dump($requestUri);
         // var_dump(self::$routes);
         // exit;
         // echo"<pre>";
-    
+
         foreach (self::$routes as $route) {
             $pattern = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '([^/]+)', $route['route']);
             $pattern = '#^' . $pattern . '$#';
-    
+
             if (preg_match($pattern, $requestUri, $matches) && $route['method'] === $requestMethod) {
-                array_shift($matches); 
+                array_shift($matches);
 
                 if ($route['middleware']) {
                     self::middleware($route['middleware']);
                 }
-                
+
                 [$controller, $method] = explode('@', $route['action']);
                 $namespace = "App\\controllers\\";
                 $controllerClass = $namespace . $controller;
-    
+
                 if (class_exists($controllerClass) && method_exists($controllerClass, $method)) {
                     $controllerInstance = new $controllerClass();
                     return call_user_func_array([$controllerInstance, $method], $matches);
@@ -52,7 +55,7 @@ class Router {
                 }
             }
         }
-    
+
         http_response_code(404);
         echo "44 - Page Not Found";
     }
@@ -60,8 +63,8 @@ class Router {
 
     public static function middleware($m)
     {
-        $middlewareClass = "App\\middlewares\\" . ucfirst($m) . "Middleware"; 
-        
+        $middlewareClass = "App\\middlewares\\" . ucfirst($m) . "Middleware";
+
         if (class_exists($middlewareClass)) {
             $middleware = new $middlewareClass();
             $middleware->handle();
@@ -69,6 +72,6 @@ class Router {
             throw new \Exception("Middleware '$middlewareClass' not found.");
         }
     }
-    
-    
+
+
 }

@@ -23,18 +23,18 @@ const searchEmployes = async () => {
         displayEmployes(originalEmployes);
         return;
     }
-    
+
     try {
         const req = await fetch(`http://localhost/ESSEMLALI-Bank/search-employe?keyword=${encodeURIComponent(keyword)}`);
-        
+
         if (!req.ok) {
             throw new Error(`Erreur HTTP : ${req.status}`);
         }
-        
+
         const response = await req.json();
         console.log(response);
         displayEmployes(response);
-        
+
     } catch (error) {
         console.log("Une erreur s'est produite lors de la recherche :", error.message);
         displayError(error.message);
@@ -43,9 +43,9 @@ const searchEmployes = async () => {
 
 const displayEmployes = (employes) => {
     const tableBody = document.querySelector('table tbody');
-    
+
     tableBody.innerHTML = '';
-    
+
     if (employes.length === 0) {
         tableBody.innerHTML = `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -55,10 +55,10 @@ const displayEmployes = (employes) => {
             </tr>
         `;
     } else {
-        employes.forEach(employe => {            
+        employes.forEach(employe => {
             const row = document.createElement('tr');
             row.className = 'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600';
-            
+
             row.innerHTML = `
             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                 ${employe.nom || ''}
@@ -74,13 +74,13 @@ const displayEmployes = (employes) => {
             </td>
             <td class="px-6 py-4">
                 ${employe.isActive
-                    ? '<span class="px-2 py-1 text-xs font-medium text-green-700 bg-green-100 rounded-full dark:bg-green-900 dark:text-green-300">Actif</span>'
-                    : '<span class="px-2 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Inactif</span>'
-                }
+                ? '<span class="px-2 py-1 text-xs font-medium text-green-700 bg-green-100 rounded-full dark:bg-green-900 dark:text-green-300">Actif</span>'
+                : '<span class="px-2 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Inactif</span>'
+            }
             </td>
             <td class="px-6 py-4">
                 <div class="flex space-x-2">
-                    <a href="editeEploye/${employe.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                    <a href="edite-eploye/${employe.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                         <button type="button" class="px-3 py-1.5 text-xs font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Modifier
                         </button>
@@ -100,8 +100,8 @@ const displayEmployes = (employes) => {
                 </div>
             </td>
         `;
-        
-            
+
+
             tableBody.appendChild(row);
         });
     }
@@ -121,18 +121,18 @@ const displayError = (errorMessage) => {
 document.addEventListener('DOMContentLoaded', loadInitialEmployes);
 
 
-function formateDate(dateCreation){
+function formateDate(dateCreation) {
     const rawDate = dateCreation;
-let formattedDate = 'N/A';
+    let formattedDate = 'N/A';
 
-if (rawDate) {
-    const date = new Date(rawDate);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    formattedDate = `${year}-${month}-${day} à ${hours}:${minutes}`;
-}
-return formattedDate
+    if (rawDate) {
+        const date = new Date(rawDate);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        formattedDate = `${year}-${month}-${day} à ${hours}:${minutes}`;
+    }
+    return formattedDate
 }

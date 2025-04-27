@@ -1,23 +1,29 @@
 <?php
+
 namespace App\Repository;
 
 use App\Models\User;
 use App\Models\Historique;
 use PDO;
-class HistoriqueRepository  extends BaseRepository
+
+class HistoriqueRepository extends BaseRepository
 {
 
     private $table;
-    public function __construct() {
-        parent::__construct(); 
-        $this->table="historique";
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->table = "historique";
     }
 
-    public function save($data){
-       return $this->createAction($this->table, $data);
+    public function save($data)
+    {
+        return $this->createAction($this->table, $data);
     }
 
-    public function getHistorique($id) {
+    public function getHistorique($id)
+    {
         $sql = "SELECT 
                 h.id as h_id,h.type_operation as h_type_operation,h.montant as h_montant,h.description as h_description,h.dateeffectue as h_dateeffectue,
                 u_donneur.id as d_id,u_donneur.nom as d_nom,u_donneur.prenom as d_prenom,
@@ -40,28 +46,26 @@ class HistoriqueRepository  extends BaseRepository
                 ORDER BY h_id DESC";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
-    
+
         $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $historiques=[];
-    
+        $historiques = [];
+
         if (!$rows) {
             return null;
         }
 
-        foreach($rows as $row)
-        {
+        foreach ($rows as $row) {
 
-            $donneur=new User($row->d_id,$row->d_nom,$row->d_prenom,null,null,null,null);
+            $donneur = new User($row->d_id, $row->d_nom, $row->d_prenom, null, null, null, null);
             $beneficiaire = null;
-             if ($row->b_id !== null) {
-            $beneficiaire = new User($row->b_id, $row->b_nom, $row->b_prenom, null, null, null, null);
-             }
+            if ($row->b_id !== null) {
+                $beneficiaire = new User($row->b_id, $row->b_nom, $row->b_prenom, null, null, null, null);
+            }
 
-            $historiques[]= new Historique($row->h_id,$donneur,$row->h_type_operation,$row->h_montant,$row->h_dateeffectue, $beneficiaire,$row->h_description);
+            $historiques[] = new Historique($row->h_id, $donneur, $row->h_type_operation, $row->h_montant, $row->h_dateeffectue, $beneficiaire, $row->h_description);
         }
         return $historiques;
     }
-    
-    
-    
+
+
 }

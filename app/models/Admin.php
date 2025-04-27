@@ -1,8 +1,9 @@
 <?php
- namespace App\models;
 
- class Admin extends User 
- {
+namespace App\models;
 
-   
- }
+class Admin extends User
+{
+
+
+}

@@ -1,36 +1,40 @@
 <?php
+
 namespace App\Repository;
+
 use PDO;
 use App\models\Admin;
 
 
-class AdminRepository  extends BaseRepository
+class AdminRepository extends BaseRepository
 {
 
     private $table;
     private $tablePivot;
-    
-    public function __construct() {
-        parent::__construct(); 
-        $this->table='users';
-        $this->tablePivot='role_user';
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->table = 'users';
+        $this->tablePivot = 'role_user';
     }
-    
-    public function create($data ){
-        
-        $this->conn->beginTransaction(); 
+
+    public function create($data)
+    {
+
+        $this->conn->beginTransaction();
         try {
             $AdminId = $this->createAction($this->table, $data);
             if (empty($AdminId)) {
-                throw new PDOException("Erreur lors de l'insertion d'admin."); 
+                throw new PDOException("Erreur lors de l'insertion d'admin.");
             }
-            if (!$this->createAction($this->tablePivot,["user_id"=>$AdminId,"role_id"=>1])) {
-                throw new PDOException("Erreur lors de l'insertion du role ."); 
+            if (!$this->createAction($this->tablePivot, ["user_id" => $AdminId, "role_id" => 1])) {
+                throw new PDOException("Erreur lors de l'insertion du role .");
             }
-            $this->conn->commit(); 
+            $this->conn->commit();
             return true;
         } catch (PDOException $e) {
-            $this->conn->rollBack(); 
+            $this->conn->rollBack();
             echo "Erreur : " . $e->getMessage();
         }
     }
@@ -51,9 +55,10 @@ class AdminRepository  extends BaseRepository
         }
         return $admins;
     }
-
-   
-
+    public function findById($id){
+        $admin=$this->find($this->table, ["id" => $id]);
+        return new Admin($admin->id, $admin->nom, $admin->prenom, $admin->email, $admin->mot_de_passe, $admin->date_creation, $admin->is_active);
+    }
 
 
 }

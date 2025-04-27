@@ -1,34 +1,22 @@
-<?php 
+<?php
+
 namespace App\Core;
 
 class View
 {
-    
-public static function load($view_name,$view_data=[])
-{
-    $file= dirname(__DIR__) . "/Views".$view_name.'.html.twig';
-    if(file_exists($file))
+
+    public static function load($view_name, $view_data = [])
     {
-        extract($view_data);
-        ob_start();
-        require ($file);
-        ob_end_flush();
+        $file = dirname(__DIR__) . "/Views" . $view_name . '.html.twig';
+        if (file_exists($file)) {
+            extract($view_data);
+            ob_start();
+            require($file);
+            ob_end_flush();
+        } else {
+            echo "this views not existe";
+        }
     }
-    else 
-    {
-        echo "this views not existe";
-    }
-}
-
-
-
-
-
-
-
-
-
-
 
 
 }
