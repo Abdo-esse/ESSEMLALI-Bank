@@ -8,7 +8,7 @@ class UserRepository  extends BaseRepository
         parent::__construct(); 
     }
     
-    public function find( $table,$email) {
+    public function findByEmail( $table,$email) {
         $stmt = $this->conn->prepare("SELECT u.*, STRING_AGG(r.titre, ',') AS role
                                       FROM $table u
                                       JOIN role_user ru ON u.id = ru.user_id 
@@ -17,6 +17,9 @@ class UserRepository  extends BaseRepository
                                       GROUP BY u.id;");
         $stmt->execute(['email' => $email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function findByNumber($number){
+        return $this->find('clients',["telephone"=>$number]);
     }
 
    

@@ -15,7 +15,7 @@ class AuthService {
     }
 
     public function login( $email, $password) {
-        $user = $this->userRepo->find('users',$email);
+        $user = $this->userRepo->findByEmail('users',$email);
 
         if (!$user || !password_verify($password, $user['mot_de_passe'])) {
             Session::set('valueslogin', $_POST);

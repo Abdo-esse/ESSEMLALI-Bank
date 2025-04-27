@@ -1,13 +1,16 @@
 <?php
 
 namespace App\requests;
+use App\Repository\UserRepository;
 
 class SignInRequest {
     private $data;
     private $errors = [];
-    
+    private UserRepository $userRepo;
+
     public function __construct(array $data) {
         $this->data = $data;
+        $this->userRepo = new UserRepository();
     }
     
     public function validate(): bool {
@@ -26,6 +29,8 @@ class SignInRequest {
             $this->errors['email'] = 'L\'email est requis';
         } elseif (!filter_var($this->data['email'], FILTER_VALIDATE_EMAIL)) {
             $this->errors['email'] = 'Format de l\'email invalide';
+        }elseif($this->userRepo->findByEmail('users',$this->data['email'])){
+            $this->errors['email'] = 'Impossible d\'utiliser cette adresse e-mail';
         }
 
         if (empty($this->data['sexe'])) {
@@ -38,6 +43,8 @@ class SignInRequest {
             $this->errors['telephone'] = 'Le téléphone est requis';
         } elseif (!preg_match("/^\+?\d{10,}$/", $this->data['telephone'])) {
             $this->errors['telephone'] = 'Format du téléphone invalide';
+        }elseif($this->userRepo->findByNumber($this->data['telephone'])){
+            $this->errors['telephone'] = 'Impossible d\'utiliser cette number telephon';
         }
 
         if (empty($this->data['adresse'])) {
@@ -59,12 +66,12 @@ class SignInRequest {
             $fileExt  = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
             $mimeType = mime_content_type($fileTmp);
         
-            // Liste des types MIME acceptés
+            
             $allowedMimeTypes = ['image/png', 'image/jpeg'];
         
             if (!in_array($fileExt, $allowedExtensions) || !in_array($mimeType, $allowedMimeTypes)) {
                 $this->errors['carte_identite'] = 'Le fichier doit être une image PNG, JPG ou JPEG.';
-            } elseif ($fileSize > 10 * 1024 * 1024) { // 2MB max
+            } elseif ($fileSize > 10 * 1024 * 1024) { 
                 $this->errors['carte_identite'] = 'Le fichier ne doit pas dépasser 2MB.';
             }
         }
