@@ -26,10 +26,7 @@ class AdminController extends Controller
     public function admin()
     {
         $admins= $this->adminService->getAll();
-       echo  $this->twig->render('admin/admins.twig',[
-           'session' => $_SESSION,
-           'admins'=>$admins
-       ]);
+       echo  $this->twig->render('admin/admins.twig',['session' => $_SESSION,'admins'=>$admins]);
 
     }
     
@@ -44,14 +41,7 @@ class AdminController extends Controller
     }
     Session::unset('error');
     Session::unset('values');
-    $data = [
-        "nom" => trim($_POST["nom"]),
-        "prenom" => trim($_POST["prenom"]),
-        "email" => trim($_POST["email"]),
-        "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT) ,
-        "is_active"=>true 
-    ];
-    if (!$this->adminService->create($data)) {
+    if (!$this->adminService->create($_POST)) {
         Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
          $this->redirect('admins');
         exit;

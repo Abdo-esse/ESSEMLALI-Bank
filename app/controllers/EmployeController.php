@@ -40,14 +40,7 @@ class EmployeController extends Controller
     }
     Session::unset('errorEmployer');
     Session::unset('valuesEmployer');
-    $data = [
-        "nom" => trim($_POST["nom"]),
-        "prenom" => trim($_POST["prenom"]),
-        "email" => trim($_POST["email"]),
-        "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT) ,
-        "is_active"=>true 
-    ];
-    if (!$this->employeService->create($data)) {
+    if (!$this->employeService->create($_POST)) {
         Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
          $this->redirect('employes');
         exit;
@@ -77,16 +70,8 @@ public function update($id)
          $this->redirect("editeEploye/$id");
         exit;
     }
-    Session::unset('errorEditEmployer');
-    $data = [
-        "nom" => trim($_POST["nom"]),
-        "prenom" => trim($_POST["prenom"]),
-        "email" => trim($_POST["email"]),
-        "mot_de_passe" => password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT),
-        "date_modification" => date('Y-m-d H:i:s') 
-    ];
-    
-    if (!$this->employeService->update($id,$data)) {
+    Session::unset('errorEditEmployer');    
+    if (!$this->employeService->update($id,$_POST)) {
         Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
          $this->redirect('employes');
         exit;
@@ -97,47 +82,34 @@ public function update($id)
 } 
 public function desactiver($id)
 {
-    $data = [
-        "is_active"=>"false" 
-    ];
-    
+    $data = [ "is_active"=>"false"];    
     if (!$this->employeService->update($id,$data)) {
         Session::set('error', "Une erreur s'est produite lors de desactiver de l'employer.");
          $this->redirect('employes');
         exit;
     }
-
      $this->redirect('employes');
     exit;
 } 
 public function activer($id)
 {
-    $data = [
-        "is_active"=>"true" 
-    ];
-    
+    $data = ["is_active"=>"true"];    
     if (!$this->employeService->update($id,$data)) {
         Session::set('error', "Une erreur s'est produite lors de activer de l'employer.");
          $this->redirect('employes');
         exit;
     }
-
      $this->redirect('employes');
     exit;
 } 
 public function delete($id)
 {
-    $data = [
-        "is_active"=>"false" ,
-        "date_suppression"=>date('Y-m-d H:i:s') 
-    ];
-    
+    $data = ["is_active"=>"false" ,"date_suppression"=>date('Y-m-d H:i:s')];    
     if (!$this->employeService->update($id,$data)) {
         Session::set('error', "Une erreur s'est produite lors de la supression de l'employer.");
          $this->redirect('employes');
         exit;
     }
-
      $this->redirect('employes');
     exit;
 } 

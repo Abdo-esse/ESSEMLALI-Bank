@@ -12,11 +12,25 @@ class EmployeService {
 
     }
 
-    public function create($date){
-       return $this->employRepo->create($date);
+    public function create($data){
+        $dataCreate = [
+            "nom" => trim($data["nom"]),
+            "prenom" => trim($data["prenom"]),
+            "email" => trim($data["email"]),
+            "mot_de_passe" => password_hash($data["mot_de_passe"], PASSWORD_DEFAULT) ,
+            "is_active"=>true 
+        ];
+       return $this->employRepo->create($dataCreate);
     }
     public function update($id, $data){
-       return $this->employRepo->update('users', $id, $data);
+        $dataUpdate = [
+            "nom" => trim($data["nom"]),
+            "prenom" => trim($data["prenom"]),
+            "email" => trim($data["email"]),
+            "mot_de_passe" => password_hash($data["mot_de_passe"], PASSWORD_DEFAULT),
+            "date_modification" => date('Y-m-d H:i:s') 
+        ];
+       return $this->employRepo->update('users', $id, $dataUpdate);
     }
 
     public function getAll(){
