@@ -27,7 +27,7 @@
 
     <!-- Main modal -->
 
-    {% if session.error is defined %}
+    {% if error  %}
     <div id="admin-modal" tabindex="-1" aria-hidden="true"
          class="   overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-screen max-h-full backdrop-blur-sm bg-gray-900/50">
         {% else %}
@@ -92,9 +92,9 @@
                             <div>
                                 <label for="nom"
                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nom</label>
-                                <input type="text" id="nom" name="nom" value="{{ session.values.nom }}" required
-                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if session.error.nom is defined %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
-                                {% if session.error.nom is defined %}
+                                <input type="text" id="nom" name="nom" value="{{ values.nom }}" required
+                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if error.nom  %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                                {% if error.nom  %}
                                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">
                 <span class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -103,7 +103,7 @@
                               d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                               clip-rule="evenodd"></path>
                     </svg>
-                    {{ session.error.nom }}
+                    {{ error.nom }}
                 </span>
                                     </p>
                                 {% endif %}
@@ -111,10 +111,10 @@
 
                             <div>
                                 <label for="prenom" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Prénom</label>
-                                <input type="text" id="prenom" name="prenom" value="{{ session.values.prenom }}"
+                                <input type="text" id="prenom" name="prenom" value="{{ values.prenom }}"
                                        required
-                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if session.error.prenom is defined %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
-                                {% if session.error.prenom is defined %}
+                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if error.prenom  %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                                {% if error.prenom  %}
                                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">
                 <span class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -123,7 +123,7 @@
                               d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                               clip-rule="evenodd"></path>
                     </svg>
-                    {{ session.error.prenom }}
+                    {{ error.prenom }}
                 </span>
                                     </p>
                                 {% endif %}
@@ -131,9 +131,9 @@
 
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
-                                <input type="email" id="email" name="email" value="{{ session.values.email }}" required
-                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if session.error.email is defined %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
-                                {% if session.error.email is defined %}
+                                <input type="email" id="email" name="email" value="{{ values.email }}" required
+                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if error.email  %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                                {% if error.email  %}
                                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">
                 <span class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -142,7 +142,7 @@
                               d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                               clip-rule="evenodd"></path>
                     </svg>
-                    {{ session.error.email }}
+                    {{ error.email }}
                 </span>
                                     </p>
                                 {% endif %}
@@ -153,8 +153,8 @@
                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300">Mot de
                                     passe</label>
                                 <input type="password" id="motDePasse" name="mot_de_passe" required
-                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if session.error.password is defined %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
-                                {% if session.error.password is defined %}
+                                       class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if error.password  %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                                {% if error.password  %}
                                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">
                 <span class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -163,7 +163,7 @@
                               d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                               clip-rule="evenodd"></path>
                     </svg>
-                    {{ session.error.password }}
+                    {{ error.password }}
                 </span>
                                     </p>
                                 {% endif %}
