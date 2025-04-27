@@ -15,13 +15,6 @@ class CompteController extends Controller
         $this->comptService = new CompteService;
     }
 
-
-    public function demandeCompte()
-    {
-        echo $this->twig->render('auth/demadeCompte.twig');
-
-    }
-
     public function approuver($id)
     {
         if ($this->comptService->approuver($id)) {

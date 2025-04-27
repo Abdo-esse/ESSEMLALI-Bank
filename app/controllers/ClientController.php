@@ -83,7 +83,7 @@ class ClientController extends Controller
 
     public function store()
     {
-        $this->addClients("signIn");
+        $this->addClients("sign-in");
         Session::setFlash("signIn", "Votre demande de création de compte a bien été reçue.");
         header('Location: /ESSEMLALI-Bank');
         exit;

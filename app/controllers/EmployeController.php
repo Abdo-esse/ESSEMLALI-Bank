@@ -70,7 +70,7 @@ class EmployeController extends Controller
         $request = new StoreUserRequest($_POST);
         if (!$request->validate()) {
             Session::set('errorEditEmployer', $request->getErrors());
-            $this->redirect("editeEploye/$id");
+            $this->redirect("edite-eploye/$id");
             exit;
         }
         Session::unset('errorEditEmployer');

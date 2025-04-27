@@ -70,42 +70,4 @@ class ReçuController extends Controller
         echo $this->twig->render('reçu/retrait.twig', ['session' => $_SESSION]);
         exit;
     }
-
-    public function telechargerRecuVirement()
-    {
-        $this->telechargerRecu("recu_virement");
-    }
-
-    public function telechargerRecuVersement()
-    {
-        $this->telechargerRecu("recu_versement");
-    }
-
-    public function telechargerRecuRetrait()
-    {
-        $this->telechargerRecu("recu_retrait");
-    }
-
-    public function telechargerVirementClient()
-    {
-        $this->telechargerRecu("recu-virement");
-    }
-
-
-    private function telechargerRecu($recu)
-    {
-        $data = $_SESSION['data'] ?? null;
-        if (!$data) {
-            echo "Aucune donnée pour générer le reçu.";
-            exit;
-        }
-        $html = $this->twig->render("reçu/$recu.twig", ['session' => $_SESSION]);
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-        $dompdf->stream("$recu.pdf", ["Attachment" => true]);
-    }
-
-
 }
