@@ -57,7 +57,7 @@
                             name="account_number"
                             required
                             class="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                            value="BANK-"
+                            value="{{ session.dataRetrait['account_number'] is defined ? session.dataRetrait['account_number'] : 'BANK-' }}"
                     >
                     <p class="text-xs text-gray-500 mt-1">Entrez le numéro de compte au format IBAN</p>
                     {% if session.errorRetrait.account_number is defined %}
@@ -90,7 +90,7 @@
                                 step="5"
                                 class="block w-full pl-7 pr-12 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                                 placeholder="0.00"
-                                value="10"
+                                value="{{ session.dataRetrait['amount'] is defined ? session.dataRetrait['amount'] : 10 }}"
 
                         >
                     </div>

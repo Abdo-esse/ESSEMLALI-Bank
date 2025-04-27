@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b0b4cda-790a-4f8a-8a38-2cdc58fdb660" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/TransactionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employe/versement.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employe/versement.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employe/virement.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employe/virement.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,20 +69,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "update",
-    "last_opened_file_path": "C:/xampp/htdocs/ESSEMLALI-Bank",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;update&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/ESSEMLALI-Bank&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -101,6 +103,7 @@
       <workItem from="1743153532586" duration="7331000" />
       <workItem from="1745235015986" duration="14000" />
       <workItem from="1745752405033" duration="1031000" />
+      <workItem from="1745759675257" duration="307000" />
     </task>
     <servers />
   </component>
