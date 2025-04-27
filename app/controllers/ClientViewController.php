@@ -2,10 +2,7 @@
 
 namespace App\Controllers;
 
-use App\requests\SignInRequest;
-use App\requests\UpdateClientRequest;
 use App\services\ClientService;
-use App\services\CompteService;
 use App\services\HistoriqueService;
 use App\core\Session;
 class ClientViewController extends Controller
@@ -34,32 +31,12 @@ class ClientViewController extends Controller
         $id= $_SESSION["user"]["id"];      
         $client=$this->clientService->getClient($id);
         echo  $this->twig->render('client/updateinfo.twig',['session' => $_SESSION,'client' => $client]);
-    }
-   
-    
+    } 
 
     public function create()
     {
        echo  $this->twig->render('auth/signIn.twig', ['session' => $_SESSION]);
     }   
-
- 
-    public function demandeComptes(){
-    
-        echo  $this->twig->render('employe/demandeComptes.twig');
-    }
-    public function demandeCompte($id){
-        $client=$this->clientService->find($id);
-        echo  $this->twig->render('employe/demandeCompte.twig', ['client' => $client,]);
-    }
-    public function clients(){
-        $clients=$this->clientService->allClients();
-        echo  $this->twig->render('employe/clients.twig');
-    }
-    public function client($id){
-        $client=$this->clientService->getClient($id);
-        echo  $this->twig->render('employe/client.twig', ['client' => $client,]);
-    }
  
     public function releve()
     {
