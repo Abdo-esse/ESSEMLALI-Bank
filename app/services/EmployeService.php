@@ -38,6 +38,10 @@ class EmployeService
         return $this->employRepo->update('users', $id, $dataUpdate);
     }
 
+    public function activerDesactiver($id, $data){
+        return $this->employRepo->update('users', $id, $data);
+    }
+
     public function getAll()
     {
         return $this->employRepo->readAll('roles');

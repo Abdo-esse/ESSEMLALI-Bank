@@ -55,6 +55,10 @@ class AdminRepository extends BaseRepository
         }
         return $admins;
     }
+    public function findById($id){
+        $admin=$this->find($this->table, ["id" => $id]);
+        return new Admin($admin->id, $admin->nom, $admin->prenom, $admin->email, $admin->mot_de_passe, $admin->date_creation, $admin->is_active);
+    }
 
 
 }

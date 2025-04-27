@@ -30,6 +30,9 @@ class AdminService
     {
         return $this->adminRepo->readAll('roles');
     }
+    public function findById($id){
+        return $this->adminRepo->findById($id); 
+    }
 
 
 }

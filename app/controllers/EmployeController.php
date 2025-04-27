@@ -60,7 +60,7 @@ class EmployeController extends Controller
     public function desactiver($id)
     {
         $data = ["is_active" => "false"];
-        if (!$this->employeService->update($id, $data)) {
+        if (!$this->employeService->activerDesactiver($id, $data)) {
             Session::set('error', "Une erreur s'est produite lors de desactiver de l'employer.");
             $this->redirect('employes');
             exit;
@@ -72,7 +72,7 @@ class EmployeController extends Controller
     public function activer($id)
     {
         $data = ["is_active" => "true"];
-        if (!$this->employeService->update($id, $data)) {
+        if (!$this->employeService->activerDesactiver($id, $data)) {
             Session::set('error', "Une erreur s'est produite lors de activer de l'employer.");
             $this->redirect('employes');
             exit;

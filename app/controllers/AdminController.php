@@ -23,8 +23,16 @@ class AdminController extends Controller
 
     public function index()
     {
+        $id = $_SESSION["user"]["id"];
         $data = $this->statistiqueService->statistiqueAdmin();
-        echo $this->twig->render('admin/index.twig', ['session' => $_SESSION, "data" => $data]);
+        $admin=$this->adminService->findById($id);
+        echo $this->twig->render('admin/index.twig',
+        [
+            'session' => $_SESSION,
+            "data" => $data,
+            'name'=> $admin->getNom(),
+            'prenom'=>$admin->getprenom()
+        ]);
     }
 
     public function admin()
