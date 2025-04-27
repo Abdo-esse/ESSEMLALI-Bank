@@ -20,7 +20,9 @@ class LoginController extends Controller
     public function index()
     {
         echo $this->twig->render('auth/login.twig', [
-            'session' => $_SESSION
+            'session' => $_SESSION,
+            'error'=>Session::getFlash("error"),
+            'valueslogin'=>Session::getFlash("valueslogin")
         ]);
 
     }
@@ -30,13 +32,11 @@ class LoginController extends Controller
         $request = new LoginRequest($_POST);
 
         if (!$request->validate()) {
-            Session::set('error', $request->getErrors());
-            Session::set('valueslogin', $_POST);
+            Session::setFlash('error', $request->getErrors());
+            Session::setFlash('valueslogin', $_POST);
             $this->redirect('login');
             exit;
         }
-        Session::unset('error');
-        Session::unset('valueslogin');
         $email = $_POST['email'];
         $password = $_POST['password'];
         if (!$this->authService->login($email, $password)) {

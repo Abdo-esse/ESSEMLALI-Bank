@@ -57,10 +57,10 @@
                             name="account_number"
                             required
                             class="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                            value="{{ session.dataRetrait['account_number'] is defined ? session.dataRetrait['account_number'] : 'BANK-' }}"
+                            value="{{ dataRetrait['account_number']  ? dataRetrait['account_number'] : 'BANK-' }}"
                     >
                     <p class="text-xs text-gray-500 mt-1">Entrez le numéro de compte au format IBAN</p>
-                    {% if session.errorRetrait.account_number is defined %}
+                    {% if errorRetrait.account_number  %}
                         <p class="mt-1 text-sm text-red-600">
                                     <span class="flex items-center">
                                         <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -69,7 +69,7 @@
                                               d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                                               clip-rule="evenodd"></path>
                                         </svg>
-                                        {{ session.errorRetrait.account_number }}
+                                        {{ errorRetrait.account_number }}
                                     </span>
                         </p>
                     {% endif %}
@@ -90,13 +90,13 @@
                                 step="5"
                                 class="block w-full pl-7 pr-12 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                                 placeholder="0.00"
-                                value="{{ session.dataRetrait['amount'] is defined ? session.dataRetrait['amount'] : 10 }}"
+                                value="{{ dataRetrait['amount']  ? dataRetrait['amount'] : 10 }}"
 
                         >
                     </div>
                     <p class="text-xs text-gray-500 mt-1">Montant minimum de dépôt: 10 dh</p>
 
-                    {% if session.errorRetrait.amount %}
+                    {% if errorRetrait.amount %}
                         <p class="mt-1 text-sm text-red-600 dark:text-red-400">
                                 <span class="flex items-center">
                                     <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -105,7 +105,7 @@
                                               d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                                               clip-rule="evenodd"></path>
                                     </svg>
-                                    {{ session.errorRetrait.amount }}
+                                    {{ errorRetrait.amount }}
                                 </span>
                         </p>
                     {% endif %}

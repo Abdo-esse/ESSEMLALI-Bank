@@ -44,8 +44,8 @@
                     <div>
                         <label for="nom" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nom</label>
                         <input type="text" id="nom" name="nom" value="{{ employe.nom }}" required
-                               class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if session.errorEditEmployer.nom %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
-                        {% if session.errorEditEmployer.nom %}
+                               class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if errorEditEmployer.nom %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                        {% if errorEditEmployer.nom %}
                             <p class="mt-1 text-sm text-red-600 dark:text-red-400">
                 <span class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -54,7 +54,7 @@
                               d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                               clip-rule="evenodd"></path>
                     </svg>
-                    {{ session.errorEditEmployer.nom }}
+                    {{ errorEditEmployer.nom }}
                 </span>
                             </p>
                         {% endif %}
@@ -64,8 +64,8 @@
                         <label for="prenom"
                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">Prénom</label>
                         <input type="text" id="prenom" name="prenom" value="{{ employe.prenom }}" required
-                               class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if session.errorEditEmployer.prenom %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
-                        {% if session.errorEditEmployer.prenom %}
+                               class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if errorEditEmployer.prenom %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                        {% if errorEditEmployer.prenom %}
                             <p class="mt-1 text-sm text-red-600 dark:text-red-400">
                 <span class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -74,7 +74,7 @@
                               d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                               clip-rule="evenodd"></path>
                     </svg>
-                    {{ session.errorEditEmployer.prenom }}
+                    {{ errorEditEmployer.prenom }}
                 </span>
                             </p>
                         {% endif %}
@@ -84,8 +84,8 @@
                         <label for="email"
                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
                         <input type="email" id="email" name="email" value="{{ employe.email }}" required
-                               class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if session.errorEditEmployer.email %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
-                        {% if session.errorEditEmployer.email %}
+                               class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if errorEditEmployer.email %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                        {% if errorEditEmployer.email %}
                             <p class="mt-1 text-sm text-red-600 dark:text-red-400">
                 <span class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -94,7 +94,7 @@
                               d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                               clip-rule="evenodd"></path>
                     </svg>
-                    {{ session.errorEditEmployer.email }}
+                    {{ errorEditEmployer.email }}
                 </span>
                             </p>
                         {% endif %}
@@ -104,8 +104,8 @@
                         <label for="motDePasse" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Mot
                             de passe</label>
                         <input type="password" id="motDePasse" name="mot_de_passe" required
-                               class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if session.errorEditEmployer.mot_de_passe %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
-                        {% if session.errorEditEmployer.mot_de_passe %}
+                               class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-600 border {% if errorEditEmployer.mot_de_passe %}border-red-500 dark:border-red-500{% else %}border-gray-300 dark:border-gray-500{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white">
+                        {% if errorEditEmployer.mot_de_passe %}
                             <p class="mt-1 text-sm text-red-600 dark:text-red-400">
                 <span class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -114,7 +114,7 @@
                               d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                               clip-rule="evenodd"></path>
                     </svg>
-                    {{ session.errorEditEmployer.mot_de_passe }}
+                    {{ errorEditEmployer.mot_de_passe }}
                 </span>
                             </p>
                         {% endif %}

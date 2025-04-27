@@ -29,13 +29,11 @@ class TransactionController extends Controller
     {
         $request = new DepositRequest($_POST);
         if (!$request->validate()) {
-            Session::set('errorDeposit', $request->getErrors());
-            Session::set('dataDeposit', $_POST);
+            Session::setFlash('errorDeposit', $request->getErrors());
+            Session::setFlash('dataDeposit', $_POST);
             $this->redirect('versement');
             exit;
         }
-        Session::unset('errorDeposit');
-        Session::unset('dataDeposit');
         if (!$this->transactionService->updateBalance($_POST["account_number"], $_POST["amount"])) {
             Session::set('error', "Une erreur s'est produite lors de depose l'argent.");
             $this->redirect('versement');
@@ -53,13 +51,11 @@ class TransactionController extends Controller
     {
         $request = new RetraitRequest($_POST);
         if (!$request->validate()) {
-            Session::set('errorRetrait', $request->getErrors());
-            Session::set('dataRetrait', $_POST);
+            Session::setFlash('errorRetrait', $request->getErrors());
+            Session::setFlash('dataRetrait', $_POST);
             $this->redirect('retrait');
             exit;
         }
-        Session::unset('errorRetrait');
-        Session::unset('dataRetrait');
         if (!$this->transactionService->updateBalance($_POST["account_number"], -$_POST["amount"])) {
             Session::set('error', "Une erreur s'est produite lors de retrait l'argent.");
             $this->redirect('retrait');
@@ -91,13 +87,11 @@ class TransactionController extends Controller
     {
         $request = new VirementRequest($_POST);
         if (!$request->validate()) {
-            Session::set('errorVirement', $request->getErrors());
-            Session::set('dataVirement', $_POST);
+            Session::setFlash('errorVirement', $request->getErrors());
+            Session::setFlash('dataVirement', $_POST);
             $this->redirect("$redirect");
             exit;
         }
-        Session::unset('errorVirement');
-        Session::unset('dataVirement');
         if (!$this->transactionService->virement($_POST)) {
             Session::set('error', "Une erreur s'est produite lors de virement l'argent.");
             $this->redirect("$redirect");

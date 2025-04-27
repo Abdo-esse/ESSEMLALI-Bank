@@ -40,11 +40,10 @@ class ClientController extends Controller
         $_POST["motDePassEnregister"] = $client['mot_de_passe'];
         $request = new UpdateClientRequest($_POST);
         if (!$request->validate()) {
-            Session::set('errorEditClient', $request->getErrors());
+            Session::setFlash('errorEditClient', $request->getErrors());
             $this->redirect("update-info");
             exit;
         }
-        Session::unset('errorEditClient');
         if (!$this->clientService->update($id, $_POST)) {
             Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
             $this->redirect('Client');
@@ -59,13 +58,11 @@ class ClientController extends Controller
     {
         $request = new SignInRequest($_POST);
         if (!$request->validate()) {
-            Session::set('errorClient', $request->getErrors());
-            Session::set('valuesClient', $_POST);
+            Session::setFlash('errorClient', $request->getErrors());
+            Session::setFlash('valuesClient', $_POST);
             $this->redirect("$where");
             exit;
         }
-        Session::unset('errorClient');
-        Session::unset('valuesClient');
         $fileName = uniqid() . '_' . $_FILES['carte_identite']['name'];
         $uploadPath = __DIR__ . '/../../public/uploads/' . $fileName;
 
@@ -91,11 +88,11 @@ class ClientController extends Controller
 
     public function add()
     {
-        $clientId = $this->addClients("demandeCompte");
+        $clientId = $this->addClients("demande-compte");
         if ($clientId) {
             $compteService = new CompteService();
             if ($compteService->approuver($clientId)) {
-                $this->redirect('demandeCompte');
+                $this->redirect('demande-compte');
                 exit;
             }
 

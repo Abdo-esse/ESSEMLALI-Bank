@@ -19,31 +19,17 @@ class EmployeController extends Controller
         $this->statistiqueService = new StatistiqueService();
     }
 
-
-    public function index()
-    {
-        $data = $this->statistiqueService->statistiqueEmploye();
-        echo $this->twig->render('employe/index.twig', ['session' => $_SESSION, "data" => $data]);
-    }
-
-    public function employes()
-    {
-        echo $this->twig->render('admin/eployes.twig', ['session' => $_SESSION,]);
-    }
-
     public function create()
     {
         $request = new StoreUserRequest($_POST);
         if (!$request->validate()) {
-            Session::set('errorEmployer', $request->getErrors());
-            Session::set('valuesEmployer', $_POST);
+            Session::setFlash('errorEmployer', $request->getErrors());
+            Session::setFlash('valuesEmployer', $_POST);
             $this->redirect('employes');
             exit;
         }
-        Session::unset('errorEmployer');
-        Session::unset('valuesEmployer');
         if (!$this->employeService->create($_POST)) {
-            Session::set('error', "Une erreur s'est produite lors de l'ajout de l'administrateur.");
+            Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
             $this->redirect('employes');
             exit;
         }
@@ -52,30 +38,16 @@ class EmployeController extends Controller
         exit;
     }
 
-    public function edite($id)
-    {
-        $employe = $this->employeService->find($id);
-        if ($employe) {
-            echo $this->twig->render('admin/editeEploye.twig', [
-                'session' => $_SESSION,
-                'employe' => $employe
-            ]);
-
-        }
-
-    }
-
     public function update($id)
     {
         $request = new StoreUserRequest($_POST);
         if (!$request->validate()) {
-            Session::set('errorEditEmployer', $request->getErrors());
+            Session::setFlash('errorEditEmployer', $request->getErrors());
             $this->redirect("edite-eploye/$id");
             exit;
         }
-        Session::unset('errorEditEmployer');
         if (!$this->employeService->update($id, $_POST)) {
-            Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
+            Session::set('error', "Une erreur s'est produite lors de l'update de l'employer.");
             $this->redirect('employes');
             exit;
         }

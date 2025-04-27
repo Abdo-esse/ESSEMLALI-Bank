@@ -31,12 +31,22 @@ class ClientViewController extends Controller
     {
         $id = $_SESSION["user"]["id"];
         $client = $this->clientService->getClient($id);
-        echo $this->twig->render('client/updateinfo.twig', ['session' => $_SESSION, 'client' => $client]);
+        echo $this->twig->render('client/updateinfo.twig',
+        [
+            'session' => $_SESSION,
+             'client' => $client,
+             'errorEditClient'=>Session::getFlash("errorEditClient"),
+        ]);
     }
 
     public function create()
     {
-        echo $this->twig->render('auth/signIn.twig', ['session' => $_SESSION]);
+        echo $this->twig->render('auth/signIn.twig',
+        [
+            'session' => $_SESSION,
+            'errorClient'=>Session::getFlash("errorClient"),
+            'valuesClient'=>Session::getFlash("valuesClient")
+        ]);
     }
 
     public function releve()
