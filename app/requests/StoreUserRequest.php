@@ -2,15 +2,18 @@
 
 namespace App\requests;
 
-class StoreUserRequest {
+class StoreUserRequest
+{
     private $data;
     private $errors = [];
-    
-    public function __construct(array $data) {
+
+    public function __construct(array $data)
+    {
         $this->data = $data;
     }
-    
-    public function validate(): bool {
+
+    public function validate(): bool
+    {
 
         if (empty($this->data['nom'])) {
             $this->errors['nom'] = 'nom is required';
@@ -29,19 +32,21 @@ class StoreUserRequest {
         } elseif (!filter_var($this->data['email'], FILTER_VALIDATE_EMAIL)) {
             $this->errors['email'] = 'Invalid email format';
         }
-        
+
         if (empty($this->data['mot_de_passe'])) {
             $this->errors['mot_de_passe'] = 'Password is required';
         }
-        
+
         return empty($this->errors);
     }
-    
-    public function getErrors(): array {
+
+    public function getErrors(): array
+    {
         return $this->errors;
     }
-    
-    public function getData(): array {
+
+    public function getData(): array
+    {
         return $this->data;
     }
 }

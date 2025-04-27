@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Services;
 
 use App\Repository\CompteRepository;
@@ -13,7 +14,7 @@ class TransactionService
         $this->compteRepo = new CompteRepository();
     }
 
-    public function updateBalance( $accountNumber,  $amount)
+    public function updateBalance($accountNumber, $amount)
     {
         $account = $this->compteRepo->findAcount($accountNumber);
 
@@ -24,19 +25,20 @@ class TransactionService
             "solde" => $newBalance
         ]);
     }
+
     public function virement($data)
     {
         $accountSender = $this->compteRepo->findAcount($data["sender-iban"]);
         $accountRecipient = $this->compteRepo->findAcount($data["recipient-iban"]);
-        $newBalanceSender=$accountSender->getSolde() - $data["amount"];
-        $newBalanceRecipient=$accountRecipient->getSolde() + $data["amount"];
-        $dataSendre=[
-            "id"=>$accountSender->getId(),
-            "solde"=>$newBalanceSender
+        $newBalanceSender = $accountSender->getSolde() - $data["amount"];
+        $newBalanceRecipient = $accountRecipient->getSolde() + $data["amount"];
+        $dataSendre = [
+            "id" => $accountSender->getId(),
+            "solde" => $newBalanceSender
         ];
-        $dataRecipient=[
-            "id"=>$accountRecipient->getId(),
-            "solde"=>$newBalanceRecipient
+        $dataRecipient = [
+            "id" => $accountRecipient->getId(),
+            "solde" => $newBalanceRecipient
         ];
 
         return $this->compteRepo->virement($dataSendre, $dataRecipient);

@@ -2,9 +2,10 @@
 
 {% block title %}Page d'accueil{% endblock %}
 {% block header %}
-<header class="bg-gray-800 text-white py-6">
+    <header class="bg-gray-800 text-white py-6">
         <div class="container mx-auto px-4 relative">
-            <button id="back-button" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-2xl font-bold hover:text-gray-300">
+            <button id="back-button"
+                    class="absolute left-4 top-1/2 transform -translate-y-1/2 text-2xl font-bold hover:text-gray-300">
                 &larr;
             </button>
             <h1 class="text-2xl font-bold text-center">Gestion des Utilisateurs</h1>
@@ -14,61 +15,63 @@
 
 
 {% block content %}
-  
-    
+
+
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white rounded-lg shadow-md p-6 mb-6">
             <div class="flex justify-between items-center border-b border-gray-200 pb-4 mb-6">
                 <h2 class="text-xl font-semibold">Informations Personnelles</h2>
-                <span id="status-badge" class="px-3 py-1 rounded-full text-sm font-medium bg-green-500 text-white">Actif</span>
+                <span id="status-badge"
+                      class="px-3 py-1 rounded-full text-sm font-medium bg-green-500 text-white">Actif</span>
             </div>
-            
+
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Nom</p>
                         <p class="text-base font-medium">{{ client.client.nom }}</p>
                     </div>
-                    
+
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Prénom</p>
                         <p class="text-base font-medium">{{ client.client.prenom }}</p>
                     </div>
-                    
+
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Email</p>
                         <p class="text-base font-medium">{{ client.client.email }}</p>
                     </div>
-                    
+
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Date de création</p>
                         <p class="text-base font-medium">{{ client.compte.dateCreation }}</p>
                     </div>
-                    
+
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Sexe</p>
                         <p class="text-base font-medium">{{ client.client.sexe }}</p>
                     </div>
                 </div>
-                
+
                 <div>
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Téléphone</p>
                         <p class="text-base font-medium">{{ client.client.telephone }}</p>
                     </div>
-                    
+
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Adresse</p>
                         <p class="text-base font-medium">{{ client.client.adresse }}</p>
                     </div>
-                    
+
                     <div class="mb-4">
                         <p class="text-sm text-gray-500 mb-1">Carte Nationale d'Identité</p>
-                        <img src="{{ asset('uploads/' ~ client.client.carteIdentite) }}" alt="Carte Nationale d'Identité" class="w-full max-w-md border border-gray-200 rounded-md">
+                        <img src="{{ asset('uploads/' ~ client.client.carteIdentite) }}"
+                             alt="Carte Nationale d'Identité" class="w-full max-w-md border border-gray-200 rounded-md">
                     </div>
                 </div>
             </div>
-            
+
             <div class="bg-gray-50 border-l-4 border-blue-500 p-4 mt-6">
                 <h3 class="font-medium mb-2">Informations Financières</h3>
                 <div class="mb-2">
@@ -79,9 +82,12 @@
                     <div class="flex items-center gap-2">
                         <p class="text-sm text-gray-500 mb-1">Solde</p>
                         <button id="toggle-balance" class="text-gray-500 hover:text-gray-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                 fill="currentColor">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                                <path fill-rule="evenodd"
+                                      d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                      clip-rule="evenodd"/>
                             </svg>
                         </button>
                     </div>
@@ -89,20 +95,22 @@
                     <p id="balance-hidden" class="text-2xl font-bold text-blue-600">••••,••</p>
                 </div>
             </div>
-            
+
             <div class="flex justify-end gap-4 mt-6">
-                <form method="post" action="delete/{{ client.client.id }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet client?');">
-                            <button type="submit" class="px-4 py-2 bg-red-600 text-white font-medium rounded hover:bg-red-700 transition-colors">
-                                Supprimer
-                            </button>
-                        </form>
+                <form method="post" action="delete/{{ client.client.id }}"
+                      onsubmit="return confirm('Voulez-vous vraiment supprimer cet client?');">
+                    <button type="submit"
+                            class="px-4 py-2 bg-red-600 text-white font-medium rounded hover:bg-red-700 transition-colors">
+                        Supprimer
+                    </button>
+                </form>
             </div>
         </div>
     </div>
-    
+
     <script>
         const backButton = document.getElementById('back-button');
-        backButton.addEventListener('click', function() {
+        backButton.addEventListener('click', function () {
             window.history.back();
         });
 
@@ -111,9 +119,9 @@
         const balanceHidden = document.getElementById('balance-hidden');
         let isBalanceVisible = false;
 
-        toggleBalance.addEventListener('click', function() {
+        toggleBalance.addEventListener('click', function () {
             isBalanceVisible = !isBalanceVisible;
-            
+
             if (isBalanceVisible) {
                 balanceValue.classList.remove('hidden');
                 balanceHidden.classList.add('hidden');
@@ -138,10 +146,10 @@
         const statusBadge = document.getElementById('status-badge');
         const toggleStatusBtn = document.getElementById('toggle-status-btn');
         let isActive = true;
-        
-        toggleStatusBtn.addEventListener('click', function() {
+
+        toggleStatusBtn.addEventListener('click', function () {
             isActive = !isActive;
-            
+
             if (isActive) {
                 statusBadge.textContent = 'Actif';
                 statusBadge.className = 'px-3 py-1 rounded-full text-sm font-medium bg-green-500 text-white';
@@ -154,6 +162,6 @@
                 toggleStatusBtn.className = 'px-4 py-2 bg-green-500 text-white font-medium rounded hover:bg-green-600 transition-colors';
             }
         });
-        
+
     </script>
 {% endblock %}

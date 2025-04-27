@@ -1,36 +1,40 @@
 <?php
+
 namespace App\Repository;
+
 use PDO;
 use App\models\Employe;
 
 
-class EmployRepository  extends BaseRepository
+class EmployRepository extends BaseRepository
 {
 
     private $table;
     private $tablePivot;
-    
-    public function __construct() {
-        parent::__construct(); 
-        $this->table='users';
-        $this->tablePivot='role_user';
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->table = 'users';
+        $this->tablePivot = 'role_user';
     }
-    
-    public function create($data ){
-        
-        $this->conn->beginTransaction(); 
+
+    public function create($data)
+    {
+
+        $this->conn->beginTransaction();
         try {
             $emplyeId = $this->createAction($this->table, $data);
             if (empty($emplyeId)) {
-                throw new PDOException("Erreur lors de l'insertion d'admin."); 
+                throw new PDOException("Erreur lors de l'insertion d'admin.");
             }
-            if (!$this->createAction($this->tablePivot,["user_id"=>$emplyeId,"role_id"=>2])) {
-                throw new PDOException("Erreur lors de l'insertion du role ."); 
+            if (!$this->createAction($this->tablePivot, ["user_id" => $emplyeId, "role_id" => 2])) {
+                throw new PDOException("Erreur lors de l'insertion du role .");
             }
-            $this->conn->commit(); 
+            $this->conn->commit();
             return true;
         } catch (PDOException $e) {
-            $this->conn->rollBack(); 
+            $this->conn->rollBack();
             echo "Erreur : " . $e->getMessage();
         }
     }
@@ -51,6 +55,7 @@ class EmployRepository  extends BaseRepository
         }
         return $employes;
     }
+
     public function find($table, $where)
     {
         $sql = "SELECT u.* 
@@ -58,16 +63,16 @@ class EmployRepository  extends BaseRepository
                 JOIN role_user ru ON ru.user_id = u.id
                 JOIN {$table} r ON r.id = ru.role_id
                 WHERE r.titre = 'Employé' AND u.id = :id";
-    
+
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $where]);
-    
+
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
         if (!$row) {
-            return null; 
+            return null;
         }
-    
+
         return new Employe($row['id'], $row['nom'], $row['prenom'], $row['email'], $row['mot_de_passe'], $row['date_creation'], $row['is_active']);
     }
 
@@ -80,7 +85,7 @@ class EmployRepository  extends BaseRepository
 				AND ( LOWER(u.prenom) LIKE LOWER(:keyword) OR LOWER(u.nom) LIKE LOWER(:keyword))
 				ORDER BY u.nom";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([":keyword" =>$keyword.'%']);
+        $stmt->execute([":keyword" => $keyword . '%']);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $employes = [];
         foreach ($rows as $row) {
@@ -88,10 +93,6 @@ class EmployRepository  extends BaseRepository
         }
         return $employes;
     }
-    
-
-   
-
 
 
 }

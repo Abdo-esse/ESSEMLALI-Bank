@@ -2,10 +2,11 @@
 <header class="bg-white text-blue-900 shadow-md">
     <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
         <div class="text-xl font-bold mb-4 md:mb-0 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" class="w-32 h-16"> <!-- Dimensions corrigées -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" class="w-32 h-16">
+                <!-- Dimensions corrigées -->
                 <!-- Fond du logo -->
                 <rect width="300" height="150" rx="20" fill="#ffffff"/>
-                
+
                 <!-- Symbole bancaire stylisé -->
                 <g transform="translate(65, 30)">
                     <!-- Piliers bancaires stylisés -->
@@ -13,21 +14,25 @@
                     <rect x="30" y="20" width="20" height="70" rx="2" fill="#1d4ed8"/>
                     <rect x="60" y="10" width="20" height="80" rx="2" fill="#1d4ed8"/>
                     <rect x="90" y="0" width="20" height="90" rx="2" fill="#1d4ed8"/>
-                    
+
                     <!-- Toit bancaire arrondi -->
                     <path d="M0,30 Q55,-10 110,0 L110,10 L0,10 Z" fill="#1d4ed8"/>
-                    
+
                     <!-- Pièce/Monnaie symbolisant la finance -->
                     <circle cx="140" cy="35" r="30" fill="#f59e0b"/>
                     <circle cx="140" cy="35" r="25" fill="#fbbf24"/>
-                    <text x="140" y="42" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">€</text>
+                    <text x="140" y="42" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle"
+                          fill="#ffffff">€
+                    </text>
                 </g>
-                
+
                 <!-- Nom de la banque -->
-                <text x="150" y="140" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#1d4ed8">EssemlaliBank</text>
+                <text x="150" y="140" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle"
+                      fill="#1d4ed8">EssemlaliBank
+                </text>
             </svg>
         </div>
-        
+
         <nav class="flex flex-col md:flex-row items-center mb-4 md:mb-0">
             <a href="/ESSEMLALI-Bank" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Accueil</a>
             <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Comptes</a>
@@ -36,82 +41,84 @@
             <a href="#" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">Assurances</a>
             <a href="Apropos" class="mb-2 md:mb-0 md:mr-6 hover:text-blue-300 transition-colors">À propos</a>
         </nav>
-        
-        <a href="login" class="bg-blue-400 cursor-pointer hover:bg-blue-600 px-6 py-2 rounded-md font-semibold transition-colors">Se connecter</a>
+
+        <a href="login"
+           class="bg-blue-400 cursor-pointer hover:bg-blue-600 px-6 py-2 rounded-md font-semibold transition-colors">Se
+            connecter</a>
     </div>
 </header>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const header = document.querySelector('header');
-  const navContainer = document.querySelector('header .container');
-  const nav = document.querySelector('header nav');
-  const logo = document.querySelector('header .font-bold');
-  const loginButton = document.querySelector('header a.bg-blue-400');
-  
-  
-  let menuOpen = false;
-  
- 
-  const hamburgerButton = document.createElement('button');
-  hamburgerButton.classList.add('md:hidden', 'fixed', 'right-4', 'top-4', 'z-50'); // Fixed au lieu de absolute pour une meilleure visibilité
-  hamburgerButton.setAttribute('aria-label', 'Menu de navigation');
-  hamburgerButton.innerHTML = `
+    document.addEventListener('DOMContentLoaded', function () {
+        const header = document.querySelector('header');
+        const navContainer = document.querySelector('header .container');
+        const nav = document.querySelector('header nav');
+        const logo = document.querySelector('header .font-bold');
+        const loginButton = document.querySelector('header a.bg-blue-400');
+
+
+        let menuOpen = false;
+
+
+        const hamburgerButton = document.createElement('button');
+        hamburgerButton.classList.add('md:hidden', 'fixed', 'right-4', 'top-4', 'z-50'); // Fixed au lieu de absolute pour une meilleure visibilité
+        hamburgerButton.setAttribute('aria-label', 'Menu de navigation');
+        hamburgerButton.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
     </svg>
   `;
-  
 
-  logo.parentNode.insertBefore(hamburgerButton, logo.nextSibling);
-  
 
-  function setMobileNavVisibility() {
-    if (window.innerWidth < 768) { // 768px est la taille md dans Tailwind
-      nav.style.display = menuOpen ? 'flex' : 'none';
-      loginButton.style.display = menuOpen ? 'block' : 'none';
-    } else {
-      nav.style.display = 'flex';
-      loginButton.style.display = 'block';
-    }
-  }
-  
-  // Appliquer l'état initial
-  setMobileNavVisibility();
-  
+        logo.parentNode.insertBefore(hamburgerButton, logo.nextSibling);
 
-  hamburgerButton.addEventListener('click', function() {
-    menuOpen = !menuOpen;
-    setMobileNavVisibility();
 
-    hamburgerButton.innerHTML = menuOpen 
-      ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        function setMobileNavVisibility() {
+            if (window.innerWidth < 768) { // 768px est la taille md dans Tailwind
+                nav.style.display = menuOpen ? 'flex' : 'none';
+                loginButton.style.display = menuOpen ? 'block' : 'none';
+            } else {
+                nav.style.display = 'flex';
+                loginButton.style.display = 'block';
+            }
+        }
+
+        // Appliquer l'état initial
+        setMobileNavVisibility();
+
+
+        hamburgerButton.addEventListener('click', function () {
+            menuOpen = !menuOpen;
+            setMobileNavVisibility();
+
+            hamburgerButton.innerHTML = menuOpen
+                ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
          </svg>`
-      : `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                : `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
          </svg>`;
-  });
-  
-  
-  window.addEventListener('resize', function() {
-    setMobileNavVisibility();
-  });
-  
+        });
 
-  const navLinks = nav.querySelectorAll('a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      if (window.innerWidth < 768) {
-        menuOpen = false;
-        setMobileNavVisibility();
-        hamburgerButton.innerHTML = `
+
+        window.addEventListener('resize', function () {
+            setMobileNavVisibility();
+        });
+
+
+        const navLinks = nav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                if (window.innerWidth < 768) {
+                    menuOpen = false;
+                    setMobileNavVisibility();
+                    hamburgerButton.innerHTML = `
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         `;
-      }
+                }
+            });
+        });
     });
-  });
-});
 </script>

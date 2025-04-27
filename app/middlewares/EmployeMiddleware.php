@@ -3,11 +3,13 @@
 
 namespace App\middlewares;
 
-class EmployeMiddleware {
+class EmployeMiddleware
+{
 
-    public function handle() {
+    public function handle()
+    {
         session_start();
-        if (!isset($_SESSION['user'])|| $_SESSION['user']["role"]!=="Employé" ) {
+        if (!isset($_SESSION['user']) || $_SESSION['user']["role"] !== "Employé") {
             header("Location: /ESSEMLALI-Bank/login");
             exit();
         }

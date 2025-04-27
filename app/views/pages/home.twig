@@ -2,119 +2,129 @@
 
 {% block title %}Page d'accueil{% endblock %}
 {% block header %}
-{% include "layout/header.twig" %}
+    {% include "layout/header.twig" %}
 {% endblock %}
 
 
 {% block content %}
 
-        {% if flash_signIn %}
-            <script>
+    {% if flash_signIn %}
+        <script>
             Swal.fire({
-            icon: 'success',
-            title: '🎉 Demande envoyée',
-            html: `
+                icon: 'success',
+                title: ' Demande envoyée',
+                html: `
                 <p style="font-size: 16px; line-height: 1.6;">
                 Votre demande de création de compte a bien été reçue.<br>
                 Vous recevrez une réponse par e-mail dans les plus brefs délais.
                 </p>
             `,
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#3085d6',
-            width: '100%',
-            padding: '2rem',
-            backdrop: `
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#3085d6',
+                width: '100%',
+                padding: '2rem',
+                backdrop: `
                 rgba(0, 0, 0, 0.8)
             `,
-            customClass: {
-                popup: 'mobile-popup'
-            }
+                customClass: {
+                    popup: 'mobile-popup'
+                }
             });
-            </script>
+        </script>
 
-            <!-- Style personnalisé -->
-            <style>
+        <!-- Style personnalisé -->
+        <style>
             @media (max-width: 600px) {
                 .swal2-popup.mobile-popup {
-                width: 95% !important;
-                border-radius: 10px;
-                font-size: 16px;
+                    width: 95% !important;
+                    border-radius: 10px;
+                    font-size: 16px;
                 }
+
                 .swal2-html-container {
-                font-size: 15px;
+                    font-size: 15px;
                 }
+
                 .swal2-title {
-                font-size: 18px;
+                    font-size: 18px;
                 }
+
                 .swal2-confirm {
-                font-size: 16px;
-                padding: 10px 20px;
+                    font-size: 16px;
+                    padding: 10px 20px;
                 }
             }
-            </style>
-        {% endif %}
-        <!-- Hero Section -->
-        <section class="flex flex-col md:flex-row items-center mb-16">
-            <div class="md:w-1/2 md:pr-8 mb-8 md:mb-0">
-                <h1 class="text-4xl font-bold text-blue-900 mb-4">Votre avenir financier commence ici</h1>
-                <p class="text-lg text-gray-600 mb-8">ESSEMLALI Bank vous offre des solutions bancaires innovantes, accessibles et sécurisées. Gérez votre argent en toute simplicité depuis n'importe où et n'importe quand.</p>
-                <a  href="signIn" class=" cursor-pointer bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-md font-semibold transition-colors">Ouvrir un compte</a>
+        </style>
+    {% endif %}
+    <!-- Hero Section -->
+    <section class="flex flex-col md:flex-row items-center mb-16">
+        <div class="md:w-1/2 md:pr-8 mb-8 md:mb-0">
+            <h1 class="text-4xl font-bold text-blue-900 mb-4">Votre avenir financier commence ici</h1>
+            <p class="text-lg text-gray-600 mb-8">ESSEMLALI Bank vous offre des solutions bancaires innovantes,
+                accessibles et sécurisées. Gérez votre argent en toute simplicité depuis n'importe où et n'importe
+                quand.</p>
+            <a href="signIn"
+               class=" cursor-pointer bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-md font-semibold transition-colors">Ouvrir
+                un compte</a>
+        </div>
+
+        <div class="md:w-1/2">
+            <img src="{{ asset('hdhd.jpeg') }}" alt="Services bancaires en ligne" class="rounded-lg shadow-xl w-full">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-white rounded-lg p-8 shadow-md transition-transform hover:-translate-y-2 duration-300">
+            <div class="text-4xl mb-4 text-blue-400">💳</div>
+            <h3 class="text-xl font-semibold text-blue-900 mb-3">Paiements sécurisés</h3>
+            <p class="text-gray-600">Effectuez vos paiements en ligne et en magasin en toute sécurité grâce à notre
+                technologie de pointe.</p>
+        </div>
+
+        <div class="bg-white rounded-lg p-8 shadow-md transition-transform hover:-translate-y-2 duration-300">
+            <div class="text-4xl mb-4 text-blue-400">📱</div>
+            <h3 class="text-xl font-semibold text-blue-900 mb-3">Banque mobile</h3>
+            <p class="text-gray-600">Accédez à vos comptes, réalisez des virements et consultez vos transactions depuis
+                votre smartphone.</p>
+        </div>
+
+        <div class="bg-white rounded-lg p-8 shadow-md transition-transform hover:-translate-y-2 duration-300">
+            <div class="text-4xl mb-4 text-blue-400">💰</div>
+            <h3 class="text-xl font-semibold text-blue-900 mb-3">Épargne intelligente</h3>
+            <p class="text-gray-600">Nos solutions d'épargne personnalisées vous aident à atteindre vos objectifs
+                financiers plus rapidement.</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-blue-900 text-white rounded-lg p-8 mb-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+                <h4 class="text-3xl font-bold mb-2">98%</h4>
+                <p class="text-blue-100">Clients satisfaits</p>
             </div>
-            
-            <div class="md:w-1/2">
-                <img src="{{ asset('hdhd.jpeg') }}" alt="Services bancaires en ligne" class="rounded-lg shadow-xl w-full">
+
+            <div>
+                <h4 class="text-3xl font-bold mb-2">500K+</h4>
+                <p class="text-blue-100">Utilisateurs actifs</p>
             </div>
-        </section>
-        
-        <!-- Features Section -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div class="bg-white rounded-lg p-8 shadow-md transition-transform hover:-translate-y-2 duration-300">
-                <div class="text-4xl mb-4 text-blue-400">💳</div>
-                <h3 class="text-xl font-semibold text-blue-900 mb-3">Paiements sécurisés</h3>
-                <p class="text-gray-600">Effectuez vos paiements en ligne et en magasin en toute sécurité grâce à notre technologie de pointe.</p>
+
+            <div>
+                <h4 class="text-3xl font-bold mb-2">24/7</h4>
+                <p class="text-blue-100">Assistance client</p>
             </div>
-            
-            <div class="bg-white rounded-lg p-8 shadow-md transition-transform hover:-translate-y-2 duration-300">
-                <div class="text-4xl mb-4 text-blue-400">📱</div>
-                <h3 class="text-xl font-semibold text-blue-900 mb-3">Banque mobile</h3>
-                <p class="text-gray-600">Accédez à vos comptes, réalisez des virements et consultez vos transactions depuis votre smartphone.</p>
+
+            <div>
+                <h4 class="text-3xl font-bold mb-2">15+</h4>
+                <p class="text-blue-100">Années d'expérience</p>
             </div>
-            
-            <div class="bg-white rounded-lg p-8 shadow-md transition-transform hover:-translate-y-2 duration-300">
-                <div class="text-4xl mb-4 text-blue-400">💰</div>
-                <h3 class="text-xl font-semibold text-blue-900 mb-3">Épargne intelligente</h3>
-                <p class="text-gray-600">Nos solutions d'épargne personnalisées vous aident à atteindre vos objectifs financiers plus rapidement.</p>
-            </div>
-        </section>
-        
-        <!-- Stats Section -->
-        <section class="bg-blue-900 text-white rounded-lg p-8 mb-16">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div>
-                    <h4 class="text-3xl font-bold mb-2">98%</h4>
-                    <p class="text-blue-100">Clients satisfaits</p>
-                </div>
-                
-                <div>
-                    <h4 class="text-3xl font-bold mb-2">500K+</h4>
-                    <p class="text-blue-100">Utilisateurs actifs</p>
-                </div>
-                
-                <div>
-                    <h4 class="text-3xl font-bold mb-2">24/7</h4>
-                    <p class="text-blue-100">Assistance client</p>
-                </div>
-                
-                <div>
-                    <h4 class="text-3xl font-bold mb-2">15+</h4>
-                    <p class="text-blue-100">Années d'expérience</p>
-                </div>
-            </div>
-        </section>
-        {% endblock %}
+        </div>
+    </section>
+{% endblock %}
 
 
 
 {% block footer %}
-{% include "layout/footer.twig" %}
+    {% include "layout/footer.twig" %}
 {% endblock %}

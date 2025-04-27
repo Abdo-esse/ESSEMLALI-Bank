@@ -44,7 +44,8 @@ class EmailService
         string $fullName,
         string $plainPassword,
         string $accountNumber
-    ): bool {
+    ): bool
+    {
         $subject = "Votre compte a été approuvé";
         $message = $this->createApprovalMessage($fullName, $to, $plainPassword, $accountNumber);
 
@@ -74,7 +75,8 @@ class EmailService
         string $subject,
         string $message,
         string $altSubject
-    ): bool {
+    ): bool
+    {
         try {
             $this->mailer->setFrom($_ENV['EMAIL_FROM'], 'Service Client - Essemlali Bank');
             $this->mailer->addAddress($to);
@@ -98,7 +100,8 @@ class EmailService
         string $email,
         string $password,
         string $accountNumber
-    ): string {
+    ): string
+    {
         return "
             <p>Bonjour $fullName,</p>
             

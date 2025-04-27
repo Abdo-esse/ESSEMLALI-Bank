@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Controllers; 
+namespace App\Controllers;
 
-use App\services\AuthService; 
+use App\services\AuthService;
 use App\requests\LoginRequest;
 use App\core\Session;
 
-class LoginController extends Controller{
+class LoginController extends Controller
+{
     private $authService;
 
     public function __construct()
@@ -18,15 +19,16 @@ class LoginController extends Controller{
 
     public function index()
     {
-       echo  $this->twig->render('auth/login.twig',[
-        'session' => $_SESSION
-    ]);
+        echo $this->twig->render('auth/login.twig', [
+            'session' => $_SESSION
+        ]);
 
     }
-    
-    public function login(){
+
+    public function login()
+    {
         $request = new LoginRequest($_POST);
-            
+
         if (!$request->validate()) {
             Session::set('error', $request->getErrors());
             Session::set('valueslogin', $_POST);
@@ -35,26 +37,26 @@ class LoginController extends Controller{
         }
         Session::unset('error');
         Session::unset('valueslogin');
-        $email = $_POST['email'] ;
-        $password = $_POST['password'] ;
+        $email = $_POST['email'];
+        $password = $_POST['password'];
         if (!$this->authService->login($email, $password)) {
             $this->redirect('login');
             exit;
         }
         $role = Session::get('user')['role'];
-         $this->redirectUserByRole($role);
+        $this->redirectUserByRole($role);
     }
 
 
-    private function redirectUserByRole($role){
+    private function redirectUserByRole($role)
+    {
         return match ($role) {
             'Admin' => $this->redirect('accueil-admin'),
             'Employé' => $this->redirect('Employe'),
             'Client' => $this->redirect('Client'),
-            default => "unknown" 
+            default => "unknown"
         };
     }
-    
 
-    
+
 }

@@ -1,7 +1,8 @@
 <?php
+
 namespace App\Config;
 
-require dirname(__DIR__) . '/../vendor/autoload.php'; 
+require dirname(__DIR__) . '/../vendor/autoload.php';
 
 use PDO;
 use PDOException;
@@ -15,20 +16,20 @@ class Connexion
     {
         if (self::$conn === null) {
             try {
-                
-                $dotenv = Dotenv::createImmutable(dirname(__DIR__,2));
+
+                $dotenv = Dotenv::createImmutable(dirname(__DIR__, 2));
                 $dotenv->load();
 
-                
-                $host = $_ENV['DB_HOST'] ;
-                $db = $_ENV['DB_NAME'];
-                $username = $_ENV['DB_USER'] ;
-                $password = $_ENV['DB_PASSWORD'] ;
 
-                
+                $host = $_ENV['DB_HOST'];
+                $db = $_ENV['DB_NAME'];
+                $username = $_ENV['DB_USER'];
+                $password = $_ENV['DB_PASSWORD'];
+
+
                 self::$conn = new PDO("pgsql:host=$host;dbname=$db", $username, $password);
                 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                
+
                 // echo "Connected to PostgreSQL"; 
 
             } catch (PDOException $exception) {
