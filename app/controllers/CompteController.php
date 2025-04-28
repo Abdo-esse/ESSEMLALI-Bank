@@ -18,7 +18,7 @@ class CompteController extends Controller
     public function approuver($id)
     {
         if ($this->comptService->approuver($id)) {
-            $this->redirect('clients');
+            $this->redirect('demande-compte');
             exit;
         }
 
@@ -27,7 +27,7 @@ class CompteController extends Controller
     public function refuser($id)
     {
         if ($this->comptService->refuser($id)) {
-            $this->redirect('clients');
+            $this->redirect('demande-compte');
             exit;
         }
 
