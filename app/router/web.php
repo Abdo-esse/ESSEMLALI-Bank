@@ -30,31 +30,31 @@ Router::add("GET", "/search-employe", "EmployeController@searchEmployes",["middl
 
 //Employe route
 
-Router::add("GET", "/accueil-employe", "EmployeViewController@index");
-Router::add("POST", "approuver/{id}", "CompteController@approuver");
-Router::add("POST", "/refuser/{id}", "CompteController@refuser");
-Router::add("GET", "/demande-compte", "EmployeViewController@demandeComptes");
-Router::add("GET", "/voir/{id}", "EmployeViewController@demandeCompte");
-Router::add("POST", "/addClient", "ClientController@add");
-Router::add("GET", "/clients", "EmployeViewController@clients");
-Router::add("POST", "/client/{id}", "EmployeViewController@client");
-Router::add("POST", "client/delete/{id}", "ClientController@delete");
-Router::add("GET", "/versement", "TransactionViewControllers@versement");
-Router::add("POST", "/deposit", "TransactionController@deposit");
-Router::add("GET", "/retrait", "TransactionViewControllers@retrait");
-Router::add("POST", "/retrait", "TransactionController@retrait");
-Router::add("GET", "/virement", "TransactionViewControllers@virement");
-Router::add("POST", "/virement", "TransactionController@virementEmploye");
-Router::add("GET", "/recu/virement", "ReçuController@recuVirement");
-Router::add("POST", "/recu/virement/telecharger", "TelechargerPeçuController@telechargerRecuVirement");
-Router::add("GET", "/recu/versement", "ReçuController@recuVersement");
-Router::add("POST", "/recu/versement/telecharger", "TelechargerPeçuController@telechargerRecuVersement");
-Router::add("GET", "/recu/retrait", "ReçuController@recuRetrait");
-Router::add("POST", "/recu/retrait/telecharger", "TelechargerPeçuController@telechargerRecuRetrait");
-Router::add("GET", "/search-clien", "ClientController@searchClient");
-Router::add("GET", "/all-clients", "ClientController@allClients");
-Router::add("GET", "/all-demande-clients", "ClientController@allDemandeClients");
-Router::add("GET", "/search-demande-clien", "ClientController@searchDemandeClient");
+Router::add("GET", "/accueil-employe", "EmployeViewController@index",["middleware"=>"Employe"]);
+Router::add("POST", "approuver/{id}", "CompteController@approuver",["middleware"=>"Employe"]);
+Router::add("POST", "/refuser/{id}", "CompteController@refuser",["middleware"=>"Employe"]);
+Router::add("GET", "/demande-compte", "EmployeViewController@demandeComptes",["middleware"=>"Employe"]);
+Router::add("GET", "/voir/{id}", "EmployeViewController@demandeCompte",["middleware"=>"Employe"]);
+Router::add("POST", "/addClient", "ClientController@add",["middleware"=>"Employe"]);
+Router::add("GET", "/clients", "EmployeViewController@clients",["middleware"=>"Employe"]);
+Router::add("POST", "/client/{id}", "EmployeViewController@client",["middleware"=>"Employe"]);
+Router::add("POST", "client/delete/{id}", "ClientController@delete",["middleware"=>"Employe"]);
+Router::add("GET", "/versement", "TransactionViewControllers@versement",["middleware"=>"Employe"]);
+Router::add("POST", "/deposit", "TransactionController@deposit",["middleware"=>"Employe"]);
+Router::add("GET", "/retrait", "TransactionViewControllers@retrait",["middleware"=>"Employe"]);
+Router::add("POST", "/retrait", "TransactionController@retrait",["middleware"=>"Employe"]);
+Router::add("GET", "/virement", "TransactionViewControllers@virement",["middleware"=>"Employe"]);
+Router::add("POST", "/virement", "TransactionController@virementEmploye",["middleware"=>"Employe"]);
+Router::add("GET", "/recu/virement", "ReçuController@recuVirement",["middleware"=>"Employe"]);
+Router::add("POST", "/recu/virement/telecharger", "TelechargerPeçuController@telechargerRecuVirement",["middleware"=>"Employe"]);
+Router::add("GET", "/recu/versement", "ReçuController@recuVersement",["middleware"=>"Employe"]);
+Router::add("POST", "/recu/versement/telecharger", "TelechargerPeçuController@telechargerRecuVersement",["middleware"=>"Employe"]);
+Router::add("GET", "/recu/retrait", "ReçuController@recuRetrait",["middleware"=>"Employe"]);
+Router::add("POST", "/recu/retrait/telecharger", "TelechargerPeçuController@telechargerRecuRetrait",["middleware"=>"Employe"]);
+Router::add("GET", "/search-clien", "ClientController@searchClient",["middleware"=>"Employe"]);
+Router::add("GET", "/all-clients", "ClientController@allClients",["middleware"=>"Employe"]);
+Router::add("GET", "/all-demande-clients", "ClientController@allDemandeClients",["middleware"=>"Employe"]);
+Router::add("GET", "/search-demande-clien", "ClientController@searchDemandeClient",["middleware"=>"Employe"]);
 
 
 //client routes
