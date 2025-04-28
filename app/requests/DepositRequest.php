@@ -28,8 +28,6 @@ class DepositRequest
             $this->errors['amount'] = 'amount is required';
         } elseif (!is_numeric($this->data['amount']) || $this->data['amount'] < 10) {
             $this->errors['amount'] = 'Amount must be a positive number and superieur a 10';
-        } elseif ($this->data['amount'] > 10000) {
-            $this->errors['amount'] = 'Amount exceeds the allowed limit';
         }
 
         return empty($this->errors);

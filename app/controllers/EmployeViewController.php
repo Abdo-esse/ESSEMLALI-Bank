@@ -23,8 +23,16 @@ class EmployeViewController extends Controller
 
     public function index()
     {
+        $id = $_SESSION["user"]["id"];
         $data = $this->statistiqueService->statistiqueEmploye();
-        echo $this->twig->render('employe/index.twig', ['session' => $_SESSION, "data" => $data]);
+        $employe=$this->employeService->find($id);
+        echo $this->twig->render('employe/index.twig',
+        [
+            'session' => $_SESSION,
+            "data" => $data,
+            'name'=> $employe->getNom(),
+            'prenom'=>$employe->getprenom()
+        ]);
     }
 
     public function employes()
