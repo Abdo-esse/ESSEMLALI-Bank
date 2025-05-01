@@ -2,14 +2,17 @@
 
 namespace App\requests;
 
+use App\Repository\UserRepository;
 class UpdateClientRequest
 {
     private $data;
     private $errors = [];
+    private UserRepository $userRepo;
 
     public function __construct(array $data)
     {
         $this->data = $data;
+        $this->userRepo = new UserRepository();
     }
 
     public function validate(): bool
@@ -20,6 +23,8 @@ class UpdateClientRequest
             $this->errors['email'] = 'L\'email est requis';
         } elseif (!filter_var($this->data['email'], FILTER_VALIDATE_EMAIL)) {
             $this->errors['email'] = 'Format de l\'email invalide';
+        } elseif ($this->userRepo->findByEmail('users', $this->data['email'])) {
+            $this->errors['email'] = 'Impossible d\'utiliser cette adresse e-mail';
         }
         if (empty($this->data['passwordActuel'])) {
             $this->errors['passwordActuel'] = ' password Actuel est requis';

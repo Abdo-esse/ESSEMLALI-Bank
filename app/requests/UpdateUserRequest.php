@@ -6,10 +6,12 @@ class UpdateUserRequest
 {
     private $data;
     private $errors = [];
+    private UserRepository $userRepo;
 
     public function __construct(array $data)
     {
         $this->data = $data;
+        $this->userRepo = new UserRepository();
     }
 
     public function validate(): bool
@@ -31,6 +33,8 @@ class UpdateUserRequest
             $this->errors['email'] = 'Email is required';
         } elseif (!filter_var($this->data['email'], FILTER_VALIDATE_EMAIL)) {
             $this->errors['email'] = 'Invalid email format';
+        } elseif ($this->userRepo->findByEmail('users', $this->data['email'])) {
+            $this->errors['email'] = 'Impossible d\'utiliser cette adresse e-mail';
         }
 
         if (empty($this->data['mot_de_passe'])) {

@@ -12,7 +12,7 @@
     <section class="mb-16">
         <div class="bg-blue-900 rounded-lg overflow-hidden shadow-xl">
             <div class="relative">
-                <img src="https://i.pinimg.com/736x/7b/71/01/7b7101096a93617ce900491ef9513d0d.jpg"
+                <img src="{{ asset('images/apropos1.jpg') }}"
                      alt="Siège de ESSEMLALI Bank" class="w-full opacity-50">
                 <div class="absolute inset-0 flex items-center justify-center">
                     <h1 class="text-4xl md:text-5xl font-bold text-white text-center px-4">Notre Histoire et Nos
@@ -37,7 +37,7 @@
                     et continue de se développer grâce à sa réputation d'excellence et de service personnalisé.</p>
             </div>
             <div>
-                <img src="https://i.pinimg.com/736x/9f/8d/e4/9f8de42df035f73f6901213567a880fb.jpg"
+                <img src="{{ asset('images/apropos2.jpg') }}"
                      alt="Équipe ESSEMLALI Bank" class="w-full rounded-lg shadow-md">
             </div>
         </div>
@@ -71,15 +71,15 @@
         <h2 class="text-3xl font-bold text-blue-900 mb-6">Notre équipe de direction</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="text-center">
-                <img src="https://i.pinimg.com/474x/8c/5e/9d/8c5e9dd58ecd175df019b09f6bac72b6.jpg" alt="CEO"
+                <img src="{{ asset('images/moi.jpeg') }}" alt="CEO"
                      class="w-40 h-40 rounded-full mx-auto mb-4 shadow-md">
-                <h3 class="text-xl font-semibold text-blue-900">Sarah ESSEMLALI</h3>
+                <h3 class="text-xl font-semibold text-blue-900">Abdel Ilah ESSEMLALI</h3>
                 <p class="text-blue-600 mb-2">Présidente-directrice générale</p>
-                <p class="text-gray-600 text-sm">Fondatrice de ESSEMLALI Bank avec plus de 25 ans d'expérience dans le
+                <p class="text-gray-600 text-sm">Fondateur de ESSEMLALI Bank avec plus de 25 ans d'expérience dans le
                     secteur bancaire.</p>
             </div>
             <div class="text-center">
-                <img src="https://i.pinimg.com/474x/91/cc/a8/91cca8839fde6b8be674779d22e51f79.jpg" alt="CFO"
+                <img src="{{ asset('images/apropos4.jpg') }}" alt="CFO"
                      class="w-40 h-40 rounded-full mx-auto mb-4 shadow-md">
                 <h3 class="text-xl font-semibold text-blue-900">Thomas Laurent</h3>
                 <p class="text-blue-600 mb-2">Directeur financier</p>
@@ -87,7 +87,7 @@
                     investissements et la stratégie financière.</p>
             </div>
             <div class="text-center">
-                <img src="https://i.pinimg.com/474x/95/b3/39/95b33969cb7368fe3adbbaa96d713e4e.jpg" alt="CTO"
+                <img src="{{ asset('images/apropos5.jpg') }}" alt="CTO"
                      class="w-40 h-40 rounded-full mx-auto mb-4 shadow-md">
                 <h3 class="text-xl font-semibold text-blue-900">Marie Dubois</h3>
                 <p class="text-blue-600 mb-2">Directrice technique</p>
@@ -139,9 +139,9 @@
         <h2 class="text-3xl font-bold mb-4">Rejoignez la famille ESSEMLALI Bank</h2>
         <p class="text-xl mb-6 max-w-2xl mx-auto">Découvrez comment nous pouvons vous aider à atteindre vos objectifs
             financiers avec nos solutions personnalisées.</p>
-        <button class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-md font-semibold transition-colors">
+        <a href="sign-in" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-md font-semibold transition-colors">
             Ouvrir un compte
-        </button>
+        </a>
     </section>
 {% endblock %}
 

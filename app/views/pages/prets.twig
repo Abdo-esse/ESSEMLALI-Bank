@@ -7,11 +7,11 @@
 
 
 {% block content %}
-    <!-- Hero Section -->
+
     <section class="mb-16">
         <div class="bg-blue-900 rounded-lg overflow-hidden shadow-xl">
             <div class="relative">
-                <img src="https://i.pinimg.com/736x/6a/19/5d/6a195d4d77131174bf91e5f77c48bf85.jpg"
+                <img src="{{ asset('images/pret1.jpg') }}"
                      alt="Solutions de prêt" class="w-full opacity-50">
                 <div class="absolute inset-0 flex items-center justify-center">
                     <h1 class="text-4xl md:text-5xl font-bold text-white text-center px-4">Solutions de prêt adaptées à
@@ -21,14 +21,14 @@
         </div>
     </section>
 
-    <!-- Loan Types Section -->
+
     <section class="mb-16">
         <h2 class="text-3xl font-bold text-blue-900 mb-8 text-center">Nos offres de prêts</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Prêt immobilier -->
+      
             <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:-translate-y-2 duration-300">
                 <div class="h-48 bg-blue-700 relative">
-                    <img src="https://i.pinimg.com/736x/c5/77/08/c57708f57d6489ca763b16515a77ce1a.jpg"
+                    <img src="{{ asset('images/pret2.jpg') }}"
                          alt="Prêt immobilier" class="w-full h-full object-cover opacity-75">
                     <div class="absolute inset-0 flex items-center justify-center">
                         <h3 class="text-2xl font-bold text-white">Prêt immobilier</h3>
@@ -72,10 +72,9 @@
                 </div>
             </div>
 
-            <!-- Prêt automobile -->
             <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:-translate-y-2 duration-300">
                 <div class="h-48 bg-blue-700 relative">
-                    <img src="https://i.pinimg.com/736x/55/8a/ba/558ababf6073f0e53a59a024003542ef.jpg"
+                    <img src="{{ asset('images/pret3.jpg') }}"
                          alt="Prêt automobile" class="w-full h-full object-cover opacity-75">
                     <div class="absolute inset-0 flex items-center justify-center">
                         <h3 class="text-2xl font-bold text-white">Prêt automobile</h3>
@@ -119,10 +118,10 @@
                 </div>
             </div>
 
-            <!-- Prêt personnel -->
+           
             <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:-translate-y-2 duration-300">
                 <div class="h-48 bg-blue-700 relative">
-                    <img src="https://i.pinimg.com/474x/e3/a5/8b/e3a58ba816641f6fd64b3af59db1fd9c.jpg"
+                    <img src="{{ asset('images/pret4.jpg') }}"
                          alt="Prêt personnel" class="w-full h-full object-cover opacity-75">
                     <div class="absolute inset-0 flex items-center justify-center">
                         <h3 class="text-2xl font-bold text-white">Prêt personnel</h3>
@@ -166,10 +165,10 @@
                 </div>
             </div>
 
-            <!-- Prêt étudiant -->
+            
             <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:-translate-y-2 duration-300">
                 <div class="h-48 bg-blue-700 relative">
-                    <img src="https://i.pinimg.com/736x/77/92/6d/77926d0e9748f673c5e045dc426e2192.jpg"
+                    <img src="{{ asset('images/pret5.jpg') }}"
                          alt="Prêt étudiant" class="w-full h-full object-cover opacity-75">
                     <div class="absolute inset-0 flex items-center justify-center">
                         <h3 class="text-2xl font-bold text-white">Prêt étudiant</h3>
@@ -213,10 +212,10 @@
                 </div>
             </div>
 
-            <!-- Prêt travaux -->
+            
             <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:-translate-y-2 duration-300">
                 <div class="h-48 bg-blue-700 relative">
-                    <img src="https://i.pinimg.com/474x/23/e0/7d/23e07d3ed060eac4d260651c1be4e56d.jpg"
+                    <img src="{{ asset('images/pret6.jpg') }}"
                          alt="Prêt travaux" class="w-full h-full object-cover opacity-75">
                     <div class="absolute inset-0 flex items-center justify-center">
                         <h3 class="text-2xl font-bold text-white">Prêt travaux</h3>
@@ -260,10 +259,10 @@
                 </div>
             </div>
 
-            <!-- Prêt professionnel -->
+           
             <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:-translate-y-2 duration-300">
                 <div class="h-48 bg-blue-700 relative">
-                    <img src="https://i.pinimg.com/736x/ba/3e/ce/ba3ece929ab9a97089c09d95a8e0e8e9.jpg"
+                    <img src="{{ asset('images/pret7.jpg') }}"
                          alt="Prêt professionnel" class="w-full h-full object-cover opacity-75">
                     <div class="absolute inset-0 flex items-center justify-center">
                         <h3 class="text-2xl font-bold text-white">Prêt professionnel</h3>
@@ -308,8 +307,7 @@
             </div>
         </div>
     </section>
-    <!-- Process Section -->
-    <!-- Process Section -->
+    
     <section class="bg-white rounded-lg shadow-md p-8 mb-16">
         <h2 class="text-2xl font-bold text-blue-900 mb-8">Notre processus simplifié</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
