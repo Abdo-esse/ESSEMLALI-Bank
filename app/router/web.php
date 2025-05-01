@@ -61,7 +61,7 @@ Router::add("GET", "/search-demande-clien", "ClientController@searchDemandeClien
 //client routes
 Router::add("GET", "/client", "ClientViewController@index",["middleware"=>"Client"]);
 Router::add("GET", "update-info", "ClientViewController@edite",["middleware"=>"Client"]);
-Router::add("POST", "/client/update/{id}", "ClientController@update",["middleware"=>"Client"]);
+Router::add("POST", "/update-info", "ClientController@update");
 Router::add("GET", "/historique", "HistoriqueController@historique",["middleware"=>"Client"]);
 Router::add("GET", "/releve", "ClientViewController@releve",["middleware"=>"Client"]);
 Router::add("POST", "/telecharger/rib", "ClientController@telechargeRib",["middleware"=>"Client"]);

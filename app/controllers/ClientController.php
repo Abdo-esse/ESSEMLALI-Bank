@@ -34,8 +34,9 @@ class ClientController extends Controller
     }
 
 
-    public function update($id)
+    public function update()
     {
+        $id = $_SESSION["user"]["id"];
         $client = $this->clientService->findclient($id);
         $_POST["motDePassEnregister"] = $client['mot_de_passe'];
         $request = new UpdateClientRequest($_POST);
@@ -46,11 +47,11 @@ class ClientController extends Controller
         }
         if (!$this->clientService->update($id, $_POST)) {
             Session::set('error', "Une erreur s'est produite lors de l'ajout de l'employer.");
-            $this->redirect('Client');
+            $this->redirect('client');
             exit;
         }
 
-        $this->redirect('Client');
+        $this->redirect('client');
         exit;
     }
 

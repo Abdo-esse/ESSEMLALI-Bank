@@ -18,11 +18,16 @@ class LoginController extends Controller
 
 
     public function index()
-    {
+    { 
+        $errors = Session::getFlash("error");
+        $values = Session::getFlash("valueslogin");
+        $loginError = Session::getFlash("login"); 
+    
         echo $this->twig->render('auth/login.twig', [
             'session' => $_SESSION,
-            'error'=>Session::getFlash("error"),
-            'valueslogin'=>Session::getFlash("valueslogin")
+            'error' => $errors,
+            'valueslogin' => $values,
+            'login' => $loginError
         ]);
 
     }
