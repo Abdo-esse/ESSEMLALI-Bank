@@ -11,6 +11,7 @@ Router::add("GET", "/login", "LoginController@index");
 Router::add("POST", "/login", "LoginController@login");
 Router::add("GET", "/sign-in", "ClientViewController@create");
 Router::add("POST", "/store", "ClientController@store");
+Router::add("POST", "/logout", "LoginController@logout",["middleware"=>"Auth"]);
 
 
 //Admin route 
@@ -58,16 +59,16 @@ Router::add("GET", "/search-demande-clien", "ClientController@searchDemandeClien
 
 
 //client routes
-Router::add("GET", "/client", "ClientViewController@index");
-Router::add("GET", "update-info", "ClientViewController@edite");
-Router::add("POST", "/client/update/{id}", "ClientController@update");
-Router::add("GET", "/historique", "HistoriqueController@historique");
-Router::add("GET", "/releve", "ClientViewController@releve");
-Router::add("POST", "/telecharger/rib", "ClientController@telechargeRib");
-Router::add("GET", "/virement-client", "TransactionViewControllers@virementClient");
-Router::add("POST", "/virement-client", "TransactionController@virementClient");
-Router::add("GET", "recu/virement-client", "ReçuController@recuVirementClient");
-Router::add("POST", "/recu/virement-client/telecharger", "TelechargerPeçuController@telechargerVirementClient");
+Router::add("GET", "/client", "ClientViewController@index",["middleware"=>"Client"]);
+Router::add("GET", "update-info", "ClientViewController@edite",["middleware"=>"Client"]);
+Router::add("POST", "/client/update/{id}", "ClientController@update",["middleware"=>"Client"]);
+Router::add("GET", "/historique", "HistoriqueController@historique",["middleware"=>"Client"]);
+Router::add("GET", "/releve", "ClientViewController@releve",["middleware"=>"Client"]);
+Router::add("POST", "/telecharger/rib", "ClientController@telechargeRib",["middleware"=>"Client"]);
+Router::add("GET", "/virement-client", "TransactionViewControllers@virementClient",["middleware"=>"Client"]);
+Router::add("POST", "/virement-client", "TransactionController@virementClient",["middleware"=>"Client"]);
+Router::add("GET", "recu/virement-client", "ReçuController@recuVirementClient",["middleware"=>"Client"]);
+Router::add("POST", "/recu/virement-client/telecharger", "TelechargerPeçuController@telechargerVirementClient",["middleware"=>"Client"]);
 
 
 
