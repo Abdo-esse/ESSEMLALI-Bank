@@ -19,7 +19,7 @@ class LoginController extends Controller
 
     public function index()
     { 
-        $errors = Session::getFlash("error");
+       $errors = Session::getFlash("error");
         $values = Session::getFlash("valueslogin");
         $loginError = Session::getFlash("login"); 
     

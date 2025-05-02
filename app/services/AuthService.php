@@ -21,13 +21,14 @@ class AuthService
         $user = $this->userRepo->findByEmail('users', $email);
 
         if (!$user || !password_verify($password, $user['mot_de_passe'])) {
-            Session::getFlash('valueslogin', $_POST);
-            Session::getFlash('login', "Email ou mot de passe incorrect.");
+            Session::setFlash('valueslogin', $_POST);
+            Session::setFlash('login', "Email ou mot de passe incorrect.");
+
             return false;
         }
         if ($user['mot_de_passe'] === false) {
-            Session::getFlash('login', "You account is desactive .");
-            Session::getFlash('valueslogin', $_POST);
+            Session::setFlash('login', "You account is desactive .");
+            Session::setFlash('valueslogin', $_POST);
 
             return false;
         }
