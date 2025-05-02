@@ -33,7 +33,7 @@ class HistoriqueRepository extends BaseRepository
                 JOIN comptes co ON co.client_id = c.id
                 JOIN historique h ON h.id_donneur = co.id OR h.id_beneficiaire = co.id
 
-                -- Jointures pour récupérer les noms
+                
                 LEFT JOIN comptes co_donneur ON co_donneur.id = h.id_donneur
                 LEFT JOIN clients c_donneur ON c_donneur.id = co_donneur.client_id
                 LEFT JOIN users u_donneur ON u_donneur.id = c_donneur.user_id
