@@ -12,7 +12,7 @@ Router::add("POST", "/login", "LoginController@login");
 Router::add("GET", "/sign-in", "ClientViewController@create");
 Router::add("POST", "/store", "ClientController@store");
 Router::add("POST", "/logout", "LoginController@logout",["middleware"=>"Auth"]);
-
+Router::add("GET", "/404", "PagesController@notFound");
 
 //Admin route 
 Router::add("GET", "/accueil-admin", "AdminController@index",["middleware"=>"Admin"]);
@@ -61,7 +61,7 @@ Router::add("GET", "/search-demande-clien", "ClientController@searchDemandeClien
 //client routes
 Router::add("GET", "/client", "ClientViewController@index",["middleware"=>"Client"]);
 Router::add("GET", "update-info", "ClientViewController@edite",["middleware"=>"Client"]);
-Router::add("POST", "/update-info", "ClientController@update");
+Router::add("POST", "/update-info", "ClientController@update",["middleware"=>"Client"]);
 Router::add("GET", "/historique", "HistoriqueController@historique",["middleware"=>"Client"]);
 Router::add("GET", "/releve", "ClientViewController@releve",["middleware"=>"Client"]);
 Router::add("POST", "/telecharger/rib", "ClientController@telechargeRib",["middleware"=>"Client"]);

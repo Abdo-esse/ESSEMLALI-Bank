@@ -10,7 +10,7 @@ use Ratchet\Server\IoServer;
 use Ratchet\RFC6455\Messaging\MessageInterface;
 
 // Classe qui gère les connexions WebSocket
-class ChatServer implements MessageComponentInterface {
+class TransactionServer implements MessageComponentInterface {
     protected $clients;
 
     public function __construct() {

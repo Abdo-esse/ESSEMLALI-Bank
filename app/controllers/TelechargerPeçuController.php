@@ -34,7 +34,7 @@ class TelechargerPeçuController extends Controller
     {
         $data = $_SESSION['data'] ?? null;
         if (!$data) {
-            echo "Aucune donnée pour générer le reçu.";
+            $this->redirect('404');
             exit;
         }
         $html = $this->twig->render("reçu/$recu.twig", ['session' => $_SESSION]);
