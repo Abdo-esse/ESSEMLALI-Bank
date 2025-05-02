@@ -25,4 +25,9 @@ class PagesController extends Controller
         echo $this->twig->render('pages/prets.twig');
 
     }
+    public function notFound()
+    {
+        echo $this->twig->render('pages/404.twig');
+
+    }
 }

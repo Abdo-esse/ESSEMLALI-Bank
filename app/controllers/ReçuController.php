@@ -22,7 +22,7 @@ class ReçuController extends Controller
     public function recuVirement()
     {
         if (!Session::get("post")) {
-            echo "Aucune donnée pour générer le reçu.";
+            $this->redirect('404');
             exit;
         }
         $data = Session::get("post");
@@ -35,7 +35,7 @@ class ReçuController extends Controller
     public function recuVirementClient()
     {
         if (!Session::get("post")) {
-            echo "Aucune donnée pour générer le reçu.";
+            $this->redirect('404');
             exit;
         }
         $data = Session::get("post");
@@ -48,7 +48,7 @@ class ReçuController extends Controller
     public function recuVersement()
     {
         if (!Session::get("post")) {
-            echo "Aucune donnée pour générer le reçu.";
+            $this->redirect('404');
             exit;
         }
         $data = Session::get("post");
@@ -61,7 +61,7 @@ class ReçuController extends Controller
     public function recuRetrait()
     {
         if (!Session::get("post")) {
-            echo "Aucune donnée pour générer le reçu.";
+            $this->redirect('404');
             exit;
         }
         $data = Session::get("post");
